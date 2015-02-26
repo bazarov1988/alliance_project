@@ -1,0 +1,1 @@
+<h1>Welcome, <?php echo Yii::$app->user->identity->username;?>!</h1>
