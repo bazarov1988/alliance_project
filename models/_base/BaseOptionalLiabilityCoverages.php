@@ -201,7 +201,7 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
 
     public function validateAutomobileCoverage($attr,$params){
         if($this->$attr>1&&$this->$attr<5){
-            if($this->automobile_coverage_agregate&&($this-$attr>$this->automobile_coverage_agregate)){
+            if($this->automobile_coverage_agregate&&($this->$attr>$this->automobile_coverage_agregate)){
                 $this->addError($attr,'The Employers Non Owned Auto occurrence limit must be less than aggregate.');
             }
         }
@@ -236,7 +236,7 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
 
     public function validateAutomobileCoverageA($attr,$params){
         if($this->$attr>1&&$this->$attr<5){
-            if($this->automobile_coverage_agregate_a&&$this-$attr>$this->automobile_coverage_agregate_a){
+            if($this->automobile_coverage_agregate_a&&$this->$attr>$this->automobile_coverage_agregate_a){
                 $this->addError($attr,'The Hired and Non Owned Auto occurrence limit must be less than aggregate.');
             }
         }

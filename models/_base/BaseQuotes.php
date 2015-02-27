@@ -3,7 +3,8 @@
 namespace app\models\_base;
 
 use Yii;
-use amnah\yii2\user\models\User;
+use app\models\Occupancy;
+
 
 /**
  * This is the model class for table "bop_rater_entry".
@@ -124,33 +125,6 @@ class BaseQuotes extends \yii\db\ActiveRecord
             'each_person_accident' => Yii::t('app', 'Each Person/Accident'),
         ];
     }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     * relations
-     */
-    public function getPropertyCoverages(){
-        return $this->hasOne(OptionalPropertyCoverages::className(),['quote_id'=>'id']);
-    }
-    public function getLiabilityCoverages(){
-        return $this->hasOne(OptionalLiabilityCoverages::className(),['quote_id'=>'id']);
-    }
-    public function getSpecialConditions(){
-        return $this->hasOne(SpecialConditions::className(),['quote_id'=>'id']);
-    }
-    public function getCountryModel(){
-        return $this->hasOne(Countries::className(),['id'=>'country']);
-    }
-    public function getMedPayment(){
-        return $this->hasOne(MedicalPayments::className(),['id'=>'med_payment']);
-    }
-    public function getOccupancy(){
-        return $this->hasOne(Occupancy::className(),['id'=>'occupied']);
-    }
-    public function getUser(){
-        return $this->hasOne(User::className(),['id'=>'user_id']);
-    }
-
     /**
      * @return string
      * get urls for generated files
