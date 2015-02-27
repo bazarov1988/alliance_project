@@ -14,7 +14,10 @@ $config = [
     ],
     'components' => [
         'excel'=>[
-            'class'=>'app/components/ExcelComponent'
+            'class'=>'app\components\ExcelComponent'
+        ],
+        'quote'=>[
+            'class'=>'app\components\QuoteComponent'
         ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation

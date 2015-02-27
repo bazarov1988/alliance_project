@@ -40,11 +40,11 @@
     <td ><strong>Lead Excl.</strong></td>
 </tr>
 <tr>
-    <td ><?=$model->getValueByAttribute('policy_type')?></td>
-    <td ><?=$model->getValueByAttribute('construction')?></td>
-    <td ><?=$model->getValueByAttribute('protection')?></td>
-    <td ><?=$model->getValueByAttribute('prior_since')?></td>
-    <td ><?=$model->getValueByAttribute('does_lead_exclusion_apply')?></td>
+    <td ><?=Yii::$app->quote->getValueByAttribute($model,'policy_type')?></td>
+    <td ><?=Yii::$app->quote->getValueByAttribute($model,'construction')?></td>
+    <td ><?=Yii::$app->quote->getValueByAttribute($model,'protection')?></td>
+    <td ><?=Yii::$app->quote->getValueByAttribute($model,'prior_since')?></td>
+    <td ><?=Yii::$app->quote->getValueByAttribute($model,'does_lead_exclusion_apply')?></td>
     <td >No</td>
 </tr>
 <tr>
@@ -65,11 +65,11 @@
 </tr>
 <tr>
     <td ><?=$model->countryModel?$model->countryModel->name:null?></td>
-    <td ><?=$model->getValueByAttribute('occupied_type')?></td>
-    <td ><?=$model->getValueByAttribute('apt_in_bldg')?></td>
-    <td ><?=$model->getValueByAttribute('operated_by_insured')?></td>
-    <td ><?=$model->getValueByAttribute('mercantile_occupany_in_bldg')?></td>
-    <td ><?=$model->getValueByAttribute('sole_occupancy')?></td>
+    <td ><?=Yii::$app->quote->getValueByAttribute($model,'occupied_type')?></td>
+    <td ><?=Yii::$app->quote->getValueByAttribute($model,'apt_in_bldg')?></td>
+    <td ><?=Yii::$app->quote->getValueByAttribute($model,'operated_by_insured')?></td>
+    <td ><?=Yii::$app->quote->getValueByAttribute($model,'mercantile_occupany_in_bldg')?></td>
+    <td ><?=Yii::$app->quote->getValueByAttribute($model,'sole_occupancy')?></td>
 </tr>
 <tr>
     <td ></td>
@@ -105,17 +105,17 @@
 </tr>
 <tr>
     <td >Building</td>
-    <td ><?=$model->getValueByAttribute('building_rc_acv')?></td>
+    <td ><?=Yii::$app->quote->getValueByAttribute($model,'building_rc_acv')?></td>
     <td ><?=$model->building_amount_of_ins?'$'.$model->building_amount_of_ins:null;?></td>
-    <td ><?=$model->getValueByAttribute('deductible_bldg')?></td>
+    <td ><?=Yii::$app->quote->getValueByAttribute($model,'deductible_bldg')?></td>
     <td >$0.00</td>
     <td >---</td>
 </tr>
 <tr>
     <td >Bus. Prop.</td>
-    <td ><?=$model->getValueByAttribute('business_property_rc_acv')?></td>
+    <td ><?=Yii::$app->quote->getValueByAttribute($model,'business_property_rc_acv')?></td>
     <td ><?=$model->bus_amount_of_ins?'$'.$model->bus_amount_of_ins:null;?></td>
-    <td ><?=$model->getValueByAttribute('deductible_bp')?></td>
+    <td ><?=Yii::$app->quote->getValueByAttribute($model,'deductible_bp')?></td>
     <td >$0.00</td>
     <td >---</td>
 </tr>

@@ -152,23 +152,6 @@ class Quotes extends \yii\db\ActiveRecord
     }
 
     /**
-     * @param $attr
-     * @return null
-     * @return val from params
-     */
-    public function getValueByAttribute($attr){
-        if($this->$attr!==null){
-            if(!empty(Yii::$app->params['quote'][$attr])&&!empty(Yii::$app->params['quote'][$attr][$this->$attr])){
-                return Yii::$app->params['quote'][$attr][$this->$attr];
-            } else {
-                return null;
-            }
-        }else{
-            return null;
-        }
-    }
-
-    /**
      * @return string
      * get urls for generated files
      */
