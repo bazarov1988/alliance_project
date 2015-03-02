@@ -248,7 +248,7 @@
     <td></td>
 </tr>
 
-    <?php if(!$model->liabilityCoverages->all_hazards): ?>
+    <?php if($model->liabilityCoverages->all_hazards): ?>
         <tr>
             <td><?=$model->liabilityCoverages->getFormNumber('all_hazards')?></td>
             <td><?=$model->liabilityCoverages->getAttributeLabel('all_hazards')?></td>
@@ -259,7 +259,7 @@
         </tr>
     <?php endif; ?>
 
-    <?php if(!$model->liabilityCoverages->a_d_p_b): ?>
+    <?php if($model->liabilityCoverages->a_d_p_b): ?>
         <tr>
             <td><?=$model->liabilityCoverages->getFormNumber('a_d_p_b')?></td>
             <td><?=$model->liabilityCoverages->getAttributeLabel('a_d_p_b')?></td>
@@ -270,7 +270,7 @@
         </tr>
     <?php endif; ?>
 
-    <?php if(!$model->liabilityCoverages->athletic_participants): ?>
+    <?php if($model->liabilityCoverages->athletic_participants): ?>
         <tr>
             <td><?=$model->liabilityCoverages->getFormNumber('athletic_participants')?></td>
             <td><?=$model->liabilityCoverages->getAttributeLabel('athletic_participants')?></td>
@@ -281,7 +281,7 @@
         </tr>
     <?php endif; ?>
 
-    <?php if(!$model->liabilityCoverages->certain_skin_care_service): ?>
+    <?php if($model->liabilityCoverages->certain_skin_care_service): ?>
         <tr>
             <td><?=$model->liabilityCoverages->getFormNumber('certain_skin_care_service')?></td>
             <td><?=$model->liabilityCoverages->getAttributeLabel('certain_skin_care_service')?></td>
@@ -292,7 +292,7 @@
         </tr>
     <?php endif; ?>
 
-    <?php if(!$model->liabilityCoverages->certain_skin_care_service_a): ?>
+    <?php if($model->liabilityCoverages->certain_skin_care_service_a): ?>
         <tr>
             <td><?=$model->liabilityCoverages->getFormNumber('certain_skin_care_service_a')?></td>
             <td><?=$model->liabilityCoverages->getAttributeLabel('certain_skin_care_service_a')?></td>
@@ -303,7 +303,7 @@
         </tr>
     <?php endif; ?>
 
-    <?php if(!$model->liabilityCoverages->discrimination_clarification): ?>
+    <?php if($model->liabilityCoverages->discrimination_clarification): ?>
     <tr>
         <td><?=$model->liabilityCoverages->getFormNumber('discrimination_clarification')?></td>
         <td><?=$model->liabilityCoverages->getAttributeLabel('discrimination_clarification')?></td>
@@ -314,7 +314,7 @@
     </tr>
     <?php endif; ?>
 
-    <?php if(!$model->liabilityCoverages->employment_practices): ?>
+    <?php if($model->liabilityCoverages->employment_practices): ?>
         <tr>
             <td><?=$model->liabilityCoverages->getFormNumber('employment_practices')?></td>
             <td><?=$model->liabilityCoverages->getAttributeLabel('employment_practices')?></td>
@@ -325,7 +325,7 @@
         </tr>
     <?php endif; ?>
 
-    <?php if(!$model->liabilityCoverages->fairs): ?>
+    <?php if($model->liabilityCoverages->fairs): ?>
         <tr>
             <td><?=$model->liabilityCoverages->getFormNumber('fairs')?></td>
             <td><?=$model->liabilityCoverages->getAttributeLabel('fairs')?></td>
@@ -336,7 +336,7 @@
         </tr>
     <?php endif; ?>
 
-    <?php if(!$model->liabilityCoverages->known_loss_damage): ?>
+    <?php if($model->liabilityCoverages->known_loss_damage): ?>
         <tr>
             <td><?=$model->liabilityCoverages->getFormNumber('known_loss_damage')?></td>
             <td><?=$model->liabilityCoverages->getAttributeLabel('known_loss_damage')?></td>
@@ -347,7 +347,7 @@
         </tr>
     <?php endif; ?>
 
-    <?php if(!$model->liabilityCoverages->dry_cleaning_damage): ?>
+    <?php if($model->liabilityCoverages->dry_cleaning_damage): ?>
         <tr>
             <td><?=$model->liabilityCoverages->getFormNumber('dry_cleaning_damage')?></td>
             <td><?=$model->liabilityCoverages->getAttributeLabel('dry_cleaning_damage')?></td>
@@ -358,7 +358,7 @@
         </tr>
     <?php endif; ?>
 
-    <?php if(!$model->liabilityCoverages->liquor_liability): ?>
+    <?php if($model->liabilityCoverages->liquor_liability): ?>
         <tr>
             <td><?=$model->liabilityCoverages->getFormNumber('liquor_liability')?></td>
             <td><?=$model->liabilityCoverages->getAttributeLabel('liquor_liability')?></td>
@@ -369,7 +369,7 @@
         </tr>
     <?php endif; ?>
 
-    <?php if(!$model->liabilityCoverages->operations): ?>
+    <?php if($model->liabilityCoverages->operations): ?>
         <tr>
             <td><?=$model->liabilityCoverages->getFormNumber('operations')?></td>
             <td><?=$model->liabilityCoverages->getAttributeLabel('operations')?></td>
@@ -380,7 +380,7 @@
         </tr>
     <?php endif; ?>
 
-    <?php if(!$model->liabilityCoverages->saddle_animals): ?>
+    <?php if($model->liabilityCoverages->saddle_animals): ?>
         <tr>
             <td><?=$model->liabilityCoverages->getFormNumber('saddle_animals')?></td>
             <td><?=$model->liabilityCoverages->getAttributeLabel('saddle_animals')?></td>
@@ -391,7 +391,7 @@
         </tr>
     <?php endif; ?>
 
-    <?php if(!$model->liabilityCoverages->ice_control_operations): ?>
+    <?php if($model->liabilityCoverages->ice_control_operations): ?>
         <tr>
             <td><?=$model->liabilityCoverages->getFormNumber('ice_control_operations')?></td>
             <td><?=$model->liabilityCoverages->getAttributeLabel('ice_control_operations')?></td>
