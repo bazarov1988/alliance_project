@@ -76,11 +76,11 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
     {
         return [
 
-            [['quote_id', 'liability_form','extended_pollution_exclusion', 'additional_insured','additional_insured_number',
-                'barber_shop_liability', 'emploees_full_time', 'emploees_part_time', 'emploees_barbers_time', 'emploees_manicurists',
+            [['quote_id', 'liability_form','extended_pollution_exclusion', 'additional_insured','additional_insured_number','barber_shop_liability',
                 'automobile_coverage', 'automobile_coverage_agregate_a', 'automobile_coverage_agregate', 'liquor_liability_restaurant',
-                'liquor_liability_limit', 'exclusionary_endorsements', 'fire_legal', 'fire_legal_settlement', 'automobile_coverage_a'], 'required'],
-
+                'liquor_liability_limit', 'exclusionary_endorsements', 'fire_legal', 'fire_legal_settlement', 'automobile_coverage_a'],
+                'number'],
+            [[ 'emploees_full_time', 'emploees_part_time', 'emploees_barbers_time', 'emploees_manicurists'],'integer'],
             [['add_insured_owners_lessees','add_insured_owners_contactors', 'battery_exclusion', 'designated_premises', 'contractual_liability_limitation', 'project_only',
                 'acquired_entities', 'all_hazards', 'a_d_p_b', 'athletic_participants', 'certain_skin_care_service', 'certain_skin_care_service_a', 'discrimination_clarification',
                 'employment_practices', 'fairs', 'known_loss_damage', 'dry_cleaning_damage', 'liquor_liability', 'operations', 'saddle_animals', 'ice_control_operations',
@@ -311,19 +311,19 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
     public function validateLiquorLiabilityLimit($attr,$params){
         if(!empty($this->$attr)&&$this->$attr!=5){
             if(empty($this->liquor_liability_receipts)){
-                $this->addError($attr,'Liquor Liability Receipts must be entered.');
+                $this->addError('liquor_liability_receipts','Liquor Liability Receipts must be entered.');
             }
             if(empty($this->liquor_liability_restaurant)||$this->liquor_liability_restaurant==4){
-                $this->addError($attr,'Liquor Liability Occupancy must be chosen.');
+                $this->addError('liquor_liability_restaurant','Liquor Liability Occupancy must be chosen.');
             }
         } elseif(empty($this->$attr)||$this->$attr==5) {
             if(!empty($this->liquor_liability_receipts)){
-                $this->addError($attr,'Limit for Liquor Liability must be entered.');
+                $this->addError('liquor_liability_receipts','Limit for Liquor Liability must be entered.');
             }
         }
         if(empty($this->liquor_liability_restaurant)||$this->liquor_liability_restaurant==4){
             if(!empty($this->liquor_liability_receipts)){
-                $this->addError($attr,'Liquor Liability Occupancy must be chosen.');
+                $this->addError('liquor_liability_restaurant','Liquor Liability Occupancy must be chosen.');
             }
         }
     }
