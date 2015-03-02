@@ -82,7 +82,7 @@ return [
         'operations'            => 0,
         'saddle_animals'        => 0,
         'snow_ice'              => 0,
-        'known_loss_or_damage'  => 0
+        'known_loss_damage'     => 0
     ]
 
 ];

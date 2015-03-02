@@ -181,8 +181,23 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
      */
     public function formNumbers(){
         return [
-            'add_insured_owners_lessees' => 'LS-24',
-            'add_insured_owners_contactors' => 'LS-24A'
+            'add_insured_owners_lessees'            => 'LS-24',
+            'add_insured_owners_contactors'         => 'LS-24A',
+            'all_hazards'                           => 'LS-17',
+            'a_d_p_b'                               => 'LS-87',
+            'athletic_participants'                 => 'LS-14',
+            'certain_skin_care_service'             => 'LS-76',
+            'certain_skin_care_service_a'           => 'LS-76A',
+            'discrimination_clarification'          => 'LS-88',
+            'employment_practices'                  => 'LS-93',
+            'fairs'                                 => 'LS-36',
+            'known_loss_damage'                     => 'LS-85',
+            'dry_cleaning_damage'                   => 'LS-15',
+            'liquor_liability'                      => 'LS-31',
+            'operations'                            => 'LS-18',
+            'saddle_animals'                        => 'LS-72',
+            'ice_control_operations'                => 'LS-79',
+
         ];
     }
 
@@ -192,7 +207,7 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
      * get form number by attribute name
      */
     public function getFormNumber($attr){
-        if(!empty($this->formNumbers()[$attr])){
+        if( array_key_exists($attr, $this->formNumbers()) ){
             return $this->formNumbers()[$attr];
         } else {
             return null;
