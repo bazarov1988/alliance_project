@@ -181,7 +181,8 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
      */
     public function formNumbers(){
         return [
-
+            'add_insured_owners_lessees' => 'LS-24',
+            'add_insured_owners_contactors' => 'LS-24A'
         ];
     }
 

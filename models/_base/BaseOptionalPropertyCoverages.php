@@ -203,7 +203,7 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
      */
     public function formNumbers(){
         return [
-
+            'alcoholic_beverages_tax_exclusion' => 'SF-105',
         ];
     }
 
