@@ -231,21 +231,28 @@
     <td>-$1.00</td>
     <td></td>
 </tr>
-<?php
-var_dump($model->liabilityCoverages->discrimination_clarification);
-if(!$model->liabilityCoverages->discrimination_clarification) {
-?>
+
+<?php if(!$model->liabilityCoverages->all_hazards): ?>
+    <tr>
+        <td><?='LS-17'?></td>
+        <td><?=$model->liabilityCoverages->getAttributeLabel('all_hazards')?></td>
+        <td></td>
+        <td></td>
+        <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getAllHazardsPremium() )?></td>
+        <td></td>
+    </tr>
+<?php endif; ?>
+
+<?php if(!$model->liabilityCoverages->discrimination_clarification): ?>
 <tr>
-    <td>1</td>
+    <td><?='LS-88'?></td>
     <td><?=$model->liabilityCoverages->getAttributeLabel('discrimination_clarification')?></td>
-    <td>1</td>
-    <td>1</td>
-    <td>1</td>
-    <td>1</td>
+    <td></td>
+    <td></td>
+    <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getDiscriminationClarificationPremium() )?></td>
+    <td></td>
 </tr>
-<?php
-}
-?>
+<?php endif; ?>
 
 <tr>
     <td></td>
