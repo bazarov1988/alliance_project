@@ -160,20 +160,19 @@
     <td></td>
 </tr>
 <tr>
-    <td>Optional Coverages</td>
-    <td> </td>
-    <td> </td>
-    <td> </td>
-    <td> </td>
-    <td>Special</td>
+    <th colspan="5"><strong>Optional Coverages</strong></th>
+
+    <th><strong>Special</strong></th>
 </tr>
+
+
 <tr>
-    <td>Form #</td>
-    <td>Form Title</td>
+    <td><strong>Form #</strong></td>
+    <td><strong>Form Title</strong></td>
     <td> </td>
-    <td>Limit</td>
-    <td>Premium</td>
-    <td>Ded</td>
+    <td><strong>Limit</strong></td>
+    <td><strong>Premium</strong></td>
+    <td><strong>Ded</strong></td>
 </tr>
 <tr>
     <td></td>
@@ -200,21 +199,30 @@
     <td></td>
 </tr>
 <tr>
-    <td></td>
-    <td>Optional Liability Coverages</td>
-    <td> </td>
-    <td> </td>
-    <td> </td>
-    <td></td>
+    <th colspan="6"><strong>Optional Liability Coverages</strong></th>
 </tr>
+<?php if($model->liabilityCoverages->liability_form): ?>
 <tr>
-    <td>LS-19</td>
-    <td>Additional Insured </td>
+    <td><?php echo Yii::$app->quote->getValueByAttribute($model->liabilityCoverages,'liability_form')?></td>
+    <td><?php echo $model->liabilityCoverages->liability_form->label ?> </td>
     <td> </td>
     <td> </td>
     <td>$16.00</td>
     <td></td>
 </tr>
+<?php endif;?>
+<tr class="test"></tr>
+
+<?php if($model->liabilityCoverages->additional_insured): ?>
+<tr>
+    <td><?php echo Yii::$app->quote->getValueByAttribute($model->liabilityCoverages,'additional_insured')?></td>
+    <td><?php echo $model->liabilityCoverages->additional_insured->label;//Additional Insured ?> </td>
+    <td> </td>
+    <td> </td>
+    <td>$16.00</td>
+    <td></td>
+</tr>
+<?php endif;?>
 <tr>
     <td>LS-44</td>
     <td>Beauty or Barber Shop Liability</td>

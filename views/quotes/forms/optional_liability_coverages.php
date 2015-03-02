@@ -113,7 +113,6 @@ use yii\widgets\ActiveForm;
             <td>LS-91</td>
             <td>
                 <?= $form->field($model, 'acquired_entities')->checkbox() ?>
-                <?= $form->field($model, 'exclusionary_endorsements')->checkbox() ?>
             </td>
             <td>none</td>
             <td>none</td>

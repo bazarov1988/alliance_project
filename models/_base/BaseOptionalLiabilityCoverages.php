@@ -176,6 +176,33 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
 
 
     /**
+     * @return array
+     * form numbers array
+     */
+    public function formNumbers(){
+        return [
+            'add_insured_owners_lessees' => 'LS-24',
+            'add_insured_owners_contactors' => 'LS-24A'
+        ];
+    }
+
+    /**
+     * @param $attr
+     * @return null
+     * get form number by attribute name
+     */
+    public function getFormNumber($attr){
+        if(!empty($this->formNumbers()[$attr])){
+            return $this->formNumbers()[$attr];
+        } else {
+            return null;
+        }
+    }
+
+
+
+
+    /**
      * @param $attr
      * @param $params
      * custom validators
