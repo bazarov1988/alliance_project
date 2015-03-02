@@ -402,6 +402,26 @@
         </tr>
     <?php endif; ?>
 
+    <?php if($model->liabilityCoverages->ice_control_operations): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('ice_control_operations')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('ice_control_operations')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getIceControlOperationsPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+    <!-- BU104 -->
+    <tr>
+        <td><?=$model->liabilityCoverages->getFormNumber('exclusion_canine_related_injuries_damages')?></td>
+        <td><?=$model->liabilityCoverages->getAttributeLabel('exclusion_canine_related_injuries_damages')?></td>
+        <td></td>
+        <td></td>
+        <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getExclusionCanineRelatedInjuriesDamagesPremium() )?></td>
+        <td></td>
+    </tr>
+
 <tr>
     <td></td>
     <td> </td>

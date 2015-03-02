@@ -61,6 +61,9 @@ use Yii;
  */
 class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
 {
+    // BT104
+    var $exclusion_canine_related_injuries_damages = 1;
+
     /**
      * @inheritdoc
      */
@@ -170,6 +173,7 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             'water_damage_exclusion_offices_in_ob' => Yii::t('app', '# Offices in other building'),
             'water_damage_exclusion_store_in_ah' => Yii::t('app', 'Store in apartment house'),
             'water_damage_exclusion_store_in_ob' => Yii::t('app', 'Store in other building'),
+            'exclusion_canine_related_injuries_damages' => Yii::t('app', 'Exclusion of Canine Related Injuries or Damages'),
 
         ];
     }
@@ -197,7 +201,7 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             'operations'                            => 'LS-18',
             'saddle_animals'                        => 'LS-72',
             'ice_control_operations'                => 'LS-79',
-
+            'exclusion_canine_related_injuries_damages'  => 'LS-373',
         ];
     }
 

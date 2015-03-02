@@ -82,4 +82,9 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     {
         return $this->ice_control_operations ? round(\Yii::$app->params['exclusionary_endorsement']['snow_ice'], 0) : 0;
     }
+
+    public function getExclusionCanineRelatedInjuriesDamagesPremium()
+    {
+        return -1;
+    }
 } 
