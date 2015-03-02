@@ -197,7 +197,28 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
             'insured_premises_a_ten' => Yii::t('app', "add'l 10% increments"),
         ];
     }
+    /**
+     * @return array
+     * form numbers array
+     */
+    public function formNumbers(){
+        return [
 
+        ];
+    }
+
+    /**
+     * @param $attr
+     * @return null
+     * get form number by attribute name
+     */
+    public function getFormNumber($attr){
+        if(!empty($this->formNumbers()[$attr])){
+            return $this->formNumbers()[$attr];
+        } else {
+            return null;
+        }
+    }
 
     /**
      * @param $attr
