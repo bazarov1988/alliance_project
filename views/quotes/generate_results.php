@@ -231,6 +231,22 @@
     <td>-$1.00</td>
     <td></td>
 </tr>
+<?php
+var_dump($model->liabilityCoverages->discrimination_clarification);
+if(!$model->liabilityCoverages->discrimination_clarification) {
+?>
+<tr>
+    <td>1</td>
+    <td><?=$model->liabilityCoverages->getAttributeLabel('discrimination_clarification')?></td>
+    <td>1</td>
+    <td>1</td>
+    <td>1</td>
+    <td>1</td>
+</tr>
+<?php
+}
+?>
+
 <tr>
     <td></td>
     <td> </td>
