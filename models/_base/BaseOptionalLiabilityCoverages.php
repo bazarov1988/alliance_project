@@ -75,19 +75,20 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-
-            [['quote_id', 'liability_form','extended_pollution_exclusion', 'additional_insured','additional_insured_number','barber_shop_liability',
-                'automobile_coverage', 'automobile_coverage_agregate_a', 'automobile_coverage_agregate', 'liquor_liability_restaurant',
-                'liquor_liability_limit', 'exclusionary_endorsements', 'fire_legal', 'fire_legal_settlement', 'automobile_coverage_a'],
-                'number'],
-            [[ 'emploees_full_time', 'emploees_part_time', 'emploees_barbers_time', 'emploees_manicurists'],'integer'],
+            [[ 'quote_id', 'emploees_full_time', 'emploees_part_time', 'emploees_barbers_time', 'emploees_manicurists','additional_insured',
+                'additional_insured_number','automobile_coverage', 'automobile_coverage_agregate_a', 'fire_legal_settlement',
+                'automobile_coverage_a', 'automobile_coverage_agregate','barber_shop_liability', 'liquor_liability_restaurant',
+                'liquor_liability_limit'
+            ],
+                'integer'],
             [['add_insured_owners_lessees','add_insured_owners_contactors', 'battery_exclusion', 'designated_premises', 'contractual_liability_limitation', 'project_only',
                 'acquired_entities', 'all_hazards', 'a_d_p_b', 'athletic_participants', 'certain_skin_care_service', 'certain_skin_care_service_a', 'discrimination_clarification',
                 'employment_practices', 'fairs', 'known_loss_damage', 'dry_cleaning_damage', 'liquor_liability', 'operations', 'saddle_animals', 'ice_control_operations',
                 'personal_injury', 'pool_liability', 'completed_operations', 'water_damage_exclusion','water_damage_exclusion_store_in_ah', 'water_damage_exclusion_store_in_ob'
+                ,'extended_pollution_exclusion','liability_form'
             ],
                 'integer','max'=>1,'min'=>0],
-            [['liquor_liability_receipts', 'water_damage_exclusion_apartments', 'water_damage_exclusion_offices_in_ah', 'water_damage_exclusion_offices_in_ob'], 'number'],
+            [['liquor_liability_receipts', 'water_damage_exclusion_apartments', 'water_damage_exclusion_offices_in_ah', 'water_damage_exclusion_offices_in_ob','fire_legal'], 'number'],
             [['liability_form'],'validateLiabilityForm'],
             [['designated_premises'],'validateDesignatedPremises'],
             [['contractual_liability_limitation'],'validateLiabilityLimitation'],
@@ -106,6 +107,7 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             [['barber_shop_liability'],'validateBarberLiabilityForm'],
             [['fire_legal'],'validateFireLegal'],
             [['liquor_liability_limit'],'validateLiquorLiabilityLimit'],
+            [['exclusionary_endorsements'],'safe']
         ];
     }
 
