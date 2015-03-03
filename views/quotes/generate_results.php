@@ -422,6 +422,17 @@
         <td></td>
     </tr>
 
+    <?php if($model->liabilityCoverages->extended_pollution_exclusion): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('extended_pollution_exclusion')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('extended_pollution_exclusion')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getExtendedPollutionExclusionPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
 <tr>
     <td></td>
     <td> </td>

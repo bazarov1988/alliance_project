@@ -13,6 +13,13 @@ use app\models\_base\BaseOptionalLiabilityCoverages;
 class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 {
 
+
+
+    public function getQuote()
+    {
+        return $this->hasOne(Quotes::className(),['id'=>'quote_id'])->one();
+    }
+
     public function getAllHazardsPremium()
     {
         return $this->all_hazards ? round(\Yii::$app->params['exclusionary_endorsement']['all_hazards'], 0) : 0;
@@ -86,5 +93,53 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     public function getExclusionCanineRelatedInjuriesDamagesPremium()
     {
         return -1;
+    }
+
+    public function getExtendedPollutionExclusionPremium()
+    {
+        return $this->extended_pollution_exclusion ? round(\Yii::$app->params['extended_pollution']['credit'] * -1, 0) : 0;
+    }
+
+    public function getFireLegalAdditionalLimit()
+    {
+        return !empty($this->fire_legal) ? (int) $this->fire_legal : 0;
+    }
+
+    public function getFireLegalStdBldgCompRate($po)
+    {
+        //=IF(OR(GL2=0;GL2=" ";GL2="");0;$'Rate Tables'.R13)
+        if(!empty($this->fire_legal) ) {
+            //$'Rate Tables'.R13 =IF(S13=FALSE();R14;0)
+
+            $R14 = "=IF($'List Sheet'.L2=1;VLOOKUP(R12;I11:O490;F3;FALSE());VLOOKUP(R12;I11:O490;F3-3;FALSE()))";
+            if(!false) { //=ISERROR($R$14)
+                $quote = $this->quote;
+                if($quote->policy_type == 1) {
+                    // VLOOKUP(R12;I11:O490;F3;FALSE())
+                    // Yii::$app->excel->vlookup($deductibleBP,Yii::$app->params['quote']['deductible_factors'],3,true);
+                    // R12 =CONCATENATE($'List Sheet'.O2;$'List Sheet'.C2;A2;R11;A7;$'List Sheet'.G2;A6;A5)
+                    // =CONCATENATE($quote->prior_since;$quote->zone
+
+                    //return Yii::$app->excel->vlookup(,,false);
+                } else {
+                    // VLOOKUP(R12;I11:O490;F3-3;FALSE())
+                    //return Yii::$app->excel->vlookup(,,false);
+                }
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
+
+    public function getFireLegalRate()
+    {
+
+    }
+
+    public function getFireLegalPremium()
+    {
+
     }
 } 

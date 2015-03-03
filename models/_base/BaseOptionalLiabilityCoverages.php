@@ -202,6 +202,8 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             'saddle_animals'                        => 'LS-72',
             'ice_control_operations'                => 'LS-79',
             'exclusion_canine_related_injuries_damages'  => 'LS-373',
+            'extended_pollution_exclusion'          => 'LS-89',
+            'fire_legal'                            => '*'
         ];
     }
 

@@ -19,7 +19,7 @@ use yii\helpers\ArrayHelper;
         <tr><td><?= $form->field($model, 'address')->textInput(['maxlength' => 255]) ?></td></tr>
         <tr><td><?= $form->field($model, 'zip_code')->textInput(['maxlength' => 255]) ?></td></tr>
         <tr><td><?= $form->field($model, 'agent')->textInput(['maxlength' => 255]) ?></td></tr>
-        <tr><td><?= $form->field($model, 'construction')->dropDownList([1=>'Frame',2=>'Masonry',3=>'Fire Resistive']) ?></td></tr>
+        <tr><td><?= $form->field($model, 'construction')->dropDownList(Yii::$app->params['quote']['construction'], ['prompt'=>'Select']) ?></td></tr>
         <tr><td><?= $form->field($model, 'protection')->dropDownList(Yii::$app->params['quote']['protection']) ?></td></tr>
         <tr><td><?= $form->field($model, 'country')->textInput()->dropDownList(ArrayHelper::map(Countries::find()->all(), 'id', 'name'),['prompt'=>'Select']) ?></td></tr>
         <tr><td><?= $form->field($model, 'zone')->dropDownList(Yii::$app->params['quote']['zone']) ?></td></tr>
