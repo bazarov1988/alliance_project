@@ -68,6 +68,22 @@ return [
         ["3.0%",0.066 ],
         ["",0 ]
     ],
+    'exclusionary_endorsement' => [
+        'all_hazards'           => 0,
+        'abestos'               => 0,
+        'athletic_part'         => 0,
+        'certain_skin_ls_76'    => 0,
+        'certain_skin_ls_76a'   => 0,
+        'discrimination'        => 0,
+        'employment'            => 0,
+        'fairs'                 => 0,
+        'laundry'               => 0,
+        'mod_of_liquor'         => 0,
+        'operations'            => 0,
+        'saddle_animals'        => 0,
+        'snow_ice'              => 0,
+        'known_loss_damage'     => 0
+    ],
     'factor_credit'=>[
         'restaurant'=>0.979,
         'all_others'=>0.986

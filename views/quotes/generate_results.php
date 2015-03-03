@@ -160,20 +160,19 @@
     <td></td>
 </tr>
 <tr>
-    <td>Optional Coverages</td>
-    <td> </td>
-    <td> </td>
-    <td> </td>
-    <td> </td>
-    <td>Special</td>
+    <th colspan="5"><strong>Optional Coverages</strong></th>
+
+    <th><strong>Special</strong></th>
 </tr>
+
+
 <tr>
-    <td>Form #</td>
-    <td>Form Title</td>
+    <td><strong>Form #</strong></td>
+    <td><strong>Form Title</strong></td>
     <td> </td>
-    <td>Limit</td>
-    <td>Premium</td>
-    <td>Ded</td>
+    <td><strong>Limit</strong></td>
+    <td><strong>Premium</strong></td>
+    <td><strong>Ded</strong></td>
 </tr>
 <tr>
     <td></td>
@@ -200,21 +199,30 @@
     <td></td>
 </tr>
 <tr>
-    <td></td>
-    <td>Optional Liability Coverages</td>
-    <td> </td>
-    <td> </td>
-    <td> </td>
-    <td></td>
+    <th colspan="6"><strong>Optional Liability Coverages</strong></th>
 </tr>
+<?php if($model->liabilityCoverages->liability_form): ?>
 <tr>
-    <td>LS-19</td>
-    <td>Additional Insured </td>
+    <td><?php echo Yii::$app->quote->getValueByAttribute($model->liabilityCoverages,'liability_form')?></td>
+    <td><?php echo $model->liabilityCoverages->liability_form->label ?> </td>
     <td> </td>
     <td> </td>
     <td>$16.00</td>
     <td></td>
 </tr>
+<?php endif;?>
+<tr class="test"></tr>
+
+<?php if($model->liabilityCoverages->additional_insured): ?>
+<tr>
+    <td><?php echo Yii::$app->quote->getValueByAttribute($model->liabilityCoverages,'additional_insured')?></td>
+    <td><?php echo $model->liabilityCoverages->additional_insured->label;//Additional Insured ?> </td>
+    <td> </td>
+    <td> </td>
+    <td>$16.00</td>
+    <td></td>
+</tr>
+<?php endif;?>
 <tr>
     <td>LS-44</td>
     <td>Beauty or Barber Shop Liability</td>
@@ -231,6 +239,189 @@
     <td>-$1.00</td>
     <td></td>
 </tr>
+<tr>
+    <td></td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td></td>
+</tr>
+
+    <?php if($model->liabilityCoverages->all_hazards): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('all_hazards')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('all_hazards')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getAllHazardsPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
+    <?php if($model->liabilityCoverages->a_d_p_b): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('a_d_p_b')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('a_d_p_b')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getADPBPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
+    <?php if($model->liabilityCoverages->athletic_participants): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('athletic_participants')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('athletic_participants')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getAthleticParticipantsPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
+    <?php if($model->liabilityCoverages->certain_skin_care_service): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('certain_skin_care_service')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('certain_skin_care_service')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getCertainSkinCareServicePremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
+    <?php if($model->liabilityCoverages->certain_skin_care_service_a): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('certain_skin_care_service_a')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('certain_skin_care_service_a')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getCertainSkinCareServiceAPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
+    <?php if($model->liabilityCoverages->discrimination_clarification): ?>
+    <tr>
+        <td><?=$model->liabilityCoverages->getFormNumber('discrimination_clarification')?></td>
+        <td><?=$model->liabilityCoverages->getAttributeLabel('discrimination_clarification')?></td>
+        <td></td>
+        <td></td>
+        <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getDiscriminationClarificationPremium() )?></td>
+        <td></td>
+    </tr>
+    <?php endif; ?>
+
+    <?php if($model->liabilityCoverages->employment_practices): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('employment_practices')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('employment_practices')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getEmploymentPracticesPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
+    <?php if($model->liabilityCoverages->fairs): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('fairs')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('fairs')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getFairsPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
+    <?php if($model->liabilityCoverages->known_loss_damage): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('known_loss_damage')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('known_loss_damage')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getKnownLossDamagePremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
+    <?php if($model->liabilityCoverages->dry_cleaning_damage): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('dry_cleaning_damage')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('dry_cleaning_damage')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getDryCleaningDamagePremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
+    <?php if($model->liabilityCoverages->liquor_liability): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('liquor_liability')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('liquor_liability')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getLiquorLiabilityPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
+    <?php if($model->liabilityCoverages->operations): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('operations')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('operations')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getOperationsPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
+    <?php if($model->liabilityCoverages->saddle_animals): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('saddle_animals')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('saddle_animals')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getSaddleAnimalsPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
+    <?php if($model->liabilityCoverages->ice_control_operations): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('ice_control_operations')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('ice_control_operations')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getIceControlOperationsPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
+    <?php if($model->liabilityCoverages->ice_control_operations): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('ice_control_operations')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('ice_control_operations')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getIceControlOperationsPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+    <!-- BU104 -->
+    <tr>
+        <td><?=$model->liabilityCoverages->getFormNumber('exclusion_canine_related_injuries_damages')?></td>
+        <td><?=$model->liabilityCoverages->getAttributeLabel('exclusion_canine_related_injuries_damages')?></td>
+        <td></td>
+        <td></td>
+        <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getExclusionCanineRelatedInjuriesDamagesPremium() )?></td>
+        <td></td>
+    </tr>
+
 <tr>
     <td></td>
     <td> </td>
