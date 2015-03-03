@@ -27,6 +27,7 @@ return [
 
     'liquor_liability_restaurant'=>[null=>'Select...',1=>'Restaurants',3=>'Mercantile',7=>'Bed & Breakfast'],
     'liquor_liability_limit'=>[null=>'Select...',1=>'$100,000',2=>'$300,000',3=>'$500,000',4=>'$1,000,000',5=>'$2,000,000'],
+    'fire_legal_rate' => 0.2,
     'fire_legal_settlement'=>[null=>'Select...',1=>'RC',2=>'ACV'],
     'barber_shop_liability'=>[
         null=>'Select...',

@@ -433,6 +433,42 @@
         </tr>
     <?php endif; ?>
 
+    <?php
+    try {
+        $fireLegalPremium = $model->liabilityCoverages->getFireLegalPremium();
+        if ($fireLegalPremium != 0) {
+            ?>
+            <tr>
+                <td><?= $model->liabilityCoverages->getFormNumber('fire_legal') ?></td>
+                <td><?= $model->liabilityCoverages->getAttributeLabel('fire_legal') ?></td>
+                <td></td>
+                <td></td>
+                <td><?= Yii::$app->formatter->asCurrency($fireLegalPremium) ?></td>
+                <td></td>
+            </tr>
+        <?php
+        }
+    } catch(Exception $e) {
+        echo '<tr class="danger"><td colspan="6">' . $e->getMessage() . '</td></tr>';
+    }
+    ?>
+
+    <?php
+    $automobileCoverageAPremium = $model->liabilityCoverages->getAutomobileCoverageAPremium();
+    if($automobileCoverageAPremium == 0) {
+    ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('automobile_coverage_a')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('automobile_coverage_a')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $automobileCoverageAPremium )?></td>
+            <td></td>
+        </tr>
+    <?php
+    }
+    ?>
+
 <tr>
     <td></td>
     <td> </td>
