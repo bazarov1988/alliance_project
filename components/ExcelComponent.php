@@ -37,4 +37,15 @@ class ExcelComponent extends Component{
         }
         return $result;
     }
+
+    /**
+     * @param array $texts
+     * @return null|string
+     */
+    public function concat($texts=[]){
+        if(!empty($texts)){
+            return implode('',$texts);
+        }
+        return null;
+    }
 } 
