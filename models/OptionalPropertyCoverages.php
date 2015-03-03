@@ -19,8 +19,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
      * get account receivable
      */
     public function getAccountsReceivable($deductibleBP){
-        if(!empty($deductibleBP)&&$deductibleBP!=8){
-            $deductibleBP = Yii::$app->excel->vlookup($deductibleBP,Yii::$app->params['quote']['deductible_factors'],3,true);
+        if(!empty($deductibleBP)){
             return round(($this->accounts_receivable/1000)*$deductibleBP*5,0);
         } else {
             return 0;
@@ -39,9 +38,8 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
      * check it
      */
     public function bopExtenderEnd($deductibleBldg){
-        if(!empty($deductibleBP)&&$deductibleBP!=8){
-            $deductibleBP = Yii::$app->excel->vlookup($deductibleBP,Yii::$app->params['quote']['deductible_factors'],3,true);
-            return round(0*$deductibleBP);
+        if(!empty($deductibleBP)){
+            return round(0*$deductibleBP,0);
         } else {
             return 0;
         }

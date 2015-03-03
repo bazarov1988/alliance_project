@@ -67,6 +67,10 @@ return [
         ["2.5%",0.053 ],
         ["3.0%",0.066 ],
         ["",0 ]
+    ],
+    'factor_credit'=>[
+        'restaurant'=>0.979,
+        'all_others'=>0.986
     ]
 
 
