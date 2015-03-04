@@ -198,39 +198,39 @@
     <td>$25.00</td>
     <td></td>
 </tr>
-<tr>
+<thead>
     <th colspan="6"><strong>Optional Liability Coverages</strong></th>
-</tr>
+</thead>
 <?php if($model->liabilityCoverages->liability_form): ?>
 <tr>
     <td><?php echo Yii::$app->quote->getValueByAttribute($model->liabilityCoverages,'liability_form')?></td>
-    <td><?php echo $model->liabilityCoverages->liability_form->label ?> </td>
+    <td><?php echo $model->liabilityCoverages->getAttributeLabel('liability_form') ?> </td>
     <td> </td>
-    <td> </td>
-    <td>$16.00</td>
+    <td><?php echo Yii::$app->quote->getValueByAttribute($model,'prop_damage'); //prop_damage?></td>
+    <td><?php echo $model->liabilityCoverages->getLiabilityFormPremium(); //prop_damage?></td>
     <td></td>
 </tr>
 <?php endif;?>
-<tr class="test"></tr>
-
 <?php if($model->liabilityCoverages->additional_insured): ?>
 <tr>
-    <td><?php echo Yii::$app->quote->getValueByAttribute($model->liabilityCoverages,'additional_insured')?></td>
-    <td><?php echo $model->liabilityCoverages->additional_insured->label;//Additional Insured ?> </td>
+    <td><?php echo Yii::$app->quote->getValueByAttribute($model->liabilityCoverages, 'additional_insured')?></td>
+    <td><?php echo $model->liabilityCoverages->getAttributeLabel('additional_insured');//Additional Insured ?> </td>
     <td> </td>
     <td> </td>
     <td>$16.00</td>
     <td></td>
 </tr>
 <?php endif;?>
+<?php if($model->liabilityCoverages->barber_shop_liability):?>
 <tr>
-    <td>LS-44</td>
-    <td>Beauty or Barber Shop Liability</td>
+    <td><?php echo Yii::$app->quote->getValueByAttribute($model->liabilityCoverages,'barber_shop_liability');//LS-44?></td>
+    <td><?php echo $model->liabilityCoverages->getAttributeLabel('barber_shop_liability');//Beauty or Barber Shop Liability?></td>
     <td> </td>
     <td>$1,000,000 / $2,000,000</td>
     <td>$48.00</td>
     <td></td>
 </tr>
+<?php endif;?>
 <tr>
     <td>LS-373</td>
     <td>Exclusion of Canine Related Injuries or Damages</td>
@@ -421,6 +421,53 @@
         <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getExclusionCanineRelatedInjuriesDamagesPremium() )?></td>
         <td></td>
     </tr>
+
+    <?php if($model->liabilityCoverages->extended_pollution_exclusion): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('extended_pollution_exclusion')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('extended_pollution_exclusion')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getExtendedPollutionExclusionPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
+    <?php
+    try {
+        $fireLegalPremium = $model->liabilityCoverages->getFireLegalPremium();
+        if ($fireLegalPremium != 0) {
+            ?>
+            <tr>
+                <td><?= $model->liabilityCoverages->getFormNumber('fire_legal') ?></td>
+                <td><?= $model->liabilityCoverages->getAttributeLabel('fire_legal') ?></td>
+                <td></td>
+                <td></td>
+                <td><?= Yii::$app->formatter->asCurrency($fireLegalPremium) ?></td>
+                <td></td>
+            </tr>
+        <?php
+        }
+    } catch(Exception $e) {
+        echo '<tr class="danger"><td colspan="6">' . $e->getMessage() . '</td></tr>';
+    }
+    ?>
+
+    <?php
+    $automobileCoverageAPremium = $model->liabilityCoverages->getAutomobileCoverageAPremium();
+    if($automobileCoverageAPremium > 0) {
+    ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('automobile_coverage_a')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('automobile_coverage_a')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $automobileCoverageAPremium )?></td>
+            <td></td>
+        </tr>
+    <?php
+    }
+    ?>
 
 <tr>
     <td></td>

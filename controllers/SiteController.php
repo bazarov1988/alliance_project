@@ -19,7 +19,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index','test','error'],
+                        'actions' => ['index','test','error', 'boroda'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -102,6 +102,24 @@ class SiteController extends Controller
         }
 
         echo implode(', ',$answer);
+    }
+
+    public function actionBoroda()
+    {
+        $path = Yii::getAlias('@app/web/dsfsdf');
+        $f = fopen($path, 'r');
+
+        $result = [];
+        if($f) {
+            while(($buffer = fgets($f, 4096)) !== false) {
+                $a = explode(chr(9),$buffer);
+                array_walk($a, function(&$v, &$k) { $v = str_replace(',', '.', $v); });
+                $result[] = "'$a[0]' => [$a[1], $a[2], $a[3], $a[4], $a[5], $a[6]]";
+            }
+        } else {
+            echo 'ERROR: cannot open file';
+        }
+        echo implode(',<br>', $result);
     }
 
 }

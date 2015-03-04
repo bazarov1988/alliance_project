@@ -21,7 +21,7 @@ class ExcelComponent extends Component{
      */
     public function vlookup($val,$source,$key,$needEqual=false){
         $result = null;
-        $source = ksort($source);
+        //ksort($source);
         foreach($source as $skey=>$sval){
             if($needEqual){
                 if($skey<=$val){

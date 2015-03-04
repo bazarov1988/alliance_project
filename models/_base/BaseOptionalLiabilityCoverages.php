@@ -147,7 +147,7 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             'acquired_entities' => Yii::t('app', 'Exclusion of Newly Acquired Entities'),
             'exclusionary_endorsements' => Yii::t('app', 'Exclusionary Endorsements'),
             'all_hazards' => Yii::t('app', 'All Hazards in Connection with Desig. Premises'),
-            'a_d_p_b' => Yii::t('app', ' Asbestos, Dioxin or Polychlor. Biphenols'),
+            'a_d_p_b' => Yii::t('app', 'Asbestos, Dioxin or Polychlor. Biphenols'),
             'athletic_participants' => Yii::t('app', 'Athletic Participants'),
             'certain_skin_care_service' => Yii::t('app', 'Certain Skin Care Service'),
             'certain_skin_care_service_a' => Yii::t('app', 'Certain Skin Care Service'),
@@ -202,6 +202,9 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             'saddle_animals'                        => 'LS-72',
             'ice_control_operations'                => 'LS-79',
             'exclusion_canine_related_injuries_damages'  => 'LS-373',
+            'extended_pollution_exclusion'          => 'LS-89',
+            'fire_legal'                            => '*',
+            'automobile_coverage_a'                 => 'LS-50A'
         ];
     }
 
@@ -249,7 +252,7 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
 
     public function validateAutomobileCoverage($attr,$params){
         if($this->$attr>1&&$this->$attr<5){
-            if($this->automobile_coverage_agregate&&($this->$attr>$this->automobile_coverage_agregate)){
+            if($this->automobile_coverage_agregate&&($this->$attr > $this->automobile_coverage_agregate)){
                 $this->addError($attr,'The Employers Non Owned Auto occurrence limit must be less than aggregate.');
             }
         }
