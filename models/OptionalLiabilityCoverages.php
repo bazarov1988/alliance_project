@@ -17,7 +17,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getQuote()
     {
-        return $this->hasOne(Quotes::className(),['id'=>'quote_id'])->one();
+        return $this->hasOne(Quotes::className(),['id' => 'quote_id']);
     }
 
     public function getAllHazardsPremium()
@@ -128,26 +128,35 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             // VLOOKUP(R12;I11:O490;F3;FALSE())
             // R12 getFireLegalCombinationCode()
             // I11:O490 = ppc
+            // F3 =IF($'List Sheet'.L2=1;IF($'List Sheet'.B2=1;2;IF($'List Sheet'.B2=2;3;IF($'List Sheet'.B2=3;4;IF($'List Sheet'.B2=4;4))));IF($'List Sheet'.B2=1;5;IF($'List Sheet'.B2=2;6;IF($'List Sheet'.B2=3;7;IF($'List Sheet'.B2=4;7))))
 
-            //return Yii::$app->excel->vlookup(Yii::$app->excel->concat([$quote->prior_since, $quote->zone, $quote->construction]),,false);
+            return Yii::$app->excel->vlookup($this->getFireLegalCombinationCode(), 0, 0, false);
         } else {
             // VLOOKUP(R12;I11:O490;F3-3;FALSE())
-            //return Yii::$app->excel->vlookup(,,false);
+            return Yii::$app->excel->vlookup($this->getFireLegalCombinationCode(), 0, 0 - 3,false);
         }
     }
 
     protected function getFireLegalCombinationCode()
     {
-        throw new \BadMethodCallException("Not implemented yet.");
         // =CONCATENATE($'List Sheet'.O2;$'List Sheet'.C2;A2;R11;A7;$'List Sheet'.G2;A6;A5)
         // A2 =IF($'List Sheet'.A2=3;2;$'List Sheet'.A2)
         // R11 =IF(OR($'List Sheet'.GL11="";$'List Sheet'.GL11="3");1;$'List Sheet'.GL11)
         // A7 =IF($'List Sheet'.G2>5;9;1)
-        // $'List Sheet'.G2 =IF(OR(F2="";F2=0);0;OFFSET(F2;F2;1))
+        // $'List Sheet'.G2
         // A6 =IF($'List Sheet'.G2>5;IF($'List Sheet'.G2=8;$'List Sheet'.K2;9);$'List Sheet'.K2)
         // A5 =IF($'List Sheet'.G2=1;$'List Sheet'.J2;9)
+
         $quote = $this->quote;
-        return \Yii::$app->excel->concat([$quote->prior_since, $quote->zone, ]);
+
+        $construction = $quote->construction == 3 ? 2 : $quote->construction;
+        $fire_legal_settlement = (empty($this->fire_legal_settlement) || $this->fire_legal_settlement == 3) ? 1 : $this->fire_legal_settlement;
+        $quote_occupancy_mer_serc1 = $quote->occupancy->mer_serc > 5 ? 9 : 1;
+        $quote_occupancy_mer_serc2 = $quote->occupancy->mer_serc > 5 ? ($quote->occupancy->mer_serc == 8 ? $quote->$occupied_type : 9) : $quote->$occupied_type;
+        $quote_occupancy_mer_serc3 = $quote->occupancy->mer_serc == 1 ? "$'List Sheet'.J2" : 9;
+
+
+        return \Yii::$app->excel->concat([$quote->prior_since, $quote->zone, $construction, $fire_legal_settlement, $quote_occupancy_mer_serc1, $quote->occupancy->mer_serc, $quote_occupancy_mer_serc2, $quote_occupancy_mer_serc3]);
     }
 
     public function getFireLegalRate()
@@ -157,7 +166,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getFireLegalPremium()
     {
-        return round($this->getFireLegalAdditionalLimit()/100*$this->getFireLegalStdBldgCompRate()*$this->getFireLegalRate(), 0);
+        return round($this->getFireLegalAdditionalLimit() / 100 * $this->getFireLegalStdBldgCompRate() * $this->getFireLegalRate(), 0);
     }
 
     //------------------------------------------------------------------------------------------------------------------
@@ -174,6 +183,6 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getAutomobileCoverageAAgg()
     {
-        return !empty($this->automobile_coverage_a) ? \Yii::$app->excel->vlookup($this->automobile_coverage_a, \Yii::$app->params['quote']['aggregate_factors'], $this->quote->agregate+1,false) : 0;
+        return !empty($this->automobile_coverage_a) ? \Yii::$app->excel->vlookup($this->automobile_coverage_a, \Yii::$app->params['quote']['aggregate_factors'], $this->quote->agregate,false) : 0;
     }
 } 

@@ -455,7 +455,7 @@
 
     <?php
     $automobileCoverageAPremium = $model->liabilityCoverages->getAutomobileCoverageAPremium();
-    if($automobileCoverageAPremium == 0) {
+    if($automobileCoverageAPremium > 0) {
     ?>
         <tr>
             <td><?=$model->liabilityCoverages->getFormNumber('automobile_coverage_a')?></td>
