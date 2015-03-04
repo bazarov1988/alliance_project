@@ -93,7 +93,7 @@ class SiteController extends Controller
         if ($handle) {
             while (($buffer = fgets($handle, 4096)) !== false) {
                 $a = explode(chr(9),$buffer);
-                $answer[] = '["'.$a[0].'",'.$a[1].']';
+                $answer[] = '['.$a[0].','.$a[1].','.$a[2].','.$a[3].','.$a[4].','.$a[5].','.$a[6].','.$a[7].']';
             }
             if (!feof($handle)) {
                 echo "Error: unexpected fgets() fail\n";

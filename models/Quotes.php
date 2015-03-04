@@ -76,11 +76,30 @@ class Quotes extends BaseQuotes{
         }
     }
     public function getBuildingZoneFactor(){
-        return \Yii::$app->excel->concat([1]);
+        $occup = $this->occupancy?$this->occupancy->mer_serc:0;
+        $concat = (int)\Yii::$app->excel->concat([$occup,1]);
+        if($concat>10){
+            $z2 = ($this->zone==1?$this->countryModel->sub_zone:7)+1;
+            return \Yii::$app->excel->vlookup($concat,\Yii::$app->params['quote']['zone_factors'],$z2,false);
+        } else {
+            return 0;
+        }
     }
     public function getBPZoneFactor(){
-        return \Yii::$app->exclel->concat([1]);
+        $occup = $this->occupancy?$this->occupancy->mer_serc:0;
+        $concat= (int)\Yii::$app->exclel->concat([$occup,1]);
+        if($concat>0){
+            $z2 = ($this->zone==1?$this->countryModel->sub_zone:7)+1;
+            return \Yii::$app->excel->vlookup($concat,\Yii::$app->params['quote']['zone_factors'],$z2,false);
+        } else {
+            return 0;
+        }
     }
+
+    public function getTableRatesBuilding(){}
+    public function getTableRatesBP(){}
+
+
 
 
 }

@@ -47,11 +47,11 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 
 
     public function getBuildingInflationProtection($propDamage,$aggregate){
-        $rate = (!empty($this->building_inflation_protection)&&!empty(Yii::$app->params['quote']['building_inflation'][$this->building_inflation_protection]))?Yii::$app->params['quote']['building_inflation'][$this->building_inflation_protection][1]:0;
+        $rate = (!empty($this->building_inflation_protection)&&!empty(\Yii::$app->params['quote']['building_inflation'][$this->building_inflation_protection]))?\Yii::$app->params['quote']['building_inflation'][$this->building_inflation_protection][1]:0;
         if($rate==0) return 0;
 
         if(!empty($propDamage)){
-            $aggrFactor =     Yii::$app->excel->vlookup($propDamage,Yii::$app->params['quote']['aggregate_factors'],$aggregate+1,false);
+            $aggrFactor =     \Yii::$app->excel->vlookup($propDamage,\Yii::$app->params['quote']['aggregate_factors'],$aggregate+1,false);
             if($aggrFactor==0) return 0;
 
 
@@ -59,6 +59,10 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
             return 0;
         }
 
+    }
+
+    public function getBusinessownersBurglaryRobbery(){
+        $this->businessowners_burglary_robbery;
     }
 
 } 
