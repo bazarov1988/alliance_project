@@ -13,7 +13,52 @@ use app\models\_base\BaseOptionalLiabilityCoverages;
 class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 {
 
+    public function getLiabilityFormPremium()
+    {
+        $quote = $this->getQuote();
+        $en2 = $quote['prop_damage'];
+        if (!$en2) return 0;
 
+        $liability_rates_array = \Yii::$app->params['quote']['optional_liability_rates'];
+        $eu40 = 0;
+        $eu37 = 325; //charge
+        $l2 = $quote['policy_type'] == 1 ? 1 : 2;
+
+
+        if ($quote['occupancy']['mer_serc'] < 3 && $quote['operated_by_insured'] == 1) {
+            $ep2 = 1;
+
+        } else if ($quote['occupancy']['rate_group'] < 5) {
+            $ep2 = 2;
+        } else {
+            $ep2 = 3;
+        }
+
+
+        if ($en2 == 5) {//$2 000 000
+            $eu40 = $eu37;
+        }
+
+        switch ($quote['country']) {
+            case 9:
+            case 30:
+            case 52:
+                $rate_country_offset = 3;
+                break;
+            default:
+                $rate_country_offset = 0;
+
+        }
+        if ($this->liability_form == 0 || $this->liability_form == 4) {
+            $eu2 = $l2;
+        } else {
+            $eu2 = $this->liability_form;
+        }
+        $rate_policy_offset = $eu2 + 1 + $rate_country_offset;
+
+        return $eu40 + \Yii::$app->excel->vlookup(implode('', array($ep2, $l2, $en2)), $liability_rates_array, $rate_policy_offset, false);
+
+    }
 
     public function getQuote()
     {
@@ -57,7 +102,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getFairsPremium()
     {
-        return $this->fairs ? round(\Yii::$app->params['quote']['exclusionary_endorsement']['fairs'],0) : 0;
+        return $this->fairs ? round(\Yii::$app->params['exclusionary_endorsement']['fairs'],0) : 0;
     }
 
     public function getKnownLossDamagePremium()
@@ -111,7 +156,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     {
         // =IF(OR(GL2=0;GL2=" ";GL2="");0;$'Rate Tables'.R13)
         if(!empty($this->fire_legal) ) {
-            return getBldgSTD(); // $'Rate Tables'.R13
+            return $this->getBldgSTD(); // $'Rate Tables'.R13
         } else {
             return 0;
         }
