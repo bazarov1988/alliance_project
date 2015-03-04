@@ -178,7 +178,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             return Yii::$app->excel->vlookup($this->getFireLegalCombinationCode(), 0, 0, false);
         } else {
             // VLOOKUP(R12;I11:O490;F3-3;FALSE())
-            return Yii::$app->excel->vlookup($this->getFireLegalCombinationCode(), 0, 0 - 3,false);
+            return Yii::$app->excel->vlookup($this->getFireLegalCombinationCode(), 0, 0 - 3, false);
         }
     }
 
