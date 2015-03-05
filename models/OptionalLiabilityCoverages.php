@@ -164,34 +164,15 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     protected function getBldgSTD()
     {
-        throw new \BadMethodCallException("Not implemented yet.");
-        // =IF(S13=FALSE();R14;0)
-        // S13 =ISERROR($R$14)
-        // R14 =IF($'List Sheet'.L2=1;VLOOKUP(R12;I11:O490;F3;FALSE());VLOOKUP(R12;I11:O490;F3-3;FALSE()))
-
         if($this->quote->policy_type == 1) {
-            // VLOOKUP(R12;I11:O490;F3;FALSE())
-            // R12 getFireLegalCombinationCode()
-            // I11:O490 = ppc
-            // F3 =IF($'List Sheet'.L2=1;IF($'List Sheet'.B2=1;2;IF($'List Sheet'.B2=2;3;IF($'List Sheet'.B2=3;4;IF($'List Sheet'.B2=4;4))));IF($'List Sheet'.B2=1;5;IF($'List Sheet'.B2=2;6;IF($'List Sheet'.B2=3;7;IF($'List Sheet'.B2=4;7))))
-
-            return Yii::$app->excel->vlookup($this->getFireLegalCombinationCode(), 0, 0, false);
+            return is_array(\Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()] ? \Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()][$this->getRateTableKey()] : false);
         } else {
-            // VLOOKUP(R12;I11:O490;F3-3;FALSE())
-            return Yii::$app->excel->vlookup($this->getFireLegalCombinationCode(), 0, 0 - 3, false);
+            return is_array(\Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()] ? \Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()][$this->getRateTableKey()-3] : false);
         }
     }
 
     protected function getFireLegalCombinationCode()
     {
-        // =CONCATENATE($'List Sheet'.O2;$'List Sheet'.C2;A2;R11;A7;$'List Sheet'.G2;A6;A5)
-        // A2 =IF($'List Sheet'.A2=3;2;$'List Sheet'.A2)
-        // R11 =IF(OR($'List Sheet'.GL11="";$'List Sheet'.GL11="3");1;$'List Sheet'.GL11)
-        // A7 =IF($'List Sheet'.G2>5;9;1)
-        // $'List Sheet'.G2
-        // A6 =IF($'List Sheet'.G2>5;IF($'List Sheet'.G2=8;$'List Sheet'.K2;9);$'List Sheet'.K2)
-        // A5 =IF($'List Sheet'.G2=1;$'List Sheet'.J2;9)
-
         $quote = $this->quote;
 
         $construction = $quote->construction == 3 ? 2 : $quote->construction;
@@ -200,8 +181,34 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $quote_occupancy_mer_serc2 = $quote->occupancy->mer_serc > 5 ? ($quote->occupancy->mer_serc == 8 ? $quote->$occupied_type : 9) : $quote->$occupied_type;
         $quote_occupancy_mer_serc3 = $quote->occupancy->mer_serc == 1 ? "$'List Sheet'.J2" : 9;
 
-
         return \Yii::$app->excel->concat([$quote->prior_since, $quote->zone, $construction, $fire_legal_settlement, $quote_occupancy_mer_serc1, $quote->occupancy->mer_serc, $quote_occupancy_mer_serc2, $quote_occupancy_mer_serc3]);
+    }
+
+    protected function getRateTableKey()
+    {
+        // =IF($'List Sheet'.L2=1;IF($'List Sheet'.B2=1;2;IF($'List Sheet'.B2=2;3;IF($'List Sheet'.B2=3;4;IF($'List Sheet'.B2=4;4))));IF($'List Sheet'.B2=1;5;IF($'List Sheet'.B2=2;6;IF($'List Sheet'.B2=3;7;IF($'List Sheet'.B2=4;7)))))
+
+        if($this->quote->policy_type == 1) {
+            if($this->quote->protection == 1) {
+                return 0;
+            } else if($this->quote->protection == 2) {
+                return 1;
+            } else if($this->quote->protection == 3) {
+                return 2;
+            } else if($this->quote->protection == 4) {
+                return 2;
+            }
+        } else {
+            if($this->quote->protection == 1) {
+                return 3;
+            } else if($this->quote->protection == 2) {
+                return 4;
+            } else if($this->quote->protection == 3) {
+                return 5;
+            } else if($this->quote->protection == 4) {
+                return 5;
+            }
+        }
     }
 
     public function getFireLegalRate()

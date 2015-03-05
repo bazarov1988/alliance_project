@@ -434,22 +434,18 @@
     <?php endif; ?>
 
     <?php
-    try {
-        $fireLegalPremium = $model->liabilityCoverages->getFireLegalPremium();
-        if ($fireLegalPremium != 0) {
-            ?>
-            <tr>
-                <td><?= $model->liabilityCoverages->getFormNumber('fire_legal') ?></td>
-                <td><?= $model->liabilityCoverages->getAttributeLabel('fire_legal') ?></td>
-                <td></td>
-                <td></td>
-                <td><?= Yii::$app->formatter->asCurrency($fireLegalPremium) ?></td>
-                <td></td>
-            </tr>
-        <?php
-        }
-    } catch(Exception $e) {
-        echo '<tr class="danger"><td colspan="6">' . $e->getMessage() . '</td></tr>';
+    $fireLegalPremium = $model->liabilityCoverages->getFireLegalPremium();
+    if ($fireLegalPremium != 0) {
+        ?>
+        <tr>
+            <td><?= $model->liabilityCoverages->getFormNumber('fire_legal') ?></td>
+            <td><?= $model->liabilityCoverages->getAttributeLabel('fire_legal') ?></td>
+            <td></td>
+            <td></td>
+            <td><?= Yii::$app->formatter->asCurrency($fireLegalPremium) ?></td>
+            <td></td>
+        </tr>
+    <?php
     }
     ?>
 
