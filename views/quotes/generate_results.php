@@ -465,6 +465,41 @@
     }
     ?>
 
+    <?php
+    /*
+    // Empty field in Entry Sheet
+    $rating14AptsPremium = $model->liabilityCoverages->getRating14AptsPremium();
+    if($rating14AptsPremium != 0) {
+        ?>
+        <tr>
+            <td></td>
+            <td>Rating for 1 -4 Apts</td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $rating14AptsPremium )?></td>
+            <td></td>
+        </tr>
+    <?php
+    }
+    */
+    ?>
+
+    <?php
+    $liquorLiabilityReceiptsPremium = $model->liabilityCoverages->getLiquorLiabilityReceiptsPremium();
+    if($liquorLiabilityReceiptsPremium != 0) {
+        ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('liquor_liability_receipts')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('liquor_liability_receipts')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $liquorLiabilityReceiptsPremium )?></td>
+            <td></td>
+        </tr>
+    <?php
+    }
+    ?>
+
 <tr>
     <td></td>
     <td> </td>
