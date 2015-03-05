@@ -56,12 +56,15 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     }
 
 
-    public function getBuildingInflationProtection($propDamage,$aggregate){
-        $rate = (!empty($this->building_inflation_protection)&&!empty(\Yii::$app->params['quote']['building_inflation'][$this->building_inflation_protection]))?\Yii::$app->params['quote']['building_inflation'][$this->building_inflation_protection][1]:0;
+    public function getBuildingInflationProtectionRate(){
+        return (!empty($this->building_inflation_protection)&&!empty(\Yii::$app->params['quote']['building_inflation'][$this->building_inflation_protection]))?\Yii::$app->params['quote']['building_inflation'][$this->building_inflation_protection][1]:0;
+    }
+    public function getBuildingInflationProtection(){
+       $rate = $this->getBuildingInflationProtectionRate();
         if($rate==0) return 0;
 
-        if(!empty($propDamage)){
-            $aggrFactor =     \Yii::$app->excel->vlookup($propDamage,\Yii::$app->params['quote']['aggregate_factors'],$aggregate+1,false);
+        if(!empty($this->quote->prop_damage)){
+            $aggrFactor =    $this->quote->getAggregateFactor();
             if($aggrFactor==0) return 0;
 
 
@@ -136,5 +139,30 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     }
     /**
      * cause of loss methods
+     */
+
+    /**
+     * compute coverage
+     */
+    public function getComputerCoverageLimit(){
+        return $this->computer_coverage;
+    }
+    public function getComputerCoverageDeductible(){
+    //=IF(AND(CI4<>"",CI4<>8,CI4<>0),VLOOKUP($'List Sheet'.$CI$4,$'List Sheet'.$AL$3:$AN$9,3,FALSE()),0)
+        if(!empty($this->deductible)){
+            if(!empty(\Yii::$app->params['quote']['deductible_factors'][$this->deductible-1])){
+                return \Yii::$app->params['quote']['deductible_factors'][$this->deductible-1];
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
+    public function getComputerCoveragePremium(){
+
+    }
+    /**
+     * computer coverage
      */
 } 
