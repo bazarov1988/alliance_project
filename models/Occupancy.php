@@ -12,6 +12,7 @@ use Yii;
  * @property integer $mer_serc
  * @property integer $rate_group
  * @property integer $crime_group
+ * @property integer $bldg_rg
  */
 class Occupancy extends \yii\db\ActiveRecord
 {
@@ -29,8 +30,8 @@ class Occupancy extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'mer_serc', 'rate_group', 'crime_group'], 'required'],
-            [['mer_serc', 'rate_group', 'crime_group'], 'integer'],
+            [['name', 'mer_serc', 'rate_group', 'crime_group','bldg_rg'], 'required'],
+            [['mer_serc', 'rate_group', 'crime_group', 'bldg_rg'], 'integer'],
             [['name'], 'string', 'max' => 255]
         ];
     }

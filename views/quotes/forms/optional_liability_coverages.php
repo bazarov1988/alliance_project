@@ -285,7 +285,7 @@ use yii\widgets\ActiveForm;
                 <span>Liquor Liability</span>
                 <?= $form->field($model, 'liquor_liability_receipts') ?>
                 <?= $form->field($model, 'liquor_liability_restaurant')->dropDownList(Yii::$app->params['quote']['liquor_liability_restaurant']) ?>
-                <?= $form->field($model, 'liquor_liability_limit')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\Limit::find()->all(), 'id', 'name'),['prompt'=>'Select']) ?>
+                <?= $form->field($model, 'liquor_liability_limit')->dropDownList(Yii::$app->params['quote']['liquor_liability_limit']) ?>
             </td>
             <td></td>
             <td></td>

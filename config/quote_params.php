@@ -1,5 +1,6 @@
 <?php
 return [
+    'construction' => [1=>'Frame',2=>'Masonry',3=>'Fire Resistive'],
     'protection'=>[null=>'Select...',1=>'Highly Protected',2=>'Protected',3=>'Semi-Protected',4=>'Unprotected'],
     'zone'=>[null=>'Select...',1=>'Upstate & Sub.',2=>'Upstate Cities',3=>'New York City'],
     'prior_since'=>[null=>'Select...',1=>'Prior to 1/60',2=>'Since 1/60'],
@@ -25,7 +26,7 @@ return [
     'insured_premises_a_ten'=>[null=>'Select...',1,2,3,4,5,6,7,8,9,10],
 
     'liquor_liability_restaurant'=>[null=>'Select...',1=>'Restaurants',3=>'Mercantile',7=>'Bed & Breakfast'],
-    'liquor_liability_limit'=>[null=>'Select...',1=>'$100,000',2=>'$300,000',3=>'$500,000',4=>'$1,000,000',5=>'$2,000,000'],
+    'liquor_liability_limit'=>[null=>'Select...',1=>'$100,000 / $100,000',2=>'$300,000 / $300,000',3=>'$500,000 / $500,000',4=>'$1,000,000 / $1,000,000'],
     'fire_legal_settlement'=>[null=>'Select...',1=>'RC',2=>'ACV'],
     'barber_shop_liability'=>[
         null=>'Select...',
