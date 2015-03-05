@@ -12,7 +12,7 @@ use Yii;
  * @property double $rate
  * @property integer $minimum
  */
-class Limit extends \yii\db\ActiveRecord
+class Clergy extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

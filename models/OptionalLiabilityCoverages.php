@@ -165,9 +165,9 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     protected function getBldgSTD()
     {
         if($this->quote->policy_type == 1) {
-            return is_array(\Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()] ? \Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()][$this->getRateTableKey()] : false);
+            return is_array(\Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()] ? \Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()][$this->quote->getRateTableKey()] : false);
         } else {
-            return is_array(\Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()] ? \Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()][$this->getRateTableKey()-3] : false);
+            return is_array(\Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()] ? \Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()][$this->quote->getRateTableKey()-3] : false);
         }
     }
 
@@ -178,37 +178,10 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $construction = $quote->construction == 3 ? 2 : $quote->construction;
         $fire_legal_settlement = (empty($this->fire_legal_settlement) || $this->fire_legal_settlement == 3) ? 1 : $this->fire_legal_settlement;
         $quote_occupancy_mer_serc1 = $quote->occupancy->mer_serc > 5 ? 9 : 1;
-        $quote_occupancy_mer_serc2 = $quote->occupancy->mer_serc > 5 ? ($quote->occupancy->mer_serc == 8 ? $quote->$occupied_type : 9) : $quote->$occupied_type;
-        $quote_occupancy_mer_serc3 = $quote->occupancy->mer_serc == 1 ? "$'List Sheet'.J2" : 9;
+        $quote_occupancy_mer_serc2 = $quote->occupancy->mer_serc > 5 ? ($quote->occupancy->mer_serc == 8 ? $quote->occupied_type : 9) : $quote->occupied_type;
+        $quote_occupancy_mer_serc3 = $quote->occupancy->mer_serc == 1 ? $quote->occupancy->bldg_rg : 9;
 
         return \Yii::$app->excel->concat([$quote->prior_since, $quote->zone, $construction, $fire_legal_settlement, $quote_occupancy_mer_serc1, $quote->occupancy->mer_serc, $quote_occupancy_mer_serc2, $quote_occupancy_mer_serc3]);
-    }
-
-    protected function getRateTableKey()
-    {
-        // =IF($'List Sheet'.L2=1;IF($'List Sheet'.B2=1;2;IF($'List Sheet'.B2=2;3;IF($'List Sheet'.B2=3;4;IF($'List Sheet'.B2=4;4))));IF($'List Sheet'.B2=1;5;IF($'List Sheet'.B2=2;6;IF($'List Sheet'.B2=3;7;IF($'List Sheet'.B2=4;7)))))
-
-        if($this->quote->policy_type == 1) {
-            if($this->quote->protection == 1) {
-                return 0;
-            } else if($this->quote->protection == 2) {
-                return 1;
-            } else if($this->quote->protection == 3) {
-                return 2;
-            } else if($this->quote->protection == 4) {
-                return 2;
-            }
-        } else {
-            if($this->quote->protection == 1) {
-                return 3;
-            } else if($this->quote->protection == 2) {
-                return 4;
-            } else if($this->quote->protection == 3) {
-                return 5;
-            } else if($this->quote->protection == 4) {
-                return 5;
-            }
-        }
     }
 
     public function getFireLegalRate()

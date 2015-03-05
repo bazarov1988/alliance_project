@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Occupancy;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -83,25 +84,6 @@ class SiteController extends Controller
                 'exception' => $exception,
             ]);
         }
-    }
-
-    public function actionTest(){
-
-        $p = (Yii::getAlias('@app/web/dsfsdf'));
-        $answer = [];
-        $handle = @fopen($p, "r");
-        if ($handle) {
-            while (($buffer = fgets($handle, 4096)) !== false) {
-                $a = explode(chr(9),$buffer);
-                $answer[] = '["'.$a[0].'",'.$a[1].']';
-            }
-            if (!feof($handle)) {
-                echo "Error: unexpected fgets() fail\n";
-            }
-            fclose($handle);
-        }
-
-        echo implode(', ',$answer);
     }
 
     public function actionBoroda()
