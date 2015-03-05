@@ -14,6 +14,16 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 
 
     /**
+     * relations
+     */
+    public function getQuote()
+    {
+        return $this->hasOne(Quotes::className(),['id' => 'quote_id']);
+    }
+    /**
+     * relations
+     */
+    /**
      * @param $deductibleBP
      * @return float|int
      * get account receivable
@@ -61,8 +71,70 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 
     }
 
-    public function getBusinessownersBurglaryRobbery(){
-        $this->businessowners_burglary_robbery;
+
+    public function getBusinessownersAgreedAmount(){
+        return (int)$this->businessowners_agreed_amount;
+    }
+    public function getBusinessownersBurglaryRobberyPremium(){
+        $bx3 = ($this->businessowners_burglary_robbery>5000)?5000:$this->businessowners_burglary_robbery;
+        $bx4 = ($this->businessowners_burglary_robbery>15000)?10000:($this->businessowners_burglary_robbery-$bx3);
+        $bx5 = ($this->businessowners_burglary_robbery>25000)?10000:($this->businessowners_burglary_robbery-($bx3+$bx4));
+        $bx6 = ($this->businessowners_burglary_robbery>25000)?($this->businessowners_burglary_robbery-25000):0;
+        $crimeGroup = $this->quote->occupancy?$this->quote->occupancy->crime_group:0;
+        $bz3 = (!empty($crimeGroup))?\Yii::$app->params['quote']['burglary_robbery_cov'][0][$crimeGroup]:0;
+        $bz4 = (!empty($crimeGroup))?\Yii::$app->params['quote']['burglary_robbery_cov'][1][$crimeGroup]:0;
+        $bz5 = (!empty($crimeGroup))?\Yii::$app->params['quote']['burglary_robbery_cov'][2][$crimeGroup]:0;
+        $bz6 = (!empty($crimeGroup))?\Yii::$app->params['quote']['burglary_robbery_cov'][3][$crimeGroup]:0;
+
+        $premium = ($bx3/1000)*$bz3 + ($bx4/1000)*$bz4 + ($bx5/1000)*$bz5 + ($bx6/1000)*$bz6;
+        $deductible = $this->quote->getDeductibleFactorBP();
+        $terrMult = 0;
+        if(in_array($this->quote->country,[30,40,44,52,60])){
+            $terrMult = \Yii::$app->params['quote']['bop_burg_terr_mult'][0][2];
+        } elseif(in_array($this->quote->country,[3,24,31,41,43])){
+            $terrMult = \Yii::$app->params['quote']['bop_burg_terr_mult'][1][2];
+        } else {
+            $terrMult = \Yii::$app->params['quote']['bop_burg_terr_mult'][2][2];
+        }
+        return round($premium*$deductible*$terrMult,0);
     }
 
+
+    /**
+     * @return mixed
+     * cause of loss methods
+     */
+    public function getCauseOfLossBuildingLimit(){
+        return $this->quote->building_amount_of_ins;
+    }
+    public function getCauseOfLossBPLimit(){
+        return $this->quote->bus_amount_of_ins;
+    }
+    public function getCauseOfLossBuildingDeductible(){
+        return $this->quote->getDeductibleFactorBuilding();
+    }
+    public function getCauseOfLossBPDeductible(){
+        return $this->quote->getDeductibleFactorBP();
+    }
+    public function getCauseOfLossBuildingPremium(){
+        $limit = $this->getCauseOfLossBuildingLimit();
+        $deductible = $this->getCauseOfLossBuildingDeductible();
+        $rate = 0;
+        if(!empty($this->cause_of_loss_building)){
+            $rate = \Yii::$app->params['quote']['building_cause_loss'][$this->cause_of_loss_building-1][2];
+        }
+        return round(($limit/100)*$deductible*$rate,0);
+    }
+    public function getCauseOfLossBPPremium(){
+        $limit = $this->getCauseOfLossBPLimit();
+        $deductible = $this->getCauseOfLossBPDeductible();
+        $rate = 0;
+        if(!empty($this->cause_of_loss_business_property)){
+            $rate = \Yii::$app->params['quote']['business_property_cause_loss'][$this->cause_of_loss_business_property-1][2];
+        }
+        return round(($limit/100)*$deductible*$rate,0);
+    }
+    /**
+     * cause of loss methods
+     */
 } 
