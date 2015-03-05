@@ -238,6 +238,11 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         return !empty($this->automobile_coverage_a) ? \Yii::$app->excel->vlookup($this->automobile_coverage_a, \Yii::$app->params['quote']['aggregate_factors'], $this->quote->agregate,false) : 0;
     }
 
+    public function getAutomobileCoverageALimit()
+    {
+        return $this->automobile_coverage_a ? \Yii::$app->params['quote']['prop_damage'][$this->automobile_coverage_a] : null;
+    }
+
     // -----------------------------------------------------------------------------------------------------------------
 
     public function getRating14AptsPremium()
@@ -300,6 +305,11 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         } else {
             return is_array(\Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit]) ? \Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit][(int)$this->liquor_liability_receipts] : 0;
         }
+    }
+
+    public function getLiquorLiabilityReceiptsLimit()
+    {
+        return $this->liquor_liability_limit ? \Yii::$app->params['quote']['liquor_liability_limit'][$this->liquor_liability_limit] : null;
     }
 
     // -----------------------------------------------------------------------------------------------------------------

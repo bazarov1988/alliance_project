@@ -457,7 +457,7 @@
             <td><?=$model->liabilityCoverages->getFormNumber('automobile_coverage_a')?></td>
             <td><?=$model->liabilityCoverages->getAttributeLabel('automobile_coverage_a')?></td>
             <td></td>
-            <td></td>
+            <td><?=$model->liabilityCoverages->getAutomobileCoverageALimit()?></td>
             <td><?=Yii::$app->formatter->asCurrency( $automobileCoverageAPremium )?></td>
             <td></td>
         </tr>
@@ -492,7 +492,7 @@
             <td><?=$model->liabilityCoverages->getFormNumber('liquor_liability_receipts')?></td>
             <td><?=$model->liabilityCoverages->getAttributeLabel('liquor_liability_receipts')?></td>
             <td></td>
-            <td></td>
+            <td><?=$model->liabilityCoverages->getLiquorLiabilityReceiptsLimit()?></td>
             <td><?=Yii::$app->formatter->asCurrency( $liquorLiabilityReceiptsPremium )?></td>
             <td></td>
         </tr>
