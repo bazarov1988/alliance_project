@@ -127,6 +127,14 @@ return [
     ],
     'pool_liability' => [null, 230, 285, 325, 400, 495],
     'completed_operations_rates'=>['rate_gr_5' => 30, 'others' => 15],
+    'water_damage_rates' => [
+        'apt' => -2,
+        'office_in_apt'     => -4,
+        'office_in_other'   => -7,
+        'store_in_apt'      => -16,
+        'store_in_other'    => -32
+
+    ],
     'rate_table' =>[
         '11111219' => [0.86, 0.99, 1.29, 0.95, 1.09, 1.42 ],
         '11111229' => [0.95, 1.09, 1.42, 1.04, 1.20, 1.56 ],

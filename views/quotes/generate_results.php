@@ -552,6 +552,17 @@
     }
     ?>
 
+    <?php if(!$model->liabilityCoverages->water_damage_exclusion): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('water_damage_exclusion')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('water_damage_exclusion')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getWaterDamageExclusionPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
 <tr>
     <td></td>
     <td> </td>
