@@ -27,6 +27,7 @@ return [
 
     'liquor_liability_restaurant'=>[null=>'Select...',1=>'Restaurants',3=>'Mercantile',7=>'Bed & Breakfast'],
     'liquor_liability_limit'=>[null=>'Select...',1=>'$100,000 / $100,000',2=>'$300,000 / $300,000',3=>'$500,000 / $500,000',4=>'$1,000,000 / $1,000,000'],
+    'fire_legal_rate' => 0.2,
     'fire_legal_settlement'=>[null=>'Select...',1=>'RC',2=>'ACV'],
     'barber_shop_liability'=>[
         null=>'Select...',
@@ -126,6 +127,14 @@ return [
     ],
     'pool_liability' => [null, 230, 285, 325, 400, 495],
     'completed_operations_rates'=>['rate_gr_5' => 30, 'others' => 15],
+    'water_damage_rates' => [
+        'apt' => -2,
+        'office_in_apt'     => -4,
+        'office_in_other'   => -7,
+        'store_in_apt'      => -16,
+        'store_in_other'    => -32
+
+    ],
     'rate_table' =>[
         '11111219' => [0.86, 0.99, 1.29, 0.95, 1.09, 1.42 ],
         '11111229' => [0.95, 1.09, 1.42, 1.04, 1.20, 1.56 ],

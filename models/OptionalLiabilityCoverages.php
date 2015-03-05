@@ -348,4 +348,102 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+
+    public function getWaterDamageExclusionPremium()
+    {
+        return $this->getApartmentsPremium() + $this->getOfficesInApartmentPremium() + $this->getOfficesInOtherPremium() + $this->getStoreInApartmentPremium() + $this->getStoreInOtherPremium();
+    }
+
+    public function getApartmentsPremium()
+    {
+        // 1=ROUND(BU155*BV155;0)
+        // round(applies * rate)
+        return round($this->getApartmentsApplies() * $this->getApartmentsRate(), 0);
+    }
+    public function getApartmentsApplies()
+    {
+        $rate = $this->getApartmentsRate();
+        return $rate != 0 ? $rate : 0;
+    }
+    public function getApartmentsRate()
+    {
+        if($this->water_damage_exclusion) {
+            return !empty($this->water_damage_exclusion_apartments) ? \Yii::$app->params['quote']['water_damage_rates']['apt'] : 0;
+        } else {
+            return 0;
+        }
+    }
+
+
+    public function getOfficesInApartmentPremium()
+    {
+        return round($this->getOfficesInApartmentApplies() * $this->getOfficesInApartmentRate(), 0);
+    }
+    public function getOfficesInApartmentApplies()
+    {
+        $rate = $this->getOfficesInApartmentRate();
+        return $rate != 0 ? $rate : 0;
+    }
+    public function getOfficesInApartmentRate()
+    {
+        if($this->water_damage_exclusion) {
+            return !empty($this->water_damage_exclusion_offices_in_ah) ? \Yii::$app->params['quote']['water_damage_rates']['office_in_apt'] : 0;
+        } else {
+            return 0;
+        }
+    }
+
+    public function getOfficesInOtherPremium()
+    {
+        return round($this->getOfficesInOtherApplies() * $this->getOfficesInOtherRate(), 0);
+    }
+    public function getOfficesInOtherApplies()
+    {
+        $rate = $this->getOfficesInOtherRate();
+        return $rate != 0 ? $rate : 0;
+    }
+    public function getOfficesInOtherRate()
+    {
+        if($this->water_damage_exclusion) {
+            return !empty($this->water_damage_exclusion_offices_in_ob) ? \Yii::$app->params['quote']['water_damage_rates']['office_in_other'] : 0;
+        } else {
+            return 0;
+        }
+    }
+
+    public function getStoreInApartmentPremium()
+    {
+        return round($this->getStoreInApartmentApplies() * $this->getStoreInApartmentRate(), 0);
+    }
+    public function getStoreInApartmentApplies()
+    {
+        $rate = $this->getStoreInApartmentRate();
+        return $rate != 0 ? $rate : 0;
+    }
+    public function getStoreInApartmentRate()
+    {
+        if($this->water_damage_exclusion) {
+            return !empty($this->water_damage_exclusion_store_in_ah) ? \Yii::$app->params['quote']['water_damage_rates']['store_in_apt'] : 0;
+        } else {
+            return 0;
+        }
+    }
+
+    public function getStoreInOtherPremium()
+    {
+        return round($this->getStoreInOtherApplies() * $this->getStoreInOtherRate(), 0);
+    }
+    public function getStoreInOtherApplies()
+    {
+        $rate = $this->getStoreInOtherRate();
+        return $rate != 0 ? $rate : 0;
+    }
+    public function getStoreInOtherRate()
+    {
+        if($this->water_damage_exclusion) {
+            return !empty($this->water_damage_exclusion_store_in_ob) ? \Yii::$app->params['quote']['water_damage_rates']['store_in_other'] : 0;
+        } else {
+            return 0;
+        }
+    }
 }
