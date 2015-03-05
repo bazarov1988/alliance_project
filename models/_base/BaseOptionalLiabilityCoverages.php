@@ -206,6 +206,7 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             'fire_legal'                            => '*',
             'automobile_coverage_a'                 => 'LS-50A',
             'liquor_liability_receipts'             => 'LS-34',
+            'personal_injury'                       => '*',
         ];
     }
 
