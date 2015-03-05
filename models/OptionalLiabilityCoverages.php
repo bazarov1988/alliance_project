@@ -287,5 +287,65 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     // -----------------------------------------------------------------------------------------------------------------
 
+    public function getMedicalPaymentsLimit()
+    {
+        $quote = $this->quote;
+        return !empty($quote->med_payment) ? $quote->medPayment->name : 'None';
+    }
 
-} 
+    public function getMedicalPaymentsPremium()
+    {
+        $quote = $this->quote;
+        if(!empty($quote->med_payment)) {
+            if($quote->policy_type == 1) {
+                return $quote->medPayment->standart;
+            } else {
+                return $quote->medPayment->premium;
+            }
+        } else {
+            return 0;
+        }
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getPersonalInjuryApplies()
+    {
+        return $this->personal_injury;
+    }
+
+    public function getPersonalInjuryPremium()
+    {
+        return $this->quote->policy_type == 1 ? ($this->personal_injury ? 15 : 0) : 0;
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getPoolLiabilityPremium()
+    {
+        return $this->pool_liability ? \Yii::$app->params['quote']['pool_liability'][$this->quote->prop_damage]: 0;
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getCompletedOperationsPremium()
+    {
+        // =($'List Sheet'.HJ6*-1)
+        return $this->getCompletedOperationsApplicable() * -1;
+    }
+
+    protected function getCompletedOperationsApplicable()
+    {
+        // =IF(HI2;IF(H2=5;HJ3;HJ4);0)
+        return $this->completed_operations ? ($this->getOccupancyRateGroup() == 5 ? \Yii::$app->params['quote']['completed_operations_rates']['rate_gr_5'] : \Yii::$app->params['quote']['completed_operations_rates']['others'] ) : 0;
+    }
+
+    protected function getOccupancyRateGroup()
+    {
+        // =IF(OR(F2="";F2=0);"";OFFSET(F2;F2;2))
+        $quote = $this->quote;
+        return ($quote->occupancy) ? $quote->occupancy->rate_group : null;
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+}

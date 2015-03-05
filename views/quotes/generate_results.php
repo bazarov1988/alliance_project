@@ -436,7 +436,7 @@
     <?php
     $fireLegalPremium = $model->liabilityCoverages->getFireLegalPremium();
     if ($fireLegalPremium != 0) {
-        ?>
+    ?>
         <tr>
             <td><?= $model->liabilityCoverages->getFormNumber('fire_legal') ?></td>
             <td><?= $model->liabilityCoverages->getAttributeLabel('fire_legal') ?></td>
@@ -487,13 +487,65 @@
     <?php
     $liquorLiabilityReceiptsPremium = $model->liabilityCoverages->getLiquorLiabilityReceiptsPremium();
     if($liquorLiabilityReceiptsPremium != 0) {
-        ?>
+    ?>
         <tr>
             <td><?=$model->liabilityCoverages->getFormNumber('liquor_liability_receipts')?></td>
             <td><?=$model->liabilityCoverages->getAttributeLabel('liquor_liability_receipts')?></td>
             <td></td>
             <td><?=$model->liabilityCoverages->getLiquorLiabilityReceiptsLimit()?></td>
             <td><?=Yii::$app->formatter->asCurrency( $liquorLiabilityReceiptsPremium )?></td>
+            <td></td>
+        </tr>
+    <?php
+    }
+    ?>
+
+    <tr>
+        <td>*</td>
+        <td>Medical Payments</td>
+        <td></td>
+        <td><?=$model->liabilityCoverages->getMedicalPaymentsLimit()?></td>
+        <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getMedicalPaymentsPremium() )?></td>
+        <td></td>
+    </tr>
+
+    <?php if($model->liabilityCoverages->getPersonalInjuryApplies()): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('personal_injury')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('personal_injury')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getPersonalInjuryPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
+    <?php
+    $poolLiabilityPremium = $model->liabilityCoverages->getPoolLiabilityPremium();
+    if($poolLiabilityPremium > 0) {
+        ?>
+        <tr>
+            <td></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('pool_liability')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $poolLiabilityPremium )?></td>
+            <td></td>
+        </tr>
+    <?php
+    }
+    ?>
+
+    <?php
+    $completedOperationsPremium = $model->liabilityCoverages->getCompletedOperationsPremium();
+    if($completedOperationsPremium != 0) {
+        ?>
+        <tr>
+            <td></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('completed_operations')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $completedOperationsPremium )?></td>
             <td></td>
         </tr>
     <?php
