@@ -12,7 +12,6 @@ use Yii;
  * @property integer $mer_serc
  * @property integer $rate_group
  * @property integer $crime_group
- * @property integer $bldg_rg
  */
 class Occupancy extends \yii\db\ActiveRecord
 {
@@ -24,14 +23,16 @@ class Occupancy extends \yii\db\ActiveRecord
         return 'occupancy';
     }
 
+    public $bldg_rg;
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['name', 'mer_serc', 'rate_group', 'crime_group','bldg_rg'], 'required'],
-            [['mer_serc', 'rate_group', 'crime_group', 'bldg_rg'], 'integer'],
+            [['name', 'mer_serc', 'rate_group', 'crime_group'], 'required'],
+            [['mer_serc', 'rate_group', 'crime_group'], 'integer'],
             [['name'], 'string', 'max' => 255]
         ];
     }
@@ -48,5 +49,9 @@ class Occupancy extends \yii\db\ActiveRecord
             'rate_group' => Yii::t('app', 'Rate Group'),
             'crime_group' => Yii::t('app', 'Crime Group'),
         ];
+    }
+
+    public function afterFind(){
+        $this->bldg_rg = $this->rate_group<4?1:($this->rate_group>5?9:2);
     }
 }
