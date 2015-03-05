@@ -210,4 +210,82 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     {
         return !empty($this->automobile_coverage_a) ? \Yii::$app->excel->vlookup($this->automobile_coverage_a, \Yii::$app->params['quote']['aggregate_factors'], $this->quote->agregate,false) : 0;
     }
+
+    public function getAutomobileCoverageALimit()
+    {
+        return $this->automobile_coverage_a ? \Yii::$app->params['quote']['prop_damage'][$this->automobile_coverage_a] : null;
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getRating14AptsPremium()
+    {
+        return $this->getRating14AptsRate() + $this->getAdditionalApartmentsRate();
+    }
+
+    public function getRating14AptsRate()
+    {
+        // LS =IF(GO9<>0;IF(GO9<5;VLOOKUP(GO9;GO12:GR16;GO2+1;FALSE());VLOOKUP(4;GO12:GR16;GO2+1;FALSE()));0)
+
+        throw new \BadMethodCallException('Not implemented yet. Empty field in Entry Sheet!');
+
+        return 0;
+    }
+
+    public function getAdditionalApartmentsRate()
+    {
+        // LS =GQ21*GR21
+
+        throw new \BadMethodCallException('Not implemented yet. Empty field in Entry Sheet!');
+
+        return 0;
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getLiquorLiabilityReceiptsPremium()
+    {
+        $prePremium = $this->getLiquorLiabilityReceiptsPrePremium();
+        $minimum = $this->getLiquorLiabilityReceiptsPreMinimum();
+        return  $prePremium > $minimum ? $prePremium : $minimum;
+    }
+
+    public function getLiquorLiabilityReceiptsPrePremium()
+    {
+        if($this->liquor_liability_restaurant == 3) {
+            return $this->getLiquorLiabilityReceiptsRate();
+        } else {
+            return round(($this->liquor_liability_receipts / 100 * $this->getLiquorLiabilityReceiptsRate()), 0);
+        }
+    }
+
+    public function getLiquorLiabilityReceiptsPreMinimum()
+    {
+        // =IF(GW15=1;OFFSET(GS2;GS2;5);IF(GW15=2;OFFSET(GS2;GS2;6);0))
+        if($this->liquor_liability_restaurant == 1) {
+            return is_array(\Yii::$app->params['quote']['receipt_amount'][$this->liquor_liability_limit]) ? \Yii::$app->params['quote']['receipt_amount'][$this->liquor_liability_limit][4] : 0;
+        } else if($this->liquor_liability_restaurant == 2) {
+            return is_array(\Yii::$app->params['quote']['receipt_amount'][$this->liquor_liability_limit]) ? \Yii::$app->params['quote']['receipt_amount'][$this->liquor_liability_limit][5] : 0;
+        }
+        return null;
+    }
+
+    public function getLiquorLiabilityReceiptsRate()
+    {
+        // $'List Sheet'.GU23 =IF(GW15=3;OFFSET(GS2;GS2;7);OFFSET(GS2;GS2;GU25))
+        if($this->liquor_liability_restaurant == 3) {
+            return is_array(\Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit]) ? \Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit][6] : 0;
+        } else {
+            return is_array(\Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit]) ? \Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit][(int)$this->liquor_liability_receipts] : 0;
+        }
+    }
+
+    public function getLiquorLiabilityReceiptsLimit()
+    {
+        return $this->liquor_liability_limit ? \Yii::$app->params['quote']['liquor_liability_limit'][$this->liquor_liability_limit] : null;
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+
 } 
