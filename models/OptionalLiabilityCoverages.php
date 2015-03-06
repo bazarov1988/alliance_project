@@ -512,4 +512,11 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     {
         return $this->contractual_liability_limitation ? round(\Yii::$app->params['quote']['contractual_liability_limitation_credit'] * -1, 0) : 0;
     }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getDesignatedPremisesPremium()
+    {
+        return $this->designated_premises ? round(\Yii::$app->params['quote']['designated_premises_credit'] * -1, 0) : 0;
+    }
 }

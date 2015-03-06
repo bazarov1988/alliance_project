@@ -248,6 +248,17 @@
     <td></td>
 </tr>
 
+    <?php if($model->liabilityCoverages->designated_premises): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('designated_premises')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('designated_premises')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getDesignatedPremisesPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
     <?php if($model->liabilityCoverages->contractual_liability_limitation): ?>
         <tr>
             <td><?=$model->liabilityCoverages->getFormNumber('contractual_liability_limitation')?></td>
