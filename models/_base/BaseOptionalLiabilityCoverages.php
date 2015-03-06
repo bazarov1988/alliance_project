@@ -187,6 +187,8 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
         return [
             'add_insured_owners_lessees'            => 'LS-24',
             'add_insured_owners_contactors'         => 'LS-24A',
+            'contractual_liability_limitation'      => 'LS-92',
+            'project_only'                          => 'LS-70A',
             'automobile_coverage'                   => 'LS-50',
             'acquired_entities'                     => 'LS-91',
             'all_hazards'                           => 'LS-17',

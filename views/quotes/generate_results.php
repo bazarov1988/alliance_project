@@ -248,6 +248,28 @@
     <td></td>
 </tr>
 
+    <?php if($model->liabilityCoverages->contractual_liability_limitation): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('contractual_liability_limitation')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('contractual_liability_limitation')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getContractualLiabilityLimitationPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
+    <?php if($model->liabilityCoverages->project_only): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('project_only')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('project_only')?></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getProjectOnlyLimit() )?></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getProjectOnlyPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
     <?php
     $automobileCoveragePremium = $model->liabilityCoverages->getAutomobileCoveragePremium();
     if ($automobileCoveragePremium > 0) {
@@ -256,7 +278,7 @@
             <td><?= $model->liabilityCoverages->getFormNumber('automobile_coverage') ?></td>
             <td><?= $model->liabilityCoverages->getAttributeLabel('automobile_coverage') ?></td>
             <td></td>
-            <td><?= Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getAutomobileCoverageLimit() ) ?></td>
+            <td></td>
             <td><?= Yii::$app->formatter->asCurrency($automobileCoveragePremium) ?></td>
             <td></td>
         </tr>

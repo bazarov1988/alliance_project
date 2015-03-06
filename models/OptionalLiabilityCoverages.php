@@ -476,4 +476,40 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         // =IF(AND(GE2<>"";GE2<>0);VLOOKUP(GE2;BA3:BH8;GE15+1;FALSE());0)
         return !empty($this->automobile_coverage) ? \Yii::$app->params['quote']['aggregate_factors'][$this->automobile_coverage - 1][$this->automobile_coverage_agregate] : 0;
     }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getProjectOnlyPremium()
+    {
+        return $this->project_only ? round($this->getProjectOnlyCredit() * $this->getProjectOnlyCompPremium() * -1) : 0;
+    }
+
+    public function getProjectOnlyCredit()
+    {
+        // =IF(FU7;IF(F2=97;VLOOKUP($'Entry Sheet'.AF4;FU3:FW5;2;FALSE());VLOOKUP($'Entry Sheet'.AF4;FU3:FW5;3;FALSE()));0)
+        return $this->project_only ? $this->getDesignatedPremiseCredits() : 0;
+    }
+
+    protected function getDesignatedPremiseCredits() {
+        if($this->quote->occupied == 97) {
+            // VLOOKUP($'Entry Sheet'.AF4;FU3:FW5;2;FALSE())
+            return \Yii::$app->params['quote']['designated_premise_credits'][$this->exclusionary_endorsements - 1][0];
+        } else {
+            // VLOOKUP($'Entry Sheet'.AF4;FU3:FW5;3;FALSE())
+            return \Yii::$app->params['quote']['designated_premise_credits'][$this->exclusionary_endorsements - 1][1];
+        }
+    }
+
+    public function getProjectOnlyCompPremium()
+    {
+        // =AF20 =SUM(IF(ISERROR(AF24);0;AF24);IF(ISERROR(AF25);0;AF25))
+        throw new \BadMethodCallException('Not implemented yet. Waiting on Roma');
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getContractualLiabilityLimitationPremium()
+    {
+        return $this->contractual_liability_limitation ? round(\Yii::$app->params['quote']['contractual_liability_limitation_credit'] * -1, 0) : 0;
+    }
 }
