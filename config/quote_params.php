@@ -685,7 +685,12 @@ return [
          'metal_building' => 15,
          'storage_buildings' => 15,
          'conforming_code_specifications' => 7,
-    ]
+    ],
+    'option_coverage_rates'=>[
+        'accounts'=>5,
+        'additional'=>3
+    ],
+    'computer_coverage_rate'=>4.5
 
 
 

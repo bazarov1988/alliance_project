@@ -122,7 +122,7 @@ class Quotes extends BaseQuotes{
     }
     public function getBPZoneFactor(){
         $occup = $this->occupancy?$this->occupancy->mer_serc:0;
-        $concat= (int)\Yii::$app->exclel->concat([$occup,1]);
+        $concat= (int)\Yii::$app->excel->concat([$occup,1]);
         if($concat>0){
             $z2 = ($this->zone==1?$this->countryModel->sub_zone:7)+1;
             return \Yii::$app->excel->vlookup($concat,\Yii::$app->params['quote']['zone_factors'],$z2,false);
@@ -222,7 +222,7 @@ class Quotes extends BaseQuotes{
             if($aa2<1){
                 return $aa2;
             } else {
-
+                return 1;
             }
         }
     }
