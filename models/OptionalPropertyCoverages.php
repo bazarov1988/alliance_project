@@ -161,6 +161,22 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 
     public function getInsuredPremisesAPremium()
     {
+        return round($this->getInsuredPremisesANo() * $this-> getInsuredPremisesARate() * $this->getInsuredPremisesABPPrem(), 0);
+    }
 
+    public function getInsuredPremisesANo()
+    {
+        // =IF(AND(EI6<>"";EI6<>11;EI6<>0);EI6;0)
+        return !empty($this->insured_premises_a_ten) ? $this->insured_premises_a_ten : 0;
+    }
+
+    public function getInsuredPremisesARate()
+    {
+        return \Yii::$app->params['quote']['insured_premises_a_rate'];
+    }
+
+    public function getInsuredPremisesABPPrem()
+    {
+        return $this->quote->getBPComposite();
     }
 } 

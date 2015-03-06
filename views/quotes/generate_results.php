@@ -200,12 +200,32 @@
 </tr>
 
 <thead>
+<tr>
     <th colspan="6"><strong>Optional Property Coverages</strong></th>
+</tr>
 </thead>
+
+    <?php
+    $insuredPremisesAPremium = $model->propertyCoverages->getInsuredPremisesAPremium();
+    if ($insuredPremisesAPremium > 0 || $model->propertyCoverages->insured_premises_a) {
+        ?>
+        <tr>
+            <td><?= $model->propertyCoverages->getFormNumber('insured_premises_a') ?></td>
+            <td><?= $model->propertyCoverages->getAttributeLabel('insured_premises_a') ?></td>
+            <td></td>
+            <td></td>
+            <td><?= Yii::$app->formatter->asCurrency($insuredPremisesAPremium) ?></td>
+            <td></td>
+        </tr>
+    <?php
+    }
+    ?>
 
 
 <thead>
+<tr>
     <th colspan="6"><strong>Optional Liability Coverages</strong></th>
+</tr>
 </thead>
 <?php if($model->liabilityCoverages->liability_form): ?>
 <tr>
