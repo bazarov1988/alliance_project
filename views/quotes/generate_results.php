@@ -248,6 +248,17 @@
     <td></td>
 </tr>
 
+    <?php if($model->liabilityCoverages->acquired_entities): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('acquired_entities')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('acquired_entities')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getAcquiredEntitiesPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
     <?php if($model->liabilityCoverages->all_hazards): ?>
         <tr>
             <td><?=$model->liabilityCoverages->getFormNumber('all_hazards')?></td>

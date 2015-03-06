@@ -446,4 +446,11 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             return 0;
         }
     }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getAcquiredEntitiesPremium()
+    {
+        return $this->acquired_entities ? round(\Yii::$app->params['quote']['acquired_entities_credit'] * -1, 0) : 0;
+    }
 }
