@@ -270,11 +270,11 @@ class Quotes extends BaseQuotes{
     }
 
     public function getSpecialConditionsBuilding(){
-        return $this->SpecialConditions->getSumm();
+        return $this->specialConditions->getSum();
     }
 
     public function getSpecialConditionsBP(){
-        return $this->SpecialConditions->getSumm();
+        return $this->specialConditions->getSum();
     }
 
     public function getBldgComposite(){
