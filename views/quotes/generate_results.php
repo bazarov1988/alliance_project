@@ -232,18 +232,58 @@
     <td><?php echo Yii::$app->quote->getValueByAttribute($model->liabilityCoverages,'liability_form')?></td>
     <td><?php echo $model->liabilityCoverages->getAttributeLabel('liability_form') ?> </td>
     <td> </td>
-    <td><?php echo Yii::$app->quote->getValueByAttribute($model,'prop_damage'); //prop_damage?></td>
-    <td><?php echo $model->liabilityCoverages->getLiabilityFormPremium(); //prop_damage?></td>
+    <td><?php echo Yii::$app->quote->getValueByAttribute($model,'prop_damage')?></td>
+    <td><?=Yii::$app->formatter->asCurrency($model->liabilityCoverages->getLiabilityFormPremium())?></td>
+    <td></td>
+</tr>
+<?php endif;?>
+<tr>
+    <td></td>
+    <td>Credit to Remove Liability Coverage</td>
+    <td> </td>
+    <td> </td>
+    <td><?=Yii::$app->formatter->asCurrency($model->liabilityCoverages->getCreditPremium())?></td>
+    <td></td>
+</tr>
+<?php if($model->liabilityCoverages->add_insured_owners_lessees): ?>
+<tr>
+    <td>LS-24</td>
+    <td><?php echo $model->liabilityCoverages->getAttributeLabel('add_insured_owners_lessees');//Additional Insured ?> </td>
+    <td> </td>
+    <td> </td>
+    <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getAdditionalInsuredOwners())?></td>
+    <td></td>
+</tr>
+<?php endif;?>
+<?php if($model->liabilityCoverages->add_insured_owners_contactors): ?>
+<tr>
+    <td>LS-24A</td>
+    <td><?php echo $model->liabilityCoverages->getAttributeLabel('add_insured_owners_contactors');//Additional Insured ?> </td>
+    <td> </td>
+    <td> </td>
+    <td><?=Yii::$app->formatter->asCurrency($model->liabilityCoverages->getAdditionalInsuredContractors())?></td>
     <td></td>
 </tr>
 <?php endif;?>
 <?php if($model->liabilityCoverages->additional_insured): ?>
 <tr>
-    <td><?php echo Yii::$app->quote->getValueByAttribute($model->liabilityCoverages, 'additional_insured')?></td>
-    <td><?php echo $model->liabilityCoverages->getAttributeLabel('additional_insured');//Additional Insured ?> </td>
+    <td><?php echo Yii::$app->quote->getValueByAttribute($model->liabilityCoverages,'additional_insured')?></td>
+    <td><?php echo $model->liabilityCoverages->getAttributeLabel('additional_insured');?> </td>
     <td> </td>
     <td> </td>
-    <td>$16.00</td>
+    <td><?=Yii::$app->formatter->asCurrency($model->liabilityCoverages->additional_insured)?></td>
+
+    <td></td>
+</tr>
+<?php endif;?>
+<?php if($model->liabilityCoverages->battery_exclusion): ?>
+<tr>
+    <td><?php echo Yii::$app->quote->getValueByAttribute($model->liabilityCoverages, 'battery_exclusion')?></td>
+    <td><?php echo $model->liabilityCoverages->getAttributeLabel('battery_exclusion');//Additional Insured ?> </td>
+    <td> </td>
+    <td> </td>
+    <td><?=Yii::$app->formatter->asCurrency($model->liabilityCoverages->battery_exclusion())?></td>
+
     <td></td>
 </tr>
 <?php endif;?>
@@ -253,7 +293,7 @@
     <td><?php echo $model->liabilityCoverages->getAttributeLabel('barber_shop_liability');//Beauty or Barber Shop Liability?></td>
     <td> </td>
     <td>$1,000,000 / $2,000,000</td>
-    <td>$48.00</td>
+    <td><?=Yii::$app->formatter->asCurrency(48.00)?></td>
     <td></td>
 </tr>
 <?php endif;?>

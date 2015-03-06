@@ -28,34 +28,38 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
      * @return float|int
      * get account receivable
      */
-    public function getAccountsReceivable($deductibleBP){
+    public function getAccountsReceivableDeductible(){
+        return $this->quote->getDeductibleFactorBP();
+    }
+    public function getAccountsReceivablePremium(){
+        $deductibleBP = $this->getAccountsReceivableDeductible();
         if(!empty($deductibleBP)){
-            return round(($this->accounts_receivable/1000)*$deductibleBP*5,0);
+            return round(($this->accounts_receivable/1000)*$deductibleBP*\Yii::$app->params['quote']['option_coverage_rates']['accounts'],0);
         } else {
             return 0;
         }
     }
-
-
-    public function getAdditionalExpense(){
-        return round(($this->additional_expense/1000)*3,0);
-    }
-
 
     /**
-     * @param $deductibleBldg
-     * @return float|int
-     * check it
+     * @return float
+     * get Additional Expense premium
      */
-    public function bopExtenderEnd($deductibleBldg){
-        if(!empty($deductibleBP)){
-            return round(0*$deductibleBP,0);
-        } else {
-            return 0;
-        }
+    public function getAdditionalExpensePremium(){
+        return round(($this->additional_expense/1000)*\Yii::$app->params['quote']['option_coverage_rates']['additional'],0);
     }
 
+    /**
+     * @return int
+     * get alcoholic beverages tax exclusion
+     */
+    public function getAlcoholicBeveragesTaxExclusion(){
+        return (int)$this->alcoholic_beverages_tax_exclusion;
+    }
 
+    /**
+     * @return int
+     * get Building Inflation Protection premium
+     */
     public function getBuildingInflationProtectionRate(){
         return (!empty($this->building_inflation_protection)&&!empty(\Yii::$app->params['quote']['building_inflation'][$this->building_inflation_protection]))?\Yii::$app->params['quote']['building_inflation'][$this->building_inflation_protection][1]:0;
     }
@@ -63,12 +67,24 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         $quote = $this->quote;
         $rate = $this->getBuildingInflationProtectionRate();
         if($rate==0) return 0;
+        $bldgPremium = $quote->getBldgComposite();
+        if($bldgPremium==0) return 0;
+        return round($rate*$bldgPremium,0);
     }
 
 
     public function getBusinessownersAgreedAmount(){
         return (int)$this->businessowners_agreed_amount;
     }
+
+    /**
+     * @return mixed
+     * BusinessownersBurglaryRobbery
+     */
+    public function getBusinessownersBurglaryRobberyDeductible(){
+        return $this->quote->getDeductibleFactorBP();
+    }
+
     public function getBusinessownersBurglaryRobberyPremium(){
         $bx3 = ($this->businessowners_burglary_robbery>5000)?5000:$this->businessowners_burglary_robbery;
         $bx4 = ($this->businessowners_burglary_robbery>15000)?10000:($this->businessowners_burglary_robbery-$bx3);
@@ -81,7 +97,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         $bz6 = (!empty($crimeGroup))?\Yii::$app->params['quote']['burglary_robbery_cov'][3][$crimeGroup]:0;
 
         $premium = ($bx3/1000)*$bz3 + ($bx4/1000)*$bz4 + ($bx5/1000)*$bz5 + ($bx6/1000)*$bz6;
-        $deductible = $this->quote->getDeductibleFactorBP();
+        $deductible = $this->getBusinessownersBurglaryRobberyDeductible();
         $terrMult = 0;
         if(in_array($this->quote->country,[30,40,44,52,60])){
             $terrMult = \Yii::$app->params['quote']['bop_burg_terr_mult'][0][2];
@@ -92,6 +108,9 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         }
         return round($premium*$deductible*$terrMult,0);
     }
+    /**
+     * Businessowners Burglary Robbery premium
+     */
 
 
     /**
@@ -138,6 +157,9 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     public function getComputerCoverageLimit(){
         return $this->computer_coverage;
     }
+    public function getComputerCoverageRate(){
+        return \Yii::$app->params['quote']['computer_coverage_rate'];
+    }
     public function getComputerCoverageDeductible(){
     //=IF(AND(CI4<>"",CI4<>8,CI4<>0),VLOOKUP($'List Sheet'.$CI$4,$'List Sheet'.$AL$3:$AN$9,3,FALSE()),0)
         if(!empty($this->deductible)){
@@ -151,7 +173,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         }
     }
     public function getComputerCoveragePremium(){
-
+        return round(($this->getComputerCoverageLimit()/1000)*$this->getComputerCoverageRate()*$this->getComputerCoverageDeductible(),0);
     }
     /**
      * computer coverage

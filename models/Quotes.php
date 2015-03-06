@@ -222,7 +222,7 @@ class Quotes extends BaseQuotes{
             if($aa2<1){
                 return $aa2;
             } else {
-
+                return 1;
             }
         }
     }
@@ -233,7 +233,7 @@ class Quotes extends BaseQuotes{
 
 
 
-    protected function getRateTableKey()
+    public function getRateTableKey()
     {
         // =IF($'List Sheet'.L2=1;IF($'List Sheet'.B2=1;2;IF($'List Sheet'.B2=2;3;IF($'List Sheet'.B2=3;4;IF($'List Sheet'.B2=4;4))));IF($'List Sheet'.B2=1;5;IF($'List Sheet'.B2=2;6;IF($'List Sheet'.B2=3;7;IF($'List Sheet'.B2=4;7)))))
 
