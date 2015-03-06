@@ -19,28 +19,16 @@ class ExcelComponent extends Component{
      * @return null
      * vlookup excel method
      */
-    public function vlookup($val,$source,$key,$notNeedEqual=false){
-        $key-=1;
-        $result = null;
-        $lVal = $source[0][0];
-        if($notNeedEqual){
-            foreach($source as $skey=>$sval){
-                if($sval[0]<=$val&&$sval[0]>$lVal){
-                    $lVal = $sval[0];
-                    $result = $skey;
-                    if($sval[0]==$val)
-                    break;
-                }
+    public function vlookup($key,$source,$val,$default=false){
+        if(!empty($source[$key])&&is_array($source[$key])){
+            if(!empty($source[$key][$val])){
+                return $source[$key][$val];
+            } else {
+                return $default;
             }
         } else {
-            foreach($source as $skey=>$sval){
-                if($sval[0]==$val){
-                    $result = $skey;
-                    break;
-                }
-            }
+            return $default;
         }
-        return (isset($source[$result][$key]))?$source[$val][$key]:0;
     }
 
     /**

@@ -115,7 +115,7 @@ class Quotes extends BaseQuotes{
         $concat = (int)\Yii::$app->excel->concat([$occup,1]);
         if($concat>10){
             $z2 = ($this->zone==1?$this->countryModel->sub_zone:7)+1;
-            return \Yii::$app->excel->vlookup($concat,\Yii::$app->params['quote']['zone_factors'],$z2,false);
+            return \Yii::$app->excel->vlookup($concat,\Yii::$app->params['quote']['zone_factors'],$z2-2,false);
         } else {
             return 0;
         }
@@ -125,7 +125,7 @@ class Quotes extends BaseQuotes{
         $concat= (int)\Yii::$app->excel->concat([$occup,1]);
         if($concat>0){
             $z2 = ($this->zone==1?$this->countryModel->sub_zone:7)+1;
-            return \Yii::$app->excel->vlookup($concat,\Yii::$app->params['quote']['zone_factors'],$z2,false);
+            return \Yii::$app->excel->vlookup($concat,\Yii::$app->params['quote']['zone_factors'],$z2-2,false);
         } else {
             return 0;
         }
@@ -154,14 +154,14 @@ class Quotes extends BaseQuotes{
 
     public function getDeductibleFactorBuilding(){
         if(!empty($this->deductible_bldg)&&$this->deductible_bldg!=8){
-            return \Yii::$app->excel->vlookup($this->deductible_bldg,\Yii::$app->params['quote']['deductible_factors'],3,true);
+            return \Yii::$app->excel->vlookup($this->deductible_bldg,\Yii::$app->params['quote']['deductible_factors'],1,false);
         } else {
             return 0;
         }
     }
     public function getDeductibleFactorBP(){
         if(!empty($this->deductible_bp)&&$this->deductible_bp!=8){
-            return \Yii::$app->excel->vlookup($this->deductible_bp,\Yii::$app->params['quote']['deductible_factors'],3,true);
+            return \Yii::$app->excel->vlookup($this->deductible_bp,\Yii::$app->params['quote']['deductible_factors'],1,false);
         } else {
             return 0;
         }
@@ -262,7 +262,7 @@ class Quotes extends BaseQuotes{
 
     public function getAggregateFactor(){
         if(!empty($this->prop_damage)){
-            return  \Yii::$app->excel->vlookup($this->prop_damage,\Yii::$app->params['quote']['aggregate_factors'],$this->agregate+1,false);
+            return  \Yii::$app->excel->vlookup($this->prop_damage,\Yii::$app->params['quote']['aggregate_factors'],$this->agregate-1,false);
         } else {
             return 0;
         }

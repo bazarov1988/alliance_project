@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 13, 2015 at 07:54 PM
+-- Generation Time: Mar 06, 2015 at 07:27 PM
 -- Server version: 5.5.41-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.5
+-- PHP Version: 5.5.9-1ubuntu4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -61,45 +61,34 @@ CREATE TABLE IF NOT EXISTS `bop_rater_entry` (
   `date_quoted` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `zip_code` varchar(255) NOT NULL,
   `agent` varchar(255) NOT NULL,
-  `construction` int(11) NOT NULL,
-  `protection` int(11) NOT NULL,
-  `country` int(11) NOT NULL,
-  `zone` int(11) NOT NULL,
-  `prior_since` int(11) NOT NULL,
-  `occupied` int(11) NOT NULL,
-  `occupied_type` int(11) NOT NULL,
-  `policy_type` int(11) NOT NULL,
-  `deductible_bldg` int(11) NOT NULL,
-  `deductible_bp` int(11) NOT NULL,
-  `building_rc_acv` int(11) NOT NULL,
-  `business_property_rc_acv` int(11) NOT NULL,
-  `mercantile_occupany_in_bldg` tinyint(1) NOT NULL,
+  `construction` int(11) DEFAULT NULL,
+  `protection` int(11) DEFAULT NULL,
+  `country` int(11) DEFAULT NULL,
+  `zone` int(11) DEFAULT NULL,
+  `prior_since` int(11) DEFAULT NULL,
+  `occupied` int(11) DEFAULT NULL,
+  `occupied_type` int(11) DEFAULT NULL,
+  `policy_type` int(11) DEFAULT NULL,
+  `deductible_bldg` int(11) DEFAULT NULL,
+  `deductible_bp` int(11) DEFAULT NULL,
+  `building_rc_acv` int(11) DEFAULT NULL,
+  `business_property_rc_acv` int(11) DEFAULT NULL,
+  `mercantile_occupany_in_bldg` tinyint(1) DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '0',
-  `does_lead_exclusion_apply` tinyint(1) NOT NULL,
-  `operated_by_insured` tinyint(1) NOT NULL,
-  `apt_in_bldg` tinyint(1) NOT NULL,
-  `sole_occupancy` int(11) NOT NULL,
-  `consumed_on_premises` tinyint(1) NOT NULL,
-  `building_amount_of_ins` varchar(255) NOT NULL,
-  `bus_amount_of_ins` varchar(255) NOT NULL,
-  `prop_damage` int(11) NOT NULL,
-  `agregate` int(11) NOT NULL,
-  `med_payment` int(11) NOT NULL,
+  `does_lead_exclusion_apply` tinyint(1) DEFAULT NULL,
+  `operated_by_insured` tinyint(1) DEFAULT NULL,
+  `apt_in_bldg` tinyint(1) DEFAULT NULL,
+  `sole_occupancy` int(11) DEFAULT NULL,
+  `consumed_on_premises` tinyint(1) DEFAULT NULL,
+  `building_amount_of_ins` float DEFAULT NULL,
+  `bus_amount_of_ins` float DEFAULT NULL,
+  `prop_damage` int(11) DEFAULT NULL,
+  `agregate` int(11) DEFAULT NULL,
+  `med_payment` int(11) DEFAULT NULL,
   `each_occurrence` varchar(255) NOT NULL,
   `each_person_accident` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='bop_rater' AUTO_INCREMENT=8 ;
-
---
--- Dumping data for table `bop_rater_entry`
---
-
-INSERT INTO `bop_rater_entry` (`id`, `user_id`, `name`, `address`, `date_create`, `date_quoted`, `zip_code`, `agent`, `construction`, `protection`, `country`, `zone`, `prior_since`, `occupied`, `occupied_type`, `policy_type`, `deductible_bldg`, `deductible_bp`, `building_rc_acv`, `business_property_rc_acv`, `mercantile_occupany_in_bldg`, `status`, `does_lead_exclusion_apply`, `operated_by_insured`, `apt_in_bldg`, `sole_occupancy`, `consumed_on_premises`, `building_amount_of_ins`, `bus_amount_of_ins`, `prop_damage`, `agregate`, `med_payment`, `each_occurrence`, `each_person_accident`) VALUES
-(3, 1, 'wqeqwe', 'qwwqeqwe', '2015-02-02 15:40:16', '2015-02-02 15:40:16', 'wqeqwe', 'qweqwe', 2, 3, 15, 3, 1, 15, 2, 2, 100, 100, 2, 2, 1, 0, 1, 1, 1, 1, 1, '234234', '23423', 100, 300000, 15, '', ''),
-(4, 1, 'wqeqwe', 'qwwqeqwe', '2015-02-02 15:42:46', '2015-02-02 15:42:46', 'wqeqwe', 'qweqwe', 2, 1, 2, 1, 1, 1, 2, 2, 100, 100, 1, 1, 1, 0, 1, 1, 1, 1, 1, '234234', '23423', 500, 300000, 18, '', ''),
-(5, 1, 'wqeqwe', 'qwwqeqwe', '2015-02-02 16:02:47', '2015-02-02 16:02:47', 'wqeqwe', 'qweqwe', 2, 1, 2, 1, 1, 15, 2, 2, 100, 100, 1, 1, 1, 0, 1, 1, 1, 1, 1, '234234', '23423', 300, 300000, 16, '', ''),
-(6, 1, 'wqeqwe', 'qwwqeqwe', '2015-02-02 16:04:02', '2015-02-02 16:04:02', 'wqeqwe', 'qweqwe', 2, 1, 2, 1, 1, 15, 2, 2, 100, 100, 1, 1, 1, 0, 1, 1, 1, 1, 1, '234234', '23423', 300, 300000, 16, '', ''),
-(7, 1, 'wqeqwe', 'qwwqeqwe', '2015-02-06 08:25:53', '2015-02-06 08:26:08', 'wqeqwe', 'qweqwe', 2, 2, 4, 2, 2, 3, 2, 2, 100, 100, 2, 1, 1, 1, 1, 1, 1, 1, 1, '234234', '23423', 100, 300000, 1, '', '');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='bop_rater' AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -262,7 +251,8 @@ CREATE TABLE IF NOT EXISTS `migration` (
 INSERT INTO `migration` (`version`, `apply_time`) VALUES
 ('m000000_000000_base', 1421925040),
 ('m140524_153638_init_user', 1421925044),
-('m140524_153642_init_user_auth', 1421925045);
+('m140524_153642_init_user_auth', 1421925045),
+('m150305_150027_bldg_rg_field_for_occupancy', 1425567824);
 
 -- --------------------------------------------------------
 
@@ -276,6 +266,7 @@ CREATE TABLE IF NOT EXISTS `occupancy` (
   `mer_serc` int(11) NOT NULL,
   `rate_group` int(11) NOT NULL,
   `crime_group` int(11) NOT NULL,
+  `bldg_rg` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=125 ;
 
@@ -283,131 +274,131 @@ CREATE TABLE IF NOT EXISTS `occupancy` (
 -- Dumping data for table `occupancy`
 --
 
-INSERT INTO `occupancy` (`id`, `name`, `mer_serc`, `rate_group`, `crime_group`) VALUES
-(1, 'Apartment', 6, 6, 1),
-(2, 'Church', 7, 7, 1),
-(3, 'Hotel / Motel', 9, 9, 1),
-(4, 'Office', 8, 8, 1),
-(5, 'Appliance repair', 2, 3, 2),
-(6, 'Auto Accessory Store, No Auto repair ', 1, 3, 2),
-(7, 'Automatic Car Wash', 2, 3, 2),
-(8, 'Bagel Shop - with baking', 1, 2, 1),
-(9, 'Bagel Shop - with cooking', 1, 4, 1),
-(10, 'Bakeries - with baking on premises', 1, 2, 1),
-(11, 'Bakeries - with cooking and selling', 1, 5, 1),
-(12, 'Bakeries, selling only(no baking)', 1, 1, 1),
-(13, 'Bar', 1, 5, 2),
-(14, 'Barber and Beauty Supplies', 1, 2, 1),
-(15, 'Barber Shop', 1, 1, 1),
-(16, 'Beauty Shop', 1, 1, 1),
-(17, 'Beverage Store, Selling beer and wine', 1, 2, 3),
-(18, 'Beverage Store, Selling no alcohol', 1, 1, 1),
-(19, 'Bicycle Shop', 1, 2, 1),
-(20, 'Book and Magazine Store', 1, 1, 2),
-(21, 'Camera and Photgraphic Supply Store', 1, 3, 2),
-(22, 'Candy, Nut and Confectionery Store-Cooking', 1, 4, 1),
-(23, 'Candy, Nut and Confectionery Store-No Cooking', 1, 1, 1),
-(24, 'Card and Stationery Store', 1, 1, 1),
-(25, 'Carpet Store, less than 25% from installation', 1, 3, 2),
-(26, 'Clothing Alteration, Pressing & Repair', 2, 4, 3),
-(27, 'Clothing Rental', 2, 3, 3),
-(28, 'Clothing Store', 1, 4, 3),
-(29, 'Clubs', 2, 4, 3),
-(30, 'Coin Operated Laundries and dry cleaners', 2, 3, 3),
-(31, 'Confectionery, Candy and Nut Store-Cooking', 1, 4, 1),
-(32, 'Confectionery, Candy and Nut Store-No Cooking', 1, 1, 1),
-(33, 'Craft Store', 1, 1, 1),
-(34, 'Curtain & Drapery Store, less than 25% install.', 1, 1, 2),
-(35, 'Deli - No Cooking', 1, 2, 1),
-(36, 'Deli-Cooking with household appl.- no kitchen', 1, 3, 1),
-(37, 'Dental Labs', 2, 2, 1),
-(38, 'Department Store more than $500,000 sales', 1, 4, 3),
-(39, 'Department Store less than $500,000 sales', 1, 1, 3),
-(40, 'Diaper Service', 2, 2, 1),
-(41, 'Drapery & Curtain Store,less than 25% install. ', 1, 1, 2),
-(42, 'Drug Store with Cooking on premises', 1, 4, 3),
-(43, 'Drug Store with No Cooking on premises', 1, 3, 3),
-(44, 'Dry Cleaning Plants (except rug cleaning)', 2, 2, 1),
-(45, 'Electrotyping', 2, 1, 2),
-(46, 'Engraving', 2, 1, 1),
-(47, 'Fabric Store', 1, 1, 2),
-(48, 'Fish, Meat and Poultry Store', 1, 1, 2),
-(49, 'Floor Covering Store incl. carpet,less than 25% from install.', 1, 3, 2),
-(50, 'Florist', 1, 1, 1),
-(51, 'Funeral Directors', 2, 4, 1),
-(52, 'Furniture Store', 1, 3, 2),
-(53, 'Game, Toy and Hobby Store', 1, 1, 1),
-(54, 'Garden and Lawn Store', 1, 2, 1),
-(55, 'General Store', 1, 2, 2),
-(56, 'Gift, Novelty and Souvenir Store', 1, 2, 1),
-(57, 'Glass, Paint and Wallpaper Store', 1, 1, 1),
-(58, 'Groceries, less than $500,000 annual sales', 1, 3, 2),
-(59, 'Hardware Store', 1, 2, 2),
-(60, 'Health Food Store', 1, 1, 2),
-(61, 'Hobby, Toy and Game Store', 1, 1, 1),
-(62, 'Household Appl. St. under 25% rec. from off-prem. svc.', 1, 3, 2),
-(63, 'Ice Cream Store, No Cooking on premises', 1, 1, 1),
-(64, 'Industrial Launderers', 2, 2, 1),
-(65, 'Kitchen Accessories Store', 1, 2, 2),
-(66, 'Laundry and Dry Cleaning Pick Up Station(no cleaning)', 2, 1, 1),
-(67, 'Lawn and Garden Supply Store', 1, 2, 1),
-(68, 'Leather Goods Store', 1, 1, 3),
-(69, 'Letter Service (mailing or addressing)', 2, 1, 1),
-(70, 'Linen Supply', 2, 2, 1),
-(71, 'Linotyping', 2, 1, 1),
-(72, 'Liquor Store', 1, 3, 3),
-(73, 'Lithographing', 2, 1, 1),
-(74, 'Magazine and Book Store', 1, 1, 2),
-(75, 'Meat, Fish and Poultry Store', 1, 1, 2),
-(76, 'Music, Tape and Record Store', 1, 4, 2),
-(77, 'Novelty, Gift and Souvenir Store', 1, 2, 1),
-(78, 'Nut, Candy and Confectionery Store with Cooking', 1, 4, 1),
-(79, 'Nut, Candy and Confectionery Store with No Cooking', 1, 1, 1),
-(80, 'Office Machine Store', 1, 2, 2),
-(81, 'Optical Goods', 1, 1, 1),
-(82, 'Paint, Glass and Wallpaper Store', 1, 1, 1),
-(83, 'Pet Store', 1, 2, 1),
-(84, 'Photocopying & Blueprinting', 2, 1, 1),
-(85, 'Photoengraving', 2, 1, 1),
-(86, 'Photofinishing Laboratories', 2, 2, 2),
-(87, 'Photographic and Camera Supply Store', 1, 3, 2),
-(88, 'Photographic Studios', 2, 4, 2),
-(89, 'Pizza Shop - with baking', 1, 2, 1),
-(90, 'Pizza Shop - with cooking', 1, 4, 1),
-(91, 'Poultry, Meat and Fish Store', 1, 1, 2),
-(92, 'Power Laundries (not auto)', 2, 2, 1),
-(93, 'Printing - Commercial and Related Services', 2, 1, 1),
-(94, 'Radio & TV Repair', 2, 3, 3),
-(95, 'Radio and TV Store less than 25% from serv. or repair', 1, 4, 3),
-(96, 'Record, Tape and Music Store', 1, 4, 2),
-(97, 'Restaurant ', 1, 5, 3),
-(98, 'Restaurant Equipment', 1, 2, 2),
-(99, 'Retail, NOC', 1, 2, 2),
-(100, 'Sewing Machine Store', 1, 1, 2),
-(101, 'Shoe Repair', 2, 4, 2),
-(102, 'Shoe Repair Store', 1, 2, 2),
-(103, 'Shoe Store', 1, 2, 2),
-(104, 'Souvenir, Gift and Novelty Store', 1, 2, 2),
-(105, 'Sporting Goods Store', 1, 4, 4),
-(106, 'Stationery and Card Store', 1, 1, 2),
-(107, 'Stenographic & Duplicating, NOC', 2, 1, 1),
-(108, 'Storage Buildings', 2, 1, 1),
-(109, 'Supermarket, more than $500,000 annual sales', 1, 4, 2),
-(110, 'Tailor Shop (men''s and women''s)', 1, 1, 1),
-(111, 'Tailors', 2, 4, 3),
-(112, 'Tape, Music and Record Store', 1, 4, 2),
-(113, 'Tobacco Store', 1, 3, 3),
-(114, 'Toy, Hobby and Game', 1, 1, 1),
-(115, 'Tuxedo Rental', 2, 3, 3),
-(116, 'TV/Radio Store - less than 25% receipts from repair & svc.', 1, 4, 3),
-(117, 'Upholstery Goods St.-under 25% rec. from work performed', 1, 1, 2),
-(118, 'Vacuum Cleaner Sales and Service Store', 1, 1, 2),
-(119, 'Valet Service', 2, 2, 3),
-(120, 'Variety Store', 1, 4, 3),
-(121, 'Video Store', 1, 2, 3),
-(122, 'Wallpaper, Paint and Glass Store', 1, 1, 1),
-(123, 'Watch, Clock & Jewelry Store', 2, 3, 3),
-(124, 'Wholesale, NOC', 1, 1, 2);
+INSERT INTO `occupancy` (`id`, `name`, `mer_serc`, `rate_group`, `crime_group`, `bldg_rg`) VALUES
+(1, 'Apartment', 6, 6, 1, 9),
+(2, 'Church', 7, 7, 1, 9),
+(3, 'Hotel / Motel', 9, 9, 1, 9),
+(4, 'Office', 8, 8, 1, 9),
+(5, 'Appliance repair', 2, 3, 2, 1),
+(6, 'Auto Accessory Store, No Auto repair ', 1, 3, 2, 1),
+(7, 'Automatic Car Wash', 2, 3, 2, 1),
+(8, 'Bagel Shop - with baking', 1, 2, 1, 1),
+(9, 'Bagel Shop - with cooking', 1, 4, 1, 2),
+(10, 'Bakeries - with baking on premises', 1, 2, 1, 1),
+(11, 'Bakeries - with cooking and selling', 1, 5, 1, 2),
+(12, 'Bakeries, selling only(no baking)', 1, 1, 1, 1),
+(13, 'Bar', 1, 5, 2, 2),
+(14, 'Barber and Beauty Supplies', 1, 2, 1, 1),
+(15, 'Barber Shop', 1, 1, 1, 1),
+(16, 'Beauty Shop', 1, 1, 1, 1),
+(17, 'Beverage Store, Selling beer and wine', 1, 2, 3, 1),
+(18, 'Beverage Store, Selling no alcohol', 1, 1, 1, 1),
+(19, 'Bicycle Shop', 1, 2, 1, 1),
+(20, 'Book and Magazine Store', 1, 1, 2, 1),
+(21, 'Camera and Photgraphic Supply Store', 1, 3, 2, 1),
+(22, 'Candy, Nut and Confectionery Store-Cooking', 1, 4, 1, 2),
+(23, 'Candy, Nut and Confectionery Store-No Cooking', 1, 1, 1, 1),
+(24, 'Card and Stationery Store', 1, 1, 1, 1),
+(25, 'Carpet Store, less than 25% from installation', 1, 3, 2, 1),
+(26, 'Clothing Alteration, Pressing & Repair', 2, 4, 3, 2),
+(27, 'Clothing Rental', 2, 3, 3, 1),
+(28, 'Clothing Store', 1, 4, 3, 2),
+(29, 'Clubs', 2, 4, 3, 2),
+(30, 'Coin Operated Laundries and dry cleaners', 2, 3, 3, 1),
+(31, 'Confectionery, Candy and Nut Store-Cooking', 1, 4, 1, 2),
+(32, 'Confectionery, Candy and Nut Store-No Cooking', 1, 1, 1, 1),
+(33, 'Craft Store', 1, 1, 1, 1),
+(34, 'Curtain & Drapery Store, less than 25% install.', 1, 1, 2, 1),
+(35, 'Deli - No Cooking', 1, 2, 1, 1),
+(36, 'Deli-Cooking with household appl.- no kitchen', 1, 3, 1, 1),
+(37, 'Dental Labs', 2, 2, 1, 1),
+(38, 'Department Store more than $500,000 sales', 1, 4, 3, 2),
+(39, 'Department Store less than $500,000 sales', 1, 1, 3, 1),
+(40, 'Diaper Service', 2, 2, 1, 1),
+(41, 'Drapery & Curtain Store,less than 25% install. ', 1, 1, 2, 1),
+(42, 'Drug Store with Cooking on premises', 1, 4, 3, 2),
+(43, 'Drug Store with No Cooking on premises', 1, 3, 3, 1),
+(44, 'Dry Cleaning Plants (except rug cleaning)', 2, 2, 1, 1),
+(45, 'Electrotyping', 2, 1, 2, 1),
+(46, 'Engraving', 2, 1, 1, 1),
+(47, 'Fabric Store', 1, 1, 2, 1),
+(48, 'Fish, Meat and Poultry Store', 1, 1, 2, 1),
+(49, 'Floor Covering Store incl. carpet,less than 25% from install.', 1, 3, 2, 1),
+(50, 'Florist', 1, 1, 1, 1),
+(51, 'Funeral Directors', 2, 4, 1, 2),
+(52, 'Furniture Store', 1, 3, 2, 1),
+(53, 'Game, Toy and Hobby Store', 1, 1, 1, 1),
+(54, 'Garden and Lawn Store', 1, 2, 1, 1),
+(55, 'General Store', 1, 2, 2, 1),
+(56, 'Gift, Novelty and Souvenir Store', 1, 2, 1, 1),
+(57, 'Glass, Paint and Wallpaper Store', 1, 1, 1, 1),
+(58, 'Groceries, less than $500,000 annual sales', 1, 3, 2, 1),
+(59, 'Hardware Store', 1, 2, 2, 1),
+(60, 'Health Food Store', 1, 1, 2, 1),
+(61, 'Hobby, Toy and Game Store', 1, 1, 1, 1),
+(62, 'Household Appl. St. under 25% rec. from off-prem. svc.', 1, 3, 2, 1),
+(63, 'Ice Cream Store, No Cooking on premises', 1, 1, 1, 1),
+(64, 'Industrial Launderers', 2, 2, 1, 1),
+(65, 'Kitchen Accessories Store', 1, 2, 2, 1),
+(66, 'Laundry and Dry Cleaning Pick Up Station(no cleaning)', 2, 1, 1, 1),
+(67, 'Lawn and Garden Supply Store', 1, 2, 1, 1),
+(68, 'Leather Goods Store', 1, 1, 3, 1),
+(69, 'Letter Service (mailing or addressing)', 2, 1, 1, 1),
+(70, 'Linen Supply', 2, 2, 1, 1),
+(71, 'Linotyping', 2, 1, 1, 1),
+(72, 'Liquor Store', 1, 3, 3, 1),
+(73, 'Lithographing', 2, 1, 1, 1),
+(74, 'Magazine and Book Store', 1, 1, 2, 1),
+(75, 'Meat, Fish and Poultry Store', 1, 1, 2, 1),
+(76, 'Music, Tape and Record Store', 1, 4, 2, 2),
+(77, 'Novelty, Gift and Souvenir Store', 1, 2, 1, 1),
+(78, 'Nut, Candy and Confectionery Store with Cooking', 1, 4, 1, 2),
+(79, 'Nut, Candy and Confectionery Store with No Cooking', 1, 1, 1, 1),
+(80, 'Office Machine Store', 1, 2, 2, 1),
+(81, 'Optical Goods', 1, 1, 1, 1),
+(82, 'Paint, Glass and Wallpaper Store', 1, 1, 1, 1),
+(83, 'Pet Store', 1, 2, 1, 1),
+(84, 'Photocopying & Blueprinting', 2, 1, 1, 1),
+(85, 'Photoengraving', 2, 1, 1, 1),
+(86, 'Photofinishing Laboratories', 2, 2, 2, 1),
+(87, 'Photographic and Camera Supply Store', 1, 3, 2, 1),
+(88, 'Photographic Studios', 2, 4, 2, 2),
+(89, 'Pizza Shop - with baking', 1, 2, 1, 1),
+(90, 'Pizza Shop - with cooking', 1, 4, 1, 2),
+(91, 'Poultry, Meat and Fish Store', 1, 1, 2, 1),
+(92, 'Power Laundries (not auto)', 2, 2, 1, 1),
+(93, 'Printing - Commercial and Related Services', 2, 1, 1, 1),
+(94, 'Radio & TV Repair', 2, 3, 3, 1),
+(95, 'Radio and TV Store less than 25% from serv. or repair', 1, 4, 3, 2),
+(96, 'Record, Tape and Music Store', 1, 4, 2, 2),
+(97, 'Restaurant ', 1, 5, 3, 2),
+(98, 'Restaurant Equipment', 1, 2, 2, 1),
+(99, 'Retail, NOC', 1, 2, 2, 1),
+(100, 'Sewing Machine Store', 1, 1, 2, 1),
+(101, 'Shoe Repair', 2, 4, 2, 2),
+(102, 'Shoe Repair Store', 1, 2, 2, 1),
+(103, 'Shoe Store', 1, 2, 2, 1),
+(104, 'Souvenir, Gift and Novelty Store', 1, 2, 2, 1),
+(105, 'Sporting Goods Store', 1, 4, 4, 2),
+(106, 'Stationery and Card Store', 1, 1, 2, 1),
+(107, 'Stenographic & Duplicating, NOC', 2, 1, 1, 1),
+(108, 'Storage Buildings', 2, 1, 1, 1),
+(109, 'Supermarket, more than $500,000 annual sales', 1, 4, 2, 2),
+(110, 'Tailor Shop (men''s and women''s)', 1, 1, 1, 1),
+(111, 'Tailors', 2, 4, 3, 2),
+(112, 'Tape, Music and Record Store', 1, 4, 2, 2),
+(113, 'Tobacco Store', 1, 3, 3, 1),
+(114, 'Toy, Hobby and Game', 1, 1, 1, 1),
+(115, 'Tuxedo Rental', 2, 3, 3, 1),
+(116, 'TV/Radio Store - less than 25% receipts from repair & svc.', 1, 4, 3, 2),
+(117, 'Upholstery Goods St.-under 25% rec. from work performed', 1, 1, 2, 1),
+(118, 'Vacuum Cleaner Sales and Service Store', 1, 1, 2, 1),
+(119, 'Valet Service', 2, 2, 3, 1),
+(120, 'Variety Store', 1, 4, 3, 2),
+(121, 'Video Store', 1, 2, 3, 1),
+(122, 'Wallpaper, Paint and Glass Store', 1, 1, 1, 1),
+(123, 'Watch, Clock & Jewelry Store', 2, 3, 3, 1),
+(124, 'Wholesale, NOC', 1, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -435,51 +426,40 @@ CREATE TABLE IF NOT EXISTS `optional_liability_coverages` (
   `automobile_coverage` int(11) DEFAULT NULL,
   `automobile_coverage_agregate_a` int(11) DEFAULT NULL,
   `automobile_coverage_agregate` int(11) DEFAULT NULL,
-  `liquor_liability_receipts` varchar(255) NOT NULL,
+  `liquor_liability_receipts` int(11) DEFAULT NULL,
   `liquor_liability_restaurant` int(11) DEFAULT NULL,
   `liquor_liability_limit` int(11) DEFAULT NULL,
-  `acquired_entities` tinyint(1) NOT NULL,
-  `exclusionary_endorsements` tinyint(1) NOT NULL,
-  `all_hazards` tinyint(1) NOT NULL,
-  `a_d_p_b` tinyint(1) NOT NULL,
-  `athletic_participants` tinyint(1) NOT NULL,
-  `certain_skin_care_service` tinyint(1) NOT NULL,
-  `certain_skin_care_service_a` tinyint(1) NOT NULL,
-  `discrimination_clarification` tinyint(1) NOT NULL,
-  `employment_practices` tinyint(1) NOT NULL,
-  `fairs` tinyint(1) NOT NULL,
-  `known_loss_damage` tinyint(1) NOT NULL,
-  `dry_cleaning_damage` tinyint(1) NOT NULL,
-  `liquor_liability` tinyint(1) NOT NULL,
+  `acquired_entities` tinyint(1) DEFAULT NULL,
+  `exclusionary_endorsements` tinyint(1) DEFAULT NULL,
+  `all_hazards` tinyint(1) DEFAULT NULL,
+  `a_d_p_b` tinyint(1) DEFAULT NULL,
+  `athletic_participants` tinyint(1) DEFAULT NULL,
+  `certain_skin_care_service` tinyint(1) DEFAULT NULL,
+  `certain_skin_care_service_a` tinyint(1) DEFAULT NULL,
+  `discrimination_clarification` tinyint(1) DEFAULT NULL,
+  `employment_practices` tinyint(1) DEFAULT NULL,
+  `fairs` tinyint(1) DEFAULT NULL,
+  `known_loss_damage` tinyint(1) DEFAULT NULL,
+  `dry_cleaning_damage` tinyint(1) DEFAULT NULL,
+  `liquor_liability` tinyint(1) DEFAULT NULL,
   `operations` tinyint(1) NOT NULL,
-  `saddle_animals` tinyint(1) NOT NULL,
-  `ice_control_operations` tinyint(1) NOT NULL,
-  `extended_pollution_exclusion` tinyint(1) NOT NULL,
-  `fire_legal` text NOT NULL,
+  `saddle_animals` tinyint(1) DEFAULT NULL,
+  `ice_control_operations` tinyint(1) DEFAULT NULL,
+  `extended_pollution_exclusion` tinyint(1) DEFAULT NULL,
+  `fire_legal` text,
   `fire_legal_settlement` int(11) DEFAULT NULL,
   `automobile_coverage_a` int(11) DEFAULT NULL,
-  `personal_injury` tinyint(1) NOT NULL,
-  `pool_liability` tinyint(1) NOT NULL,
-  `completed_operations` tinyint(1) NOT NULL,
-  `water_damage_exclusion` tinyint(1) NOT NULL,
-  `water_damage_exclusion_apartments` varchar(255) NOT NULL,
-  `water_damage_exclusion_offices_in_ah` varchar(255) NOT NULL,
-  `water_damage_exclusion_offices_in_ob` varchar(255) NOT NULL,
-  `water_damage_exclusion_store_in_ah` tinyint(1) NOT NULL,
-  `water_damage_exclusion_store_in_ob` tinyint(1) NOT NULL,
+  `personal_injury` tinyint(1) DEFAULT NULL,
+  `pool_liability` tinyint(1) DEFAULT NULL,
+  `completed_operations` tinyint(1) DEFAULT NULL,
+  `water_damage_exclusion` tinyint(1) DEFAULT NULL,
+  `water_damage_exclusion_apartments` float DEFAULT NULL,
+  `water_damage_exclusion_offices_in_ah` float DEFAULT NULL,
+  `water_damage_exclusion_offices_in_ob` float DEFAULT NULL,
+  `water_damage_exclusion_store_in_ah` tinyint(1) DEFAULT NULL,
+  `water_damage_exclusion_store_in_ob` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
-
---
--- Dumping data for table `optional_liability_coverages`
---
-
-INSERT INTO `optional_liability_coverages` (`id`, `quote_id`, `liability_form`, `additional_insured`, `additional_insured_number`, `add_insured_owners_lessees`, `add_insured_owners_contactors`, `battery_exclusion`, `barber_shop_liability`, `emploees_full_time`, `emploees_part_time`, `emploees_barbers_time`, `emploees_manicurists`, `designated_premises`, `contractual_liability_limitation`, `project_only`, `automobile_coverage`, `automobile_coverage_agregate_a`, `automobile_coverage_agregate`, `liquor_liability_receipts`, `liquor_liability_restaurant`, `liquor_liability_limit`, `acquired_entities`, `exclusionary_endorsements`, `all_hazards`, `a_d_p_b`, `athletic_participants`, `certain_skin_care_service`, `certain_skin_care_service_a`, `discrimination_clarification`, `employment_practices`, `fairs`, `known_loss_damage`, `dry_cleaning_damage`, `liquor_liability`, `operations`, `saddle_animals`, `ice_control_operations`, `extended_pollution_exclusion`, `fire_legal`, `fire_legal_settlement`, `automobile_coverage_a`, `personal_injury`, `pool_liability`, `completed_operations`, `water_damage_exclusion`, `water_damage_exclusion_apartments`, `water_damage_exclusion_offices_in_ah`, `water_damage_exclusion_offices_in_ob`, `water_damage_exclusion_store_in_ah`, `water_damage_exclusion_store_in_ob`) VALUES
-(3, 3, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, '', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', NULL, NULL, 0, 0, 0, 0, '', '', '', 0, 0),
-(4, 4, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, '', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', NULL, NULL, 0, 0, 0, 0, '', '', '', 0, 0),
-(5, 5, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, '', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', NULL, NULL, 0, 0, 0, 0, '', '', '', 0, 0),
-(6, 6, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, '', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', NULL, NULL, 0, 0, 0, 0, '', '', '', 0, 0),
-(7, 7, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, '', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', NULL, NULL, 0, 0, 0, 0, '', '', '', 0, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -552,18 +532,7 @@ CREATE TABLE IF NOT EXISTS `optional_property_coverages` (
   `insured_premises_a` tinyint(1) DEFAULT NULL,
   `insured_premises_a_ten` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
-
---
--- Dumping data for table `optional_property_coverages`
---
-
-INSERT INTO `optional_property_coverages` (`id`, `quote_id`, `accounts_receivable`, `additional_expense`, `alcoholic_beverages_tax_exclusion`, `building_inflation_protection`, `businessowners_agreed_amount`, `businessowners_burglary_robbery`, `cause_of_loss_building`, `cause_of_loss_business_property`, `computer_coverage`, `deductible`, `cooking_protection_equip`, `customers_goods`, `agreement_one`, `agreement_two`, `agreement_three`, `building_limit`, `bus_prop_limit`, `masonry_veneer`, `employee_dishonesty`, `equipment_breakdown`, `exterior_signs`, `cost_provision`, `loss_off_income_month`, `loss_of_income`, `loss_of_income_sf`, `building_increment`, `bus_prop_increment`, `loss_payable`, `money_securities`, `direct_damages`, `damages_transmission_lines`, `damages_deductible`, `time_element`, `time_transmission_lines`, `time_deductible`, `demolition_amount`, `increased_cost`, `building_glass`, `curved`, `plates`, `ornamental_work`, `refrigerated_food`, `food_deductible`, `refrigerated_property`, `refrigerated_property_deductible`, `season_variation`, `add_mos`, `number_of_additional`, `sprinkler_leakage`, `add_increment`, `storekeepers_burglary_robbery`, `storekeepers_burglary_robbery_deductible`, `burglary_of_money`, `theft_of_money`, `tenant_Improvements_one`, `tenant_Improvements_a`, `valuable_papers`, `insured_premises`, `insured_premises_ten`, `insured_premises_a`, `insured_premises_a_ten`) VALUES
-(2, 3, '', '', 0, NULL, 0, '', NULL, NULL, '', 0, 0, '', '', '', '', '', '', '', '', 0, '', 0, '', 0, 0, NULL, NULL, 0, '', '', NULL, 0, '', NULL, 0, '', '', '', 0, 0, '', '', 0, '', 0, 0, '', NULL, 0, NULL, NULL, 0, '', '', '', '', '', 0, NULL, 0, NULL),
-(3, 4, '', '', 0, NULL, 0, '', NULL, NULL, '', 0, 0, '', '', '', '', '', '', '', '', 0, '', 0, '', 0, 0, NULL, NULL, 0, '', '', NULL, 0, '', NULL, 0, '', '', '', 0, 0, '', '', 0, '', 0, 0, '', NULL, 0, NULL, NULL, 0, '', '', '', '', '', 0, NULL, 0, NULL),
-(4, 5, '', '', 0, NULL, 0, '', NULL, NULL, '', 0, 0, '', '', '', '', '', '', '', '', 0, '', 0, '', 0, 0, NULL, NULL, 0, '', '', NULL, 0, '', NULL, 0, '', '', '', 0, 0, '', '', 0, '', 0, 0, '', NULL, 0, NULL, NULL, 0, '', '', '', '', '', 0, NULL, 0, NULL),
-(5, 6, '', '', 0, NULL, 0, '', NULL, NULL, '', 0, 0, '', '', '', '', '', '', '', '', 0, '', 0, '', 0, 0, NULL, NULL, 0, '', '', NULL, 0, '', NULL, 0, '', '', '', 0, 0, '', '', 0, '', 0, 0, '', NULL, 0, NULL, NULL, 0, '', '', '', '', '', 0, NULL, 0, NULL),
-(6, 7, '', '', 0, NULL, 0, '', NULL, NULL, '', 0, 0, '', '', '', '', '', '', '', '', 0, '', 0, '', 0, 0, NULL, NULL, 0, '', '', NULL, 0, '', NULL, 0, '', '', '', 0, 0, '', '', 0, '', 0, 0, '', NULL, 0, 0, NULL, 0, '', '', '', '', '', 0, NULL, 0, NULL);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -636,20 +605,7 @@ CREATE TABLE IF NOT EXISTS `special_conditions` (
   `storage_buildings` tinyint(1) NOT NULL DEFAULT '0',
   `conforming_code_specifications` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
-
---
--- Dumping data for table `special_conditions`
---
-
-INSERT INTO `special_conditions` (`id`, `quote_id`, `external_fire_alarm_system`, `approved_watchman_service`, `central_station_reporting`, `smoke_detectors`, `burglary_alarm_only`, `fire_resistive`, `sprinklered`, `fire_resistive_sprinklered`, `hood_and_duct`, `above`, `all_above`, `metal_building`, `storage_buildings`, `conforming_code_specifications`) VALUES
-(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -685,7 +641,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `role_id`, `status`, `email`, `new_email`, `username`, `password`, `auth_key`, `api_key`, `login_ip`, `login_time`, `create_ip`, `create_time`, `update_time`, `ban_time`, `ban_reason`) VALUES
-(1, 1, 1, 'trexbazarov+10@gmail.com', NULL, 'trex', '$2y$13$M9DEPZeaKiMWSjUU59OsZOPGc9GVXHyVMmCoOR3zyaOmPLNm18mAO', 'xy3ANikyUbCqak6oKXdDFHLejW9M6aeo', 'eF9aTPt-CmWVq44dtoCPWC8AKrDp1aTZ', '127.0.0.1', '2015-02-13 15:32:25', '127.0.0.1', '2015-02-05 14:09:47', '2015-02-11 13:10:40', NULL, NULL),
+(1, 1, 1, 'admin_test@gmail.com', NULL, 'admin', '$2y$13$M9DEPZeaKiMWSjUU59OsZOPGc9GVXHyVMmCoOR3zyaOmPLNm18mAO', 'xy3ANikyUbCqak6oKXdDFHLejW9M6aeo', 'eF9aTPt-CmWVq44dtoCPWC8AKrDp1aTZ', '127.0.0.1', '2015-03-06 14:51:02', '127.0.0.1', '2015-02-05 14:09:47', '2015-02-11 13:10:40', NULL, NULL),
 (2, 2, 1, 'test_user@mail.com', NULL, 'neo2', '$2y$13$sLTcPgTU11N26iGGCeaqUeACCgFsQQ4Mj.IkrhSOP2zjwKloA7yAW', NULL, NULL, NULL, NULL, NULL, '2015-02-11 13:10:02', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
