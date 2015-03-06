@@ -13,22 +13,46 @@ use app\models\_base\BaseOptionalLiabilityCoverages;
 class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 {
 
+    /**
+     * Add'l Insured - Contractual - Owners & Lessees
+     * $'List Sheet'.HZ9
+     */
+    public function getAdditionalInsuredOwners(){
+        if($this->add_insured_owners_lessees) //IF(HZ3;HZ6;0)
+        {
+            return 89;
+        }else{
+            return 0;
+        }
+    }
+    /**
+     * Add'l Insured - Contractual - Owners & Lessees
+     * $'List Sheet'.HZ9
+     */
+    public function getAdditionalInsuredContractors(){
+        if($this->add_insured_owners_contactors) //IF(HZ3;HZ6;0)
+        {
+            return 99;
+        }else{
+            return 0;
+        }
+    }
     public function getLiabilityFormPremium()
     {
-        $quote = $this->getQuote();
-        $en2 = $quote['prop_damage'];
+        $quote = $this->quote;
+        $en2 = $quote->prop_damage;
         if (!$en2) return 0;
 
         $liability_rates_array = \Yii::$app->params['quote']['optional_liability_rates'];
         $eu40 = 0;
         $eu37 = 325; //charge
-        $l2 = $quote['policy_type'] == 1 ? 1 : 2;
+        $l2 = $quote->policy_type == 1 ? 1 : 2;
 
 
-        if ($quote['occupancy']['mer_serc'] < 3 && $quote['operated_by_insured'] == 1) {
+        if ($quote->occupancy->mer_serc < 3 && $quote->operated_by_insured == 1) {
             $ep2 = 1;
 
-        } else if ($quote['occupancy']['rate_group'] < 5) {
+        } else if ($quote->occupancy->rate_group < 5) {
             $ep2 = 2;
         } else {
             $ep2 = 3;
@@ -39,7 +63,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             $eu40 = $eu37;
         }
 
-        switch ($quote['country']) {
+        switch ($quote->country) {
             case 9:
             case 30:
             case 52:
@@ -54,10 +78,28 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         } else {
             $eu2 = $this->liability_form;
         }
-        $rate_policy_offset = $eu2 + 1 + $rate_country_offset;
+        $rate_policy_offset = $eu2 + $rate_country_offset; //+1
+        return $eu40+$liability_rates_array[implode('', array($ep2, $l2, $en2))][$rate_policy_offset];
 
-        return $eu40 + \Yii::$app->excel->vlookup(implode('', array($ep2, $l2, $en2)), $liability_rates_array, $rate_policy_offset, false);
 
+    }
+    /**
+     * EW2 = 0.2;
+     * EW3 = 0.3;
+     * EW4 = IF(EN2=6;IF(AND(G2=1;H2=5);EW3;EW2);0)
+     */
+    public function getCreditRate(){
+        $removeLiab = \Yii::$app->params['quote']['remove_liab'];
+        return ($this->quote->occupancy->mer_serc==1 && $this->quote->occupancy->rate_group == 5)? $removeLiab['grp_5']: $removeLiab['all'];
+    }
+
+    public function getCreditPremium()
+    {
+        $credit = 0;
+        if ($this->quote->prop_damage == 6) {
+            $credit = $this->getCreditRate() * $this->getProjectOnlyCompPremium();
+        }
+        return $credit;
     }
 
     public function getQuote()
@@ -162,6 +204,17 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         }
     }
 
+    protected function getRateTableValue($key, $offset)
+    {
+
+        $rateTable = \Yii::$app->params['quote']['rate_table'];//I11:O490
+        if (is_array($rateTable[$key]))
+            $val = isset($rateTable[$key][$offset]) ? $rateTable[$key][$this->getRateTableKey()] : null;
+        else
+            $val = null;
+
+        return $val;
+    }
     protected function getBldgSTD()
     {
         if($this->quote->policy_type == 1) {
@@ -170,7 +223,26 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             return is_array(\Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()] ? \Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()][$this->quote->getRateTableKey()-3] : false);
         }
     }
+    protected function getCreditCombinationCode(){
+        $quote = $this->quote;
+        $construction = $quote->construction == 3 ? 2 : $quote->construction;
+        $quote_occupancy_mer_serc1 = $quote->occupancy->mer_serc > 5 ? 9 : 1;
+        $quote_occupancy_mer_serc2 = $quote->occupancy->mer_serc > 5 ? ($quote->occupancy->mer_serc == 8 ? $quote->occupied_type : 9) : $quote->occupied_type;
+        $quote_occupancy_mer_serc3 = $quote->occupancy->mer_serc == 1 ? $quote->occupancy->bldg_rg : 9;//J2 = $quote->occupancy->bldg_rg
+        //
+        return \Yii::$app->excel->concat([
+            $quote->prior_since,
+            $quote->zone,
+            $construction,
+            $quote->building_rc_acv,
+            $quote_occupancy_mer_serc1,
+            $quote->occupancy->mer_serc,//G2
+            $quote_occupancy_mer_serc2,
+            $quote_occupancy_mer_serc3
+        ]);
 
+
+    }
     protected function getFireLegalCombinationCode()
     {
         $quote = $this->quote;
