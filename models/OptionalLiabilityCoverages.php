@@ -446,4 +446,77 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             return 0;
         }
     }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getAcquiredEntitiesPremium()
+    {
+        return $this->acquired_entities ? round(\Yii::$app->params['quote']['acquired_entities_credit'] * -1, 0) : 0;
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getAutomobileCoveragePremium()
+    {
+        return round($this->getAutomobileCoveragePrem() * $this->getAutomobileCoverageAgg(), 0);
+    }
+
+    public function getAutomobileCoverageLimit()
+    {
+        return $this->automobile_coverage ? \Yii::$app->params['quote']['automobile_coverage'][$this->automobile_coverage] : null;
+    }
+
+    public function getAutomobileCoveragePrem()
+    {
+        return !empty($this->automobile_coverage) ? \Yii::$app->params['quote']['automobile_coverage_premium'][$this->automobile_coverage] : 0;
+    }
+
+    public function getAutomobileCoverageAgg()
+    {
+        // =IF(AND(GE2<>"";GE2<>0);VLOOKUP(GE2;BA3:BH8;GE15+1;FALSE());0)
+        return !empty($this->automobile_coverage) ? \Yii::$app->params['quote']['aggregate_factors'][$this->automobile_coverage - 1][$this->automobile_coverage_agregate] : 0;
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getProjectOnlyPremium()
+    {
+        return $this->project_only ? round($this->getProjectOnlyCredit() * $this->getProjectOnlyCompPremium() * -1) : 0;
+    }
+
+    public function getProjectOnlyCredit()
+    {
+        // =IF(FU7;IF(F2=97;VLOOKUP($'Entry Sheet'.AF4;FU3:FW5;2;FALSE());VLOOKUP($'Entry Sheet'.AF4;FU3:FW5;3;FALSE()));0)
+        return $this->project_only ? $this->getDesignatedPremiseCredits() : 0;
+    }
+
+    protected function getDesignatedPremiseCredits() {
+        if($this->quote->occupied == 97) {
+            // VLOOKUP($'Entry Sheet'.AF4;FU3:FW5;2;FALSE())
+            return \Yii::$app->params['quote']['designated_premise_credits'][$this->exclusionary_endorsements - 1][0];
+        } else {
+            // VLOOKUP($'Entry Sheet'.AF4;FU3:FW5;3;FALSE())
+            return \Yii::$app->params['quote']['designated_premise_credits'][$this->exclusionary_endorsements - 1][1];
+        }
+    }
+
+    public function getProjectOnlyCompPremium()
+    {
+        // =AF20 =SUM(IF(ISERROR(AF24);0;AF24);IF(ISERROR(AF25);0;AF25))
+        throw new \BadMethodCallException('Not implemented yet. Waiting on Roma');
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getContractualLiabilityLimitationPremium()
+    {
+        return $this->contractual_liability_limitation ? round(\Yii::$app->params['quote']['contractual_liability_limitation_credit'] * -1, 0) : 0;
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getDesignatedPremisesPremium()
+    {
+        return $this->designated_premises ? round(\Yii::$app->params['quote']['designated_premises_credit'] * -1, 0) : 0;
+    }
 }

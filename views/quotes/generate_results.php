@@ -248,6 +248,66 @@
     <td></td>
 </tr>
 
+    <?php if($model->liabilityCoverages->designated_premises): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('designated_premises')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('designated_premises')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getDesignatedPremisesPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
+    <?php if($model->liabilityCoverages->contractual_liability_limitation): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('contractual_liability_limitation')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('contractual_liability_limitation')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getContractualLiabilityLimitationPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
+    <?php if($model->liabilityCoverages->project_only): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('project_only')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('project_only')?></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getProjectOnlyLimit() )?></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getProjectOnlyPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
+    <?php
+    $automobileCoveragePremium = $model->liabilityCoverages->getAutomobileCoveragePremium();
+    if ($automobileCoveragePremium > 0) {
+        ?>
+        <tr>
+            <td><?= $model->liabilityCoverages->getFormNumber('automobile_coverage') ?></td>
+            <td><?= $model->liabilityCoverages->getAttributeLabel('automobile_coverage') ?></td>
+            <td></td>
+            <td></td>
+            <td><?= Yii::$app->formatter->asCurrency($automobileCoveragePremium) ?></td>
+            <td></td>
+        </tr>
+    <?php
+    }
+    ?>
+
+    <?php if($model->liabilityCoverages->acquired_entities): ?>
+        <tr>
+            <td><?=$model->liabilityCoverages->getFormNumber('acquired_entities')?></td>
+            <td><?=$model->liabilityCoverages->getAttributeLabel('acquired_entities')?></td>
+            <td></td>
+            <td></td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getAcquiredEntitiesPremium() )?></td>
+            <td></td>
+        </tr>
+    <?php endif; ?>
+
     <?php if($model->liabilityCoverages->all_hazards): ?>
         <tr>
             <td><?=$model->liabilityCoverages->getFormNumber('all_hazards')?></td>
