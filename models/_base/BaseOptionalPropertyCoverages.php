@@ -204,20 +204,23 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
     public function formNumbers(){
         return [
             'alcoholic_beverages_tax_exclusion' => 'SF-105',
-            'businessowners_agreed_amount' => 'SF-28A',
-            'businessowners_burglary_robbery' => 'SF-55',
-            'computer_coverage' => 'MR-61A',
-            'cooking_protection_equip' => 'SF-91',
-            'customers_goods' => 'SF-132',
-            'demolition_debris'=>'SF-101',
-            'earthquake_coverage'=>'SF-398',
-            'equipment_breakdown'=>'SF-345',
-            'cost_provision'=>'SF-33',
-            'loss_of_income'=>'SF-312',
-            'loss_of_income_a'=>'SF-312A',
-            'loss_payable'=>'SF-127',
-            'direct_damages'=>'SF-94A',
-            'time_element'=>'SF-95A',
+            'businessowners_agreed_amount'      => 'SF-28A',
+            'businessowners_burglary_robbery'   => 'SF-55',
+            'computer_coverage'                 => 'MR-61A',
+            'cooking_protection_equip'          => 'SF-91',
+            'customers_goods'                   => 'SF-132',
+            'demolition_debris'                 => 'SF-101',
+            'earthquake_coverage'               => 'SF-398',
+            'equipment_breakdown'               => 'SF-345',
+            'cost_provision'                    => 'SF-33',
+            'loss_of_income'                    => 'SF-312',
+            'loss_of_income_a'                  => 'SF-312A',
+            'loss_payable'                      => 'SF-127',
+            'direct_damages'                    => 'SF-94A',
+            'time_element'                      => 'SF-95A',
+
+            'insured_premises'                  => '*',
+            'insured_premises_a'                => 'SF-133A'
         ];
     }
 

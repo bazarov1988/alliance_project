@@ -198,6 +198,12 @@
     <td>$25.00</td>
     <td></td>
 </tr>
+
+<thead>
+    <th colspan="6"><strong>Optional Liability Coverages</strong></th>
+</thead>
+
+
 <thead>
     <th colspan="6"><strong>Optional Liability Coverages</strong></th>
 </thead>

@@ -165,4 +165,11 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     /**
      * computer coverage
      */
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getInsuredPremisesAPremium()
+    {
+
+    }
 } 
