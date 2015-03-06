@@ -200,7 +200,7 @@
 </tr>
 
 <thead>
-    <th colspan="6"><strong>Optional Liability Coverages</strong></th>
+    <th colspan="6"><strong>Optional Property Coverages</strong></th>
 </thead>
 
 
