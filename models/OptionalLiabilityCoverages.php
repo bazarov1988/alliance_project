@@ -453,4 +453,27 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     {
         return $this->acquired_entities ? round(\Yii::$app->params['quote']['acquired_entities_credit'] * -1, 0) : 0;
     }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getAutomobileCoveragePremium()
+    {
+        return round($this->getAutomobileCoveragePrem() * $this->getAutomobileCoverageAgg(), 0);
+    }
+
+    public function getAutomobileCoverageLimit()
+    {
+        return $this->automobile_coverage ? \Yii::$app->params['quote']['automobile_coverage'][$this->automobile_coverage] : null;
+    }
+
+    public function getAutomobileCoveragePrem()
+    {
+        return !empty($this->automobile_coverage) ? \Yii::$app->params['quote']['automobile_coverage_premium'][$this->automobile_coverage] : 0;
+    }
+
+    public function getAutomobileCoverageAgg()
+    {
+        // =IF(AND(GE2<>"";GE2<>0);VLOOKUP(GE2;BA3:BH8;GE15+1;FALSE());0)
+        return !empty($this->automobile_coverage) ? \Yii::$app->params['quote']['aggregate_factors'][$this->automobile_coverage - 1][$this->automobile_coverage_agregate] : 0;
+    }
 }

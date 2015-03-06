@@ -248,6 +248,22 @@
     <td></td>
 </tr>
 
+    <?php
+    $automobileCoveragePremium = $model->liabilityCoverages->getAutomobileCoveragePremium();
+    if ($automobileCoveragePremium > 0) {
+        ?>
+        <tr>
+            <td><?= $model->liabilityCoverages->getFormNumber('automobile_coverage') ?></td>
+            <td><?= $model->liabilityCoverages->getAttributeLabel('automobile_coverage') ?></td>
+            <td></td>
+            <td><?= Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getAutomobileCoverageLimit() ) ?></td>
+            <td><?= Yii::$app->formatter->asCurrency($automobileCoveragePremium) ?></td>
+            <td></td>
+        </tr>
+    <?php
+    }
+    ?>
+
     <?php if($model->liabilityCoverages->acquired_entities): ?>
         <tr>
             <td><?=$model->liabilityCoverages->getFormNumber('acquired_entities')?></td>
