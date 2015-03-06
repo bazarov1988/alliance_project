@@ -125,7 +125,7 @@ class Quotes extends BaseQuotes{
         $concat= (int)\Yii::$app->excel->concat([$occup,1]);
         if($concat>0){
             $z2 = ($this->zone==1?$this->countryModel->sub_zone:7)+1;
-            return \Yii::$app->excel->vlookup($concat,\Yii::$app->params['quote']['zone_factors'],$z2,false);
+            return 1; // \Yii::$app->excel->vlookup($concat,\Yii::$app->params['quote']['zone_factors'],$z2,false); // BAGINA!
         } else {
             return 0;
         }
@@ -161,7 +161,7 @@ class Quotes extends BaseQuotes{
     }
     public function getDeductibleFactorBP(){
         if(!empty($this->deductible_bp)&&$this->deductible_bp!=8){
-            return \Yii::$app->excel->vlookup($this->deductible_bp,\Yii::$app->params['quote']['deductible_factors'],3,true);
+            return 1; // \Yii::$app->excel->vlookup($this->deductible_bp,\Yii::$app->params['quote']['deductible_factors'],3,true); // BANINA!
         } else {
             return 0;
         }
@@ -270,11 +270,11 @@ class Quotes extends BaseQuotes{
     }
 
     public function getSpecialConditionsBuilding(){
-        return $this->SpecialConditions->getSumm();
+        return $this->specialConditions->getSum();
     }
 
     public function getSpecialConditionsBP(){
-        return $this->SpecialConditions->getSumm();
+        return $this->specialConditions->getSum();
     }
 
     public function getBldgComposite(){
