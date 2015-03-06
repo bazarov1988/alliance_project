@@ -270,19 +270,21 @@ class Quotes extends BaseQuotes{
     }
 
     public function getSpecialConditionsBuilding(){
-
+        return $this->SpecialConditions->getSumm();
     }
 
     public function getSpecialConditionsBP(){
-
+        return $this->SpecialConditions->getSumm();
     }
 
-    public function getTableRatesBuilding(){
-
+    public function getCompositePremiumBuilding(){
+        return round(round(round(round(round(round(round($this->getTableRateBuilding()*$this->getBuildingZoneFactor(),4)*$this->getLeadFactor(),4)*$this->getBuildingAmountOfIns(),4)*$this->getDeductibleFactorBuilding(),4)*$this->getBuildingCredits(),4)*$this->getSpecialConditionsBuilding(),4)*$this->getAggregateFactor(),4);
     }
-    public function getTableRatesBP(){
 
+    public function getCompositePremiumBP(){
+        return round(round(round(round(round(round(round($this->getTableRateBP()*$this->getBPZoneFactor(),4)*$this->getLeadFactor(),4)*$this->getBPAmountOfIns(),4)*$this->getDeductibleFactorBP(),4)*$this->getBPCredits(),4)*$this->getSpecialConditionsBP(),4)*$this->getAggregateFactor(),4);
     }
+
 
 
 }

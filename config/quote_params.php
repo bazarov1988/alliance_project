@@ -669,6 +669,22 @@ return [
     'b_bp_credits'=>[
         'sole'=>0.9,
         'merc'=>'1.1'
+    ],
+    'special_conditions'=>[
+         'external_fire_alarm_system' => 3,
+         'approved_watchman_service' => 4,
+         'central_station_reporting' => 8,
+         'smoke_detectors' => 2,
+         'burglary_alarm_only' => 3,
+         'fire_resistive' => 25,
+         'sprinklered' => 35,
+         'fire_resistive_sprinklered' => 50,
+         'hood_and_duct' => 10,
+         'above' => 15,
+         'all_above' => 20,
+         'metal_building' => 15,
+         'storage_buildings' => 15,
+         'conforming_code_specifications' => 7,
     ]
 
 
