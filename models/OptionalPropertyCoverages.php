@@ -60,18 +60,9 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         return (!empty($this->building_inflation_protection)&&!empty(\Yii::$app->params['quote']['building_inflation'][$this->building_inflation_protection]))?\Yii::$app->params['quote']['building_inflation'][$this->building_inflation_protection][1]:0;
     }
     public function getBuildingInflationProtection(){
-       $rate = $this->getBuildingInflationProtectionRate();
+        $quote = $this->quote;
+        $rate = $this->getBuildingInflationProtectionRate();
         if($rate==0) return 0;
-
-        if(!empty($this->quote->prop_damage)){
-            $aggrFactor =    $this->quote->getAggregateFactor();
-            if($aggrFactor==0) return 0;
-
-
-        } else {
-            return 0;
-        }
-
     }
 
 
