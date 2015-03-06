@@ -503,7 +503,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     public function getProjectOnlyCompPremium()
     {
         // =AF20 =SUM(IF(ISERROR(AF24);0;AF24);IF(ISERROR(AF25);0;AF25))
-        throw new \BadMethodCallException('Not implemented yet. Waiting on Roma');
+        return $this->quote->getBldgComposite() + $this->quote->getBPComposite();
     }
 
     // -----------------------------------------------------------------------------------------------------------------
