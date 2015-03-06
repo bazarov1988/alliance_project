@@ -206,6 +206,22 @@
 </thead>
 
     <?php
+    $insuredPremisesPremium = $model->propertyCoverages->getInsuredPremisesPremium();
+    if ($insuredPremisesPremium > 0) {
+        ?>
+        <tr>
+            <td><?= $model->propertyCoverages->getFormNumber('insured_premises') ?></td>
+            <td><?= $model->propertyCoverages->getAttributeLabel('insured_premises') ?></td>
+            <td></td>
+            <td></td>
+            <td><?= Yii::$app->formatter->asCurrency($insuredPremisesPremium) ?></td>
+            <td></td>
+        </tr>
+    <?php
+    }
+    ?>
+
+    <?php
     $insuredPremisesAPremium = $model->propertyCoverages->getInsuredPremisesAPremium();
     if ($insuredPremisesAPremium > 0 || $model->propertyCoverages->insured_premises_a) {
         ?>
