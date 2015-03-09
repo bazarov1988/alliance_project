@@ -222,6 +222,22 @@
     ?>
 
     <?php
+    $valuablePapersPremium = $model->propertyCoverages->getValuablePapersPremium();
+    if ($valuablePapersPremium > 0) {
+        ?>
+        <tr>
+            <td><?= $model->propertyCoverages->getFormNumber('valuable_papers') ?></td>
+            <td><?= $model->propertyCoverages->getAttributeLabel('valuable_papers') ?></td>
+            <td></td>
+            <td></td>
+            <td><?= Yii::$app->formatter->asCurrency($valuablePapersPremium) ?></td>
+            <td></td>
+        </tr>
+    <?php
+    }
+    ?>
+
+    <?php
     $insuredPremisesAPremium = $model->propertyCoverages->getInsuredPremisesAPremium();
     if ($insuredPremisesAPremium > 0 || $model->propertyCoverages->insured_premises_a) {
         ?>

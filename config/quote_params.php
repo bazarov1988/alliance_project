@@ -162,6 +162,7 @@ return [
     ],
     'contractual_liability_limitation_credit' => 5,
     'designated_premises_credit' => 10,
+    'valuable_papers_rate' => 5,
     'insured_premises_rate' => 0.02,
     'insured_premises_a_rate' => 0.02,
     'rate_table' =>[

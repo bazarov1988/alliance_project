@@ -226,4 +226,19 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+
+    public function getValuablePapersPremium()
+    {
+        return round(($this->valuable_papers / 1000) * $this->getValuablePapersRate() * $this->getValuablePapersDed(), 0);
+    }
+
+    public function getValuablePapersRate() {
+        return \Yii::$app->params['quote']['valuable_papers_rate'];
+    }
+
+    public function getValuablePapersDed() {
+        return $this->quote->getDeductibleFactorBP();
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
 } 
