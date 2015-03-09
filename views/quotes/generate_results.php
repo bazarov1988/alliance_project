@@ -206,6 +206,54 @@
 </thead>
     <?=$this->render('quote/_OptionalPropertyCoverages',['model'=>$model])?>
     <?php
+    $tenantImprovementsPremium = $model->propertyCoverages->getTenantImprovementsPremium();
+    if ($tenantImprovementsPremium > 0) {
+        ?>
+        <tr>
+            <td><?= $model->propertyCoverages->getFormNumber('tenant_Improvements_one') ?></td>
+            <td><?= $model->propertyCoverages->getAttributeLabel('tenant_Improvements_one') ?></td>
+            <td></td>
+            <td></td>
+            <td><?= Yii::$app->formatter->asCurrency($tenantImprovementsPremium) ?></td>
+            <td></td>
+        </tr>
+    <?php
+    }
+    ?>
+
+    <?php
+    $tenantImprovementsAPremium = $model->propertyCoverages->getTenantImprovementsAPremium();
+    if ($tenantImprovementsAPremium > 0) {
+        ?>
+        <tr>
+            <td><?= $model->propertyCoverages->getFormNumber('tenant_Improvements_a') ?></td>
+            <td><?= $model->propertyCoverages->getAttributeLabel('tenant_Improvements_a') ?></td>
+            <td></td>
+            <td></td>
+            <td><?= Yii::$app->formatter->asCurrency($tenantImprovementsAPremium) ?></td>
+            <td></td>
+        </tr>
+    <?php
+    }
+    ?>
+
+    <?php
+    $valuablePapersPremium = $model->propertyCoverages->getValuablePapersPremium();
+    if ($valuablePapersPremium > 0) {
+        ?>
+        <tr>
+            <td><?= $model->propertyCoverages->getFormNumber('valuable_papers') ?></td>
+            <td><?= $model->propertyCoverages->getAttributeLabel('valuable_papers') ?></td>
+            <td></td>
+            <td></td>
+            <td><?= Yii::$app->formatter->asCurrency($valuablePapersPremium) ?></td>
+            <td></td>
+        </tr>
+    <?php
+    }
+    ?>
+
+    <?php
     $insuredPremisesPremium = $model->propertyCoverages->getInsuredPremisesPremium();
     if ($insuredPremisesPremium > 0) {
         ?>
@@ -303,13 +351,13 @@
     <td></td>
 </tr>
 <?php endif;?>
-<?php if($model->liabilityCoverages->barber_shop_liability):?>
+<?php if($model->liabilityCoverages->barber_shop_liability)://Beauty or Barber Shop Liability?>
 <tr>
-    <td><?php echo Yii::$app->quote->getValueByAttribute($model->liabilityCoverages,'barber_shop_liability');//LS-44?></td>
-    <td><?php echo $model->liabilityCoverages->getAttributeLabel('barber_shop_liability');//Beauty or Barber Shop Liability?></td>
-    <td> </td>
-    <td>$1,000,000 / $2,000,000</td>
-    <td><?=Yii::$app->formatter->asCurrency(48.00)?></td>
+    <td>LS-44</td>
+    <td><?php echo $model->liabilityCoverages->getAttributeLabel('barber_shop_liability');?></td>
+    <td> <?=$model->liabilityCoverages->getBeautyNBarberTotalEmployees()?></td>
+    <td><?=$model->liabilityCoverages->getBarberShopLimit()?></td>
+    <td><?=Yii::$app->formatter->asCurrency($model->liabilityCoverages->getBeautyNBarberPremium())?></td>
     <td></td>
 </tr>
 <?php endif;?>

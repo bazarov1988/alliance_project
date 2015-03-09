@@ -218,14 +218,9 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
             'loss_payable'                      => 'SF-127',
             'direct_damages'                    => 'SF-94A',
             'time_element'                      => 'SF-95A',
+
             'insured_premises'                  => '*',
-            'insured_premises_a'                => 'SF-133A',
-            'building_inflation_protection'     => '*',
-            'accounts_receivable'               => '*',
-            'additional_expense'                => '*',
-            'cause_of_loss_building'            => '',
-            'cause_of_loss_business_property'   => '',
-            'employee_dishonesty'               => '*'
+            'insured_premises_a'                => 'SF-133A'
         ];
     }
 

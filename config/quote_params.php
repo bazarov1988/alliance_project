@@ -29,13 +29,68 @@ return [
     'liquor_liability_limit'=>[null=>'Select...',1=>'$100,000 / $100,000',2=>'$300,000 / $300,000',3=>'$500,000 / $500,000',4=>'$1,000,000 / $1,000,000'],
     'fire_legal_rate' => 0.2,
     'fire_legal_settlement'=>[null=>'Select...',1=>'RC',2=>'ACV'],
-    'barber_shop_liability'=>[
+
+    'barber_shop_liability'=>[//todo seems need to be removed   = refactor to use beauty_n_barber[limit]
         null=>'Select...',
         1=>'$100,000 / $200,000',
         2=>'$300,000 / $600,000',
         3=>'$500,000 / $1,000,000',
         4=>'$1,000,000 / $2,000,000',
         5=>'$2,000,000 / $4,000,000'
+    ],
+    'beauty_n_barber'=>[
+        'limit' =>[
+            1=>'$100,000 / $200,000',
+            2=>'$300,000 / $600,000',
+            3=>'$500,000 / $1,000,000',
+            4=>'$1,000,000 / $2,000,000',
+            5=>'$2,000,000 / $4,000,000',
+            6=>''],
+        'beauty_parlor'=>[
+            'full_time'=>[
+                1=>25,
+                2=>29,
+                3=>31,
+                4=>32,
+                5=>33,
+                6=>0],
+            'part_time'=>[
+                1=>13,
+                2=>14,
+                3=>15,
+                4=>16,
+                5=>17,
+                6=>0
+            ]
+        ],
+        'barber_shop'=>[
+            'first'=>[
+                1=>14,
+                2=>16,
+                3=>18,
+                4=>20,
+                5=>21,
+                6=>0
+            ],
+            'each_add_l'=>[
+                1=>7,
+                2=>8,
+                3=>9,
+                4=>10,
+                5=>11,
+                6=>0
+            ]
+        ],
+        'manicurists' => [
+            1 => 9,
+            2 => 11,
+            3 => 12,
+            4 => 13,
+            5 => 14,
+            6 => 0
+        ],
+        'minimum_premium' => 25
+
     ],
     'liability_form'=>[null=>'Select...',1=>'LS-1',2=>'LS-5',3=>'LS-6',4=>'None'],
     'additional_insured'=>[null=>'Select...',1=>'LS-19',2=>'LS-21',3=>'LS-22',4=>'LS-23',5=>'None'],
@@ -44,6 +99,7 @@ return [
     'automobile_coverage'=>[null=>'Select...',1=>'$100,000',2=>'$300,000',3=>'$500,000',4=>'$1,000,000',5=>'$2,000,000'],
     'automobile_coverage_a'=>[null=>'Select...',1=>'$100,000',2=>'$300,000',3=>'$500,000',4=>'$1,000,000',5=>'$2,000,000'],
 
+    'additional_insured_rate_minimum'=>['rate'=>0.025,'minimum'=>10],
 
     'deductible_factors'=>[
         1=>["$100",1.05 ],
@@ -145,6 +201,7 @@ return [
     ],
     'contractual_liability_limitation_credit' => 5,
     'designated_premises_credit' => 10,
+    'valuable_papers_rate' => 5,
     'insured_premises_rate' => 0.02,
     'insured_premises_a_rate' => 0.02,
     'rate_table' =>[

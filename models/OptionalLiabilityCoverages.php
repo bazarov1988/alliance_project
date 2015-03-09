@@ -13,10 +13,73 @@ use app\models\_base\BaseOptionalLiabilityCoverages;
 class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 {
 
+    public function getBarberShopFullTimePrice(){
+        $beauty_n_barber=\Yii::$app->params['quote']['beauty_n_barber'];
+        return $beauty_n_barber['beauty_parlor']['full_time'][$this->barber_shop_liability]*$this->emploees_full_time;
+    }
+    public function getBarberShopPartTimePrice(){
+        $beauty_n_barber=\Yii::$app->params['quote']['beauty_n_barber'];
+        return $beauty_n_barber['beauty_parlor']['part_time'][$this->barber_shop_liability]*$this->emploees_part_time;
+
+    }
+    public function getBarberShopFirstBarberPrice(){
+        if($this->emploees_barbers_time>0){
+            $beauty_n_barber=\Yii::$app->params['quote']['beauty_n_barber'];
+            return $beauty_n_barber['barber_shop']['first'][$this->barber_shop_liability]*1;
+        }
+    }
+    public function getBarberShopAddlBarbersPrice(){
+        if($this->emploees_barbers_time>0){
+        $beauty_n_barber=\Yii::$app->params['quote']['beauty_n_barber'];
+        return $beauty_n_barber['barber_shop']['each_add_l'][$this->barber_shop_liability]*($this->emploees_barbers_time-1);
+        }
+    }
+    public function getBarberShopManicuristsPrice(){
+        $beauty_n_barber=\Yii::$app->params['quote']['beauty_n_barber'];
+        return $beauty_n_barber['manicurists'][$this->barber_shop_liability]*$this->emploees_manicurists;
+    }
+    public function getBarberShopLimit(){
+        $beauty_n_barber=\Yii::$app->params['quote']['beauty_n_barber'];
+        return $beauty_n_barber['limit'][$this->barber_shop_liability];
+    }
+
+    public function getBeautyNBarberTotalEmployees()
+    {
+        return $this->emploees_full_time +
+            $this->emploees_part_time +
+            1 + //first
+            $this->emploees_barbers_time - 1 + //additional
+            $this->emploees_manicurists;
+    }
+    public function getBeautyNBarberPremium()
+    {
+        $beauty_n_barber = \Yii::$app->params['quote']['beauty_n_barber'];
+        $summ = $this->getBarberShopFullTimePrice() +
+            $this->getBarberShopPartTimePrice() +
+            $this->getBarberShopFirstBarberPrice() +
+            $this->getBarberShopAddlBarbersPrice() +
+            $this->getBarberShopManicuristsPrice();
+        if ($this->barber_shop_liability) {
+            if ($summ > $beauty_n_barber['minimum_premium'])
+                return $summ;
+            else
+                return $beauty_n_barber['minimum_premium'];
+        } else {
+            return 0;
+        }
+    }
     /**
      * Add'l Insured - Contractual - Owners & Lessees
      * $'List Sheet'.HZ9
      */
+    public function getAdditionalInsured(){
+        $addtlInsrdRateMin = \Yii::$app->params['quote']['additional_insured_rate_minimum'];
+
+//        $standard = ROUND(BU15*BV15*BW15;0);
+        $standard = round($addtlInsrdRateMin['rate']);
+        $minimal = round($addtlInsrdRateMin['min']);;
+        return $standard>$minimal?$standard:$minimal;
+    }
     public function getAdditionalInsuredOwners(){
         if($this->add_insured_owners_lessees) //IF(HZ3;HZ6;0)
         {
@@ -26,8 +89,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         }
     }
     /**
-     * Add'l Insured - Contractual - Owners & Lessees
-     * $'List Sheet'.HZ9
+     * Add'l Insured - Contractual - Contractors
      */
     public function getAdditionalInsuredContractors(){
         if($this->add_insured_owners_contactors) //IF(HZ3;HZ6;0)
@@ -209,7 +271,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
         $rateTable = \Yii::$app->params['quote']['rate_table'];//I11:O490
         if (is_array($rateTable[$key]))
-            $val = isset($rateTable[$key][$offset]) ? $rateTable[$key][$this->getRateTableKey()] : null;
+            $val = isset($rateTable[$key][$offset]) ? $rateTable[$key][$this->quote->getRateTableKey()] : null;
         else
             $val = null;
 
@@ -229,7 +291,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $quote_occupancy_mer_serc1 = $quote->occupancy->mer_serc > 5 ? 9 : 1;
         $quote_occupancy_mer_serc2 = $quote->occupancy->mer_serc > 5 ? ($quote->occupancy->mer_serc == 8 ? $quote->occupied_type : 9) : $quote->occupied_type;
         $quote_occupancy_mer_serc3 = $quote->occupancy->mer_serc == 1 ? $quote->occupancy->bldg_rg : 9;//J2 = $quote->occupancy->bldg_rg
-        //
+
         return \Yii::$app->excel->concat([
             $quote->prior_since,
             $quote->zone,
