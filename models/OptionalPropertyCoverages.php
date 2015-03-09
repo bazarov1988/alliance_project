@@ -16,6 +16,8 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 
     private $deductible_bp;
     private $deductible_building;
+    private $rate_bp;
+    private $rate_building;
     /**
      * relations
      */
@@ -34,6 +36,8 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         }
         return $this->deductible_bp;
     }
+
+
     public function getDeductibleFactorBuilding(){
         if(!$this->deductible_building){
             $this->deductible_building = $this->quote->getDeductibleFactorBuilding();
@@ -42,6 +46,22 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         return $this->deductible_building;
     }
 
+    public function getTableRateBP(){
+        if(!$this->rate_bp){
+            $this->rate_bp = $this->quote->getTableRateBP();
+            return $this->rate_bp;
+        }
+        return $this->rate_bp;
+    }
+
+
+    public function getTableRateBuilding(){
+        if(!$this->rate_building){
+            $this->rate_building = $this->quote->getTableRateBuilding();
+            return $this->rate_building;
+        }
+        return $this->rate_building;
+    }
 
     /**
      * @param $deductibleBP
@@ -236,7 +256,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         return $this->customers_goods;
     }
     public function getCustomersGoodsRate(){
-        return $this->quote->getTableRateBP();
+        return $this->getTableRateBP();
     }
     public function getCustomersGoodsDeductible(){
         return $this->getDeductibleFactorBP();
@@ -247,6 +267,206 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     /**
      * ---------------------------------Customers Goods--------------------------------------------------------
      */
+
+
+    /**
+     * ----------------------------------------demolition debris-----------------------------------------------
+     */
+    public function getDDAggr_1_rate(){
+        if(!empty($this->agreement_one)){
+            return \Yii::$app->params['quote']['demolition_debris']['aggr1']+1;
+        } else {
+            return 0;
+        }
+    }
+    public function getDDAggr_2_rate(){
+        if(!empty($this->agreement_two)){
+            return \Yii::$app->params['quote']['demolition_debris']['aggr2'];
+        } else {
+            return 0;
+        }
+    }
+    public function getDDAggr_3_rate(){
+        if(!empty($this->agreement_three)){
+            return \Yii::$app->params['quote']['demolition_debris']['aggr3'];
+        } else {
+            return 0;
+        }
+    }
+    public function getDDDeductible(){
+        return $this->getDeductibleFactorBuilding();
+    }
+    public function getDDBldgRate(){
+        return $this->getTableRateBuilding();
+    }
+    public function getDDAggr_1_premium(){
+        return round(($this->agreement_one/100)*$this->getDDBldgRate()*$this->getDDAggr_1_rate()*$this->getDDDeductible(),0);
+    }
+    public function getDDAggr_2_premium(){
+        return round(($this->agreement_two/100)*$this->getDDBldgRate()*$this->getDDAggr_2_rate()*$this->getDDDeductible(),0);
+    }
+    public function getDDAggr_3_premium(){
+        return round(($this->agreement_three/100)*$this->getDDBldgRate()*$this->getDDAggr_3_rate()*$this->getDDDeductible(),0);
+    }
+
+    public function getDemolitionDebrisLimit(){
+        return array_sum([$this->agreement_one,$this->agreement_two,$this->agreement_three]);
+    }
+    public function getDemolitionDebrisPremium(){
+        return array_sum([$this->getDDAggr_1_premium(),$this->getDDAggr_2_premium(),$this->getDDAggr_3_premium()]);
+    }
+    /**
+     * ----------------------------------------demolition debris-----------------------------------------------
+     */
+
+
+    /*
+     * ---------------------------------------Earthquake Coverage----------------------------------------------
+     */
+
+    public function getEBuildingLimit(){
+        return $this->building_limit?$this->building_limit:0;
+    }
+    public function getEBPLimit(){
+        return $this->bus_prop_limit?$this->bus_prop_limit:0;
+    }
+
+    public function getCR3(){
+        if(in_array($this->quote->construction,[2,3])){
+            return $this->quote->construction;
+        } else {
+            if($this->masonry_veneer==1){
+                return 2;
+            } else {
+                return 1;
+            }
+        }
+    }
+
+    public function getEBuildingRate(){
+        if($this->quote->countryModel){
+            return \Yii::$app->exce->vlookup($this->getCR3(),\Yii::$app->params['quote']['building_zone'],$this->quote->countryModel->eq_zone-1,0);
+        } else {
+            return 0;
+        }
+    }
+    public function getEBPRate(){
+        if($this->quote->countryModel){
+            return \Yii::$app->exce->vlookup($this->getCR3(),\Yii::$app->params['quote']['bp_zone'],$this->quote->countryModel->eq_zone-1,0);
+        } else {
+            return 0;
+        }
+    }
+
+    public function getEBuildingPremium(){
+        return round(($this->getEBuildingLimit()/100)*$this->getEBuildingRate()*$this->getDeductibleFactorBuilding()*\Yii::$app->params['quote']['earthquake_factor']);
+    }
+
+    public function getEBPPremium(){
+        return round(($this->getEBPLimit()/100)*$this->getEBPRate()*$this->getDeductibleFactorBP()*\Yii::$app->params['quote']['earthquake_factor']);
+    }
+
+    public function getEarthquakeCoveragePremium(){
+        return $this->getEBuildingPremium()+$this->getEBPPremium();
+    }
+    /*
+     * ---------------------------------------Earthquake Coverage----------------------------------------------
+     */
+
+
+    /**
+     * -------------------------------------Employee Dishonesty=---------------------------------------------
+     */
+    public function  getEmployeeAdditional(){
+        return $this->employee_dishonesty?$this->employee_dishonesty:0;
+    }
+    public function  getEmployeeRate(){
+        return \Yii::$app->params['quote']['employee_dishonesty'];
+    }
+    public function getEmployeePremium(){
+        return round(($this->getEmployeeAdditional()/1000)*$this->getEmployeeRate());
+    }
+    /**
+     * -------------------------------------Employee Dishonesty=---------------------------------------------
+     */
+
+
+    /**
+     * ----------------------------------Equipment Breakdown-------------------------------------------------
+     */
+
+    public function getCovAB(){
+        return $this->quote->building_amount_of_ins+$this->quote->bus_amount_of_ins;
+    }
+    public function getEquipmentBreakdownPremium(){
+        if(!empty($this->equipment_breakdown)){
+
+        } else {
+            return 0;
+        }
+    }
+    public function getEquipmentBreakdownPremiumSum(){
+        $sum = 0;
+        $bk25 = $this->getCovAB();
+        foreach(\Yii::$app->params['quote']['equipment_breakdown'] as $key=>$value){
+            $sum+=$this->getEquipmentBreakdownPremiumSumElement($key,$bk25);
+        }
+        return $sum;
+    }
+    public function getEquipmentBreakdownPremiumSumElement($i,$bk25){
+        switch($i){
+            case '50.000 and Less':
+                if($bk25>0&&$bk25<5001){
+                    return \Yii::$app->params['quote']['equipment_breakdown'][$i];
+                }
+                break;
+            case '$50.001 to $100.000':
+                if($bk25>50000&&$bk25<100001){
+                    return \Yii::$app->params['quote']['equipment_breakdown'][$i];
+                }
+                break;
+            case '$100.001 to $150.000':
+                if($bk25>100000&&$bk25<150001){
+                    return \Yii::$app->params['quote']['equipment_breakdown'][$i];
+                }
+                break;
+            case '$150.001 to $200.000':
+                if($bk25>150000&&$bk25<200001){
+                    return \Yii::$app->params['quote']['equipment_breakdown'][$i];
+                }
+                break;
+            case '$200.001 to $250.000':
+                if($bk25>200000&&$bk25<250001){
+                    return \Yii::$app->params['quote']['equipment_breakdown'][$i];
+                }
+                break;
+            case '250.001 to $300.000':
+                if($bk25>250000&&$bk25<300001){
+                    return \Yii::$app->params['quote']['equipment_breakdown'][$i];
+                }
+                break;
+            case '$300.001 to $400.000':
+                if($bk25>300000&&$bk25<400001){
+                    return \Yii::$app->params['quote']['equipment_breakdown'][$i];
+                }
+                break;
+            case '$400.001 to $500.000':
+                if($bk25>400000&&$bk25<500001){
+                    return \Yii::$app->params['quote']['equipment_breakdown'][$i];
+                }
+                break;
+            case 'Greater than $500.000':
+                if($bk25>500000){
+                    return \Yii::$app->params['quote']['equipment_breakdown'][$i];
+                }
+                break;
+        }
+    }
+    /**
+     * ----------------------------------Equipment Breakdown-------------------------------------------------
+     */
+
+
 
 
     public function getInsuredPremisesAPremium()
