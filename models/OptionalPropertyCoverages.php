@@ -13,6 +13,9 @@ use app\models\_base\BaseOptionalPropertyCoverages;
 class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 
 
+
+    private $deductible_bp;
+    private $deductible_building;
     /**
      * relations
      */
@@ -23,13 +26,30 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     /**
      * relations
      */
+
+    public function getDeductibleFactorBP(){
+        if(!$this->deductible_bp){
+            $this->deductible_bp = $this->quote->getDeductibleFactorBP();
+            return $this->deductible_bp;
+        }
+        return $this->deductible_bp;
+    }
+    public function getDeductibleFactorBuilding(){
+        if(!$this->deductible_building){
+            $this->deductible_building = $this->quote->getDeductibleFactorBuilding();
+            return $this->deductible_building;
+        }
+        return $this->deductible_building;
+    }
+
+
     /**
      * @param $deductibleBP
      * @return float|int
      * get account receivable
      */
     public function getAccountsReceivableDeductible(){
-        return $this->quote->getDeductibleFactorBP();
+        return $this->getDeductibleFactorBP();
     }
     public function getAccountsReceivablePremium(){
         $deductibleBP = $this->getAccountsReceivableDeductible();
@@ -79,10 +99,10 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 
     /**
      * @return mixed
-     * BusinessownersBurglaryRobbery
+     * -------------------------------------------------------BusinessownersBurglaryRobbery------------------------
      */
     public function getBusinessownersBurglaryRobberyDeductible(){
-        return $this->quote->getDeductibleFactorBP();
+        return $this->getDeductibleFactorBP();
     }
 
     public function getBusinessownersBurglaryRobberyPremium(){
@@ -108,14 +128,14 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         }
         return round($premium*$deductible*$terrMult,0);
     }
-    /**
-     * Businessowners Burglary Robbery premium
+    /**-
+     * ---------------------------------------------Businessowners Burglary Robbery premium---------------------
      */
 
 
     /**
      * @return mixed
-     * cause of loss methods
+     * ---------------------------------------------------cause of loss methods------------------------------------
      */
     public function getCauseOfLossBuildingLimit(){
         return $this->quote->building_amount_of_ins;
@@ -124,10 +144,10 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         return $this->quote->bus_amount_of_ins;
     }
     public function getCauseOfLossBuildingDeductible(){
-        return $this->quote->getDeductibleFactorBuilding();
+        return $this->getDeductibleFactorBuilding();
     }
     public function getCauseOfLossBPDeductible(){
-        return $this->quote->getDeductibleFactorBP();
+        return $this->getDeductibleFactorBP();
     }
     public function getCauseOfLossBuildingPremium(){
         $limit = $this->getCauseOfLossBuildingLimit();
@@ -148,11 +168,11 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         return round(($limit/100)*$deductible*$rate,0);
     }
     /**
-     * cause of loss methods
+     * ----------------------------------------------cause of loss methods---------------------------------------
      */
 
     /**
-     * compute coverage
+     * --------------------------------------------compute coverage---------------------------------------------
      */
     public function getComputerCoverageLimit(){
         return $this->computer_coverage;
@@ -176,10 +196,58 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         return round(($this->getComputerCoverageLimit()/1000)*$this->getComputerCoverageRate()*$this->getComputerCoverageDeductible(),0);
     }
     /**
-     * computer coverage
+     * ----------------------------------------computer coverage-------------------------------------
      */
 
-    // -----------------------------------------------------------------------------------------------------------------
+
+    /**
+     * -------------------------------------cooking protection-------------------------------------------
+     */
+    public function getCookingProtectionApplies(){
+        if(!empty($this->cooking_protection_equip)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getCookingProtectionInitialPremium(){
+        if(!empty($this->cooking_protection_equip)){
+            return \Yii::$app->params['quote']['cooking_protection_equip'];
+        } else {
+            return 0;
+        }
+    }
+
+    public function getCookingProtectionInitialDeductible(){
+        return $this->getDeductibleFactorBP();
+    }
+
+    public function  getCookingProtectionLimit(){
+        return round($this->getCookingProtectionInitialPremium()*$this->getCookingProtectionInitialDeductible(),0);
+    }
+    // ----------------------------------cooking protection----------------------------------------------------
+
+
+    /**
+     * ---------------------------------Customers Goods--------------------------------------------------------
+     */
+    public function getCustomersGoodsLimit(){
+        return $this->customers_goods;
+    }
+    public function getCustomersGoodsRate(){
+        return $this->quote->getTableRateBP();
+    }
+    public function getCustomersGoodsDeductible(){
+        return $this->getDeductibleFactorBP();
+    }
+    public function getCustomersGoodsPremium(){
+        return round($this->getCustomersGoodsLimit()/100*$this->getCustomersGoodsRate()*$this->getCustomersGoodsDeductible(),0);
+    }
+    /**
+     * ---------------------------------Customers Goods--------------------------------------------------------
+     */
+
 
     public function getInsuredPremisesAPremium()
     {

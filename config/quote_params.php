@@ -693,7 +693,8 @@ return [
         'accounts'=>5,
         'additional'=>3
     ],
-    'computer_coverage_rate'=>4.5
+    'computer_coverage_rate'=>4.5,
+    'cooking_protection_equip'=>30
 
 
 
