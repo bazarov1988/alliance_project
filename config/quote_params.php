@@ -201,6 +201,8 @@ return [
     ],
     'contractual_liability_limitation_credit' => 5,
     'designated_premises_credit' => 10,
+    'sprink_leak' => 0.15,
+    'sprink_leak_rate_increase' => 0.02,
     'terr_mult_sub' => 1.5,
     'terr_mult_nyc' => 2.5,
     'terr_mult_remainder' => 1,

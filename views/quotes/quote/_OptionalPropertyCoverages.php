@@ -211,6 +211,22 @@ if ($equipmentBreakdown >= 0) {
 <?php /* --------------------------------------------------------------------------------------------------------- */ ?>
 
 <?php
+$sprinklerLeakagePremium = $model->propertyCoverages->getSprinklerLeakagePremium();
+if ($sprinklerLeakagePremium > 0) {
+    ?>
+    <tr>
+        <td><?= $model->propertyCoverages->getFormNumber('sprinkler_leakage') ?></td>
+        <td><?= $model->propertyCoverages->getAttributeLabel('sprinkler_leakage') ?></td>
+        <td></td>
+        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($sprinklerLeakagePremium) ?></td>
+        <td></td>
+    </tr>
+<?php
+}
+?>
+
+<?php
 $storekeepersBurglaryRobberyPremium = $model->propertyCoverages->getStorekeepersBurglaryRobberyTotalPremium();
 if ($storekeepersBurglaryRobberyPremium > 0) {
     ?>

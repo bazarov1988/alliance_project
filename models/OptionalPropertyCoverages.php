@@ -733,4 +733,50 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     {
         return \Yii::$app->params['quote']['theft_of_money'];
     }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getSprinklerLeakagePremium()
+    {
+        return $this->getSprinklerLeakagePrePremium() + $this->getSprinklerLeakageTenPrePremium();
+    }
+
+    public function getSprinklerLeakagePrePremium()
+    {
+        return round($this->getSprinklerLeakageRate() * $this->getSprinklerLeakageBPPrem(), 0);
+    }
+
+    public function getSprinklerLeakageTenPrePremium()
+    {
+        return round($this->getSprinklerLeakageTenRate() * $this->getSprinklerLeakageTenBPPrem() * $this->getSprinklerLeakageTenAdditional(), 0);
+    }
+
+    public function getSprinklerLeakageRate()
+    {
+        if($this->quote->policy_type == 1 && $this->sprinkler_leakage) {
+            return \Yii::$app->params['quote']['sprink_leak'];
+        } else {
+            return 0;
+        }
+    }
+
+    public function getSprinklerLeakageBPPrem()
+    {
+        return $this->quote->getBPComposite();
+    }
+
+    public function getSprinklerLeakageTenRate()
+    {
+        return \Yii::$app->params['quote']['sprink_leak_rate_increase'];
+    }
+
+    public function getSprinklerLeakageTenBPPrem()
+    {
+        return $this->quote->getBPComposite();
+    }
+
+    public function getSprinklerLeakageTenAdditional()
+    {
+        return ($this->add_increment && $this->add_increment != 11) ? $this->add_increment : 0;
+    }
 } 
