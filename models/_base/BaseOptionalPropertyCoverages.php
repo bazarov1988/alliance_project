@@ -224,7 +224,13 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
             'tenant_Improvements_a'             => 'SF-135A',
             'valuable_papers'                   => '*',
             'insured_premises'                  => '*',
-            'insured_premises_a'                => 'SF-133A'
+            'insured_premises_a'                => 'SF-133A',
+            'building_inflation_protection'     => '*',
+            'accounts_receivable'               => '*',
+            'additional_expense'                => '*',
+            'cause_of_loss_building'            => '',
+            'cause_of_loss_business_property'   => '',
+            'employee_dishonesty'               => '*'
         ];
     }
 

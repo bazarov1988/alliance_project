@@ -204,7 +204,7 @@
     <th colspan="6"><strong>Optional Property Coverages</strong></th>
 </tr>
 </thead>
-
+    <?=$this->render('quote/_OptionalPropertyCoverages',['model'=>$model])?>
     <?php
     $storekeepersBurglaryRobberyPremium = $model->propertyCoverages->getStorekeepersBurglaryRobberyTotalPremium();
     if ($storekeepersBurglaryRobberyPremium > 0) {

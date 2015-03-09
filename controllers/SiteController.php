@@ -97,7 +97,7 @@ class SiteController extends Controller
                 $a = explode(chr(9),$buffer);
                 array_walk($a, function(&$v, &$k) { $v = str_replace(',', '.', $v); });
                 //$result[] = "'$a[0]' => [$a[1], $a[2], $a[3], $a[4], $a[5], $a[6]]";
-                $result[] = "[$a[0], $a[1], $a[2], $a[3], $a[4], $a[5], $a[6]]";
+                $result[] = "'$a[0]'=>$a[1]";
             }
         } else {
             echo 'ERROR: cannot open file';
