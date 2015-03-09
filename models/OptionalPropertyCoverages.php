@@ -322,11 +322,11 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 
     public function getTenantImprovementsAXZ1()
     {
-        return round($this->getTenantImprovementsAXZ2() * $this->getTenantImprovementsASpecialCond(), 0);
+        return round($this->getTenantImprovementsAXZ2() * $this->getTenantImprovementsASpecialCond(), 4);
     }
 
     public function getTenantImprovementsAXZ2() {
-        return round($this->getTenantImprovementsAXZ3() * $this->getTenantImprovementsADrCr(), 0);
+        return round($this->getTenantImprovementsAXZ3() * $this->getTenantImprovementsADrCr(), 4);
     }
 
     public function getTenantImprovementsASpecialCond()
@@ -336,7 +336,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 
     public function getTenantImprovementsAXZ3()
     {
-        return round($this->getTenantImprovementsAXZ4() * $this->getTenantImprovementsADed(), 0);
+        return round($this->getTenantImprovementsAXZ4() * $this->getTenantImprovementsADed(), 4);
     }
 
     public function getTenantImprovementsADrCr()
@@ -346,7 +346,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 
     public function getTenantImprovementsAXZ4()
     {
-        return round(($this->getTenantImprovementsAXZ5() / 100) * $this->tenant_Improvements_a, 0);
+        return round(($this->getTenantImprovementsAXZ5() / 100) * $this->tenant_Improvements_a, 4);
     }
 
     public function getTenantImprovementsADed()
@@ -356,12 +356,12 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 
     public function getTenantImprovementsAXZ5()
     {
-        return round($this->getTenantImprovementsAXZ6() * $this->getTenantImprovementsALead(), 0);
+        return round($this->getTenantImprovementsAXZ6() * $this->getTenantImprovementsALead(), 4);
     }
 
     public function getTenantImprovementsAXZ6()
     {
-        return round($this->getTenantImprovementsTableARate() * $this->getTenantImprovementsAZone(), 0);
+        return round($this->getTenantImprovementsTableARate() * $this->getTenantImprovementsAZone(), 4);
     }
 
     public function getTenantImprovementsALead()
@@ -404,5 +404,39 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 
     // -----------------------------------------------------------------------------------------------------------------
 
+    public function getTenantImprovementsPremium()
+    {
+        return round($this->getTenantImprovementsXZ1() * $this->getTenantImprovementsAAgg(), 0);
+    }
 
+    public function getTenantImprovementsXZ1()
+    {
+        return round($this->getTenantImprovementsXZ2() * $this->getTenantImprovementsASpecialCond(), 4);
+    }
+
+    public function getTenantImprovementsXZ2() {
+        return round($this->getTenantImprovementsXZ3() * $this->getTenantImprovementsADrCr(), 4);
+    }
+
+    public function getTenantImprovementsXZ3()
+    {
+        return round($this->getTenantImprovementsXZ4() * $this->getTenantImprovementsADed(), 4);
+    }
+
+    public function getTenantImprovementsXZ4()
+    {
+        return round(($this->getTenantImprovementsXZ5() / 100) * $this->tenant_Improvements_a, 4);
+    }
+
+    public function getTenantImprovementsXZ5()
+    {
+        return round($this->getTenantImprovementsXZ6() * $this->getTenantImprovementsALead(), 4);
+    }
+
+    public function getTenantImprovementsXZ6()
+    {
+        return round($this->getTenantImprovementsTableARate() * $this->getTenantImprovementsAZone(), 0);
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
 } 

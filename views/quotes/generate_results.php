@@ -206,6 +206,22 @@
 </thead>
 
     <?php
+    $tenantImprovementsPremium = $model->propertyCoverages->getTenantImprovementsPremium();
+    if ($tenantImprovementsPremium > 0) {
+        ?>
+        <tr>
+            <td><?= $model->propertyCoverages->getFormNumber('tenant_Improvements_one') ?></td>
+            <td><?= $model->propertyCoverages->getAttributeLabel('tenant_Improvements_one') ?></td>
+            <td></td>
+            <td></td>
+            <td><?= Yii::$app->formatter->asCurrency($tenantImprovementsPremium) ?></td>
+            <td></td>
+        </tr>
+    <?php
+    }
+    ?>
+
+    <?php
     $tenantImprovementsAPremium = $model->propertyCoverages->getTenantImprovementsAPremium();
     if ($tenantImprovementsAPremium > 0) {
         ?>

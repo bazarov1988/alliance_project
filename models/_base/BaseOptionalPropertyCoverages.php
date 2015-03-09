@@ -219,6 +219,7 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
             'direct_damages'                    => 'SF-94A',
             'time_element'                      => 'SF-95A',
 
+            'tenant_Improvements_one'           => 'SF-135',
             'tenant_Improvements_a'             => 'SF-135A',
             'valuable_papers'                   => '*',
             'insured_premises'                  => '*',
