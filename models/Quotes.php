@@ -134,9 +134,9 @@ class Quotes extends BaseQuotes{
     public function getLeadFactor(){
         if($this->apt_in_bldg==2&&$this->sole_occupancy==1){
             if($this->occupied==97){
-                return \Yii::$app->params['quote_params']['factor_credit']['restaurant'];
+                return \Yii::$app->params['quote']['factor_credit']['restaurant'];
             } else {
-                return \Yii::$app->params['quote_params']['factor_credit']['all_others'];
+                return \Yii::$app->params['quote']['factor_credit']['all_others'];
             }
         } else {
             return 1;
