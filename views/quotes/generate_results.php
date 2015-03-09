@@ -206,6 +206,22 @@
 </thead>
 
     <?php
+    $storekeepersBurglaryRobberyPremium = $model->propertyCoverages->getStorekeepersBurglaryRobberyTotalPremium();
+    if ($storekeepersBurglaryRobberyPremium > 0) {
+        ?>
+        <tr>
+            <td><?= $model->propertyCoverages->getFormNumber('storekeepers_burglary_robbery') ?></td>
+            <td><?= $model->propertyCoverages->getAttributeLabel('storekeepers_burglary_robbery') ?></td>
+            <td></td>
+            <td></td>
+            <td><?= Yii::$app->formatter->asCurrency($storekeepersBurglaryRobberyPremium) ?></td>
+            <td></td>
+        </tr>
+    <?php
+    }
+    ?>
+
+    <?php
     $tenantImprovementsPremium = $model->propertyCoverages->getTenantImprovementsPremium();
     if ($tenantImprovementsPremium > 0) {
         ?>

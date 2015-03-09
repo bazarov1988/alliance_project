@@ -439,4 +439,72 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+
+    public function getStorekeepersBurglaryRobberyTotalPremium()
+    {
+        return $this->getStorekeepersBurglaryRobberyPremium() + $this->getBurglaryOfMoneyPremium() + $this->getTheftOfMoneyPremium();
+    }
+
+    public function getStorekeepersBurglaryRobberyPremium()
+    {
+        return round($this->getStorekeepersBurglaryRobberyPrePremium() * $this->getStorekeepersBurglaryRobberyTerrMult() * $this->getStorekeepersBurglaryRobberySDed(), 0);
+    }
+
+    public function getBurglaryOfMoneyPremium()
+    {
+        return round($this->burglary_of_money / 100 * $this->getBurglaryOfMoneyRate() * $this->getStorekeepersBurglaryRobberyTerrMult() * $this->getStorekeepersBurglaryRobberySDed(), 0);
+    }
+
+    public function getTheftOfMoneyPremium()
+    {
+        return round($this->theft_of_money / 100 * $this->getTheftOfMoneyRate() * $this->getStorekeepersBurglaryRobberyTerrMult() * $this->getStorekeepersBurglaryRobberySDed(), 0);
+    }
+
+    public function getStorekeepersBurglaryRobberyPrePremium()
+    {
+        // =IF(AND(DY3<>"";DY3<>0);VLOOKUP(OFFSET(DY3;DY3;0);DY4:EC11;DZ13+1;FALSE());0)
+        if($this->storekeepers_burglary_robbery) {
+            return \Yii::$app->params['quote']['crime_rate_groups'][$this->storekeepers_burglary_robbery][$this->quote->occupancy->crime_group];
+        } else {
+            return 0;
+        }
+    }
+
+    public function getStorekeepersBurglaryRobberyTerrMult()
+    {
+        // =IF($'List Sheet'.C2=3;EA16;IF(OR(D2=30;D2=40;D2=44;D2=52;D2=60);EA15;EA17))
+        if($this->quote->zone == 3) {
+            return \Yii::$app->params['quote']['terr_mult_nyc'];
+        } else {
+            if($this->quote->country == 30
+                || $this->quote->country == 40
+                || $this->quote->country == 44
+                || $this->quote->country == 52
+                || $this->quote->country == 60) {
+                return \Yii::$app->params['quote']['terr_mult_sub'];
+            } else {
+                return \Yii::$app->params['quote']['terr_mult_remainder'];
+            }
+        }
+    }
+
+    public function getStorekeepersBurglaryRobberySDed()
+    {
+        // =IF(AND(EA27<>"";EA27<>0;EA27<>8);VLOOKUP($'List Sheet'.$EA$27;$'List Sheet'.$AL$3:$AN$9;3;FALSE());1)
+        if($this->storekeepers_burglary_robbery_deductible && $this->storekeepers_burglary_robbery_deductible != 8) {
+            return \Yii::$app->params['quote']['deductible_factors'][$this->storekeepers_burglary_robbery_deductible][1];
+        } else {
+            return 1;
+        }
+    }
+
+    public function getBurglaryOfMoneyRate()
+    {
+        return \Yii::$app->params['quote']['burg_of_money'];
+    }
+
+    public function getTheftOfMoneyRate()
+    {
+        return \Yii::$app->params['quote']['theft_of_money'];
+    }
 } 
