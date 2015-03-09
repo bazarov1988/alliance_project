@@ -206,15 +206,15 @@
 </thead>
 
     <?php
-    $insuredPremisesPremium = $model->propertyCoverages->getInsuredPremisesPremium();
-    if ($insuredPremisesPremium > 0) {
+    $tenantImprovementsAPremium = $model->propertyCoverages->getTenantImprovementsAPremium();
+    if ($tenantImprovementsAPremium > 0) {
         ?>
         <tr>
-            <td><?= $model->propertyCoverages->getFormNumber('insured_premises') ?></td>
-            <td><?= $model->propertyCoverages->getAttributeLabel('insured_premises') ?></td>
+            <td><?= $model->propertyCoverages->getFormNumber('tenant_Improvements_a') ?></td>
+            <td><?= $model->propertyCoverages->getAttributeLabel('tenant_Improvements_a') ?></td>
             <td></td>
             <td></td>
-            <td><?= Yii::$app->formatter->asCurrency($insuredPremisesPremium) ?></td>
+            <td><?= Yii::$app->formatter->asCurrency($tenantImprovementsAPremium) ?></td>
             <td></td>
         </tr>
     <?php
@@ -231,6 +231,22 @@
             <td></td>
             <td></td>
             <td><?= Yii::$app->formatter->asCurrency($valuablePapersPremium) ?></td>
+            <td></td>
+        </tr>
+    <?php
+    }
+    ?>
+
+    <?php
+    $insuredPremisesPremium = $model->propertyCoverages->getInsuredPremisesPremium();
+    if ($insuredPremisesPremium > 0) {
+        ?>
+        <tr>
+            <td><?= $model->propertyCoverages->getFormNumber('insured_premises') ?></td>
+            <td><?= $model->propertyCoverages->getAttributeLabel('insured_premises') ?></td>
+            <td></td>
+            <td></td>
+            <td><?= Yii::$app->formatter->asCurrency($insuredPremisesPremium) ?></td>
             <td></td>
         </tr>
     <?php

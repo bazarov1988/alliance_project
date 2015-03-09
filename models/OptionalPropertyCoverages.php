@@ -309,4 +309,100 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+
+    public function getTenantImprovementsAPremium()
+    {
+        return round($this->getTenantImprovementsAXZ1() * $this->getTenantImprovementsAAgg(), 0);
+    }
+
+    public function getTenantImprovementsAAgg()
+    {
+        return $this->quote->getAggregateFactor();
+    }
+
+    public function getTenantImprovementsAXZ1()
+    {
+        return round($this->getTenantImprovementsAXZ2() * $this->getTenantImprovementsASpecialCond(), 0);
+    }
+
+    public function getTenantImprovementsAXZ2() {
+        return round($this->getTenantImprovementsAXZ3() * $this->getTenantImprovementsADrCr(), 0);
+    }
+
+    public function getTenantImprovementsASpecialCond()
+    {
+        return $this->quote->getSpecialConditionsBuilding();
+    }
+
+    public function getTenantImprovementsAXZ3()
+    {
+        return round($this->getTenantImprovementsAXZ4() * $this->getTenantImprovementsADed(), 0);
+    }
+
+    public function getTenantImprovementsADrCr()
+    {
+        return $this->quote->getBuildingCredits();
+    }
+
+    public function getTenantImprovementsAXZ4()
+    {
+        return round(($this->getTenantImprovementsAXZ5() / 100) * $this->tenant_Improvements_a, 0);
+    }
+
+    public function getTenantImprovementsADed()
+    {
+        return $this->quote->getDeductibleFactorBuilding();
+    }
+
+    public function getTenantImprovementsAXZ5()
+    {
+        return round($this->getTenantImprovementsAXZ6() * $this->getTenantImprovementsALead(), 0);
+    }
+
+    public function getTenantImprovementsAXZ6()
+    {
+        return round($this->getTenantImprovementsTableARate() * $this->getTenantImprovementsAZone(), 0);
+    }
+
+    public function getTenantImprovementsALead()
+    {
+        return $this->quote->getLeadFactor();
+    }
+
+    public function getTenantImprovementsTableARate()
+    {
+        return isset(\Yii::$app->params['quote']['rate_table'][$this->getTenantImprovementsCombinationCode()]) ? \Yii::$app->params['quote']['rate_table'][$this->getTenantImprovementsCombinationCode()][$this->quote->getRateTableKey()] : null;
+    }
+
+    public function getTenantImprovementsAZone()
+    {
+        return $this->quote->getBuildingZoneFactor();
+    }
+
+    public function getTenantImprovementsCombinationCode()
+    {
+        // =CONCATENATE($'List Sheet'.O2;$'List Sheet'.C2;A2;2;A7;$'List Sheet'.G2;A6;A5)
+
+        $quote = $this->quote;
+
+        $construction = $quote->construction == 3 ? 2 : $quote->construction; // A2
+        $quote_occupancy_mer_serc1 = $quote->occupancy->mer_serc > 5 ? 9 : 1; // A7
+        $quote_occupancy_mer_serc2 = $quote->occupancy->mer_serc > 5 ? ($quote->occupancy->mer_serc == 8 ? $quote->occupied_type : 9) : $quote->occupied_type; // A6
+        $quote_occupancy_mer_serc3 = $quote->occupancy->mer_serc == 1 ? $quote->occupancy->bldg_rg : 9; //A5
+
+        return \Yii::$app->excel->concat([
+            $quote->prior_since,
+            $quote->zone,
+            $construction,
+            2,
+            $quote_occupancy_mer_serc1,
+            $quote->occupancy->mer_serc,
+            $quote_occupancy_mer_serc2,
+            $quote_occupancy_mer_serc3
+        ]);
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+
 } 

@@ -209,7 +209,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
         $rateTable = \Yii::$app->params['quote']['rate_table'];//I11:O490
         if (is_array($rateTable[$key]))
-            $val = isset($rateTable[$key][$offset]) ? $rateTable[$key][$this->getRateTableKey()] : null;
+            $val = isset($rateTable[$key][$offset]) ? $rateTable[$key][$this->quote->getRateTableKey()] : null;
         else
             $val = null;
 
