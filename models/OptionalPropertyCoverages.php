@@ -98,12 +98,12 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 
     /**
      * @return int
-     * get Building Inflation Protection premium
+     * -------------------------------------------get Building Inflation Protection premium-----------------------------------
      */
     public function getBuildingInflationProtectionRate(){
         return (!empty($this->building_inflation_protection)&&!empty(\Yii::$app->params['quote']['building_inflation'][$this->building_inflation_protection]))?\Yii::$app->params['quote']['building_inflation'][$this->building_inflation_protection][1]:0;
     }
-    public function getBuildingInflationProtection(){
+    public function getBuildingInflationProtectionPremium(){
         $quote = $this->quote;
         $rate = $this->getBuildingInflationProtectionRate();
         if($rate==0) return 0;
@@ -111,6 +111,12 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         if($bldgPremium==0) return 0;
         return round($rate*$bldgPremium,0);
     }
+    /**
+     * @return int
+     * -------------------------------------------get Building Inflation Protection premium-----------------------------------
+     */
+
+
 
 
     public function getBusinessownersAgreedAmount(){
@@ -345,14 +351,14 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 
     public function getEBuildingRate(){
         if($this->quote->countryModel){
-            return \Yii::$app->exce->vlookup($this->getCR3(),\Yii::$app->params['quote']['building_zone'],$this->quote->countryModel->eq_zone-1,0);
+            return \Yii::$app->excel->vlookup($this->getCR3(),\Yii::$app->params['quote']['building_zone'],$this->quote->countryModel->eq_zone-1,0);
         } else {
             return 0;
         }
     }
     public function getEBPRate(){
         if($this->quote->countryModel){
-            return \Yii::$app->exce->vlookup($this->getCR3(),\Yii::$app->params['quote']['bp_zone'],$this->quote->countryModel->eq_zone-1,0);
+            return \Yii::$app->excel->vlookup($this->getCR3(),\Yii::$app->params['quote']['bp_zone'],$this->quote->countryModel->eq_zone-1,0);
         } else {
             return 0;
         }
