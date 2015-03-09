@@ -351,13 +351,13 @@
     <td></td>
 </tr>
 <?php endif;?>
-<?php if($model->liabilityCoverages->barber_shop_liability):?>
+<?php if($model->liabilityCoverages->barber_shop_liability)://Beauty or Barber Shop Liability?>
 <tr>
-    <td><?php echo Yii::$app->quote->getValueByAttribute($model->liabilityCoverages,'barber_shop_liability');//LS-44?></td>
-    <td><?php echo $model->liabilityCoverages->getAttributeLabel('barber_shop_liability');//Beauty or Barber Shop Liability?></td>
-    <td> </td>
-    <td>$1,000,000 / $2,000,000</td>
-    <td><?=Yii::$app->formatter->asCurrency(48.00)?></td>
+    <td>LS-44</td>
+    <td><?php echo $model->liabilityCoverages->getAttributeLabel('barber_shop_liability');?></td>
+    <td> <?=$model->liabilityCoverages->getBeautyNBarberTotalEmployees()?></td>
+    <td><?=$model->liabilityCoverages->getBarberShopLimit()?></td>
+    <td><?=Yii::$app->formatter->asCurrency($model->liabilityCoverages->getBeautyNBarberPremium())?></td>
     <td></td>
 </tr>
 <?php endif;?>
