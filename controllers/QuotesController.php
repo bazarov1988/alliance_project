@@ -335,10 +335,11 @@ class QuotesController extends Controller
             if(!empty($results)){
                 \Yii::$app->response->format = Response::FORMAT_JSON;
                 echo json_encode($results);
-                \Yii::$app->end();
+            } else {
+                echo '[]';
             }
 
-
+            \Yii::$app->end();
         }
 
     }

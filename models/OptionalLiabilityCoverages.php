@@ -280,7 +280,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getAutomobileCoverageAAgg()
     {
-        return !empty($this->automobile_coverage_a) ? \Yii::$app->excel->vlookup($this->automobile_coverage_a, \Yii::$app->params['quote']['aggregate_factors'], $this->quote->agregate,false) : 0;
+        return !empty($this->automobile_coverage_a) ? \Yii::$app->excel->vlookup($this->automobile_coverage_a, \Yii::$app->params['quote']['aggregate_factors'], $this->quote->agregate-1,false) : 0;
     }
 
     public function getAutomobileCoverageALimit()
