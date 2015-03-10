@@ -779,4 +779,62 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     {
         return ($this->add_increment && $this->add_increment != 11) ? $this->add_increment : 0;
     }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getSeasonVariationPremium()
+    {
+        return $this->getSeasonVariationToAddCoveragePremium() + $this->getSeasonVariationToIncreaseMonthsPremium() + $this->getSeasonVariationToIncreasePercentagePremium();
+    }
+
+    public function getSeasonVariationToAddCoveragePremium()
+    {
+        return round($this->getSeasonVariationToAddCoverageRate() * $this->getSeasonVariationBPPrem(), 0);
+    }
+
+    public function getSeasonVariationToIncreaseMonthsPremium()
+    {
+        return round($this->add_mos * $this->getSeasonVariationToIncreaseMonthsRate() * $this->getSeasonVariationBPPrem(), 0);
+    }
+
+    public function getSeasonVariationToIncreasePercentagePremium()
+    {
+        return round($this->number_of_additional * $this->getSeasonVariationToIncreasePercentageRate() * $this->getSeasonVariationBPPrem(), 0);
+    }
+
+    public function getSeasonVariationBPPrem()
+    {
+        return $this->quote->getBPComposite();
+    }
+
+    public function getSeasonVariationToAddCoverageRate()
+    {
+        if($this->season_variation) {
+            if($this->quote->policy_type == 1) {
+                return \Yii::$app->params['quote']['seasonal_var_rate']['standard'];
+            } else {
+                return \Yii::$app->params['quote']['seasonal_var_rate']['deluxe'];
+            }
+        } else {
+            return 0;
+        }
+    }
+
+    public function getSeasonVariationToIncreaseMonthsRate()
+    {
+        if($this->add_mos > 0) {
+            return \Yii::$app->params['quote']['seasonal_var_additional_month'];
+        } else {
+            return 0;
+        }
+    }
+
+    public function getSeasonVariationToIncreasePercentageRate()
+    {
+        if($this->number_of_additional > 0) {
+            return \Yii::$app->params['quote']['seasonal_var_additional_percent'];
+        } else {
+            return 0;
+        }
+    }
 } 

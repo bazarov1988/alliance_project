@@ -211,6 +211,22 @@ if ($equipmentBreakdown >= 0) {
 <?php /* --------------------------------------------------------------------------------------------------------- */ ?>
 
 <?php
+$seasonVariationPremium = $model->propertyCoverages->getSeasonVariationPremium();
+if ($seasonVariationPremium > 0) {
+    ?>
+    <tr>
+        <td><?= $model->propertyCoverages->getFormNumber('season_variation') ?></td>
+        <td><?= $model->propertyCoverages->getAttributeLabel('season_variation') ?></td>
+        <td></td>
+        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($seasonVariationPremium) ?></td>
+        <td></td>
+    </tr>
+<?php
+}
+?>
+
+<?php
 $sprinklerLeakagePremium = $model->propertyCoverages->getSprinklerLeakagePremium();
 if ($sprinklerLeakagePremium > 0) {
     ?>
