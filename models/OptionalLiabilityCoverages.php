@@ -9,7 +9,11 @@
 namespace app\models;
 use app\models\_base\BaseOptionalLiabilityCoverages;
 
-
+/**
+ * Class OptionalLiabilityCoverages
+ * @package app\models
+ * @var $quote Quotes
+ */
 class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 {
 
@@ -68,17 +72,235 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             return 0;
         }
     }
+
+    /**
+     * @return CC2_CF11 CC2:CF11
+     */
+    public function getPolicySummaryBeforeAdditionalInsured(){
+        $building = [
+            'initial_premium'=>$this->getCompositePremiumBuldingRate(),
+            'factor'=>1,
+        ];
+        $bp = [
+            'initial_premium'=>$this->getCompositePremiumBusinessPropRate(),
+            'factor'=>1
+        ];
+        $opt_prop = [
+            'initial_premium'=>$this->getTotalPropertyCoverages(),
+            'factor'=>1
+        ];
+        $opt_liab = [
+            'initial_premium'=>$this->getTotalLiabilityCoverages(),
+            'factor'=>1
+        ];
+        $summ = ($building['initial_premium']*$building['factor'])+
+            ($bp['initial_premium']*$bp['factor'])+
+            ($opt_prop['initial_premium']*$opt_prop['factor'])+
+            ($opt_liab['initial_premium']*$opt_liab['factor']);
+
+
+        return [
+            'building'=>$building,
+            'business_property'=>$bp,
+            'optional_property'=>$opt_prop,
+            'optional_liability'=>$opt_liab,
+            'total_premium'=>['initial_premium'=>$summ]
+        ];
+    }
+
+    /**
+     * @return CI1_CL11 CI1:CL11
+     */
+
+    public function getTotalPropertyCoverages(){
+
+        $summ = 0;
+        /* @var $propCovrgs \app\models\OptionalPropertyCoverages */
+        $propCovrgs = $this->quote->propertyCoverages;
+        $summ += $propCovrgs->getAccountsReceivablePremium();
+        $summ += $propCovrgs->getAdditionalExpensePremium();
+//        $summ += $propCovrgs->getAlcoholicBeveragesTaxExclusion();
+//        $summ += $'Rate Tables'.BE12 //todo (unnamed field)
+        $summ += $propCovrgs->getBuildingInflationProtection();
+//        $summ += $propCovrgs->getBusinessownersAgreedAmount();
+//        $summ += $'Rate Tables'.BH51 //todo (unnamed field)
+
+        $summ += $propCovrgs->getBusinessownersBurglaryRobberyPremium();
+        $summ += $propCovrgs->getCauseOfLossBuildingPremium();
+        $summ += $propCovrgs->getCauseOfLossBPPremium();
+        $summ += $propCovrgs->getComputerCoveragePremium();
+//        $summ += $'Rate Tables'.BF37 //todo (unnamed field)
+
+        $summ += $propCovrgs->getCookingProtectionInitialPremium();
+        $summ += $propCovrgs->getCustomersGoodsPremium();
+        $summ += $propCovrgs->getDemolitionDebrisPremium();
+        $summ += $propCovrgs->getEarthquakeCoveragePremium();//summ
+
+        $summ += $propCovrgs->getEmployeePremium();//Employee Dishonesty
+        $summ += $propCovrgs->getEquipmentBreakdownPremium();
+        $summ += $propCovrgs->getExteriorSignsPremium();
+//        $summ += $'Rate Tables'.BE67; //todo (unnamed field)
+//        $summ += $'Rate Tables'.BG69; //todo (unnamed field)
+        $summ += $propCovrgs->getLoss_off_IncomeMonthPremium(); //$'Rate Tables'.BF74
+        $summ += $propCovrgs->getLoss_off_IncomePremium(); //$'Rate Tables'.BF78
+        $summ += $propCovrgs->getLoss_off_IncomeATotal(); //$'Rate Tables'.BL84 //todo not implemented yet
+//        $summ += $propCovrgs->getLossPayable(); $'Rate Tables'.BD86 //todo not implemented yet
+//        $summ +=  $'Rate Tables'.BF88 //Money & Securities //todo not implemented yet
+//        $summ +=  $'Rate Tables'.BG91 //Off Premises Power - Direct Damages //todo not implemented yet
+//        $summ +=  $'Rate Tables'.BG93 //Off Premises Power - Time Element //todo not implemented yet
+//        $summ += $'Rate Tables'.BF97 //todo (unnamed field)
+//        $summ += $'Rate Tables'.BE101 //todo (unnamed field)
+//        $summ += $'Rate Tables'.BF99 //todo (unnamed field)
+//        $summ += $'Rate Tables'.BE103 //todo (unnamed field)
+//        $summ += $propCovrgs->getOrdinanceAndLaw(); todo not implemented yet
+//        $summ += $propCovrgs->getOutsideGradeFloorBuildingGlass(); //todo not implemented yet
+        $summ += $propCovrgs->getRefrigeratedFoodPremium();
+        $summ += $propCovrgs->getRefrigeratedPropertyPremium();
+        $summ += $propCovrgs->getSeasonVariationPremium();
+        $summ += $propCovrgs->getSprinklerLeakagePremium();
+        $summ += $propCovrgs->getTenantImprovementsPremium();
+        $summ += $propCovrgs->getTenantImprovementsAPremium();
+        $summ += $propCovrgs->getValuablePapersPremium();
+        $summ += $propCovrgs->getInsuredPremisesPremium();
+        $summ += $propCovrgs->getInsuredPremisesAPremium();
+        return $summ;
+
+    }
+    function getTotalLiabilityCoverages(){
+        throw new \BadMethodCallException('Not implemented yet.');
+        $summ = 0;
+        $summ+=$this->getCreditPremium();
+        $summ+=self::getAdditionalInsuredContractors();
+        $summ+=self::getAdditionalInsuredOwners();
+        //
+//        $summ+=$'Rate Tables'.BZ18 todo (empty title)
+//        $summ+=self::getAssaultBatteryAndExclusion(); todo -
+        $summ+=self::getBeautyNBarberPremium();
+        $summ+=self::getDesignatedPremisesPremium();
+//        $summ+=$'Rate Tables'.BX40 // todo (empty title)
+        $summ+=self::getContractualLiabilityLimitationPremium();
+        $summ+=self::getProjectOnlyCompPremium();//Cov. Applicable to Desig. Prem. or Project Only
+
+        $summ+=self::getAutomobileCoveragePremium();//Employers' Non-ownership Automobile Coverage
+        $summ+=self::getAcquiredEntitiesPremium();//Exclusion of Newly Acquired Entities
+        $summ+=self::getExclusionCanineRelatedInjuriesDamagesPremium();//Exclusion of Canine Related Injuries or Damages
+        $summ+=self::getExtendedPollutionExclusionPremium();//Extended Pollution Exclusion
+        $summ+=self::getFireLegalPremium();//Fire Legal
+        $summ+=self::getAutomobileCoverageAPremium();//Hired and Non-owned Automobile Coverage
+        $summ+=self::getLiquorLiabilityReceiptsPremium();//Liquor Liability
+        $summ+=self::getPersonalInjuryPremium();
+        $summ+=self::getPoolLiabilityPremium();
+        $summ+=self::getCompletedOperationsPremium();//Products/Completed Operations
+        $summ+=self::getWaterDamageExclusionPremium();//Water Damage Exclusion - New York  City
+        return $summ;
+    }
+    public function getPolicySummaryAfterAdditionalInsured(){
+        $PSbefore = $this->getPolicySummaryBeforeAdditionalInsured();
+        $sumPremium =
+            $PSbefore['building']['initial_premium']+
+            $PSbefore['business_property']['initial_premium']+
+            $PSbefore['optional_property']['initial_premium']+
+            $PSbefore['optional_liability']['initial_premium'];
+        return [
+            'building'=>['initial_premium'=>$PSbefore['building']['initial_premium']],
+            'business_property'=>['initial_premium'=>$PSbefore['business_property']['initial_premium']],
+            'optional_property'=>['initial_premium'=>$PSbefore['optional_property']['initial_premium']],
+            'optional_liability'=>['initial_premium'=>$PSbefore['optional_liability']['initial_premium']],
+            'premium'=>['initial_premium'=>$sumPremium],
+            'irpm'=>[],//todo
+            'total_premium'=>[], //todo
+            'fire_fee'=>[]];//todo
+    }
     /**
      * Add'l Insured - Contractual - Owners & Lessees
      * $'List Sheet'.HZ9
      */
-    public function getAdditionalInsured(){
-        $addtlInsrdRateMin = \Yii::$app->params['quote']['additional_insured_rate_minimum'];
+    public function getAdditionalInsuredsMinimumTotal(){
+        return \Yii::$app->params['quote']['additional_insureds']['minimum']*$this->additional_insured_number;
+    }
+    public function getAdditionalInsuredsRateTotal(){
+        $rate =  \Yii::$app->params['quote']['additional_insureds']['rate']*
+            $this->additional_insured_number*
+            $this->getPolicySummaryAfterAdditionalInsured()['premium']['initial_premium'];
+        return $rate;
+    }
 
-//        $standard = ROUND(BU15*BV15*BW15;0);
-        $standard = round($addtlInsrdRateMin['rate']);
-        $minimal = round($addtlInsrdRateMin['min']);;
-        return $standard>$minimal?$standard:$minimal;
+    /**
+     * @return AF11 = IF(AF20<AF16;AF16;AF20)
+     */
+    public function getApplicablePremium()
+    {
+
+        if ($this->getProjectOnlyCompPremium() < $this->getApplicableMaximum()) {//IF(AF20<AF16;AF16;AF20)
+//            return 'AF16';
+            return $this->getApplicableMaximum();
+        } else {
+//            return 'AF20'
+            return $this->getProjectOnlyCompPremium();
+        }
+    }
+
+    /**
+     * @return  AF16 = IF($'List Sheet'.L2=1;AF14;AF15)
+     *$'List Sheet'.L2 = Standard/Deluxe
+     */
+    public function getApplicableMaximum()
+    {
+        if ($this->quote->policy_type == 1) {
+//            return 'AF14';
+            return \Yii::$app->params['quote']['standard_minimum'];
+
+        } else {
+//            return 'AF15';
+            return \Yii::$app->params['quote']['deluxe_minimum'];
+
+
+        }
+
+    }
+    /**
+     * @return AF8 =IF(AF24>0;IF(AF11<>AF20;AF11;AF24);0)
+     */
+    public function getCompositePremiumBuldingRate(){
+//        if('AF24'>0)
+        if($this->quote->getBldgComposite()>0){
+//            if('AF11'!='AF20'){
+            if($this->getApplicablePremium()!=$this->getProjectOnlyCompPremium()){
+//                return 'AF11';
+                return $this->getApplicablePremium();
+
+            }else{
+//                return 'AF24';
+                return $this->quote->getBldgComposite();
+            }
+        }else{
+            return 0;
+        }
+    }
+    /**
+     * @return AF9  = IF(AF25>0;IF(AF11<>AF20;IF(AF24>0;0;AF11);AF25);0)
+     */
+    public function getCompositePremiumBusinessPropRate(){
+//        if('AF25'>0)
+        if($this->quote->getBPComposite()>0){
+//            if('AF11'!='AF20')
+            if($this->getApplicablePremium()!=$this->getProjectOnlyCompPremium()){
+//                if('AF24'>0){
+                if($this->quote->getBldgComposite()>0){
+                    return 0;
+                }else{
+                    return $this->getApplicablePremium();
+                }
+            }
+        }
+        return 0;
+
+    }
+
+    public function getAdditionalInsured(){
+        $min = $this->getAdditionalInsuredsMinimumTotal();
+        $rate =$this->getAdditionalInsuredsRateTotal();
+        return $min>$rate?$min:$rate;
     }
     public function getAdditionalInsuredOwners(){
         if($this->add_insured_owners_lessees) //IF(HZ3;HZ6;0)
@@ -632,6 +854,9 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         }
     }
 
+    /**
+     * @return AF20
+     */
     public function getProjectOnlyCompPremium()
     {
         // =AF20 =SUM(IF(ISERROR(AF24);0;AF24);IF(ISERROR(AF25);0;AF25))
