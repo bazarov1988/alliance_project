@@ -90,7 +90,7 @@
         <tr>
             <td><strong>Building</strong></td>
             <td><?= Yii::$app->quote->getValueByAttribute($model, 'building_rc_acv') ?></td>
-            <td><?= $model->building_amount_of_ins ? '$' . $model->building_amount_of_ins : null; ?></td>
+            <td><?= Yii::$app->formatter->asCurrency($model->building_amount_of_ins) ?></td>
             <td><?= Yii::$app->quote->getValueByAttribute($model, 'deductible_bldg') ?></td>
             <td>$0.00</td>
             <td>---</td>
@@ -98,7 +98,7 @@
         <tr>
             <td><strong>Bus. Prop.</strong></td>
             <td><?= Yii::$app->quote->getValueByAttribute($model, 'business_property_rc_acv') ?></td>
-            <td><?= $model->bus_amount_of_ins ? '$' . $model->bus_amount_of_ins : null; ?></td>
+            <td><?= Yii::$app->formatter->asCurrency($model->bus_amount_of_ins); ?></td>
             <td><?= Yii::$app->quote->getValueByAttribute($model, 'deductible_bp') ?></td>
             <td>$0.00</td>
             <td>---</td>
@@ -109,13 +109,13 @@
             <td><strong>BI & PD Limit</strong></td>
             <td><strong>Aggregate Limit</strong></td>
             <td></td>
-            <td></td>
+            <td></td>Yii::$app->formatter->asCurrency(
         </tr>
         <tr>
             <td></td>
             <td></td>
-            <td>$1,000,000</td>
-            <td>$2,000,000</td>
+            <td><?=Yii::$app->quote->getValueByAttribute($model,'prop_damage');?></td>
+            <td><?=Yii::$app->quote->getValueByAttribute($model,'agregate');?></td>
             <td>$255.00</td>
             <td></td>
         </tr>
@@ -133,7 +133,7 @@
             <td></td>
             <td><?= $model->medPayment ? $model->medPayment->name : '' ?></td>
             <td>
-                $<?= $model->medPayment ? ($model->policy_type == 1 ? $model->medPayment->standart : $model->medPayment->premium) : null ?></td>
+                <?= $model->medPayment ? ($model->policy_type == 1 ? Yii::$app->formatter->asCurrency($model->medPayment->standart) : Yii::$app->formatter->asCurrency($model->medPayment->premium)) : Yii::$app->formatter->asCurrency(null) ?></td>
             <td></td>
         </tr>
         <tr>

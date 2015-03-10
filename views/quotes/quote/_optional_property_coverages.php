@@ -1,6 +1,6 @@
 <?php
 $receivablePremium = $model->propertyCoverages->getAccountsReceivablePremium();
-if ($receivablePremium >= 0) {
+if ($receivablePremium > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('accounts_receivable') ?></td>
@@ -15,7 +15,7 @@ if ($receivablePremium >= 0) {
 
 <?php
 $additionalExpense = $model->propertyCoverages->getAdditionalExpensePremium();
-if ($additionalExpense >= 0) {
+if ($additionalExpense > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('additional_expense') ?></td>
@@ -30,7 +30,7 @@ if ($additionalExpense >= 0) {
 
 <?php
 $buildingInflation = $model->propertyCoverages->getBuildingInflationProtectionPremium();
-if ($buildingInflation >= 0) {
+if ($buildingInflation > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('building_inflation_protection') ?></td>
@@ -45,7 +45,7 @@ if ($buildingInflation >= 0) {
 
 <?php
 $burglaryRobbery = $model->propertyCoverages->getBusinessownersBurglaryRobberyPremium();
-if ($burglaryRobbery >= 0) {
+if ($burglaryRobbery > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('businessowners_burglary_robbery') ?></td>
@@ -60,7 +60,7 @@ if ($burglaryRobbery >= 0) {
 
 <?php
 $causeOfLossBuilding = $model->propertyCoverages->getCauseOfLossBuildingPremium();
-if ($causeOfLossBuilding >= 0) {
+if ($causeOfLossBuilding > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('cause_of_loss_building') ?></td>
@@ -75,7 +75,7 @@ if ($causeOfLossBuilding >= 0) {
 
 <?php
 $causeOfLossBP = $model->propertyCoverages->getCauseOfLossBPPremium();
-if ($causeOfLossBP >= 0) {
+if ($causeOfLossBP > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('cause_of_loss_business_property') ?></td>
@@ -90,7 +90,7 @@ if ($causeOfLossBP >= 0) {
 
 <?php
 $computerCoverage = $model->propertyCoverages->getComputerCoveragePremium();
-if ($computerCoverage >= 0) {
+if ($computerCoverage > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('computer_coverage') ?></td>
@@ -106,7 +106,7 @@ if ($computerCoverage >= 0) {
 
 <?php
 $cookingProtectionInitial = $model->propertyCoverages->getCookingProtectionInitialPremium();
-if ($cookingProtectionInitial >= 0) {
+if ($cookingProtectionInitial > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('cooking_protection_equip') ?></td>
@@ -121,7 +121,7 @@ if ($cookingProtectionInitial >= 0) {
 
 <?php
 $customersGoods = $model->propertyCoverages->getCustomersGoodsPremium();
-if ($customersGoods >= 0) {
+if ($customersGoods > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('customers_goods') ?></td>
@@ -136,7 +136,7 @@ if ($customersGoods >= 0) {
 
 <?php
 $demolitionDebris = $model->propertyCoverages->getDemolitionDebrisPremium();
-if ($demolitionDebris >= 0) {
+if ($demolitionDebris > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('demolition_debris') ?></td>
@@ -151,7 +151,7 @@ if ($demolitionDebris >= 0) {
 
 <?php
 $earthquakeCoverage = $model->propertyCoverages->getEarthquakeCoveragePremium();
-if ($earthquakeCoverage >= 0) {
+if ($earthquakeCoverage > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('earthquake_coverage') ?></td>
@@ -166,7 +166,7 @@ if ($earthquakeCoverage >= 0) {
 
 <?php
 $employee = $model->propertyCoverages->getEmployeePremium();
-if ($employee >= 0) {
+if ($employee > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('employee_dishonesty') ?></td>
@@ -181,7 +181,7 @@ if ($employee >= 0) {
 
 <?php
 $equipmentBreakdown = $model->propertyCoverages->getEquipmentBreakdownPremiumSum();
-if ($equipmentBreakdown >= 0) {
+if ($equipmentBreakdown > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('equipment_breakdown') ?></td>
@@ -196,7 +196,7 @@ if ($equipmentBreakdown >= 0) {
 
 <?php
 $exteriorSigns = $model->propertyCoverages->getExteriorSignsPremium();
-if ($exteriorSigns >= 0) {
+if ($exteriorSigns > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('exterior_signs') ?></td>
@@ -211,7 +211,7 @@ if ($exteriorSigns >= 0) {
 
 <?php
 $lossOffIncomeMonth = $model->propertyCoverages->getLoss_off_IncomeMonthPremium();
-if ($lossOffIncomeMonth >= 0) {
+if ($lossOffIncomeMonth > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('loss_off_income_month') ?></td>
@@ -226,7 +226,7 @@ if ($lossOffIncomeMonth >= 0) {
 
 <?php
 $lossOffIncome= $model->propertyCoverages->getLoss_off_IncomePremium();
-if ($lossOffIncome >= 0) {
+if ($lossOffIncome > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('loss_of_income') ?></td>
@@ -241,7 +241,7 @@ if ($lossOffIncome >= 0) {
 
 <?php
 $lossOffIncomeA= $model->propertyCoverages->getLoss_off_IncomeATotal();
-if ($lossOffIncomeA >= 0) {
+if ($lossOffIncomeA > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('loss_of_income_sf') ?></td>
@@ -257,7 +257,7 @@ if ($lossOffIncomeA >= 0) {
 
 <?php
 $lossPayable= $model->propertyCoverages->getLossPayablePremium();
-if ($lossPayable >= 0) {
+if ($lossPayable > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('loss_payable') ?></td>
@@ -272,7 +272,7 @@ if ($lossPayable >= 0) {
 
 <?php
 $moneySecurities = $model->propertyCoverages->getMoneySecuritiesPremium();
-if ($moneySecurities >= 0) {
+if ($moneySecurities > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('money_securities') ?></td>
@@ -287,7 +287,7 @@ if ($moneySecurities >= 0) {
 
 <?php
 $directDamages = $model->propertyCoverages->getDirectDamagesPremium();
-if ($directDamages >= 0) {
+if ($directDamages > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('direct_damages') ?></td>
@@ -303,7 +303,7 @@ if ($directDamages >= 0) {
 
 <?php
 $timeElement = $model->propertyCoverages->getTimeElementPremium();
-if ($timeElement >= 0) {
+if ($timeElement > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('time_element') ?></td>
