@@ -552,6 +552,12 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     /**
      * -----------------------------------Loss of Income (SF-312)-----------------------------------------------------
      */
+
+
+    /**
+     * -----------------------------------Loss of Income (SF-312A)-----------------------------------------------------
+     */
+
     public function Loss_of_IncomeAAdditional(){
         if(!empty($this->loss_of_income_sf)){
             return 1;
@@ -575,11 +581,35 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     public function getLoss_off_IncomeAPremium(){
         return $this->getLoss_off_IncomeABuildingPremium()+$this->getLoss_off_IncomeABPPremium();
     }
-
     /**
-     * -----------------------------------Loss of Income (SF-312A)-----------------------------------------------------
+     * add 10%
      */
+    public function getNumberOf10Building(){
+        return !empty($this->building_increment)?$this->building_increment:0;
+    }
+    public function getNumberOf10BP(){
+        return !empty($this->bus_prop_increment)?$this->bus_prop_increment:0;
+    }
+    public function getNumberFactor(){
+        return \Yii::$app->params['quote']['loss_off_income_a_number_factor'];
+    }
+    public function getNumberOf10BuildingPremium(){
+        return round($this->getNumberOf10Building()*$this->getNumberFactor()*$this->getLoss_off_IncomeAF24(),0);
+    }
+    public function getNumberOf10BPPremium(){
+        return round($this->getNumberOf10BP()*$this->getNumberFactor()*$this->getLoss_off_IncomeAF25(),0);
+    }
 
+    public function getNumberPremiumTotal(){
+        return $this->getNumberOf10BuildingPremium()+$this->getNumberOf10BPPremium();
+    }
+    /**
+     * @return float
+     * Total value
+     */
+    public function getLoss_off_IncomeATotal(){
+        return $this->getLoss_off_IncomeAPremium()+$this->getNumberPremiumTotal();
+    }
     /**
      * -----------------------------------Loss of Income (SF-312A)-----------------------------------------------------
      */

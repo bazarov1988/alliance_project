@@ -809,6 +809,7 @@ return [
     'loss_off_income_month_factor'=>0.01,
     'loss_off_income_factor'=>-0.02,
     'loss_off_income_a_factor'=>-0.02,
+    'loss_off_income_a_number_factor'=>0.005
 
 
 ];

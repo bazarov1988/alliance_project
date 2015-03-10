@@ -256,6 +256,22 @@ if ($lossOffIncome >= 0) {
 }
 ?>
 
+<?php
+$lossOffIncomeA= $model->propertyCoverages->getLoss_off_IncomeATotal();
+if ($lossOffIncomeA >= 0) {
+    ?>
+    <tr>
+        <td><?= $model->propertyCoverages->getFormNumber('loss_of_income_sf') ?></td>
+        <td><?= $model->propertyCoverages->getAttributeLabel('loss_of_income_sf') ?></td>
+        <td></td>
+        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($lossOffIncomeA) ?></td>
+        <td></td>
+    </tr>
+<?php
+}
+?>
+
 
 <?php /* --------------------------------------------------------------------------------------------------------- */ ?>
 
