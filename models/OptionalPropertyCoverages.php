@@ -160,10 +160,10 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
      * ---------------------------------------------------cause of loss methods------------------------------------
      */
     public function getCauseOfLossBuildingLimit(){
-        return $this->quote->building_amount_of_ins;
+        return !empty($this->quote->building_amount_of_ins)?$this->quote->building_amount_of_ins:0;
     }
     public function getCauseOfLossBPLimit(){
-        return $this->quote->bus_amount_of_ins;
+        return !empty($this->quote->bus_amount_of_ins)?$this->quote->bus_amount_of_ins:0;
     }
     public function getCauseOfLossBuildingDeductible(){
         return $this->getDeductibleFactorBuilding();
@@ -197,7 +197,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
      * --------------------------------------------compute coverage---------------------------------------------
      */
     public function getComputerCoverageLimit(){
-        return $this->computer_coverage;
+        return !empty($this->computer_coverage)?$this->computer_coverage:0;
     }
     public function getComputerCoverageRate(){
         return \Yii::$app->params['quote']['computer_coverage_rate'];
@@ -255,7 +255,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
      * ---------------------------------Customers Goods--------------------------------------------------------
      */
     public function getCustomersGoodsLimit(){
-        return $this->customers_goods;
+        return !empty($this->customers_goods)?$this->customers_goods:0;
     }
     public function getCustomersGoodsRate(){
         return $this->getTableRateBP();
@@ -368,6 +368,9 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         return round(($this->getEBPLimit()/100)*$this->getEBPRate()*$this->getDeductibleFactorBP()*\Yii::$app->params['quote']['earthquake_factor']);
     }
 
+    public function getEarthquakeCoverageLimit(){
+        return $this->getEBuildingLimit()+$this->getEBPLimit();
+    }
     public function getEarthquakeCoveragePremium(){
         return $this->getEBuildingPremium()+$this->getEBPPremium();
     }

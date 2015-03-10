@@ -152,7 +152,7 @@ if ($demolitionDebris >= 0) {
         <td><?= $model->propertyCoverages->getFormNumber('demolition_debris') ?></td>
         <td><?= $model->propertyCoverages->getAttributeLabel('demolition_debris') ?></td>
         <td></td>
-        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->getDemolitionDebrisLimit());?></td>
         <td><?= Yii::$app->formatter->asCurrency($demolitionDebris) ?></td>
         <td><?php echo Yii::$app->quote->getValueByAttribute($model,'deductible_bldg')?></td>
     </tr>
@@ -168,7 +168,7 @@ if ($earthquakeCoverage >= 0) {
         <td><?= $model->propertyCoverages->getFormNumber('earthquake_coverage') ?></td>
         <td><?= $model->propertyCoverages->getAttributeLabel('earthquake_coverage') ?></td>
         <td></td>
-        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->getEarthquakeCoverageLimit());?></td>
         <td><?= Yii::$app->formatter->asCurrency($earthquakeCoverage) ?></td>
         <td></td>
     </tr>
