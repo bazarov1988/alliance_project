@@ -473,6 +473,24 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
      */
 
 
+    /**
+     * -----------------------------------Exterior Signs-----------------------------------------------------
+     */
+    public function getExteriorSignsAdditional(){
+        return $this->exterior_signs;
+    }
+    public function getExteriorSignsRate(){
+        return \Yii::$app->params['quote']['exterior_signs_rate'];
+    }
+    public function getExteriorSignsDeductible(){
+        return $this->getDeductibleFactorBP();
+    }
+    public function getExteriorSignsPremium(){
+        return round(($this->getExteriorSignsAdditional()/100)*$this->getExteriorSignsRate()*$this->getExteriorSignsDeductible(),0);
+    }
+    /**
+     * -----------------------------------Exterior Signs-----------------------------------------------------
+     */
 
 
     public function getInsuredPremisesAPremium()

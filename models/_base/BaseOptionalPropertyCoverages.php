@@ -231,7 +231,8 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
             'additional_expense'                => '*',
             'cause_of_loss_building'            => '',
             'cause_of_loss_business_property'   => '',
-            'employee_dishonesty'               => '*'
+            'employee_dishonesty'               => '*',
+            'exterior_signs'                    => '*'
         ];
     }
 
