@@ -109,14 +109,14 @@
             <td><strong>BI & PD Limit</strong></td>
             <td><strong>Aggregate Limit</strong></td>
             <td></td>
-            <td></td>Yii::$app->formatter->asCurrency(
+            <td></td>
         </tr>
         <tr>
             <td></td>
             <td></td>
             <td><?=Yii::$app->quote->getValueByAttribute($model,'prop_damage');?></td>
             <td><?=Yii::$app->quote->getValueByAttribute($model,'agregate');?></td>
-            <td>$255.00</td>
+            <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getLiabilityFormPremium()) ?></td>
             <td></td>
         </tr>
         <tr>
@@ -133,7 +133,7 @@
             <td></td>
             <td><?= $model->medPayment ? $model->medPayment->name : '' ?></td>
             <td>
-                <?= $model->medPayment ? ($model->policy_type == 1 ? Yii::$app->formatter->asCurrency($model->medPayment->standart) : Yii::$app->formatter->asCurrency($model->medPayment->premium)) : Yii::$app->formatter->asCurrency(null) ?></td>
+                <?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getMedicalPaymentsPremium()) ?></td>
             <td></td>
         </tr>
         <tr>
