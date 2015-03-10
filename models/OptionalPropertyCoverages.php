@@ -932,4 +932,77 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+
+    public function getBuildingGlassPremium()
+    {
+        return $this->getBuildingGlassPrePremium() + $this->getBuildingGlassLitteringPremium();
+    }
+
+    public function getBuildingGlassPrePremium()
+    {
+        return round($this->building_glass * $this->getBuildingGlassAlarm() * $this->getBuildingGlassRate() * $this->getBuildingGlassCurved(), 0);
+    }
+
+    public function getBuildingGlassAlarm()
+    {
+        if($this->plates) {
+            return \Yii::$app->params['quote']['outside_glass']['alarm'] + 1;
+        } else {
+            return 1;
+        }
+    }
+
+    public function getBuildingGlassRate()
+    {
+        // =IF(C2=3;DP9;DP8)
+        if($this->quote->zone == 3) {
+            return \Yii::$app->params['quote']['outside_glass_linear_feet_rates']['ny_city'];
+        } else {
+            return \Yii::$app->params['quote']['outside_glass_linear_feet_rates']['others'];
+        }
+    }
+
+    public function getBuildingGlassCurved()
+    {
+        if($this->curved) {
+            return \Yii::$app->params['quote']['outside_glass']['curved'];
+        } else {
+            return 1;
+        }
+    }
+
+    public function getBuildingGlassLitteringPremium()
+    {
+        return round($this->ornamental_work / 100 * $this->getBuildingGlassLitteringRate(), 0);
+    }
+
+    public function getBuildingGlassLitteringRate()
+    {
+        return \Yii::$app->params['quote']['outside_glass']['lettering'];
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getOrdinanceAndLawPremium()
+    {
+        return round($this->getOrdinanceAndLawTotal() / 100 * $this->getOrdinanceAndLawBldgRate() * $this->getOrdinanceAndLawRate(), 0);
+    }
+
+    public function getOrdinanceAndLawTotal()
+    {
+        return $this->demolition_amount + $this->increased_cost;
+    }
+
+    public function getOrdinanceAndLawBldgRate()
+    {
+        return $this->quote->getTableRateBuilding();
+    }
+
+    public function getOrdinanceAndLawRate()
+    {
+        return \Yii::$app->params['quote']['ordinance_and_law_rate'];
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
 } 
