@@ -245,8 +245,8 @@ $lossOffIncome= $model->propertyCoverages->getLoss_off_IncomePremium();
 if ($lossOffIncome >= 0) {
     ?>
     <tr>
-        <td><?= $model->propertyCoverages->getFormNumber('loss_off_income') ?></td>
-        <td><?= $model->propertyCoverages->getAttributeLabel('loss_off_income') ?></td>
+        <td><?= $model->propertyCoverages->getFormNumber('loss_of_income') ?></td>
+        <td><?= $model->propertyCoverages->getAttributeLabel('loss_of_income') ?></td>
         <td></td>
         <td></td>
         <td><?= Yii::$app->formatter->asCurrency($lossOffIncome) ?></td>
