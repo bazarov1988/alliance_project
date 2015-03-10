@@ -1,4 +1,5 @@
 <?php
+$deductible = [null=>'Select...',1=>'$100',2=>'$250',3=>'$500',4=>'$1,000',5=>'$2,5000',6=>'$5,000',7=>'$10,000',8=>'None'];
 return [
     'construction' => [1=>'Frame',2=>'Masonry',3=>'Fire Resistive'],
     'protection'=>[null=>'Select...',1=>'Highly Protected',2=>'Protected',3=>'Semi-Protected',4=>'Unprotected'],
@@ -12,7 +13,14 @@ return [
     'no_yes'=>[null=>'Select...',1=>'No',2=>'Yes'],
     'prop_damage'=>[null=>'Select...',1=>'$100,000',2=>'$300,000',3=>'$500,000',4=>'$1,000,000',5=>'$2,000,000',6=>'None'],
     'agregate'=>[null=>'Select...',1=>'$300,000',2=>'$500,000',3=>'$1,000,000',4=>'$2,000,000',5=>'$3,000,000',6=>'$4,000,000',7=>'None'],
-    'deductible'=>[null=>'Select...',1=>'$100',2=>'$250',3=>'$500',4=>'$1,000',5=>'$2,5000',6=>'$5,000',7=>'$10,000',8=>'None'],
+    'deductible'=>$deductible,
+    'damages_deductible'=>$deductible,
+    'time_deductible'=>$deductible,
+    'food_deductible'=>$deductible,
+    'refrigerated_property_deductible'=>$deductible,
+    'storekeepers_burglary_robbery_deductible'=>$deductible,
+    'deductible_bldg' => $deductible,
+    'deductible_bp' => $deductible,
     'time_transmission_lines'=>[null=>'Select...',1=>'Excluding',2=>'Including'],
     'damages_transmission_lines'=>[null=>'Select...',1=>'Excluding',2=>'Including'],
     'cause_of_loss_business_property'=>[null=>'Select...',1=>'SF-1',2=>'SF-3',3=>'SF-4',4=>'SF-4A'],
@@ -809,7 +817,13 @@ return [
     'loss_off_income_month_factor'=>0.01,
     'loss_off_income_factor'=>-0.02,
     'loss_off_income_a_factor'=>-0.02,
-    'loss_off_income_a_number_factor'=>0.005
+    'loss_off_income_a_number_factor'=>0.005,
+    'money_security_rate'=>[
+        'upstate'=>5 ,
+        'upstate_cities'=>5,
+        'suburban'=>10,
+        'ny_city'=>10
+    ]
 
 
 ];

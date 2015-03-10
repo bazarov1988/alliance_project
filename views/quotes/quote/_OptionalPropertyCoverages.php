@@ -273,6 +273,38 @@ if ($lossOffIncomeA >= 0) {
 ?>
 
 
+<?php
+$lossPayable= $model->propertyCoverages->getLossPayablePremium();
+if ($lossPayable >= 0) {
+    ?>
+    <tr>
+        <td><?= $model->propertyCoverages->getFormNumber('loss_payable') ?></td>
+        <td><?= $model->propertyCoverages->getAttributeLabel('loss_payable') ?></td>
+        <td></td>
+        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($lossPayable) ?></td>
+        <td></td>
+    </tr>
+<?php
+}
+?>
+
+<?php
+$moneySecurities = $model->propertyCoverages->getMoneySecuritiesPremium();
+if ($moneySecurities >= 0) {
+    ?>
+    <tr>
+        <td><?= $model->propertyCoverages->getFormNumber('money_securities') ?></td>
+        <td><?= $model->propertyCoverages->getAttributeLabel('money_securities') ?></td>
+        <td></td>
+        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($moneySecurities) ?></td>
+        <td><?php echo Yii::$app->quote->getValueByAttribute($model,'deductible_bp')?></td>
+    </tr>
+<?php
+}
+?>
+
 <?php /* --------------------------------------------------------------------------------------------------------- */ ?>
 
 <?php

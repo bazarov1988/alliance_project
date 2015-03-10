@@ -614,6 +614,52 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
      * -----------------------------------Loss of Income (SF-312A)-----------------------------------------------------
      */
 
+
+    /**
+     * ----------------------------------------------Loss Payable------------------------------------------------------
+     */
+    public function getLossPayableApply(){
+        return !empty($this->loss_payable)?$this->loss_payable:0;
+    }
+    public function getLossPayablePremium(){
+        return 0;
+    }
+    /**
+     * ----------------------------------------------Money & Securities-------------------------------------------------
+     */
+
+    public function getMoneySecuritiesAmount(){
+        return $this->money_securities;
+    }
+
+    public function getMoneySecuritiesRate(){
+        //=IF(C2=2,DK4,IF(C2=3,DK6,IF(OR(D2=40,D2=44,D2=52,D2=30,D2=60),DK5,DK3)))
+        if($this->quote->zone==2){
+            return \Yii::$app->params['quote']['money_security_rate']['upstate_cities'];
+        } else {
+            if($this->quote->zone==3){
+                return \Yii::$app->params['quote']['money_security_rate']['ny_city'];
+            } else{
+                if(in_array($this->quote->country,[40,44,52,30,60])){
+                    return \Yii::$app->params['quote']['money_security_rate']['suburban'];
+                } else {
+                    return \Yii::$app->params['quote']['money_security_rate']['upstate'];
+                }
+            }
+        }
+    }
+    public function getMoneySecuritiesDeductible(){
+        return $this->getDeductibleFactorBP();
+    }
+    public function getMoneySecuritiesPremium(){
+        return round(($this->getMoneySecuritiesAmount()/1000)*$this->getMoneySecuritiesRate()*$this->getMoneySecuritiesDeductible(),0);
+    }
+
+    /**
+     * ---------------------------------------------Money & Securities--------------------------------------------------
+     */
+
+
     public function getInsuredPremisesAPremium()
     {
         return round($this->getInsuredPremisesANo() * $this-> getInsuredPremisesARate() * $this->getInsuredPremisesABPPrem(), 0);
