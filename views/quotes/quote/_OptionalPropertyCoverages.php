@@ -341,6 +341,38 @@ if ($timeElement >= 0) {
 <?php /* --------------------------------------------------------------------------------------------------------- */ ?>
 
 <?php
+$ordinanceAndLawPremium = $model->propertyCoverages->getOrdinanceAndLawPremium();
+if ($ordinanceAndLawPremium > 0) {
+    ?>
+    <tr>
+        <td>SF-47</td>
+        <td>Ordinance and Law</td>
+        <td></td>
+        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($ordinanceAndLawPremium) ?></td>
+        <td></td>
+    </tr>
+<?php
+}
+?>
+
+<?php
+$buildingGlassPremium = $model->propertyCoverages->getBuildingGlassPremium();
+if ($buildingGlassPremium > 0) {
+    ?>
+    <tr>
+        <td><?= $model->propertyCoverages->getFormNumber('building_glass') ?></td>
+        <td><?= $model->propertyCoverages->getAttributeLabel('building_glass') ?></td>
+        <td></td>
+        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($buildingGlassPremium) ?></td>
+        <td></td>
+    </tr>
+<?php
+}
+?>
+
+<?php
 $refrigeratedFoodPremium = $model->propertyCoverages->getRefrigeratedFoodPremium();
 if ($refrigeratedFoodPremium > 0) {
     ?>

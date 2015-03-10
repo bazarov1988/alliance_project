@@ -219,6 +219,7 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
             'direct_damages'                    => 'SF-94A',
             'time_element'                      => 'SF-95A',
 
+            'building_glass'                    => 'SF-78',
             'refrigerated_food'                 => 'SF-93',
             'refrigerated_property'             => 'SF-106',
             'season_variation'                  => '*',

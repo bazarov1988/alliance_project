@@ -209,6 +209,16 @@ return [
     ],
     'contractual_liability_limitation_credit' => 5,
     'designated_premises_credit' => 10,
+    'ordinance_and_law_rate' => 1.16,
+    'outside_glass' => [
+        'curved'    => 3,
+        'alarm'     => 0.2,
+        'lettering' => 3
+    ],
+    'outside_glass_linear_feet_rates' => [
+        'others' => 3,
+        'ny_city' => 8
+    ],
     'refrigerated_food_rate' => 12,
     'refrigerated_property_rate' => 12,
     'seasonal_var_rate' => [
