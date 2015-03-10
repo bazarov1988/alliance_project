@@ -305,6 +305,39 @@ if ($moneySecurities >= 0) {
 }
 ?>
 
+<?php
+$directDamages = $model->propertyCoverages->getDirectDamagesPremium();
+if ($directDamages >= 0) {
+    ?>
+    <tr>
+        <td><?= $model->propertyCoverages->getFormNumber('direct_damages') ?></td>
+        <td><?= $model->propertyCoverages->getAttributeLabel('direct_damages') ?></td>
+        <td></td>
+        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($directDamages) ?></td>
+        <td><?php echo Yii::$app->quote->getValueByAttribute($model->propertyCoverages,'damages_deductible')?></td>
+    </tr>
+<?php
+}
+?>
+
+<?php
+$timeElement = $model->propertyCoverages->getTimeElementPremium();
+if ($timeElement >= 0) {
+    ?>
+    <tr>
+        <td><?= $model->propertyCoverages->getFormNumber('time_element') ?></td>
+        <td><?= $model->propertyCoverages->getAttributeLabel('time_element') ?></td>
+        <td></td>
+        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($timeElement) ?></td>
+        <td><?php echo Yii::$app->quote->getValueByAttribute($model->propertyCoverages,'time_deductible')?></td>
+    </tr>
+<?php
+}
+?>
+
+
 <?php /* --------------------------------------------------------------------------------------------------------- */ ?>
 
 <?php

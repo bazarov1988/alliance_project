@@ -823,6 +823,14 @@ return [
         'upstate_cities'=>5,
         'suburban'=>10,
         'ny_city'=>10
+    ],
+    'direct_damage_rate'=>[
+        'including'=>0.15,
+        'excluding'=>0.08
+    ],
+    'time_element_rate'=>[
+        'including'=>0.2,
+        'excluding'=>0.1
     ]
 
 
