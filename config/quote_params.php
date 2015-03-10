@@ -201,6 +201,14 @@ return [
     ],
     'contractual_liability_limitation_credit' => 5,
     'designated_premises_credit' => 10,
+    'refrigerated_food_rate' => 12,
+    'refrigerated_property_rate' => 12,
+    'seasonal_var_rate' => [
+        'standard' => 0.06,
+        'deluxe' => 0
+    ],
+    'seasonal_var_additional_month' => 0.02,
+    'seasonal_var_additional_percent' => 0.01,
     'sprink_leak' => 0.15,
     'sprink_leak_rate_increase' => 0.02,
     'terr_mult_sub' => 1.5,

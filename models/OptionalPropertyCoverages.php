@@ -888,4 +888,108 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     {
         return ($this->add_increment && $this->add_increment != 11) ? $this->add_increment : 0;
     }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getSeasonVariationPremium()
+    {
+        return $this->getSeasonVariationToAddCoveragePremium() + $this->getSeasonVariationToIncreaseMonthsPremium() + $this->getSeasonVariationToIncreasePercentagePremium();
+    }
+
+    public function getSeasonVariationToAddCoveragePremium()
+    {
+        return round($this->getSeasonVariationToAddCoverageRate() * $this->getSeasonVariationBPPrem(), 0);
+    }
+
+    public function getSeasonVariationToIncreaseMonthsPremium()
+    {
+        return round($this->add_mos * $this->getSeasonVariationToIncreaseMonthsRate() * $this->getSeasonVariationBPPrem(), 0);
+    }
+
+    public function getSeasonVariationToIncreasePercentagePremium()
+    {
+        return round($this->number_of_additional * $this->getSeasonVariationToIncreasePercentageRate() * $this->getSeasonVariationBPPrem(), 0);
+    }
+
+    public function getSeasonVariationBPPrem()
+    {
+        return $this->quote->getBPComposite();
+    }
+
+    public function getSeasonVariationToAddCoverageRate()
+    {
+        if($this->season_variation) {
+            if($this->quote->policy_type == 1) {
+                return \Yii::$app->params['quote']['seasonal_var_rate']['standard'];
+            } else {
+                return \Yii::$app->params['quote']['seasonal_var_rate']['deluxe'];
+            }
+        } else {
+            return 0;
+        }
+    }
+
+    public function getSeasonVariationToIncreaseMonthsRate()
+    {
+        if($this->add_mos > 0) {
+            return \Yii::$app->params['quote']['seasonal_var_additional_month'];
+        } else {
+            return 0;
+        }
+    }
+
+    public function getSeasonVariationToIncreasePercentageRate()
+    {
+        if($this->number_of_additional > 0) {
+            return \Yii::$app->params['quote']['seasonal_var_additional_percent'];
+        } else {
+            return 0;
+        }
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getRefrigeratedPropertyPremium()
+    {
+        return round(($this->refrigerated_property / 1000) * $this->getRefrigeratedPropertyRate() * $this->getRefrigeratedPropertyDed(), 0);
+    }
+
+    public function getRefrigeratedPropertyRate()
+    {
+        return \Yii::$app->params['quote']['refrigerated_property_rate'];
+    }
+
+    public function getRefrigeratedPropertyDed()
+    {
+        // =IF(AND(HX5<>"";HX5<>0;HX5<>8);VLOOKUP($'List Sheet'.HX5;$'List Sheet'.$AL$3:$AN$9;3;FALSE());0)
+        if($this->refrigerated_property_deductible) {
+            return \Yii::$app->params['quote']['deductible_factors'][$this->refrigerated_property_deductible][1];
+        } else {
+            return 0;
+        }
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getRefrigeratedFoodPremium()
+    {
+        return round(($this->refrigerated_food / 1000) * $this->getRefrigeratedPropertyRate() * $this->getRefrigeratedPropertyDed(), 0);
+    }
+
+    public function getRefrigeratedFoodRate()
+    {
+        return \Yii::$app->params['quote']['refrigerated_food_rate'];
+    }
+
+    public function getRefrigeratedFoodDed()
+    {
+        // =IF(AND(DS5<>"";DS5<>0;DS5<>8);VLOOKUP($'List Sheet'.$DS$5;$'List Sheet'.$AL$3:$AN$9;3;FALSE());0)
+        if($this->food_deductible) {
+            return \Yii::$app->params['quote']['deductible_factors'][$this->food_deductible][1];
+        } else {
+            return 0;
+        }
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
 } 

@@ -260,6 +260,54 @@ if ($lossOffIncome >= 0) {
 <?php /* --------------------------------------------------------------------------------------------------------- */ ?>
 
 <?php
+$refrigeratedFoodPremium = $model->propertyCoverages->getRefrigeratedFoodPremium();
+if ($refrigeratedFoodPremium > 0) {
+    ?>
+    <tr>
+        <td><?= $model->propertyCoverages->getFormNumber('refrigerated_food') ?></td>
+        <td><?= $model->propertyCoverages->getAttributeLabel('refrigerated_food') ?></td>
+        <td></td>
+        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($refrigeratedFoodPremium) ?></td>
+        <td></td>
+    </tr>
+<?php
+}
+?>
+
+<?php
+$refrigeratedPropertyPremium = $model->propertyCoverages->getRefrigeratedPropertyPremium();
+if ($refrigeratedPropertyPremium > 0) {
+    ?>
+    <tr>
+        <td><?= $model->propertyCoverages->getFormNumber('refrigerated_property') ?></td>
+        <td><?= $model->propertyCoverages->getAttributeLabel('refrigerated_property') ?></td>
+        <td></td>
+        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($refrigeratedPropertyPremium) ?></td>
+        <td></td>
+    </tr>
+<?php
+}
+?>
+
+<?php
+$seasonVariationPremium = $model->propertyCoverages->getSeasonVariationPremium();
+if ($seasonVariationPremium > 0) {
+    ?>
+    <tr>
+        <td><?= $model->propertyCoverages->getFormNumber('season_variation') ?></td>
+        <td><?= $model->propertyCoverages->getAttributeLabel('season_variation') ?></td>
+        <td></td>
+        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($seasonVariationPremium) ?></td>
+        <td></td>
+    </tr>
+<?php
+}
+?>
+
+<?php
 $sprinklerLeakagePremium = $model->propertyCoverages->getSprinklerLeakagePremium();
 if ($sprinklerLeakagePremium > 0) {
     ?>
