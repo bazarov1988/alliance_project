@@ -500,27 +500,163 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         return \Yii::$app->params['quote']['loss_off_income_month_factor'];
     }
     //building
-    public function getAF24(){
+    public function getLoss_off_IncomeAF24(){
         return $this->quote->getBldgComposite();
     }
     //bp
-    public function getAF25(){
+    public function getLoss_off_IncomeAF25(){
         return $this->quote->getBPComposite();
     }
 
     public function getLoss_off_IncomeMonthBuildingPremium(){
-        return round($this->getDE5()*$this->getLoss_off_IncomeMonthFactor()*$this->getAF24(),0);
+        return round($this->getDE5()*$this->getLoss_off_IncomeMonthFactor()*$this->getLoss_off_IncomeAF24(),0);
     }
     public function getLoss_off_IncomeMonthBPPremium(){
-        return round($this->getDE5()*$this->getLoss_off_IncomeMonthFactor()*$this->getAF25(),0);
+        return round($this->getDE5()*$this->getLoss_off_IncomeMonthFactor()*$this->getLoss_off_IncomeAF25(),0);
     }
 
     public function getLoss_off_IncomeMonthPremium(){
         return $this->getLoss_off_IncomeMonthBuildingPremium()+$this->getLoss_off_IncomeMonthBPPremium();
     }
-
     /**
      * -----------------------------------Loss of Income (additional months)-----------------------------------------------------
+     */
+
+
+    /**
+     * -----------------------------------Loss of Income (SF-312)-----------------------------------------------------
+     */
+    public function Loss_of_IncomeAdditional(){
+        if(!empty($this->loss_of_income)){
+            return 1;
+        }
+        return 0;
+    }
+    public function Loss_of_IncomeFactor(){
+        if($this->Loss_of_IncomeAdditional()==1){
+            return \Yii::$app->params['quote']['loss_off_income_factor'];
+        } else {
+            return 0;
+        }
+    }
+    public function getLoss_off_IncomeBuildingPremium(){
+        return round($this->Loss_of_IncomeFactor()*$this->getLoss_off_IncomeAF24(),0);
+    }
+    public function getLoss_off_IncomeBPPremium(){
+        return round($this->Loss_of_IncomeFactor()*$this->getLoss_off_IncomeAF25(),0);
+    }
+
+    public function getLoss_off_IncomePremium(){
+        return $this->getLoss_off_IncomeBuildingPremium()+$this->getLoss_off_IncomeBPPremium();
+    }
+    /**
+     * -----------------------------------Loss of Income (SF-312)-----------------------------------------------------
+     */
+
+
+    /**
+     * -----------------------------------Loss of Income (SF-312A)-----------------------------------------------------
+     */
+
+    public function Loss_of_IncomeAAdditional(){
+        if(!empty($this->loss_of_income_sf)){
+            return 1;
+        }
+        return 0;
+    }
+    public function Loss_of_IncomeAFactor(){
+        if($this->Loss_of_IncomeAAdditional()==1){
+            return \Yii::$app->params['quote']['loss_off_income_a_factor'];
+        } else {
+            return 0;
+        }
+    }
+    public function getLoss_off_IncomeABuildingPremium(){
+        return round($this->Loss_of_IncomeAFactor()*$this->getLoss_off_IncomeAF24(),0);
+    }
+    public function getLoss_off_IncomeABPPremium(){
+        return round($this->Loss_of_IncomeAFactor()*$this->getLoss_off_IncomeAF25(),0);
+    }
+
+    public function getLoss_off_IncomeAPremium(){
+        return $this->getLoss_off_IncomeABuildingPremium()+$this->getLoss_off_IncomeABPPremium();
+    }
+    /**
+     * add 10%
+     */
+    public function getNumberOf10Building(){
+        return !empty($this->building_increment)?$this->building_increment:0;
+    }
+    public function getNumberOf10BP(){
+        return !empty($this->bus_prop_increment)?$this->bus_prop_increment:0;
+    }
+    public function getNumberFactor(){
+        return \Yii::$app->params['quote']['loss_off_income_a_number_factor'];
+    }
+    public function getNumberOf10BuildingPremium(){
+        return round($this->getNumberOf10Building()*$this->getNumberFactor()*$this->getLoss_off_IncomeAF24(),0);
+    }
+    public function getNumberOf10BPPremium(){
+        return round($this->getNumberOf10BP()*$this->getNumberFactor()*$this->getLoss_off_IncomeAF25(),0);
+    }
+
+    public function getNumberPremiumTotal(){
+        return $this->getNumberOf10BuildingPremium()+$this->getNumberOf10BPPremium();
+    }
+    /**
+     * @return float
+     * Total value
+     */
+    public function getLoss_off_IncomeATotal(){
+        return $this->getLoss_off_IncomeAPremium()+$this->getNumberPremiumTotal();
+    }
+    /**
+     * -----------------------------------Loss of Income (SF-312A)-----------------------------------------------------
+     */
+
+
+    /**
+     * ----------------------------------------------Loss Payable------------------------------------------------------
+     */
+    public function getLossPayableApply(){
+        return !empty($this->loss_payable)?$this->loss_payable:0;
+    }
+    public function getLossPayablePremium(){
+        return 0;
+    }
+    /**
+     * ----------------------------------------------Money & Securities-------------------------------------------------
+     */
+
+    public function getMoneySecuritiesAmount(){
+        return $this->money_securities;
+    }
+
+    public function getMoneySecuritiesRate(){
+        //=IF(C2=2,DK4,IF(C2=3,DK6,IF(OR(D2=40,D2=44,D2=52,D2=30,D2=60),DK5,DK3)))
+        if($this->quote->zone==2){
+            return \Yii::$app->params['quote']['money_security_rate']['upstate_cities'];
+        } else {
+            if($this->quote->zone==3){
+                return \Yii::$app->params['quote']['money_security_rate']['ny_city'];
+            } else{
+                if(in_array($this->quote->country,[40,44,52,30,60])){
+                    return \Yii::$app->params['quote']['money_security_rate']['suburban'];
+                } else {
+                    return \Yii::$app->params['quote']['money_security_rate']['upstate'];
+                }
+            }
+        }
+    }
+    public function getMoneySecuritiesDeductible(){
+        return $this->getDeductibleFactorBP();
+    }
+    public function getMoneySecuritiesPremium(){
+        return round(($this->getMoneySecuritiesAmount()/1000)*$this->getMoneySecuritiesRate()*$this->getMoneySecuritiesDeductible(),0);
+    }
+
+    /**
+     * ---------------------------------------------Money & Securities--------------------------------------------------
      */
 
 

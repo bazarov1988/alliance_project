@@ -214,7 +214,7 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
             'equipment_breakdown'               => 'SF-345',
             'cost_provision'                    => 'SF-33',
             'loss_of_income'                    => 'SF-312',
-            'loss_of_income_a'                  => 'SF-312A',
+            'loss_of_income_sf'                 => 'SF-312A',
             'loss_payable'                      => 'SF-127',
             'direct_damages'                    => 'SF-94A',
             'time_element'                      => 'SF-95A',
@@ -237,7 +237,8 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
             'cause_of_loss_business_property'   => '',
             'employee_dishonesty'               => '*',
             'exterior_signs'                    => '*',
-            'loss_off_income_month'             => '*'
+            'loss_off_income_month'             => '*',
+            'money_securities'                  => '*'
         ];
     }
 
