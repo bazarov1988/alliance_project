@@ -802,7 +802,9 @@ return [
         '$300.001 to $400.000'=>100,
         '$400.001 to $500.000'=>150,
         'Greater than $500.000'=>175
-    ]
+    ],
+    'exterior_signs_rate'=>2,
+    'loss_off_income_month_factor'=>0.01
 
 
 ];
