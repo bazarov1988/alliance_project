@@ -36,6 +36,9 @@ class Quotes extends BaseQuotes{
         return $this->hasOne(User::className(),['id'=>'user_id']);
     }
 
+    private  $bldg_composite;
+    private  $bp_composite;
+
 
     /**
      * @return int
@@ -278,11 +281,17 @@ class Quotes extends BaseQuotes{
     }
 
     public function getBldgComposite(){
-        return round(round(round(round(round(round(round($this->getTableRateBuilding()*$this->getBuildingZoneFactor(),4)*$this->getLeadFactor(),4)*$this->getBuildingAmountOfIns(),4)*$this->getDeductibleFactorBuilding(),4)*$this->getBuildingCredits(),4)*$this->getSpecialConditionsBuilding(),4)*$this->getAggregateFactor(),4);
+        if(!$this->bldg_composite){
+            $this->bldg_composite = round(round(round(round(round(round(round($this->getTableRateBuilding()*$this->getBuildingZoneFactor(),4)*$this->getLeadFactor(),4)*$this->getBuildingAmountOfIns(),4)*$this->getDeductibleFactorBuilding(),4)*$this->getBuildingCredits(),4)*$this->getSpecialConditionsBuilding(),4)*$this->getAggregateFactor(),4);
+        }
+        return $this->bldg_composite;
     }
 
     public function getBPComposite(){
-        return round(round(round(round(round(round(round($this->getTableRateBP()*$this->getBPZoneFactor(),4)*$this->getLeadFactor(),4)*$this->getBPAmountOfIns(),4)*$this->getDeductibleFactorBP(),4)*$this->getBPCredits(),4)*$this->getSpecialConditionsBP(),4)*$this->getAggregateFactor(),4);
+        if(!$this->bp_composite){
+            $this->bp_composite = round(round(round(round(round(round(round($this->getTableRateBP()*$this->getBPZoneFactor(),4)*$this->getLeadFactor(),4)*$this->getBPAmountOfIns(),4)*$this->getDeductibleFactorBP(),4)*$this->getBPCredits(),4)*$this->getSpecialConditionsBP(),4)*$this->getAggregateFactor(),4);
+        }
+        return $this->bp_composite;
     }
 
 

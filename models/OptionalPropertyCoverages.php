@@ -32,7 +32,6 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     public function getDeductibleFactorBP(){
         if(!$this->deductible_bp){
             $this->deductible_bp = $this->quote->getDeductibleFactorBP();
-            return $this->deductible_bp;
         }
         return $this->deductible_bp;
     }
@@ -41,7 +40,6 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     public function getDeductibleFactorBuilding(){
         if(!$this->deductible_building){
             $this->deductible_building = $this->quote->getDeductibleFactorBuilding();
-            return $this->deductible_building;
         }
         return $this->deductible_building;
     }
@@ -49,7 +47,6 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     public function getTableRateBP(){
         if(!$this->rate_bp){
             $this->rate_bp = $this->quote->getTableRateBP();
-            return $this->rate_bp;
         }
         return $this->rate_bp;
     }
@@ -58,7 +55,6 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     public function getTableRateBuilding(){
         if(!$this->rate_building){
             $this->rate_building = $this->quote->getTableRateBuilding();
-            return $this->rate_building;
         }
         return $this->rate_building;
     }
@@ -490,6 +486,41 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     }
     /**
      * -----------------------------------Exterior Signs-----------------------------------------------------
+     */
+
+
+    /**
+     * -----------------------------------Loss of Income (additional months)-----------------------------------------------------
+     */
+
+    public function getDE5(){
+        return $this->loss_off_income_month;
+    }
+    public function getLoss_off_IncomeMonthFactor(){
+        return \Yii::$app->params['quote']['loss_off_income_month_factor'];
+    }
+    //building
+    public function getAF24(){
+        return $this->quote->getBldgComposite();
+    }
+    //bp
+    public function getAF25(){
+        return $this->quote->getBPComposite();
+    }
+
+    public function getLoss_off_IncomeMonthBuildingPremium(){
+        return round($this->getDE5()*$this->getLoss_off_IncomeMonthFactor()*$this->getAF24(),0);
+    }
+    public function getLoss_off_IncomeMonthBPPremium(){
+        return round($this->getDE5()*$this->getLoss_off_IncomeMonthFactor()*$this->getAF25(),0);
+    }
+
+    public function getLoss_off_IncomeMonthPremium(){
+        return $this->getLoss_off_IncomeMonthBuildingPremium()+$this->getLoss_off_IncomeMonthBPPremium();
+    }
+
+    /**
+     * -----------------------------------Loss of Income (additional months)-----------------------------------------------------
      */
 
 

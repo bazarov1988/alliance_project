@@ -224,6 +224,22 @@ if ($exteriorSigns >= 0) {
 }
 ?>
 
+<?php
+$lossOffIncomeMonth = $model->propertyCoverages->getLoss_off_IncomeMonthPremium();
+if ($lossOffIncomeMonth >= 0) {
+    ?>
+    <tr>
+        <td><?= $model->propertyCoverages->getFormNumber('loss_off_income_month') ?></td>
+        <td><?= $model->propertyCoverages->getAttributeLabel('loss_off_income_month') ?></td>
+        <td></td>
+        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($lossOffIncomeMonth) ?></td>
+        <td></td>
+    </tr>
+<?php
+}
+?>
+
 <?php /* --------------------------------------------------------------------------------------------------------- */ ?>
 
 <?php
