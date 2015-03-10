@@ -910,4 +910,26 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+
+    public function getRefrigeratedFoodPremium()
+    {
+        return round(($this->refrigerated_food / 1000) * $this->getRefrigeratedPropertyRate() * $this->getRefrigeratedPropertyDed(), 0);
+    }
+
+    public function getRefrigeratedFoodRate()
+    {
+        return \Yii::$app->params['quote']['refrigerated_food_rate'];
+    }
+
+    public function getRefrigeratedFoodDed()
+    {
+        // =IF(AND(DS5<>"";DS5<>0;DS5<>8);VLOOKUP($'List Sheet'.$DS$5;$'List Sheet'.$AL$3:$AN$9;3;FALSE());0)
+        if($this->food_deductible) {
+            return \Yii::$app->params['quote']['deductible_factors'][$this->food_deductible][1];
+        } else {
+            return 0;
+        }
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
 } 

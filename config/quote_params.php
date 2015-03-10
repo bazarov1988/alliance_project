@@ -201,6 +201,7 @@ return [
     ],
     'contractual_liability_limitation_credit' => 5,
     'designated_premises_credit' => 10,
+    'refrigerated_food_rate' => 12,
     'refrigerated_property_rate' => 12,
     'seasonal_var_rate' => [
         'standard' => 0.06,
