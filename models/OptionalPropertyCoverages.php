@@ -500,29 +500,89 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         return \Yii::$app->params['quote']['loss_off_income_month_factor'];
     }
     //building
-    public function getAF24(){
+    public function getLoss_off_IncomeAF24(){
         return $this->quote->getBldgComposite();
     }
     //bp
-    public function getAF25(){
+    public function getLoss_off_IncomeAF25(){
         return $this->quote->getBPComposite();
     }
 
     public function getLoss_off_IncomeMonthBuildingPremium(){
-        return round($this->getDE5()*$this->getLoss_off_IncomeMonthFactor()*$this->getAF24(),0);
+        return round($this->getDE5()*$this->getLoss_off_IncomeMonthFactor()*$this->getLoss_off_IncomeAF24(),0);
     }
     public function getLoss_off_IncomeMonthBPPremium(){
-        return round($this->getDE5()*$this->getLoss_off_IncomeMonthFactor()*$this->getAF25(),0);
+        return round($this->getDE5()*$this->getLoss_off_IncomeMonthFactor()*$this->getLoss_off_IncomeAF25(),0);
     }
 
     public function getLoss_off_IncomeMonthPremium(){
         return $this->getLoss_off_IncomeMonthBuildingPremium()+$this->getLoss_off_IncomeMonthBPPremium();
     }
-
     /**
      * -----------------------------------Loss of Income (additional months)-----------------------------------------------------
      */
 
+
+    /**
+     * -----------------------------------Loss of Income (SF-312)-----------------------------------------------------
+     */
+    public function Loss_of_IncomeAdditional(){
+        if(!empty($this->loss_of_income)){
+            return 1;
+        }
+        return 0;
+    }
+    public function Loss_of_IncomeFactor(){
+        if($this->Loss_of_IncomeAdditional()==1){
+            return \Yii::$app->params['quote']['loss_off_income_factor'];
+        } else {
+            return 0;
+        }
+    }
+    public function getLoss_off_IncomeBuildingPremium(){
+        return round($this->Loss_of_IncomeFactor()*$this->getLoss_off_IncomeAF24(),0);
+    }
+    public function getLoss_off_IncomeBPPremium(){
+        return round($this->Loss_of_IncomeFactor()*$this->getLoss_off_IncomeAF25(),0);
+    }
+
+    public function getLoss_off_IncomePremium(){
+        return $this->getLoss_off_IncomeBuildingPremium()+$this->getLoss_off_IncomeBPPremium();
+    }
+    /**
+     * -----------------------------------Loss of Income (SF-312)-----------------------------------------------------
+     */
+    public function Loss_of_IncomeAAdditional(){
+        if(!empty($this->loss_of_income_sf)){
+            return 1;
+        }
+        return 0;
+    }
+    public function Loss_of_IncomeAFactor(){
+        if($this->Loss_of_IncomeAAdditional()==1){
+            return \Yii::$app->params['quote']['loss_off_income_a_factor'];
+        } else {
+            return 0;
+        }
+    }
+    public function getLoss_off_IncomeABuildingPremium(){
+        return round($this->Loss_of_IncomeAFactor()*$this->getLoss_off_IncomeAF24(),0);
+    }
+    public function getLoss_off_IncomeABPPremium(){
+        return round($this->Loss_of_IncomeAFactor()*$this->getLoss_off_IncomeAF25(),0);
+    }
+
+    public function getLoss_off_IncomeAPremium(){
+        return $this->getLoss_off_IncomeABuildingPremium()+$this->getLoss_off_IncomeABPPremium();
+    }
+
+    /**
+     * -----------------------------------Loss of Income (SF-312A)-----------------------------------------------------
+     */
+
+    /**
+     * -----------------------------------Loss of Income (SF-312A)-----------------------------------------------------
+     */
 
     public function getInsuredPremisesAPremium()
     {

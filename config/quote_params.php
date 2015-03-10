@@ -798,7 +798,9 @@ return [
         'Greater than $500.000'=>175
     ],
     'exterior_signs_rate'=>2,
-    'loss_off_income_month_factor'=>0.01
+    'loss_off_income_month_factor'=>0.01,
+    'loss_off_income_factor'=>-0.02,
+    'loss_off_income_a_factor'=>-0.02,
 
 
 ];
