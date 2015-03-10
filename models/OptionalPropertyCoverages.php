@@ -160,10 +160,10 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
      * ---------------------------------------------------cause of loss methods------------------------------------
      */
     public function getCauseOfLossBuildingLimit(){
-        return $this->quote->building_amount_of_ins;
+        return !empty($this->quote->building_amount_of_ins)?$this->quote->building_amount_of_ins:0;
     }
     public function getCauseOfLossBPLimit(){
-        return $this->quote->bus_amount_of_ins;
+        return !empty($this->quote->bus_amount_of_ins)?$this->quote->bus_amount_of_ins:0;
     }
     public function getCauseOfLossBuildingDeductible(){
         return $this->getDeductibleFactorBuilding();
@@ -197,7 +197,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
      * --------------------------------------------compute coverage---------------------------------------------
      */
     public function getComputerCoverageLimit(){
-        return $this->computer_coverage;
+        return !empty($this->computer_coverage)?$this->computer_coverage:0;
     }
     public function getComputerCoverageRate(){
         return \Yii::$app->params['quote']['computer_coverage_rate'];
@@ -255,7 +255,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
      * ---------------------------------Customers Goods--------------------------------------------------------
      */
     public function getCustomersGoodsLimit(){
-        return $this->customers_goods;
+        return !empty($this->customers_goods)?$this->customers_goods:0;
     }
     public function getCustomersGoodsRate(){
         return $this->getTableRateBP();
@@ -368,6 +368,9 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         return round(($this->getEBPLimit()/100)*$this->getEBPRate()*$this->getDeductibleFactorBP()*\Yii::$app->params['quote']['earthquake_factor']);
     }
 
+    public function getEarthquakeCoverageLimit(){
+        return $this->getEBuildingLimit()+$this->getEBPLimit();
+    }
     public function getEarthquakeCoveragePremium(){
         return $this->getEBuildingPremium()+$this->getEBPPremium();
     }
@@ -658,6 +661,84 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     /**
      * ---------------------------------------------Money & Securities--------------------------------------------------
      */
+
+
+
+    /**
+     * ---------------------------------------------Off Premises Power - Direct Damages---------------------------------
+     */
+
+    public function getDirectDamagesLines(){
+        return \Yii::$app->quote->getValueByAttribute($this,'damages_transmission_lines');
+    }
+    public function getDirectDamagesAmount(){
+        return !empty($this->direct_damages)?$this->direct_damages:0;
+    }
+    public function getDirectDamagesRate(){
+        $limit = $this->getDirectDamagesAmount();
+        if($limit>3){
+            if($this->damages_transmission_lines==1){
+                return \Yii::$app->params['quote']['direct_damage_rate']['excluding'];
+            } else {
+                return \Yii::$app->params['quote']['direct_damage_rate']['including'];
+            }
+        } else {
+            return 0;
+        }
+    }
+    public function getDirectDamagesDeductible(){
+//=IF(AND(HU12<>"",HU12<>0,HU12<>8),VLOOKUP($'List Sheet'.HU12,$'List Sheet'.$AL$3:$AN$9,3,FALSE()),0)
+        if(!empty($this->damages_deductible)){
+            return \Yii::$app->excel->vlookup($this->damages_deductible,\Yii::$app->params['quote']['deductible_factors'],1,0);
+        } else {
+            return 0;
+        }
+    }
+    public function getDirectDamagesPremium(){
+        return round(($this->getDirectDamagesAmount()/100)*$this->getDirectDamagesRate()*$this->getDirectDamagesDeductible(),0);
+    }
+    /**
+     * ---------------------------------------------Off Premises Power - Direct Damages---------------------------------
+     */
+
+
+    /**
+     * ---------------------------------------------Off Premises Power - Time element---------------------------------
+     */
+
+    public function getTimeElementLines(){
+        return \Yii::$app->quote->getValueByAttribute($this,'time_transmission_lines');
+    }
+    public function getTimeElementAmount(){
+        return !empty($this->time_element)?$this->time_element:0;
+    }
+    public function getTimeElementRate(){
+        $limit = $this->getDirectDamagesAmount();
+        if($limit>3){
+            if($this->time_transmission_lines==1){
+                return \Yii::$app->params['quote']['time_element_rate']['excluding'];
+            } else {
+                return \Yii::$app->params['quote']['time_element_rate']['including'];
+            }
+        } else {
+            return 0;
+        }
+    }
+    public function getTimeElementDeductible(){
+//=IF(AND(HV12<>"",HV12<>0,HV12<>8),VLOOKUP($'List Sheet'.HV12,$'List Sheet'.$AL$3:$AN$9,3,FALSE()),0)
+        if(!empty($this->time_deductible)){
+            return \Yii::$app->excel->vlookup($this->time_deductible,\Yii::$app->params['quote']['deductible_factors'],1,0);
+        } else {
+            return 0;
+        }
+    }
+    public function getTimeElementPremium(){
+        return round(($this->getTimeElementAmount()/100)*$this->getTimeElementRate()*$this->getTimeElementDeductible(),0);
+    }
+    /**
+     * ---------------------------------------------Off Premises Power - Time Element---------------------------------
+     */
+
 
 
     public function getInsuredPremisesAPremium()

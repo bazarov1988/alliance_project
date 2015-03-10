@@ -141,7 +141,7 @@ if ($demolitionDebris >= 0) {
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('demolition_debris') ?></td>
         <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('demolition_debris') ?></td>
-        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->getDemolitionDebrisLimit());?></td>
         <td><?= Yii::$app->formatter->asCurrency($demolitionDebris) ?></td>
         <td><?php echo Yii::$app->quote->getValueByAttribute($model,'deductible_bldg')?></td>
     </tr>
@@ -156,7 +156,7 @@ if ($earthquakeCoverage >= 0) {
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('earthquake_coverage') ?></td>
         <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('earthquake_coverage') ?></td>
-        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->getEarthquakeCoverageLimit());?></td>
         <td><?= Yii::$app->formatter->asCurrency($earthquakeCoverage) ?></td>
         <td></td>
     </tr>
@@ -284,6 +284,39 @@ if ($moneySecurities >= 0) {
 <?php
 }
 ?>
+
+<?php
+$directDamages = $model->propertyCoverages->getDirectDamagesPremium();
+if ($directDamages >= 0) {
+    ?>
+    <tr>
+        <td><?= $model->propertyCoverages->getFormNumber('direct_damages') ?></td>
+        <td><?= $model->propertyCoverages->getAttributeLabel('direct_damages') ?></td>
+        <td></td>
+        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($directDamages) ?></td>
+        <td><?php echo Yii::$app->quote->getValueByAttribute($model->propertyCoverages,'damages_deductible')?></td>
+    </tr>
+<?php
+}
+?>
+
+<?php
+$timeElement = $model->propertyCoverages->getTimeElementPremium();
+if ($timeElement >= 0) {
+    ?>
+    <tr>
+        <td><?= $model->propertyCoverages->getFormNumber('time_element') ?></td>
+        <td><?= $model->propertyCoverages->getAttributeLabel('time_element') ?></td>
+        <td></td>
+        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($timeElement) ?></td>
+        <td><?php echo Yii::$app->quote->getValueByAttribute($model->propertyCoverages,'time_deductible')?></td>
+    </tr>
+<?php
+}
+?>
+
 
 <?php /* --------------------------------------------------------------------------------------------------------- */ ?>
 

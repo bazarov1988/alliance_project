@@ -157,14 +157,14 @@ class Quotes extends BaseQuotes{
 
     public function getDeductibleFactorBuilding(){
         if(!empty($this->deductible_bldg)&&$this->deductible_bldg!=8){
-            return \Yii::$app->excel->vlookup($this->deductible_bldg,\Yii::$app->params['quote']['deductible_factors'],1,false);
+            return \Yii::$app->excel->vlookup($this->deductible_bldg,\Yii::$app->params['quote']['deductible_factors'],1,0);
         } else {
             return 0;
         }
     }
     public function getDeductibleFactorBP(){
         if(!empty($this->deductible_bp)&&$this->deductible_bp!=8){
-            return \Yii::$app->excel->vlookup($this->deductible_bp,\Yii::$app->params['quote']['deductible_factors'],1,false);
+            return \Yii::$app->excel->vlookup($this->deductible_bp,\Yii::$app->params['quote']['deductible_factors'],1,0);
         } else {
             return 0;
         }
