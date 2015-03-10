@@ -243,6 +243,22 @@ if ($lossOffIncomeMonth >= 0) {
 <?php /* --------------------------------------------------------------------------------------------------------- */ ?>
 
 <?php
+$refrigeratedPropertyPremium = $model->propertyCoverages->getRefrigeratedPropertyPremium();
+if ($refrigeratedPropertyPremium > 0) {
+    ?>
+    <tr>
+        <td><?= $model->propertyCoverages->getFormNumber('refrigerated_property') ?></td>
+        <td><?= $model->propertyCoverages->getAttributeLabel('refrigerated_property') ?></td>
+        <td></td>
+        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($refrigeratedPropertyPremium) ?></td>
+        <td></td>
+    </tr>
+<?php
+}
+?>
+
+<?php
 $seasonVariationPremium = $model->propertyCoverages->getSeasonVariationPremium();
 if ($seasonVariationPremium > 0) {
     ?>

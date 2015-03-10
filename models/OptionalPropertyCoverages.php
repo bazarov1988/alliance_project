@@ -886,4 +886,28 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
             return 0;
         }
     }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function getRefrigeratedPropertyPremium()
+    {
+        return round(($this->refrigerated_property / 1000) * $this->getRefrigeratedPropertyRate() * $this->getRefrigeratedPropertyDed(), 0);
+    }
+
+    public function getRefrigeratedPropertyRate()
+    {
+        return \Yii::$app->params['quote']['refrigerated_property_rate'];
+    }
+
+    public function getRefrigeratedPropertyDed()
+    {
+        // =IF(AND(HX5<>"";HX5<>0;HX5<>8);VLOOKUP($'List Sheet'.HX5;$'List Sheet'.$AL$3:$AN$9;3;FALSE());0)
+        if($this->refrigerated_property_deductible) {
+            return \Yii::$app->params['quote']['deductible_factors'][$this->refrigerated_property_deductible][1];
+        } else {
+            return 0;
+        }
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
 } 
