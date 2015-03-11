@@ -12,12 +12,15 @@ use yii\widgets\ActiveForm;
 
 
     <table class="table table-striped table-bordered">
+        <thead>
         <tr>
             <th><?= Yii::t('app','Form #')?></th>
             <th><?= Yii::t('app','Form Title')?></th>
             <th><?= Yii::t('app','Standard')?></th>
             <th><?= Yii::t('app','Deluxe')?></th>
         </tr>
+        </thead>
+        <tbody>
         <tr>
             <td> </td>
             <td><?= $form->field($model, 'liability_form')->dropDownList(Yii::$app->params['quote']['liability_form']) ?></td>
@@ -334,6 +337,7 @@ use yii\widgets\ActiveForm;
             <td>none</td>
             <td>none</td>
         </tr>
+        </tbody>
     </table>
 
 

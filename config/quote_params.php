@@ -108,8 +108,9 @@ return [
     'automobile_coverage'=>[null=>'Select...',1=>'$100,000',2=>'$300,000',3=>'$500,000',4=>'$1,000,000',5=>'$2,000,000'],
     'automobile_coverage_a'=>[null=>'Select...',1=>'$100,000',2=>'$300,000',3=>'$500,000',4=>'$1,000,000',5=>'$2,000,000'],
 
-    'additional_insured_rate_minimum'=>['rate'=>0.025,'minimum'=>10],
-
+    'additional_insureds'=>['rate'=>0.025,'minimum'=>10],
+    'standard_minimum'=>'250',
+    'deluxe_minimum'=>'350',
     'deductible_factors'=>[
         1=>["$100",1.05 ],
         2=>["$250",1 ],

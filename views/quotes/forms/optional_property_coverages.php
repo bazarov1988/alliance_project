@@ -11,12 +11,15 @@ use yii\widgets\ActiveForm;
 <div class="quotes-optional_property_coverages">
 
     <table class="table table-striped table-bordered">
+        <thead>
         <tr>
             <th><?= Yii::t('app','Form #')?></th>
             <th><?= Yii::t('app','Form Title')?></th>
             <th><?= Yii::t('app','Standard')?></th>
             <th><?= Yii::t('app','Deluxe')?></th>
         </tr>
+        </thead>
+        <tbody>
         <tr>
             <td> * </td>
             <td><?= $form->field($model, 'accounts_receivable'); ?></td>
@@ -352,8 +355,6 @@ use yii\widgets\ActiveForm;
             <td>none</td>
             <td>none<td>
         </tr>
-
+        </tbody>
     </table>
-
-
 </div><!-- quotes-optional_property_coverages -->
