@@ -141,13 +141,11 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             $eu2 = $this->liability_form;
         }
         $rate_policy_offset = $eu2 + $rate_country_offset; //+1
-        return $eu40+$liability_rates_array[implode('', array($ep2, $l2, $en2))][$rate_policy_offset];
+        return $eu40+$liability_rates_array[\Yii::$app->excel->concat([$ep2, $l2, $en2])][$rate_policy_offset];
 
 
     }
     /**
-     * EW2 = 0.2;
-     * EW3 = 0.3;
      * EW4 = IF(EN2=6;IF(AND(G2=1;H2=5);EW3;EW2);0)
      */
     public function getCreditRate(){
