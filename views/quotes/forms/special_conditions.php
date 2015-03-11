@@ -12,10 +12,13 @@ use yii\widgets\ActiveForm;
 
 
     <table class="table table-striped table-bordered">
+        <thead>
         <tr>
             <th></th>
             <th><?= Yii::t('app','Credit')?></th>
         </tr>
+        </thead>
+        <tbody>
         <tr><td><?= $form->field($model, 'external_fire_alarm_system')->checkbox() ?></td><td>3%</td></tr>
         <tr><td><?= $form->field($model, 'central_station_reporting')->checkbox() ?></td><td>4%</td></tr>
         <tr><td><?= $form->field($model, 'smoke_detectors')->checkbox() ?></td><td>8%</td></tr>
@@ -29,8 +32,6 @@ use yii\widgets\ActiveForm;
         <tr><td><?= $form->field($model, 'metal_building')->checkbox() ?></td><td>20%</td></tr>
         <tr><td><?= $form->field($model, 'storage_buildings')->checkbox() ?></td><td>15%</td></tr>
         <tr><td><?= $form->field($model, 'conforming_code_specifications')->checkbox() ?></td><td>15%</td></tr>
-
+        </tbody>
     </table>
-
-
 </div><!-- quotes-special_conditions -->
