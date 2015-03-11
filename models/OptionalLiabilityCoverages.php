@@ -194,20 +194,25 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     }
     public function getPolicySummaryAfterAdditionalInsured(){
         $PSbefore = $this->getPolicySummaryBeforeAdditionalInsured();
+        $irpmIndex = 1;
+        if($this->quote->irpm_type==1) $irpmIndex = -1;
         $sumPremium =
             $PSbefore['building']['initial_premium']+
             $PSbefore['business_property']['initial_premium']+
             $PSbefore['optional_property']['initial_premium']+
             $PSbefore['optional_liability']['initial_premium'];
+        $finalPremium = $sumPremium+$this->getAdditionalInsuredPremium();
+        $irpm = round($finalPremium*(($this->quote->irpm_percent/100)*$irpmIndex),0);
+        $fireFree = ($PSbefore['building']['initial_premium']+$PSbefore['business_property']['initial_premium'])*(1+(($this->quote->irpm_percent/100)*$irpmIndex))*0.5*0.0125;
         return [
             'building'=>['initial_premium'=>$PSbefore['building']['initial_premium']],
             'business_property'=>['initial_premium'=>$PSbefore['business_property']['initial_premium']],
             'optional_property'=>['initial_premium'=>$PSbefore['optional_property']['initial_premium']],
             'optional_liability'=>['initial_premium'=>$PSbefore['optional_liability']['initial_premium']],
-            'premium'=>['initial_premium'=>$sumPremium],
-            'irpm'=>[],//todo
-            'total_premium'=>[], //todo
-            'fire_fee'=>[]];//todo
+            'premium'=>['initial_premium'=>$sumPremium,'final_premium'=>$finalPremium],
+            'irpm'=>[$irpm],//todo
+            'total_premium'=>[$finalPremium+$irpm], //todo
+            'fire_fee'=>[$fireFree]];//todo
     }
     /**
      * Add'l Insured - Contractual - Owners & Lessees

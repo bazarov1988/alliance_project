@@ -38,6 +38,7 @@ class Quotes extends BaseQuotes{
 
     private  $bldg_composite;
     private  $bp_composite;
+    private $total_results;
 
 
     /**
@@ -301,6 +302,10 @@ class Quotes extends BaseQuotes{
             return false;
         }
     }
+
+    public function getTotalResults(){
+        return $this->liabilityCoverages->getPolicySummaryAfterAdditionalInsured();
+    }
     public function getIRPMRate(){
         return 0;
     }
@@ -317,6 +322,10 @@ class Quotes extends BaseQuotes{
         return $this->getPremium()-$this->getIRPM();
     }
 
+
+    public function afterFind(){
+        //$this->total_results = $this->getTotalResults();
+    }
 
 
 }
