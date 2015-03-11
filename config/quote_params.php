@@ -1,6 +1,7 @@
 <?php
 $deductible = [null=>'Select...',1=>'$100',2=>'$250',3=>'$500',4=>'$1,000',5=>'$2,5000',6=>'$5,000',7=>'$10,000',8=>'None'];
 return [
+    'debit_credit'=>[1=>'Debit',2=>'Credit'],
     'construction' => [1=>'Frame',2=>'Masonry',3=>'Fire Resistive'],
     'protection'=>[null=>'Select...',1=>'Highly Protected',2=>'Protected',3=>'Semi-Protected',4=>'Unprotected'],
     'zone'=>[null=>'Select...',1=>'Upstate & Sub.',2=>'Upstate Cities',3=>'New York City'],

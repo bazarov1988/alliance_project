@@ -87,8 +87,10 @@ CREATE TABLE IF NOT EXISTS `bop_rater_entry` (
   `med_payment` int(11) DEFAULT NULL,
   `each_occurrence` varchar(255) NOT NULL,
   `each_person_accident` varchar(255) NOT NULL,
+  `irpm_type` tinyint(4) DEFAULT NULL,
+  `irpm_percent` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='bop_rater' AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='bop_rater' AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -641,7 +643,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `role_id`, `status`, `email`, `new_email`, `username`, `password`, `auth_key`, `api_key`, `login_ip`, `login_time`, `create_ip`, `create_time`, `update_time`, `ban_time`, `ban_reason`) VALUES
-(1, 1, 1, 'admin_test@gmail.com', NULL, 'admin', '$2y$13$M9DEPZeaKiMWSjUU59OsZOPGc9GVXHyVMmCoOR3zyaOmPLNm18mAO', 'xy3ANikyUbCqak6oKXdDFHLejW9M6aeo', 'eF9aTPt-CmWVq44dtoCPWC8AKrDp1aTZ', '127.0.0.1', '2015-03-06 14:51:02', '127.0.0.1', '2015-02-05 14:09:47', '2015-02-11 13:10:40', NULL, NULL),
+(1, 1, 1, 'admin_test@mail.com', NULL, 'admin', '$2y$13$M9DEPZeaKiMWSjUU59OsZOPGc9GVXHyVMmCoOR3zyaOmPLNm18mAO', 'xy3ANikyUbCqak6oKXdDFHLejW9M6aeo', 'eF9aTPt-CmWVq44dtoCPWC8AKrDp1aTZ', '127.0.0.1', '2015-03-06 14:51:02', '127.0.0.1', '2015-02-05 14:09:47', '2015-02-11 13:10:40', NULL, NULL),
 (2, 2, 1, 'test_user@mail.com', NULL, 'neo2', '$2y$13$sLTcPgTU11N26iGGCeaqUeACCgFsQQ4Mj.IkrhSOP2zjwKloA7yAW', NULL, NULL, NULL, NULL, NULL, '2015-02-11 13:10:02', NULL, NULL, NULL);
 
 -- --------------------------------------------------------

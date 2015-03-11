@@ -30,7 +30,7 @@ class QuotesController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['myquotes','myunfinishedquotes','view','create','delete','update','generate'],
+                        'actions' => ['myquotes','myunfinishedquotes','view','create','delete','update','generate','irpm'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -140,11 +140,8 @@ class QuotesController extends Controller
             $conditions->save();
             $property->quote_id = $model->id;
             $property->save();
-            if($model->status == Quotes::FINISHED){
-                $this->generate($this->findModel($model->id));
-            }
             Yii::$app->session->setFlash("Quote-saved", Yii::t("app", "Quote was saved."));
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['irpm', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -189,11 +186,9 @@ class QuotesController extends Controller
             $liability->save();
             $conditions->save();
             $property->save();
-            if($model->status == Quotes::FINISHED){
-                $this->generate($this->findModel($model->id));
-            }
+
             Yii::$app->session->setFlash("Quote-saved", Yii::t("app", "Quote was saved."));
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['irpm', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model'      => $model,
@@ -202,6 +197,32 @@ class QuotesController extends Controller
                 'property'   => $property,
             ]);
         }
+    }
+
+    public function actionIrpm($id){
+        $model = $this->findModel($id);
+        if($model->needIRPM()){
+            $model->setScenario('irpm');
+            $this->performAjaxValidation([$model]);
+            if($model->load(Yii::$app->request->post())){
+                if($model->save()){
+                    if($model->status == Quotes::FINISHED){
+                        $this->generate($this->findModel($model->id));
+                    }
+                    Yii::$app->session->setFlash("Quote-saved", Yii::t("app", "IRPM for Quote was saved."));
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            } else {
+                return $this->render('irpm',['model'=>$model]);
+            }
+        } else {
+            if($model->status == Quotes::FINISHED){
+                $this->generate($this->findModel($model->id));
+            }
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+
     }
 
     public function generate($model){

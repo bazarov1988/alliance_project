@@ -43,6 +43,8 @@ use app\models\Occupancy;
  * @property integer $med_payment
  * @property string $each_occurrence
  * @property string $each_person_accident
+ * @property string $irpm_type
+ * @property string $irpm_percent
  */
 class BaseQuotes extends \yii\db\ActiveRecord
 {
@@ -80,6 +82,9 @@ class BaseQuotes extends \yii\db\ActiveRecord
             [['building_amount_of_ins', 'bus_amount_of_ins'],'validateAmount'],
             [['building_amount_of_ins'],'validateAmountBuilding'],
             [['bus_amount_of_ins'],'validateAmountBP'],
+            [['irpm_type','irpm_percent'],'required','on'=>'irpm'],
+            [['irpm_type'],'integer','max'=>2,'on'=>'irpm'],
+            [['irpm_percent'],'integer','max'=>15,'on'=>'irpm'],
         ];
     }
 
@@ -123,6 +128,8 @@ class BaseQuotes extends \yii\db\ActiveRecord
             'med_payment' => Yii::t('app', 'Med Payment'),
             'each_occurrence' => Yii::t('app', 'Each Occurrence'),
             'each_person_accident' => Yii::t('app', 'Each Person/Accident'),
+            'irpm_percent'         => Yii::t('app', 'IRPM Percents'),
+            'irpm_type'            => Yii::t('app', 'IRPM Type'),
         ];
     }
     /**

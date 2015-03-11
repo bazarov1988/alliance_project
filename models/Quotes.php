@@ -294,6 +294,29 @@ class Quotes extends BaseQuotes{
         return $this->bp_composite;
     }
 
+    public function needIRPM(){
+        if($this->getPremium()>3499){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function getIRPMRate(){
+        return 0;
+    }
+    public function getIRPM(){
+        return 0;
+    }
+    public function getFireFree(){
+        return ($this->getBPComposite()+$this->getBldgComposite())*0.5*0.0125*(1+$this->getIRPMRate());
+    }
+    public function getPremium(){
+        return 0;
+    }
+    public function getPremiumTotal(){
+        return $this->getPremium()-$this->getIRPM();
+    }
+
 
 
 }

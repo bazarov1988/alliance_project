@@ -166,4 +166,5 @@
 
         </tbody>
     </table>
+    <?= $this->render('quote/_total', ['model' => $model]) ?>
 </div>

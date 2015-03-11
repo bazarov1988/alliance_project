@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'adminEmail' => 'admin@example.com',
+    'adminEmail' => 'alliancetestmail@gmail.com',
     'quote'=>include_once('quote_params.php')
 
 ];
