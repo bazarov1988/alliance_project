@@ -1,4 +1,4 @@
-<br />
+<br>
 <div class="tabbable">
     <ul class="nav nav-tabs">
         <li class="active"><a href="#d1" data-toggle="tab">Construction Help</a></li>
@@ -354,7 +354,3 @@
         </div>
     </div>
 </div>
-<br />
-<br />
-<br />
-<br />
