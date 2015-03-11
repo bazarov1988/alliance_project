@@ -10,7 +10,7 @@
         <thead>
         <tr>
             <th colspan="6">
-                Community BOP Quote <?= $model->name; ?> 11/12/2014
+                Community BOP Quote <?= $model->name; ?> <?= $model->date_quoted ?>
             </th>
         </tr>
         </thead>
@@ -92,7 +92,7 @@
             <td><?= Yii::$app->quote->getValueByAttribute($model, 'building_rc_acv') ?></td>
             <td><?= Yii::$app->formatter->asCurrency($model->building_amount_of_ins) ?></td>
             <td><?= Yii::$app->quote->getValueByAttribute($model, 'deductible_bldg') ?></td>
-            <td>$0.00</td>
+            <td><?= Yii::$app->formatter->asCurrency($model->getBldgComposite()) ?></td>
             <td>---</td>
         </tr>
         <tr>
@@ -100,7 +100,7 @@
             <td><?= Yii::$app->quote->getValueByAttribute($model, 'business_property_rc_acv') ?></td>
             <td><?= Yii::$app->formatter->asCurrency($model->bus_amount_of_ins); ?></td>
             <td><?= Yii::$app->quote->getValueByAttribute($model, 'deductible_bp') ?></td>
-            <td>$0.00</td>
+            <td><?= Yii::$app->formatter->asCurrency($model->getBPComposite()) ?></td>
             <td>---</td>
         </tr>
         <tr>
