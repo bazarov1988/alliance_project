@@ -214,11 +214,11 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
      * $'List Sheet'.HZ9
      */
     public function getAdditionalInsuredsMinimumTotal(){
-        return \Yii::$app->params['quote']['additional_insureds']['minimum']*$this->additional_insured_number;
+        return \Yii::$app->params['quote']['additional_insureds']['minimum'] * $this->additional_insured_number;
     }
     public function getAdditionalInsuredsRateTotal(){
-        $rate =  \Yii::$app->params['quote']['additional_insureds']['rate']*
-            $this->additional_insured_number*
+        $rate =  \Yii::$app->params['quote']['additional_insureds']['rate'] *
+            $this->additional_insured_number *
             $this->getPolicySummaryAfterAdditionalInsured()['premium']['initial_premium'];
         return $rate;
     }
