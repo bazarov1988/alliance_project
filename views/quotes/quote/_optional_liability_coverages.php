@@ -60,21 +60,6 @@
         <td></td>
     </tr>
 <?php endif; ?>
-    <tr>
-        <td>LS-373</td>
-        <td colspan="2">Exclusion of Canine Related Injuries or Damages</td>
-        <td></td>
-        <td>-$1.00</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
 
 <?php if ($model->liabilityCoverages->designated_premises): ?>
     <tr>

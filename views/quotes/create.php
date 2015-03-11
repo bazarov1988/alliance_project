@@ -60,10 +60,6 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-    <?= $form->field($model, 'status')->dropDownList([0=>'Unfinished',1=>'Finish Quote']) ?>
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
     <ul class="nav nav-tabs">
         <li class="active"><a href="#s1" data-toggle="tab">Community's BOP Rater</a></li>
         <li><a href="#s2" data-toggle="tab">Special Conditions</a></li>
@@ -71,6 +67,12 @@ $this->params['breadcrumbs'][] = $this->title;
         <li><a href="#s4" data-toggle="tab">Optional Liability Coverages</a></li>
         <li><a href="#s5" data-toggle="tab">Help</a></li>
     </ul>
+    <div style="margin-top: 15px;width: 30%">
+    <?= $form->field($model, 'status')->dropDownList([0=>'Unfinished',1=>'Finish Quote']) ?>
+    <div class="form-group">
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+    </div>
+    </div>
     <?php ActiveForm::end(); ?>
 
 </div>
