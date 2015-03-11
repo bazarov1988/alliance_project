@@ -107,7 +107,6 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     /**
      * @return CI1_CL11 CI1:CL11
      */
-
     public function getTotalPropertyCoverages(){
 
         $summ = 0;
@@ -170,6 +169,18 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     }
 
     /**
+     * IF(BU20;ROUND($'List Sheet'.FD2*-1;0);0)
+     * @return float|int
+     */
+    public function getBatteryExclusionPremium()
+    {
+        if($this->battery_exclusion){
+            return round(\Yii::$app->params['quote']['assault_and_batt'] * -1,0);
+        }
+        else return 0;
+    }
+
+    /**
      * @return float|int
      */
     function getTotalLiabilityCoverages(){
@@ -180,7 +191,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $summ+=$this->getAdditionalInsuredOwners();
         //
 //        $summ+=$'Rate Tables'.BZ18 todo (empty title)
-//        $summ+=$this->battery_exclusion; todo -
+        $summ+=$this->getBatteryExclusionPremium();
         $summ+=$this->getBeautyNBarberPremium();
         $summ+=$this->getDesignatedPremisesPremium();
 //        $summ+=$'Rate Tables'.BX40 // todo (empty title)
