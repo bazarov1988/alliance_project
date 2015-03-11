@@ -113,6 +113,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $summ = 0;
         /* @var $propCovrgs \app\models\OptionalPropertyCoverages */
         $propCovrgs = $this->quote->propertyCoverages;
+
         $summ += $propCovrgs->getAccountsReceivablePremium();
         $summ += $propCovrgs->getAdditionalExpensePremium();
 //        $summ += $propCovrgs->getAlcoholicBeveragesTaxExclusion();
@@ -125,6 +126,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $summ += $propCovrgs->getCauseOfLossBuildingPremium();
         $summ += $propCovrgs->getCauseOfLossBPPremium();
         $summ += $propCovrgs->getComputerCoveragePremium();
+
 //        $summ += $'Rate Tables'.BF37 //todo (unnamed field)
 
         $summ += $propCovrgs->getCookingProtectionInitialPremium();
@@ -135,8 +137,10 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $summ += $propCovrgs->getEmployeePremium();//Employee Dishonesty
         $summ += $propCovrgs->getEquipmentBreakdownPremium();
         $summ += $propCovrgs->getExteriorSignsPremium();
+
 //        $summ += $'Rate Tables'.BE67; //todo (unnamed field)
 //        $summ += $'Rate Tables'.BG69; //todo (unnamed field)
+
         $summ += $propCovrgs->getLoss_off_IncomeMonthPremium(); //$'Rate Tables'.BF74
         $summ += $propCovrgs->getLoss_off_IncomePremium(); //$'Rate Tables'.BF78
         $summ += $propCovrgs->getLoss_off_IncomeATotal(); //$'Rate Tables'.BL84
@@ -164,6 +168,10 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         return $summ;
 
     }
+
+    /**
+     * @return float|int
+     */
     function getTotalLiabilityCoverages(){
 
         $summ = 0;
@@ -192,6 +200,10 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $summ+=$this->getWaterDamageExclusionPremium();//Water Damage Exclusion - New York  City
         return $summ;
     }
+
+    /**
+     * @return array
+     */
     public function getPolicySummaryAfterAdditionalInsured(){
         $PSbefore = $this->getPolicySummaryBeforeAdditionalInsured();
         $irpmIndex = 1;
