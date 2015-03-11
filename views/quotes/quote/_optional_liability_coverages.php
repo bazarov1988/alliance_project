@@ -46,34 +46,23 @@
         <td><?php echo Yii::$app->quote->getValueByAttribute($model->liabilityCoverages, 'battery_exclusion') ?></td>
         <td colspan="2"><?php echo $model->liabilityCoverages->getAttributeLabel('battery_exclusion');//Additional Insured ?> </td>
         <td></td>
-        <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->battery_exclusion()) ?></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getBatteryExclusionPremium()) ?></td>
         <td></td>
     </tr>
 <?php endif; ?>
 <?php if ($model->liabilityCoverages->barber_shop_liability)://Beauty or Barber Shop Liability?>
     <tr>
         <td>LS-44</td>
-        <td><?php echo $model->liabilityCoverages->getAttributeLabel('barber_shop_liability'); ?></td>
-        <td> <?= $model->liabilityCoverages->getBeautyNBarberTotalEmployees() ?></td>
+        <td colspan="2"><?php echo $model->liabilityCoverages->getAttributeLabel('barber_shop_liability'); ?></td>
+
         <td><?= $model->liabilityCoverages->getBarberShopLimit() ?></td>
         <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getBeautyNBarberPremium()) ?></td>
         <td></td>
     </tr>
 <?php endif; ?>
-    <!--<tr>
-        <td>LS-373</td>
-        <td colspan="2">Exclusion of Canine Related Injuries or Damages</td>
-        <td></td>
-        <td>-$1.00</td>
-        <td></td>
-    </tr>-->
+
     <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td colspan="6"></td>
     </tr>
 
 <?php if ($model->liabilityCoverages->designated_premises): ?>
