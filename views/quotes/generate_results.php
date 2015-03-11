@@ -6,35 +6,35 @@
 
 <h1><?= $model->name ?></h1>
 <div class="quotes-update">
-    <table class="table table-striped1 table-bordered">
+    <table class="table table-bordered">
         <thead>
         <tr>
-            <th colspan="6">
+            <th colspan="6" class="bg-gray">
                 Community BOP Quote <?= $model->name; ?> 11/12/2014
             </th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td><strong>Named Ins:</strong></td>
+            <td class="bg-gray"><strong>Named Ins:</strong></td>
             <td colspan="5"><?= $model->name; ?></td>
         </tr>
         <tr>
-            <td><strong>Address:</strong></td>
+            <td class="bg-gray"><strong>Address:</strong></td>
             <td colspan="2"><?= $model->address; ?></td>
-            <td><strong>Zip Code:</strong></td>
+            <td class="bg-gray"><strong>Zip Code:</strong></td>
             <td colspan="2"><?= $model->zip_code; ?></td>
         </tr>
         <tr>
-            <td><strong>Date:</strong></td>
+            <td class="bg-gray"><strong>Date:</strong></td>
             <td><?= $model->date_quoted ?></td>
-            <td><strong>Agent:</strong></td>
+            <td class="bg-gray"><strong>Agent:</strong></td>
             <td colspan="3"><?= $model->agent; ?></td>
         </tr>
         <tr>
             <td colspan="6"></td>
         </tr>
-        <tr>
+        <tr class="bg-gray">
             <td><strong>Policy Type</strong></td>
             <td><strong>Construction :</strong></td>
             <td><strong>Protection :</strong></td>
@@ -53,7 +53,7 @@
         <tr>
             <td colspan="6"></td>
         </tr>
-        <tr>
+        <tr class="bg-gray">
             <td><strong>County</strong></td>
             <td><strong>Owner/Tenant</strong></td>
             <td><strong>Apt in Building</strong></td>
@@ -73,7 +73,7 @@
             <td colspan="6"></td>
         </tr>
         <tr>
-            <td><strong>Occupancy</strong></td>
+            <td class="bg-gray"><strong>Occupancy</strong></td>
             <td colspan="5"><?= $model->occupancy ? $model->occupancy->name : null ?></td>
         </tr>
         <tr>
@@ -81,14 +81,14 @@
         </tr>
         <tr>
             <td></td>
-            <td><strong>Settlement</strong></td>
-            <td><strong>Amount of Ins.</strong></td>
-            <td><strong>Deductible</strong></td>
-            <td><strong>Premium</strong></td>
-            <td><strong>Min.</strong></td>
+            <td class="bg-gray"><strong>Settlement</strong></td>
+            <td class="bg-gray"><strong>Amount of Ins.</strong></td>
+            <td class="bg-gray"><strong>Deductible</strong></td>
+            <td class="bg-gray"><strong>Premium</strong></td>
+            <td class="bg-gray"><strong>Min.</strong></td>
         </tr>
         <tr>
-            <td><strong>Building</strong></td>
+            <td class="bg-gray"><strong>Building</strong></td>
             <td><?= Yii::$app->quote->getValueByAttribute($model, 'building_rc_acv') ?></td>
             <td><?= Yii::$app->formatter->asCurrency($model->building_amount_of_ins) ?></td>
             <td><?= Yii::$app->quote->getValueByAttribute($model, 'deductible_bldg') ?></td>
@@ -96,7 +96,7 @@
             <td>---</td>
         </tr>
         <tr>
-            <td><strong>Bus. Prop.</strong></td>
+            <td class="bg-gray"><strong>Bus. Prop.</strong></td>
             <td><?= Yii::$app->quote->getValueByAttribute($model, 'business_property_rc_acv') ?></td>
             <td><?= Yii::$app->formatter->asCurrency($model->bus_amount_of_ins); ?></td>
             <td><?= Yii::$app->quote->getValueByAttribute($model, 'deductible_bp') ?></td>
@@ -106,8 +106,8 @@
         <tr>
             <td></td>
             <td></td>
-            <td><strong>BI & PD Limit</strong></td>
-            <td><strong>Aggregate Limit</strong></td>
+            <td class="bg-gray"><strong>BI & PD Limit</strong></td>
+            <td class="bg-gray"><strong>Aggregate Limit</strong></td>
             <td></td>
             <td></td>
         </tr>
@@ -123,7 +123,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td><strong>Medical Payments</strong></td>
+            <td class="bg-gray"><strong>Medical Payments</strong></td>
             <td></td>
             <td></td>
         </tr>
@@ -138,9 +138,9 @@
         </tr>
         <tr>
             <td colspan="5" class="text-center"><strong>Optional Coverages</strong></td>
-            <td><strong>Special</strong></td>
+            <td class="bg-gray"><strong>Special</strong></td>
         </tr>
-        <tr>
+        <tr class="bg-gray">
             <td><strong>Form #</strong></td>
             <td colspan="2"><strong>Form Title</strong></td>
             <td><strong>Limit</strong></td>
