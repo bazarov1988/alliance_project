@@ -9,11 +9,7 @@
 namespace app\models;
 use app\models\_base\BaseOptionalLiabilityCoverages;
 
-/**
- * Class OptionalLiabilityCoverages
- * @package app\models
- * @var $quote Quotes
- */
+
 class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 {
 
@@ -121,7 +117,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $summ += $propCovrgs->getAdditionalExpensePremium();
 //        $summ += $propCovrgs->getAlcoholicBeveragesTaxExclusion();
 //        $summ += $'Rate Tables'.BE12 //todo (unnamed field)
-        $summ += $propCovrgs->getBuildingInflationProtection();
+        $summ += $propCovrgs->getBuildingInflationProtectionPremium();
 //        $summ += $propCovrgs->getBusinessownersAgreedAmount();
 //        $summ += $'Rate Tables'.BH51 //todo (unnamed field)
 
@@ -143,17 +139,19 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 //        $summ += $'Rate Tables'.BG69; //todo (unnamed field)
         $summ += $propCovrgs->getLoss_off_IncomeMonthPremium(); //$'Rate Tables'.BF74
         $summ += $propCovrgs->getLoss_off_IncomePremium(); //$'Rate Tables'.BF78
-        $summ += $propCovrgs->getLoss_off_IncomeATotal(); //$'Rate Tables'.BL84 //todo not implemented yet
-//        $summ += $propCovrgs->getLossPayable(); $'Rate Tables'.BD86 //todo not implemented yet
-//        $summ +=  $'Rate Tables'.BF88 //Money & Securities //todo not implemented yet
-//        $summ +=  $'Rate Tables'.BG91 //Off Premises Power - Direct Damages //todo not implemented yet
-//        $summ +=  $'Rate Tables'.BG93 //Off Premises Power - Time Element //todo not implemented yet
+        $summ += $propCovrgs->getLoss_off_IncomeATotal(); //$'Rate Tables'.BL84
+        $summ += $propCovrgs->getLossPayablePremium(); //$'Rate Tables'.BD86
+        $summ +=  $propCovrgs->getMoneySecuritiesPremium();//$'Rate Tables'.BF88 //Money & Securities
+        $summ +=  $propCovrgs->getDirectDamagesPremium();//$'Rate Tables'.BG91 //Off Premises Power - Direct Damages
+        $summ +=  $propCovrgs->getTimeElementPremium();//$'Rate Tables'.BG93 //Off Premises Power - Time Element
+
 //        $summ += $'Rate Tables'.BF97 //todo (unnamed field)
 //        $summ += $'Rate Tables'.BE101 //todo (unnamed field)
 //        $summ += $'Rate Tables'.BF99 //todo (unnamed field)
 //        $summ += $'Rate Tables'.BE103 //todo (unnamed field)
-//        $summ += $propCovrgs->getOrdinanceAndLaw(); todo not implemented yet
-//        $summ += $propCovrgs->getOutsideGradeFloorBuildingGlass(); //todo not implemented yet
+
+        $summ += $propCovrgs->getOrdinanceAndLawPremium();
+        $summ += $propCovrgs->getBuildingGlassPremium();//OutsideGradeFloorBuildingGlass();
         $summ += $propCovrgs->getRefrigeratedFoodPremium();
         $summ += $propCovrgs->getRefrigeratedPropertyPremium();
         $summ += $propCovrgs->getSeasonVariationPremium();
@@ -167,31 +165,31 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     }
     function getTotalLiabilityCoverages(){
-        throw new \BadMethodCallException('Not implemented yet.');
+
         $summ = 0;
         $summ+=$this->getCreditPremium();
-        $summ+=self::getAdditionalInsuredContractors();
-        $summ+=self::getAdditionalInsuredOwners();
+        $summ+=$this->getAdditionalInsuredContractors();
+        $summ+=$this->getAdditionalInsuredOwners();
         //
 //        $summ+=$'Rate Tables'.BZ18 todo (empty title)
-//        $summ+=self::getAssaultBatteryAndExclusion(); todo -
-        $summ+=self::getBeautyNBarberPremium();
-        $summ+=self::getDesignatedPremisesPremium();
+//        $summ+=$this->battery_exclusion; todo -
+        $summ+=$this->getBeautyNBarberPremium();
+        $summ+=$this->getDesignatedPremisesPremium();
 //        $summ+=$'Rate Tables'.BX40 // todo (empty title)
-        $summ+=self::getContractualLiabilityLimitationPremium();
-        $summ+=self::getProjectOnlyCompPremium();//Cov. Applicable to Desig. Prem. or Project Only
+        $summ+=$this->getContractualLiabilityLimitationPremium();
+        $summ+=$this->getProjectOnlyCompPremium();//Cov. Applicable to Desig. Prem. or Project Only
 
-        $summ+=self::getAutomobileCoveragePremium();//Employers' Non-ownership Automobile Coverage
-        $summ+=self::getAcquiredEntitiesPremium();//Exclusion of Newly Acquired Entities
-        $summ+=self::getExclusionCanineRelatedInjuriesDamagesPremium();//Exclusion of Canine Related Injuries or Damages
-        $summ+=self::getExtendedPollutionExclusionPremium();//Extended Pollution Exclusion
-        $summ+=self::getFireLegalPremium();//Fire Legal
-        $summ+=self::getAutomobileCoverageAPremium();//Hired and Non-owned Automobile Coverage
-        $summ+=self::getLiquorLiabilityReceiptsPremium();//Liquor Liability
-        $summ+=self::getPersonalInjuryPremium();
-        $summ+=self::getPoolLiabilityPremium();
-        $summ+=self::getCompletedOperationsPremium();//Products/Completed Operations
-        $summ+=self::getWaterDamageExclusionPremium();//Water Damage Exclusion - New York  City
+        $summ+=$this->getAutomobileCoveragePremium();//Employers' Non-ownership Automobile Coverage
+        $summ+=$this->getAcquiredEntitiesPremium();//Exclusion of Newly Acquired Entities
+        $summ+=$this->getExclusionCanineRelatedInjuriesDamagesPremium();//Exclusion of Canine Related Injuries or Damages
+        $summ+=$this->getExtendedPollutionExclusionPremium();//Extended Pollution Exclusion
+        $summ+=$this->getFireLegalPremium();//Fire Legal
+        $summ+=$this->getAutomobileCoverageAPremium();//Hired and Non-owned Automobile Coverage
+        $summ+=$this->getLiquorLiabilityReceiptsPremium();//Liquor Liability
+        $summ+=$this->getPersonalInjuryPremium();
+        $summ+=$this->getPoolLiabilityPremium();
+        $summ+=$this->getCompletedOperationsPremium();//Products/Completed Operations
+        $summ+=$this->getWaterDamageExclusionPremium();//Water Damage Exclusion - New York  City
         return $summ;
     }
     public function getPolicySummaryAfterAdditionalInsured(){
@@ -297,7 +295,10 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     }
 
-    public function getAdditionalInsured(){
+    /**
+     * @return BY15
+     */
+    public function getAdditionalInsuredPremium(){
         $min = $this->getAdditionalInsuredsMinimumTotal();
         $rate =$this->getAdditionalInsuredsRateTotal();
         return $min>$rate?$min:$rate;
@@ -854,9 +855,6 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         }
     }
 
-    /**
-     * @return AF20
-     */
     public function getProjectOnlyCompPremium()
     {
         // =AF20 =SUM(IF(ISERROR(AF24);0;AF24);IF(ISERROR(AF25);0;AF25))
