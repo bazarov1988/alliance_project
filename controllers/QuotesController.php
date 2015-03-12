@@ -112,6 +112,8 @@ class QuotesController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $model->getTotalResults();
         return $this->render('generate_results', [
             'model' => $this->findModel($id),
         ]);

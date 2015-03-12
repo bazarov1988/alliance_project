@@ -304,7 +304,8 @@ class Quotes extends BaseQuotes{
     }
 
     public function getTotalResults(){
-        return $this->liabilityCoverages->getPolicySummaryAfterAdditionalInsured();
+        $this->total_results = $this->liabilityCoverages->getPolicySummaryAfterAdditionalInsured();
+        return $this->total_results;
     }
     public function getIRPMRate(){
         return 0;
@@ -321,11 +322,5 @@ class Quotes extends BaseQuotes{
     public function getPremiumTotal(){
         return $this->getPremium()-$this->getIRPM();
     }
-
-
-    public function afterFind(){
-        //$this->total_results = $this->getTotalResults();
-    }
-
 
 }
