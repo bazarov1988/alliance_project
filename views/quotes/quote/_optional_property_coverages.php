@@ -5,7 +5,7 @@ if ($receivablePremium > 0) {
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('accounts_receivable') ?></td>
         <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('accounts_receivable') ?></td>
-        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->accounts_receivable) ?></td>
         <td><?= Yii::$app->formatter->asCurrency($receivablePremium) ?></td>
         <td></td>
     </tr>
@@ -20,8 +20,22 @@ if ($additionalExpense > 0) {
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('additional_expense') ?></td>
         <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('additional_expense') ?></td>
-        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->additional_expense) ?></td>
         <td><?= Yii::$app->formatter->asCurrency($additionalExpense) ?></td>
+        <td></td>
+    </tr>
+<?php
+}
+?>
+
+<?php
+if (!empty($model->propertyCoverages->alcoholic_beverages_tax_exclusion)) {
+    ?>
+    <tr>
+        <td><?= $model->propertyCoverages->getFormNumber('alcoholic_beverages_tax_exclusion') ?></td>
+        <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('alcoholic_beverages_tax_exclusion') ?></td>
+        <td></td>
+        <td></td>
         <td></td>
     </tr>
 <?php
@@ -60,7 +74,7 @@ if ($burglaryRobbery > 0) {
 
 <?php
 $causeOfLossBuilding = $model->propertyCoverages->getCauseOfLossBuildingPremium();
-if ($causeOfLossBuilding > 0) {
+if ($causeOfLossBuilding != 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('cause_of_loss_building') ?></td>
@@ -75,7 +89,7 @@ if ($causeOfLossBuilding > 0) {
 
 <?php
 $causeOfLossBP = $model->propertyCoverages->getCauseOfLossBPPremium();
-if ($causeOfLossBP > 0) {
+if ($causeOfLossBP != 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('cause_of_loss_business_property') ?></td>
@@ -210,6 +224,20 @@ if ($exteriorSigns > 0) {
 ?>
 
 <?php
+if (!empty($model->propertyCoverages->cost_provision)) {
+    ?>
+    <tr>
+        <td><?= $model->propertyCoverages->getFormNumber('cost_provision') ?></td>
+        <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('cost_provision') ?></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+<?php
+}
+?>
+
+<?php
 $lossOffIncomeMonth = $model->propertyCoverages->getLoss_off_IncomeMonthPremium();
 if ($lossOffIncomeMonth > 0) {
     ?>
@@ -225,8 +253,8 @@ if ($lossOffIncomeMonth > 0) {
 ?>
 
 <?php
-$lossOffIncome= $model->propertyCoverages->getLoss_off_IncomePremium();
-if ($lossOffIncome > 0) {
+if (!empty($model->propertyCoverages->loss_of_income)) {
+    $lossOffIncome= $model->propertyCoverages->getLoss_off_IncomePremium();
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('loss_of_income') ?></td>
@@ -240,8 +268,8 @@ if ($lossOffIncome > 0) {
 ?>
 
 <?php
-$lossOffIncomeA= $model->propertyCoverages->getLoss_off_IncomeATotal();
-if ($lossOffIncomeA > 0) {
+if (!empty($model->propertyCoverages->loss_of_income_sf)) {
+    $lossOffIncomeA= $model->propertyCoverages->getLoss_off_IncomeATotal();
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('loss_of_income_sf') ?></td>
@@ -256,8 +284,8 @@ if ($lossOffIncomeA > 0) {
 
 
 <?php
-$lossPayable= $model->propertyCoverages->getLossPayablePremium();
-if ($lossPayable > 0) {
+if (!empty($model->propertyCoverages->loss_payable)) {
+    $lossPayable= $model->propertyCoverages->getLossPayablePremium();
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('loss_payable') ?></td>
