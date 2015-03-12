@@ -38,7 +38,7 @@ class Quotes extends BaseQuotes{
 
     private  $bldg_composite;
     private  $bp_composite;
-    private $total_results;
+    private  $total_results;
 
 
     /**
@@ -304,28 +304,21 @@ class Quotes extends BaseQuotes{
     }
 
     public function getTotalResults(){
-        return $this->liabilityCoverages->getPolicySummaryAfterAdditionalInsured();
+        $this->total_results = $this->liabilityCoverages->getTotalResults();
+        return $this->total_results;
     }
-    public function getIRPMRate(){
-        return 0;
-    }
+
     public function getIRPM(){
-        return 0;
+        return round($this->total_results['irpm'],0);
     }
     public function getFireFree(){
-        return ($this->getBPComposite()+$this->getBldgComposite())*0.5*0.0125*(1+$this->getIRPMRate());
+        return round($this->total_results['fire_free'],0);
     }
     public function getPremium(){
-        return 0;
+        return round($this->total_results['premium'],0);
     }
     public function getPremiumTotal(){
-        return $this->getPremium()-$this->getIRPM();
+        return round($this->total_results['total_premium'],0);
     }
-
-
-    public function afterFind(){
-        //$this->total_results = $this->getTotalResults();
-    }
-
 
 }
