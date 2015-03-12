@@ -907,7 +907,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     public function getAutomobileCoverageAgg()
     {
         // =IF(AND(GE2<>"";GE2<>0);VLOOKUP(GE2;BA3:BH8;GE15+1;FALSE());0)
-        return !empty($this->automobile_coverage) ? \Yii::$app->params['quote']['aggregate_factors'][$this->automobile_coverage - 1][$this->automobile_coverage_agregate] : 0;
+        return !empty($this->automobile_coverage) ? \Yii::$app->params['quote']['aggregate_factors'][$this->automobile_coverage][$this->automobile_coverage_agregate - 1] : 0;
     }
 
     // -----------------------------------------------------------------------------------------------------------------
