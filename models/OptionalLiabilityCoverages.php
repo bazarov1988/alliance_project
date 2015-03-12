@@ -13,34 +13,63 @@ use app\models\_base\BaseOptionalLiabilityCoverages;
 class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 {
 
-    public function getBarberShopFullTimePrice(){
-        $beauty_n_barber=\Yii::$app->params['quote']['beauty_n_barber'];
-        return $beauty_n_barber['beauty_parlor']['full_time'][$this->barber_shop_liability]*$this->emploees_full_time;
+    public function getBarberShopFullTimePrice()
+    {
+        $beauty_n_barber = \Yii::$app->params['quote']['beauty_n_barber'];
+        if ($this->barber_shop_liability) {
+            return $beauty_n_barber['beauty_parlor']['full_time'][$this->barber_shop_liability] * $this->emploees_full_time;
+        }
+        return null;
     }
-    public function getBarberShopPartTimePrice(){
-        $beauty_n_barber=\Yii::$app->params['quote']['beauty_n_barber'];
-        return $beauty_n_barber['beauty_parlor']['part_time'][$this->barber_shop_liability]*$this->emploees_part_time;
+
+    public function getBarberShopPartTimePrice()
+    {
+        $beauty_n_barber = \Yii::$app->params['quote']['beauty_n_barber'];
+        if ($this->barber_shop_liability) {
+            return $beauty_n_barber['beauty_parlor']['part_time'][$this->barber_shop_liability] * $this->emploees_part_time;
+        }
+        return null;
+    }
+
+    public function getBarberShopFirstBarberPrice()
+    {
+        if ($this->emploees_barbers_time > 0 && $this->barber_shop_liability) {
+            $beauty_n_barber = \Yii::$app->params['quote']['beauty_n_barber'];
+            return $beauty_n_barber['barber_shop']['first'][$this->barber_shop_liability] * 1;
+        }
+        return null;
+    }
+
+    public function getBarberShopAddlBarbersPrice()
+    {
+        if ($this->emploees_barbers_time > 0) {
+            $beauty_n_barber = \Yii::$app->params['quote']['beauty_n_barber'];
+            if (isset($beauty_n_barber['barber_shop']['each_add_l'][$this->barber_shop_liability]) || $this->emploees_barbers_time) {
+
+                return $beauty_n_barber['barber_shop']['each_add_l'][$this->barber_shop_liability] * ($this->emploees_barbers_time - 1);
+            }
+        }
+        return null;
 
     }
-    public function getBarberShopFirstBarberPrice(){
-        if($this->emploees_barbers_time>0){
-            $beauty_n_barber=\Yii::$app->params['quote']['beauty_n_barber'];
-            return $beauty_n_barber['barber_shop']['first'][$this->barber_shop_liability]*1;
+
+    public function getBarberShopManicuristsPrice()
+    {
+        if ($this->barber_shop_liability) {
+            $beauty_n_barber = \Yii::$app->params['quote']['beauty_n_barber'];
+            return $beauty_n_barber['manicurists'][$this->barber_shop_liability] * $this->emploees_manicurists;
         }
+        return null;
+
     }
-    public function getBarberShopAddlBarbersPrice(){
-        if($this->emploees_barbers_time>0){
-        $beauty_n_barber=\Yii::$app->params['quote']['beauty_n_barber'];
-        return $beauty_n_barber['barber_shop']['each_add_l'][$this->barber_shop_liability]*($this->emploees_barbers_time-1);
+
+    public function getBarberShopLimit()
+    {
+        if ($this->barber_shop_liability) {
+            $beauty_n_barber = \Yii::$app->params['quote']['beauty_n_barber'];
+            return $beauty_n_barber['limit'][$this->barber_shop_liability];
         }
-    }
-    public function getBarberShopManicuristsPrice(){
-        $beauty_n_barber=\Yii::$app->params['quote']['beauty_n_barber'];
-        return $beauty_n_barber['manicurists'][$this->barber_shop_liability]*$this->emploees_manicurists;
-    }
-    public function getBarberShopLimit(){
-        $beauty_n_barber=\Yii::$app->params['quote']['beauty_n_barber'];
-        return $beauty_n_barber['limit'][$this->barber_shop_liability];
+        return null;
     }
 
     public function getBeautyNBarberTotalEmployees()
@@ -64,9 +93,8 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
                 return $summ;
             else
                 return $beauty_n_barber['minimum_premium'];
-        } else {
-            return 0;
         }
+        return null;
     }
 
     /**
@@ -107,12 +135,12 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     /**
      * @return CI1_CL11 CI1:CL11
      */
-
     public function getTotalPropertyCoverages(){
 
         $summ = 0;
         /* @var $propCovrgs \app\models\OptionalPropertyCoverages */
         $propCovrgs = $this->quote->propertyCoverages;
+
         $summ += $propCovrgs->getAccountsReceivablePremium();
         $summ += $propCovrgs->getAdditionalExpensePremium();
 //        $summ += $propCovrgs->getAlcoholicBeveragesTaxExclusion();
@@ -125,6 +153,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $summ += $propCovrgs->getCauseOfLossBuildingPremium();
         $summ += $propCovrgs->getCauseOfLossBPPremium();
         $summ += $propCovrgs->getComputerCoveragePremium();
+
 //        $summ += $'Rate Tables'.BF37 //todo (unnamed field)
 
         $summ += $propCovrgs->getCookingProtectionInitialPremium();
@@ -135,8 +164,10 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $summ += $propCovrgs->getEmployeePremium();//Employee Dishonesty
         $summ += $propCovrgs->getEquipmentBreakdownPremium();
         $summ += $propCovrgs->getExteriorSignsPremium();
+
 //        $summ += $'Rate Tables'.BE67; //todo (unnamed field)
 //        $summ += $'Rate Tables'.BG69; //todo (unnamed field)
+
         $summ += $propCovrgs->getLoss_off_IncomeMonthPremium(); //$'Rate Tables'.BF74
         $summ += $propCovrgs->getLoss_off_IncomePremium(); //$'Rate Tables'.BF78
         $summ += $propCovrgs->getLoss_off_IncomeATotal(); //$'Rate Tables'.BL84
@@ -164,6 +195,22 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         return $summ;
 
     }
+
+    /**
+     * IF(BU20;ROUND($'List Sheet'.FD2*-1;0);0)
+     * @return float|int
+     */
+    public function getBatteryExclusionPremium()
+    {
+        if($this->battery_exclusion){
+            return round(\Yii::$app->params['quote']['assault_and_batt'] * -1,0);
+        }
+        return null;
+    }
+
+    /**
+     * @return float|int
+     */
     function getTotalLiabilityCoverages(){
 
         $summ = 0;
@@ -172,7 +219,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $summ+=$this->getAdditionalInsuredOwners();
         //
 //        $summ+=$'Rate Tables'.BZ18 todo (empty title)
-//        $summ+=$this->battery_exclusion; todo -
+        $summ+=$this->getBatteryExclusionPremium();
         $summ+=$this->getBeautyNBarberPremium();
         $summ+=$this->getDesignatedPremisesPremium();
 //        $summ+=$'Rate Tables'.BX40 // todo (empty title)
@@ -192,37 +239,46 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $summ+=$this->getWaterDamageExclusionPremium();//Water Damage Exclusion - New York  City
         return $summ;
     }
-    public function getPolicySummaryAfterAdditionalInsured(){
+
+    /**
+     * @return array
+     */
+    public function getPolicySummaryAfterAdditionalInsured()
+    {
         $PSbefore = $this->getPolicySummaryBeforeAdditionalInsured();
         $irpmIndex = 1;
-        if($this->quote->irpm_type==1) $irpmIndex = -1;
+        if ($this->quote->irpm_type == 1) $irpmIndex = -1;
         $sumPremium =
-            $PSbefore['building']['initial_premium']+
-            $PSbefore['business_property']['initial_premium']+
-            $PSbefore['optional_property']['initial_premium']+
+            $PSbefore['building']['initial_premium'] +
+            $PSbefore['business_property']['initial_premium'] +
+            $PSbefore['optional_property']['initial_premium'] +
             $PSbefore['optional_liability']['initial_premium'];
-        $finalPremium = $sumPremium+$this->getAdditionalInsuredPremium();
-        $irpm = round($finalPremium*(($this->quote->irpm_percent/100)*$irpmIndex),0);
-        $fireFree = ($PSbefore['building']['initial_premium']+$PSbefore['business_property']['initial_premium'])*(1+(($this->quote->irpm_percent/100)*$irpmIndex))*0.5*0.0125;
+        $finalPremium = $sumPremium + $this->getAdditionalInsuredPremium();
+        $irpm = round($finalPremium * (($this->quote->irpm_percent / 100) * $irpmIndex), 0);
+        $fireFree = ($PSbefore['building']['initial_premium'] + $PSbefore['business_property']['initial_premium']) * (1 + (($this->quote->irpm_percent / 100) * $irpmIndex)) * 0.5 * 0.0125;
         return [
-            'building'=>['initial_premium'=>$PSbefore['building']['initial_premium']],
-            'business_property'=>['initial_premium'=>$PSbefore['business_property']['initial_premium']],
-            'optional_property'=>['initial_premium'=>$PSbefore['optional_property']['initial_premium']],
-            'optional_liability'=>['initial_premium'=>$PSbefore['optional_liability']['initial_premium']],
-            'premium'=>['initial_premium'=>$sumPremium,'final_premium'=>$finalPremium],
-            'irpm'=>[$irpm],//todo
-            'total_premium'=>[$finalPremium+$irpm], //todo
-            'fire_fee'=>[$fireFree]];//todo
+            'building' => ['initial_premium' => $PSbefore['building']['initial_premium']],
+            'business_property' => ['initial_premium' => $PSbefore['business_property']['initial_premium']],
+            'optional_property' => ['initial_premium' => $PSbefore['optional_property']['initial_premium']],
+            'optional_liability' => ['initial_premium' => $PSbefore['optional_liability']['initial_premium']],
+            'premium' => ['initial_premium' => $sumPremium, 'final_premium' => $finalPremium],
+            'irpm' => [$irpm],
+            'total_premium' => [$finalPremium + $irpm],
+            'fire_fee' => [$fireFree]];
     }
+
     /**
      * Add'l Insured - Contractual - Owners & Lessees
      * $'List Sheet'.HZ9
      */
-    public function getAdditionalInsuredsMinimumTotal(){
+    public function getAdditionalInsuredsMinimumTotal()
+    {
         return \Yii::$app->params['quote']['additional_insureds']['minimum'] * $this->additional_insured_number;
     }
-    public function getAdditionalInsuredsRateTotal(){
-        $rate =  \Yii::$app->params['quote']['additional_insureds']['rate'] *
+
+    public function getAdditionalInsuredsRateTotal()
+    {
+        $rate = \Yii::$app->params['quote']['additional_insureds']['rate'] *
             $this->additional_insured_number *
             $this->getPolicySummaryAfterAdditionalInsured()['premium']['initial_premium'];
         return $rate;
@@ -252,15 +308,12 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         if ($this->quote->policy_type == 1) {
 //            return 'AF14';
             return \Yii::$app->params['quote']['standard_minimum'];
-
         } else {
 //            return 'AF15';
             return \Yii::$app->params['quote']['deluxe_minimum'];
-
-
         }
-
     }
+
     /**
      * @return AF8 =IF(AF24>0;IF(AF11<>AF20;AF11;AF24);0)
      */
@@ -276,9 +329,8 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 //                return 'AF24';
                 return $this->quote->getBldgComposite();
             }
-        }else{
-            return 0;
         }
+        return null;
     }
     /**
      * @return AF9  = IF(AF25>0;IF(AF11<>AF20;IF(AF24>0;0;AF11);AF25);0)
@@ -296,8 +348,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
                 }
             }
         }
-        return 0;
-
+        return null;
     }
 
     /**
@@ -369,7 +420,10 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             $eu2 = $this->liability_form;
         }
         $rate_policy_offset = $eu2 + $rate_country_offset; //+1
-        return $eu40+$liability_rates_array[\Yii::$app->excel->concat([$ep2, $l2, $en2])][$rate_policy_offset];
+        if (isset($liability_rates_array[\Yii::$app->excel->concat([$ep2, $l2, $en2])]))
+            return $eu40 + $liability_rates_array[\Yii::$app->excel->concat([$ep2, $l2, $en2])][$rate_policy_offset];
+        else
+            return null;
 
 
     }
