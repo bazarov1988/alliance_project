@@ -206,7 +206,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     //=IF(AND(CI4<>"",CI4<>8,CI4<>0),VLOOKUP($'List Sheet'.$CI$4,$'List Sheet'.$AL$3:$AN$9,3,FALSE()),0)
         if(!empty($this->deductible)){
             if(!empty(\Yii::$app->params['quote']['deductible_factors'][$this->deductible-1])){
-                return \Yii::$app->params['quote']['deductible_factors'][$this->deductible-1];
+                return \Yii::$app->params['quote']['deductible_factors'][$this->deductible-1][1];
             } else {
                 return 0;
             }
