@@ -89,7 +89,7 @@
     <tr>
         <td><?= $model->liabilityCoverages->getFormNumber('project_only') ?></td>
         <td colspan="2"><?= $model->liabilityCoverages->getAttributeLabel('project_only') ?></td>
-        <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getProjectOnlyLimit()) ?></td>
+        <td></td>
         <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getProjectOnlyPremium()) ?></td>
         <td></td>
     </tr>
@@ -164,7 +164,6 @@ if ($automobileCoveragePremium > 0) {
     <tr>
         <td><?= $model->liabilityCoverages->getFormNumber('certain_skin_care_service_a') ?></td>
         <td colspan="2"><?= $model->liabilityCoverages->getAttributeLabel('certain_skin_care_service_a') ?></td>
-        <td></td>
         <td></td>
         <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getCertainSkinCareServiceAPremium()) ?></td>
         <td></td>

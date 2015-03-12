@@ -505,7 +505,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getFairsPremium()
     {
-        return $this->fairs ? round(\Yii::$app->params['exclusionary_endorsement']['fairs'],0) : 0;
+        return $this->fairs ? round(\Yii::$app->params['quote']['exclusionary_endorsement']['fairs'],0) : 0;
     }
 
     public function getKnownLossDamagePremium()
@@ -926,10 +926,10 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     protected function getDesignatedPremiseCredits() {
         if($this->quote->occupied == 97) {
             // VLOOKUP($'Entry Sheet'.AF4;FU3:FW5;2;FALSE())
-            return \Yii::$app->params['quote']['designated_premise_credits'][$this->exclusionary_endorsements - 1][0];
+            return (isset(\Yii::$app->params['quote']['designated_premise_credits'][$this->exclusionary_endorsements - 1])) ? \Yii::$app->params['quote']['designated_premise_credits'][$this->exclusionary_endorsements - 1][0] : 0;
         } else {
             // VLOOKUP($'Entry Sheet'.AF4;FU3:FW5;3;FALSE())
-            return \Yii::$app->params['quote']['designated_premise_credits'][$this->exclusionary_endorsements - 1][1];
+            return (isset(\Yii::$app->params['quote']['designated_premise_credits'][$this->exclusionary_endorsements - 1])) ? \Yii::$app->params['quote']['designated_premise_credits'][$this->exclusionary_endorsements - 1][1] : 0;
         }
     }
 
