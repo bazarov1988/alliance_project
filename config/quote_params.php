@@ -152,6 +152,9 @@ return [
         'snow_ice'              => 0,
         'known_loss_damage'     => 0
     ],
+    'extended_pollution' => [
+        'credit' => 5
+    ],
     'factor_credit'=>[
         'restaurant'=>0.979,
         'all_others'=>0.986
