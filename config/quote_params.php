@@ -843,7 +843,9 @@ return [
     'time_element_rate'=>[
         'including'=>0.2,
         'excluding'=>0.1
-    ]
+    ],
+    'max_sum_for_irpm'=>3499
+
 
 
 ];

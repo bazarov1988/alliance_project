@@ -115,7 +115,7 @@ class QuotesController extends Controller
         $model = $this->findModel($id);
         $model->getTotalResults();
         return $this->render('generate_results', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 

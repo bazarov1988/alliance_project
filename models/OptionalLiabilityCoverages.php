@@ -246,7 +246,29 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     public function getPolicySummaryAfterAdditionalInsured()
     {
         $PSbefore = $this->getPolicySummaryBeforeAdditionalInsured();
+        $sumPremium =
+            $PSbefore['building']['initial_premium'] +
+            $PSbefore['business_property']['initial_premium'] +
+            $PSbefore['optional_property']['initial_premium'] +
+            $PSbefore['optional_liability']['initial_premium'];
+        return [
+            'building' => ['initial_premium' => $PSbefore['building']['initial_premium']],
+            'business_property' => ['initial_premium' => $PSbefore['business_property']['initial_premium']],
+            'optional_property' => ['initial_premium' => $PSbefore['optional_property']['initial_premium']],
+            'optional_liability' => ['initial_premium' => $PSbefore['optional_liability']['initial_premium']],
+            'premium' => ['initial_premium' => $sumPremium]
+        ];
+    }
+
+    /**
+     * get Total results
+     */
+    public function getTotalResults(){
+        $PSbefore = $this->getPolicySummaryBeforeAdditionalInsured();
         $irpmIndex = 1;
+        $finalPremium = 0;
+        $irpm = 0;
+        $fireFree = 0;
         if ($this->quote->irpm_type == 1) $irpmIndex = -1;
         $sumPremium =
             $PSbefore['building']['initial_premium'] +
@@ -254,17 +276,14 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             $PSbefore['optional_property']['initial_premium'] +
             $PSbefore['optional_liability']['initial_premium'];
         $finalPremium = $sumPremium + $this->getAdditionalInsuredPremium();
-        $irpm = round($finalPremium * (($this->quote->irpm_percent / 100) * $irpmIndex), 0);
+        $irpm = ($finalPremium>\Yii::$app->params['quote']['max_sum_for_irpm'])?round($finalPremium * (($this->quote->irpm_percent / 100) * $irpmIndex), 0):0;
         $fireFree = ($PSbefore['building']['initial_premium'] + $PSbefore['business_property']['initial_premium']) * (1 + (($this->quote->irpm_percent / 100) * $irpmIndex)) * 0.5 * 0.0125;
         return [
-            'building' => ['initial_premium' => $PSbefore['building']['initial_premium']],
-            'business_property' => ['initial_premium' => $PSbefore['business_property']['initial_premium']],
-            'optional_property' => ['initial_premium' => $PSbefore['optional_property']['initial_premium']],
-            'optional_liability' => ['initial_premium' => $PSbefore['optional_liability']['initial_premium']],
-            'premium' => ['initial_premium' => $sumPremium, 'final_premium' => $finalPremium],
-            'irpm' => [$irpm],
-            'total_premium' => [$finalPremium + $irpm],
-            'fire_fee' => [$fireFree]];
+            'premium' => $finalPremium,
+            'irpm' => $irpm,
+            'total_premium' => $finalPremium - $irpm,
+            'fire_free' => $fireFree
+        ];
     }
 
     /**
