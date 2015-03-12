@@ -37,7 +37,7 @@
         <td><?php echo Yii::$app->quote->getValueByAttribute($model->liabilityCoverages, 'additional_insured') ?></td>
         <td colspan="2"><?php echo $model->liabilityCoverages->getAttributeLabel('additional_insured'); ?> </td>
         <td></td>
-        <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->additional_insured) ?></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getAdditionalInsuredPremium()) ?></td>
         <td></td>
     </tr>
 <?php endif; ?>
@@ -60,10 +60,6 @@
         <td></td>
     </tr>
 <?php endif; ?>
-
-    <tr>
-        <td colspan="6"></td>
-    </tr>
 
 <?php if ($model->liabilityCoverages->designated_premises): ?>
     <tr>
@@ -400,7 +396,7 @@ if ($completedOperationsPremium != 0) {
 }
 ?>
 
-<?php if (!$model->liabilityCoverages->water_damage_exclusion): ?>
+<?php if ($model->liabilityCoverages->water_damage_exclusion): ?>
     <tr>
         <td><?= $model->liabilityCoverages->getFormNumber('water_damage_exclusion') ?></td>
         <td colspan="2"><?= $model->liabilityCoverages->getAttributeLabel('water_damage_exclusion') ?></td>
