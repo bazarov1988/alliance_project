@@ -1,12 +1,3 @@
-<?php if ($model->liabilityCoverages->liability_form): ?>
-    <tr>
-        <td><?php echo Yii::$app->quote->getValueByAttribute($model->liabilityCoverages, 'liability_form') ?></td>
-        <td colspan="2"><?php echo $model->liabilityCoverages->getAttributeLabel('liability_form') ?> </td>
-        <td><?php echo Yii::$app->quote->getValueByAttribute($model, 'prop_damage') ?></td>
-        <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getLiabilityFormPremium()) ?></td>
-        <td></td>
-    </tr>
-<?php endif; ?>
     <tr>
         <td></td>
         <td colspan="2">Credit to Remove Liability Coverage</td>
@@ -347,15 +338,6 @@ if ($liquorLiabilityReceiptsPremium != 0) {
 <?php
 }
 ?>
-
-    <tr>
-        <td>*</td>
-        <td colspan="2">Medical Payments</td>
-        <td><?= $model->liabilityCoverages->getMedicalPaymentsLimit() ?></td>
-        <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getMedicalPaymentsPremium()) ?></td>
-        <td></td>
-    </tr>
-
 <?php if ($model->liabilityCoverages->getPersonalInjuryApplies()): ?>
     <tr>
         <td><?= $model->liabilityCoverages->getFormNumber('personal_injury') ?></td>
