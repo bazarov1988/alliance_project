@@ -437,7 +437,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             $eu2 = $this->liability_form;
         }
         $rate_policy_offset = $eu2 + $rate_country_offset; //+1
-        var_dump($liability_rates_array[\Yii::$app->excel->concat([$ep2, $l2, $en2])][$rate_policy_offset-1]);die;
+
         if (isset($liability_rates_array[\Yii::$app->excel->concat([$ep2, $l2, $en2])]))
             return $eu40 + $liability_rates_array[\Yii::$app->excel->concat([$ep2, $l2, $en2])][$rate_policy_offset-1];
         else
