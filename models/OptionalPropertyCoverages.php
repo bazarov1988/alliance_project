@@ -305,10 +305,10 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         return round(($this->agreement_one/100)*$this->getDDBldgRate()*$this->getDDAggr_1_rate()*$this->getDDDeductible(),0);
     }
     public function getDDAggr_2_premium(){
-        return round(($this->agreement_two/100)*$this->getDDBldgRate()*$this->getDDAggr_2_rate()*$this->getDDDeductible(),0);
+        return round(($this->agreement_two/100)*$this->getDDAggr_2_rate()*$this->getDDDeductible(),0);
     }
     public function getDDAggr_3_premium(){
-        return round(($this->agreement_three/100)*$this->getDDBldgRate()*$this->getDDAggr_3_rate()*$this->getDDDeductible(),0);
+        return round(($this->agreement_three/100)*$this->getDDAggr_3_rate()*$this->getDDDeductible(),0);
     }
 
     public function getDemolitionDebrisLimit(){
