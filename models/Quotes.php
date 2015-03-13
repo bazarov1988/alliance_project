@@ -225,7 +225,7 @@ class Quotes extends BaseQuotes{
 
     public function getBPComposite(){
         if(!$this->bp_composite){
-            $this->bp_composite = round(round(round(round(round(round(round($this->getTableRateBP() * $this->getBPZoneFactor(),4)*$this->getLeadFactor(),4)*$this->getBPAmountOfIns(),4)*$this->getDeductibleFactorBP(),4)*$this->getBPCredits(),4)*$this->getSpecialConditionsBP(),4)*$this->getAggregateFactor(),4);
+            $this->bp_composite = round(round(round(round(round(round(round($this->getTableRateBP() * $this->getBPZoneFactor(),4)*$this->getLeadFactor(),4)*$this->getBPAmountOfIns(),4)*$this->getDeductibleFactorBP(),4)*$this->getBPCredits(),4)*$this->getSpecialConditionsBP(),4)*$this->getAggregateFactor(),0);
         }
         return $this->bp_composite;
     }
