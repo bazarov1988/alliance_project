@@ -235,12 +235,12 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
             'building_inflation_protection' => '*',
             'accounts_receivable' => '*',
             'additional_expense' => '*',
-            'cause_of_loss_building' => '',
-            'cause_of_loss_business_property' => '',
+            'cause_of_loss_building' => 'SF-3',
+            'cause_of_loss_business_property' => 'SF-4A',
             'employee_dishonesty' => '*',
             'exterior_signs' => '*',
             'loss_off_income_month' => '*',
-            'money_securities' => '*'
+            'money_securities' => '*',
         ];
     }
 
@@ -265,11 +265,9 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
      */
     public function validateBuildingInflation($attr, $params)
     {
-        /*
-        if ($this->$attr && $this->$attr != 6 && (trim($_POST['Quotes']['building_amount_of_ins']))) {
+        if ($this->$attr && $this->$attr != 6 && (empty($_POST['Quotes']['building_amount_of_ins']))) {
             $this->addError($attr, 'You can not have Building Inflation Coverage if you do not have Building coverage');
         }
-        */
     }
 
     public function validateLossBuilding($attr, $params)

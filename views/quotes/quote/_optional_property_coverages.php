@@ -78,7 +78,7 @@ if ($burglaryRobbery > 0) {
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('businessowners_burglary_robbery') ?></td>
         <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('businessowners_burglary_robbery') ?></td>
-        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->businessowners_burglary_robbery);?></td>
         <td><?= Yii::$app->formatter->asCurrency($burglaryRobbery) ?></td>
         <td><?php echo Yii::$app->quote->getValueByAttribute($model,'deductible_bp')?></td>
     </tr>
@@ -168,9 +168,23 @@ if ($demolitionDebris > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('demolition_debris') ?></td>
-        <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('demolition_debris') ?></td>
-        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->getDemolitionDebrisLimit());?></td>
-        <td><?= Yii::$app->formatter->asCurrency($demolitionDebris) ?></td>
+        <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('demolition_debris') ?> <div style="float: right"><?= $model->propertyCoverages->getAttributeLabel('agreement_one') ?></div></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->agreement_one);?></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->getDDAggr_1_premium()) ?></td>
+        <td><?php echo Yii::$app->quote->getValueByAttribute($model,'deductible_bldg')?></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td colspan="2"><div style="float: right"><?= $model->propertyCoverages->getAttributeLabel('agreement_two') ?></div></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->agreement_two);?></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->getDDAggr_2_premium()) ?></td>
+        <td><?php echo Yii::$app->quote->getValueByAttribute($model,'deductible_bldg')?></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td colspan="2"><div style="float: right"><?= $model->propertyCoverages->getAttributeLabel('agreement_three') ?></div></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->agreement_three);?></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->getDDAggr_3_premium()) ?></td>
         <td><?php echo Yii::$app->quote->getValueByAttribute($model,'deductible_bldg')?></td>
     </tr>
 <?php
@@ -183,9 +197,16 @@ if ($earthquakeCoverage > 0) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('earthquake_coverage') ?></td>
-        <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('earthquake_coverage') ?></td>
-        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->getEarthquakeCoverageLimit());?></td>
-        <td><?= Yii::$app->formatter->asCurrency($earthquakeCoverage) ?></td>
+        <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('earthquake_coverage') ?><div style="float: right"><?= $model->propertyCoverages->getAttributeLabel('building_limit') ?></div></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->getEBuildingLimit());?></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->getEBuildingPremium()) ?></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td colspan="2"><div style="float: right"><?= $model->propertyCoverages->getAttributeLabel('bus_prop_limit') ?></div></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->getEBPLimit());?></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->getEBPPremium()) ?></td>
         <td></td>
     </tr>
 <?php
@@ -199,7 +220,7 @@ if ($employee > 0) {
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('employee_dishonesty') ?></td>
         <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('employee_dishonesty') ?></td>
-        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->employee_dishonesty) ?></td>
         <td><?= Yii::$app->formatter->asCurrency($employee) ?></td>
         <td></td>
     </tr>
@@ -229,7 +250,7 @@ if ($exteriorSigns > 0) {
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('exterior_signs') ?></td>
         <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('exterior_signs') ?></td>
-        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->exterior_signs) ?></td>
         <td><?= Yii::$app->formatter->asCurrency($exteriorSigns) ?></td>
         <td><?php echo Yii::$app->quote->getValueByAttribute($model,'deductible_bp')?></td>
     </tr>
@@ -319,7 +340,7 @@ if ($moneySecurities > 0) {
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('money_securities') ?></td>
         <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('money_securities') ?></td>
-        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->money_securities) ?></td>
         <td><?= Yii::$app->formatter->asCurrency($moneySecurities) ?></td>
         <td><?php echo Yii::$app->quote->getValueByAttribute($model,'deductible_bp')?></td>
     </tr>
@@ -334,7 +355,7 @@ if ($directDamages > 0) {
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('direct_damages') ?></td>
         <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('direct_damages') ?></td>
-        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->direct_damages) ?></td>
         <td><?= Yii::$app->formatter->asCurrency($directDamages) ?></td>
         <td><?php echo Yii::$app->quote->getValueByAttribute($model->propertyCoverages,'damages_deductible')?></td>
     </tr>
@@ -349,7 +370,7 @@ if ($timeElement > 0) {
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('time_element') ?></td>
         <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('time_element') ?></td>
-        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->time_element) ?></td>
         <td><?= Yii::$app->formatter->asCurrency($timeElement) ?></td>
         <td><?php echo Yii::$app->quote->getValueByAttribute($model->propertyCoverages,'time_deductible')?></td>
     </tr>

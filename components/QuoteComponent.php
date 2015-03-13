@@ -16,10 +16,13 @@ class QuoteComponent extends Component{
      * @return null
      * @return val from params
      */
-    public function getValueByAttribute($model,$attr){
+    public function getValueByAttribute($model,$attr,$key=null){
+        if($key==null){
+            $key = $attr;
+        }
         if($model->$attr!==null){
-            if(!empty(Yii::$app->params['quote'][$attr])&&!empty(Yii::$app->params['quote'][$attr][$model->$attr])){
-                return Yii::$app->params['quote'][$attr][$model->$attr];
+            if(!empty(Yii::$app->params['quote'][$key])&&!empty(Yii::$app->params['quote'][$key][$model->$attr])){
+                return Yii::$app->params['quote'][$key][$model->$attr];
             } else {
                 return null;
             }
