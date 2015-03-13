@@ -43,6 +43,20 @@ if (!empty($model->propertyCoverages->alcoholic_beverages_tax_exclusion)) {
 ?>
 
 <?php
+if (!empty($model->propertyCoverages->businessowners_agreed_amount)) {
+    ?>
+    <tr>
+        <td><?= $model->propertyCoverages->getFormNumber('businessowners_agreed_amount') ?></td>
+        <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('businessowners_agreed_amount') ?></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+<?php
+}
+?>
+
+<?php
 $buildingInflation = $model->propertyCoverages->getBuildingInflationProtectionPremium();
 if ($buildingInflation > 0) {
     ?>
@@ -119,7 +133,7 @@ if ($computerCoverage > 0) {
 
 
 <?php
-$cookingProtectionInitial = $model->propertyCoverages->getCookingProtectionInitialPremium();
+$cookingProtectionInitial = $model->propertyCoverages->getCookingProtectionPremium();
 if ($cookingProtectionInitial > 0) {
     ?>
     <tr>
@@ -353,7 +367,7 @@ if ($ordinanceAndLawPremium > 0) {
     <tr>
         <td>SF-47</td>
         <td colspan="2">Ordinance and Law</td>
-        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->demolition_amount) ?></td>
         <td><?= Yii::$app->formatter->asCurrency($ordinanceAndLawPremium) ?></td>
         <td></td>
     </tr>

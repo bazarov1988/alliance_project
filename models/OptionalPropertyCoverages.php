@@ -176,7 +176,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         $deductible = $this->getCauseOfLossBuildingDeductible();
         $rate = 0;
         if(!empty($this->cause_of_loss_building)){
-            $rate = \Yii::$app->params['quote']['building_cause_loss'][$this->cause_of_loss_building-1][2];
+            $rate = \Yii::$app->params['quote']['building_cause_loss'][$this->cause_of_loss_building-1][$this->quote->policy_type];
         }
         return round(($limit/100)*$deductible*$rate,0);
     }
@@ -185,7 +185,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         $deductible = $this->getCauseOfLossBPDeductible();
         $rate = 0;
         if(!empty($this->cause_of_loss_business_property)){
-            $rate = \Yii::$app->params['quote']['business_property_cause_loss'][$this->cause_of_loss_business_property-1][2];
+            $rate = \Yii::$app->params['quote']['business_property_cause_loss'][$this->cause_of_loss_business_property-1][$this->quote->policy_type];
         }
         return round(($limit/100)*$deductible*$rate,0);
     }
@@ -245,7 +245,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         return $this->getDeductibleFactorBP();
     }
 
-    public function  getCookingProtectionLimit(){
+    public function  getCookingProtectionPremium(){
         return round($this->getCookingProtectionInitialPremium()*$this->getCookingProtectionInitialDeductible(),0);
     }
     // ----------------------------------cooking protection----------------------------------------------------
