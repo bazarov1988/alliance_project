@@ -343,7 +343,6 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 //        if('AF24'>0)
 
         if(!$this->quote->getBldgComposite()>0){
-            die("if('AF11'!='AF20')");
             if($this->getApplicablePremium()!=$this->getProjectOnlyCompPremium()){
 //                die("return 'AF11'");
                 return $this->getApplicablePremium();
