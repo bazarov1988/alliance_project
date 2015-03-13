@@ -122,7 +122,11 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             ($opt_prop['initial_premium']*$opt_prop['factor'])+
             ($opt_liab['initial_premium']*$opt_liab['factor']);
 
-
+/*        var_dump('building: ',$this->getCompositePremiumBuldingRate());
+        var_dump('business_property: ',$this->getCompositePremiumBusinessPropRate());
+        var_dump('optional_property: ',$this->getTotalPropertyCoverages());
+        var_dump('optional_liability: ',$this->getTotalLiabilityCoverages());
+        die;*/
         return [
             'building'=>$building,
             'business_property'=>$bp,
@@ -296,8 +300,9 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     public function getAdditionalInsuredsRateTotal()
     {
         $rate = \Yii::$app->params['quote']['additional_insureds']['rate'] *
-            $this->additional_insured_number /**
-            $this->getPolicySummaryAfterAdditionalInsured()['premium']['initial_premium']*/;
+            $this->additional_insured_number *
+            $this->getPolicySummaryAfterAdditionalInsured()['premium']['initial_premium'];
+
         return $rate;
     }
 
@@ -336,10 +341,11 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
      */
     public function getCompositePremiumBuldingRate(){
 //        if('AF24'>0)
-        if($this->quote->getBldgComposite()>0){
-//            if('AF11'!='AF20'){
+
+        if(!$this->quote->getBldgComposite()>0){
+            die("if('AF11'!='AF20')");
             if($this->getApplicablePremium()!=$this->getProjectOnlyCompPremium()){
-//                return 'AF11';
+//                die("return 'AF11'");
                 return $this->getApplicablePremium();
 
             }else{
@@ -374,6 +380,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     public function getAdditionalInsuredPremium(){
         $min = $this->getAdditionalInsuredsMinimumTotal();
         $rate =$this->getAdditionalInsuredsRateTotal();
+
         return $min>$rate?$min:$rate;
     }
     public function getAdditionalInsuredOwners(){

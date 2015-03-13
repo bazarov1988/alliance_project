@@ -16,7 +16,7 @@
     </tr>
 <?php if ($model->liabilityCoverages->add_insured_owners_lessees): ?>
     <tr>
-        <td>LS-24</td>
+        <td><?= $model->liabilityCoverages->getFormNumber('add_insured_owners_lessees') ?></td>
         <td colspan="2"><?php echo $model->liabilityCoverages->getAttributeLabel('add_insured_owners_lessees');//Additional Insured ?> </td>
         <td></td>
         <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getAdditionalInsuredOwners()) ?></td>
@@ -25,7 +25,7 @@
 <?php endif; ?>
 <?php if ($model->liabilityCoverages->add_insured_owners_contactors): ?>
     <tr>
-        <td>LS-24A</td>
+        <td><?= $model->liabilityCoverages->getFormNumber('add_insured_owners_contactors') ?></td>
         <td colspan="2"><?php echo $model->liabilityCoverages->getAttributeLabel('add_insured_owners_contactors');//Additional Insured ?> </td>
         <td></td>
         <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getAdditionalInsuredContractors()) ?></td>
@@ -34,7 +34,7 @@
 <?php endif; ?>
 <?php if ($model->liabilityCoverages->additional_insured): ?>
     <tr>
-        <td><?php echo Yii::$app->quote->getValueByAttribute($model->liabilityCoverages, 'additional_insured') ?></td>
+        <td><?= $model->liabilityCoverages->getFormNumber('additional_insured') ?></td>
         <td colspan="2"><?php echo $model->liabilityCoverages->getAttributeLabel('additional_insured'); ?> </td>
         <td></td>
         <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getAdditionalInsuredPremium()) ?></td>
@@ -43,7 +43,7 @@
 <?php endif; ?>
 <?php if ($model->liabilityCoverages->battery_exclusion): ?>
     <tr>
-        <td><?= $model->liabilityCoverages->getFormNumber('designated_premises') ?></td>
+        <td><?= $model->liabilityCoverages->getFormNumber('battery_exclusion') ?></td>
         <td colspan="2"><?php echo $model->liabilityCoverages->getAttributeLabel('battery_exclusion');//Additional Insured ?> </td>
         <td></td>
         <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getBatteryExclusionPremium()) ?></td>
@@ -52,7 +52,7 @@
 <?php endif; ?>
 <?php if ($model->liabilityCoverages->barber_shop_liability)://Beauty or Barber Shop Liability?>
     <tr>
-        <td>LS-44</td>
+        <td><?= $model->liabilityCoverages->getFormNumber('barber_shop_liability') ?>LS-44</td>
         <td colspan="2"><?php echo $model->liabilityCoverages->getAttributeLabel('barber_shop_liability'); ?></td>
 
         <td><?= $model->liabilityCoverages->getBarberShopLimit() ?></td>

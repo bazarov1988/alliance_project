@@ -48,8 +48,23 @@ class Quotes extends BaseQuotes{
 
     public function getBldgComposite(){
         if(!$this->bldg_composite){
-            $this->bldg_composite = round(round(round(round(round(round(round($this->getTableRateBuilding()*$this->getBuildingZoneFactor(),4)*$this->getLeadFactor(),4)*$this->getBuildingAmountOfIns(),4)*$this->getDeductibleFactorBuilding(),4)*$this->getBuildingCredits(),4)*$this->getSpecialConditionsBuilding(),4)*$this->getAggregateFactor(),4);
+            $this->bldg_composite = round(round(round(round(round(round(round($this->getTableRateBuilding() * $this->getBuildingZoneFactor(), 4) * $this->getLeadFactor(), 4) * $this->getBuildingAmountOfIns(), 4) * $this->getDeductibleFactorBuilding(), 4) * $this->getBuildingCredits(), 4) * $this->getSpecialConditionsBuilding(), 4) * $this->getAggregateFactor(), 0);
+//old formala
+            /*$old = round(
+                round(
+                    round(
+                        round(
+                            round(
+                                round(
+                                    round($this->getTableRateBuilding()*$this->getBuildingZoneFactor(),4)*
+                                    $this->getLeadFactor(),4)*
+                                $this->getBuildingAmountOfIns(),4)*
+                            $this->getDeductibleFactorBuilding(),4)*
+                        $this->getBuildingCredits(),4)*
+                    $this->getSpecialConditionsBuilding(),4)*
+                $this->getAggregateFactor(),4);*/
         }
+
         return $this->bldg_composite;
     }
 
