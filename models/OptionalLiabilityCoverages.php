@@ -160,7 +160,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
 //        $summ += $'Rate Tables'.BF37 //todo (unnamed field)
 
-        $summ += $propCovrgs->getCookingProtectionInitialPremium();
+        $summ += $propCovrgs->getCookingProtectionPremium();
         $summ += $propCovrgs->getCustomersGoodsPremium();
         $summ += $propCovrgs->getDemolitionDebrisPremium();
         $summ += $propCovrgs->getEarthquakeCoveragePremium();//summ
