@@ -428,16 +428,12 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             $eu40 = 0;
         }
 
-        switch ($quote->country) {
-            case 9:
-            case 30:
-            case 52:
-                $rate_country_offset = 3;
-                break;
-            default:
-                $rate_country_offset = 0;
-
+        if($quote->countryModel->sub_zone == 9 || $quote->country == 30 || $quote->country == 52) {
+            $rate_country_offset = 3;
+        } else {
+            $rate_country_offset = 0;
         }
+
         if ($this->liability_form == 0 || $this->liability_form == 4) {
             $eu2 = $l2;
         } else {
