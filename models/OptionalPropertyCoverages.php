@@ -405,7 +405,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     }
     public function getEquipmentBreakdownPremium(){
         if(!empty($this->equipment_breakdown)){
-
+            return $this->getEquipmentBreakdownPremiumSum();
         } else {
             return 0;
         }
