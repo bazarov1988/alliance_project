@@ -43,7 +43,7 @@
 <?php endif; ?>
 <?php if ($model->liabilityCoverages->battery_exclusion): ?>
     <tr>
-        <td><?php echo Yii::$app->quote->getValueByAttribute($model->liabilityCoverages, 'battery_exclusion') ?></td>
+        <td><?= $model->liabilityCoverages->getFormNumber('designated_premises') ?></td>
         <td colspan="2"><?php echo $model->liabilityCoverages->getAttributeLabel('battery_exclusion');//Additional Insured ?> </td>
         <td></td>
         <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getBatteryExclusionPremium()) ?></td>
