@@ -265,7 +265,7 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
      */
     public function validateBuildingInflation($attr, $params)
     {
-        if ($this->$attr && $this->$attr != 6 && (trim($_POST['Quotes']['building_amount_of_ins']))) {
+        if ($this->$attr && $this->$attr != 6 && (empty($_POST['Quotes']['building_amount_of_ins']))) {
             $this->addError($attr, 'You can not have Building Inflation Coverage if you do not have Building coverage');
         }
     }
