@@ -235,12 +235,12 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
             'building_inflation_protection' => '*',
             'accounts_receivable' => '*',
             'additional_expense' => '*',
-            'cause_of_loss_building' => '',
-            'cause_of_loss_business_property' => '',
+            'cause_of_loss_building' => 'SF-3',
+            'cause_of_loss_business_property' => 'SF-4A',
             'employee_dishonesty' => '*',
             'exterior_signs' => '*',
             'loss_off_income_month' => '*',
-            'money_securities' => '*'
+            'money_securities' => '*',
         ];
     }
 
