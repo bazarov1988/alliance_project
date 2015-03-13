@@ -469,10 +469,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         return $credit;
     }
 
-    public function getQuote()
-    {
-        return $this->hasOne(Quotes::className(),['id' => 'quote_id']);
-    }
+
 
     public function getAllHazardsPremium()
     {

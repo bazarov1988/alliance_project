@@ -1,6 +1,7 @@
 <?php
 
 namespace app\models\_base;
+use app\models\Quotes;
 
 use Yii;
 
@@ -216,7 +217,10 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             'battery_exclusion'                     => 'LS-73'
         ];
     }
-
+    public function getQuote()
+    {
+        return $this->hasOne(Quotes::className(),['id' => 'quote_id']);
+    }
     /**
      * @param $attr
      * @return null

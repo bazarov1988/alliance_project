@@ -52,7 +52,7 @@ class SpecialConditions extends BaseSpecialConditions{
     }
 
     public function getFireResistive(){
-        if(!empty($this->fire_resistive)){
+        if($this->quote->construction == 3){
             return \Yii::$app->params['quote']['special_conditions']['fire_resistive'];
         } else {
             return 0;

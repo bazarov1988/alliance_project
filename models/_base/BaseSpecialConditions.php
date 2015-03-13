@@ -1,7 +1,7 @@
 <?php
 
 namespace app\models\_base;
-
+use app\models\Quotes;
 use Yii;
 
 /**
@@ -67,5 +67,9 @@ class BaseSpecialConditions extends \yii\db\ActiveRecord
             'storage_buildings' => Yii::t('app', 'Storage Buildings with no utilities'),
             'conforming_code_specifications' => Yii::t('app', 'Underwriters Laboratory Approved Fire Appliances(conforming to code specifications)'),
         ];
+    }
+    public function getQuote()
+    {
+        return $this->hasOne(Quotes::className(),['id' => 'quote_id']);
     }
 }
