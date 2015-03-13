@@ -790,12 +790,12 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     {
         // 1=ROUND(BU155*BV155;0)
         // round(applies * rate)
-        return round($this->getApartmentsApplies() * $this->getApartmentsRate(), 0);
+        return abs(round($this->getApartmentsApplies() * $this->getApartmentsRate(), 0));
     }
     public function getApartmentsApplies()
     {
         $rate = $this->getApartmentsRate();
-        return $rate != 0 ? $rate : 0;
+        return $rate != 0 ? $this->water_damage_exclusion_apartments : 0;
     }
     public function getApartmentsRate()
     {
@@ -809,12 +809,12 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getOfficesInApartmentPremium()
     {
-        return round($this->getOfficesInApartmentApplies() * $this->getOfficesInApartmentRate(), 0);
+        return abs(round($this->getOfficesInApartmentApplies() * $this->getOfficesInApartmentRate(), 0));
     }
     public function getOfficesInApartmentApplies()
     {
         $rate = $this->getOfficesInApartmentRate();
-        return $rate != 0 ? $rate : 0;
+        return $rate != 0 ? $this->water_damage_exclusion_offices_in_ah : 0;
     }
     public function getOfficesInApartmentRate()
     {
@@ -827,12 +827,12 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getOfficesInOtherPremium()
     {
-        return round($this->getOfficesInOtherApplies() * $this->getOfficesInOtherRate(), 0);
+        return abs(round($this->getOfficesInOtherApplies() * $this->getOfficesInOtherRate(), 0));
     }
     public function getOfficesInOtherApplies()
     {
         $rate = $this->getOfficesInOtherRate();
-        return $rate != 0 ? $rate : 0;
+        return $rate != 0 ? $this->water_damage_exclusion_offices_in_ob : 0;
     }
     public function getOfficesInOtherRate()
     {
@@ -845,12 +845,12 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getStoreInApartmentPremium()
     {
-        return round($this->getStoreInApartmentApplies() * $this->getStoreInApartmentRate(), 0);
+        return abs(round($this->getStoreInApartmentApplies() * $this->getStoreInApartmentRate(), 0));
     }
     public function getStoreInApartmentApplies()
     {
         $rate = $this->getStoreInApartmentRate();
-        return $rate != 0 ? $rate : 0;
+        return $rate != 0 ? $this->water_damage_exclusion_store_in_ah : 0;
     }
     public function getStoreInApartmentRate()
     {
@@ -863,12 +863,12 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getStoreInOtherPremium()
     {
-        return round($this->getStoreInOtherApplies() * $this->getStoreInOtherRate(), 0);
+        return abs(round($this->getStoreInOtherApplies() * $this->getStoreInOtherRate(), 0));
     }
     public function getStoreInOtherApplies()
     {
         $rate = $this->getStoreInOtherRate();
-        return $rate != 0 ? $rate : 0;
+        return $rate != 0 ? $this->water_damage_exclusion_store_in_ob : 0;
     }
     public function getStoreInOtherRate()
     {
