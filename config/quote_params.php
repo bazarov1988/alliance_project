@@ -107,6 +107,14 @@ return [
     'storekeepers_burglary_robbery'=>[0=>'Select...',1=>'$500',2=>'$1,000',3=>'$1,500',4=>'$2,000',5=>'$3,000',6=>'$4,000',7=>'$5,000',8=>'None'],
     'automobile_coverage'=>[null=>'Select...',1=>'$100,000',2=>'$300,000',3=>'$500,000',4=>'$1,000,000',5=>'$2,000,000'],
     'automobile_coverage_a'=>[null=>'Select...',1=>'$100,000',2=>'$300,000',3=>'$500,000',4=>'$1,000,000',5=>'$2,000,000'],
+    'automobile_coverage_a_premiums' => [
+        1 => 37,
+        2 => 46,
+        3 => 54,
+        4 => 66,
+        5 => 80,
+        6 => 0
+    ],
     'assault_and_batt' => 10,
     'additional_insureds'=>['rate'=>0.025,'minimum'=>10],
     'standard_minimum'=>'250',

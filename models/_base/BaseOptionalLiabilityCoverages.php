@@ -212,7 +212,8 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             'automobile_coverage_a'                 => 'LS-50A',
             'liquor_liability_receipts'             => 'LS-34',
             'personal_injury'                       => '*',
-            'water_damage_exclusion'                => 'LS-75'
+            'water_damage_exclusion'                => 'LS-75',
+            'battery_exclusion'                     => 'LS-73'
         ];
     }
 

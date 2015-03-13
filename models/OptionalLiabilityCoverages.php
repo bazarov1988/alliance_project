@@ -578,9 +578,9 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     protected function getBldgSTD()
     {
         if($this->quote->policy_type == 1) {
-            return is_array(\Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()] ? \Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()][$this->quote->getRateTableKey()] : false);
+            return is_array(\Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()]) ? \Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()][$this->quote->getRateTableKey()] : false;
         } else {
-            return is_array(\Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()] ? \Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()][$this->quote->getRateTableKey()-3] : false);
+            return is_array(\Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()]) ? \Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()][$this->quote->getRateTableKey()-3] : false;
         }
     }
     protected function getCreditCombinationCode(){
@@ -635,7 +635,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getAutomobileCoverageAPrem()
     {
-        return !empty($this->automobile_coverage_a) ? \Yii::$app->params['quote']['automobile_coverage_a'][$this->automobile_coverage_a] : 0;
+        return !empty($this->automobile_coverage_a) ? \Yii::$app->params['quote']['automobile_coverage_a_premiums'][$this->automobile_coverage_a] : 0;
     }
 
     public function getAutomobileCoverageAAgg()
@@ -679,12 +679,14 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     {
         $prePremium = $this->getLiquorLiabilityReceiptsPrePremium();
         $minimum = $this->getLiquorLiabilityReceiptsPreMinimum();
+
         return  $prePremium > $minimum ? $prePremium : $minimum;
     }
 
     public function getLiquorLiabilityReceiptsPrePremium()
     {
-        if($this->liquor_liability_restaurant == 3) {
+        // =IF($'List Sheet'.GW15=3;$'List Sheet'.GU23;ROUND(BW125/100*BX125;0))
+        if($this->liquor_liability_restaurant == 7) {
             return $this->getLiquorLiabilityReceiptsRate();
         } else {
             return round(($this->liquor_liability_receipts / 100 * $this->getLiquorLiabilityReceiptsRate()), 0);
@@ -695,20 +697,21 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     {
         // =IF(GW15=1;OFFSET(GS2;GS2;5);IF(GW15=2;OFFSET(GS2;GS2;6);0))
         if($this->liquor_liability_restaurant == 1) {
-            return is_array(\Yii::$app->params['quote']['receipt_amount'][$this->liquor_liability_limit]) ? \Yii::$app->params['quote']['receipt_amount'][$this->liquor_liability_limit][4] : 0;
-        } else if($this->liquor_liability_restaurant == 2) {
-            return is_array(\Yii::$app->params['quote']['receipt_amount'][$this->liquor_liability_limit]) ? \Yii::$app->params['quote']['receipt_amount'][$this->liquor_liability_limit][5] : 0;
+            return is_array(\Yii::$app->params['quote']['receipt_amount'][$this->liquor_liability_limit - 1]) ? \Yii::$app->params['quote']['receipt_amount'][$this->liquor_liability_limit - 1][4] : 0;
+        } else if($this->liquor_liability_restaurant == 3) {
+            return is_array(\Yii::$app->params['quote']['receipt_amount'][$this->liquor_liability_limit - 1]) ? \Yii::$app->params['quote']['receipt_amount'][$this->liquor_liability_limit - 1][5] : 0;
+        } else {
+            return 0;
         }
-        return null;
     }
 
     public function getLiquorLiabilityReceiptsRate()
     {
         // $'List Sheet'.GU23 =IF(GW15=3;OFFSET(GS2;GS2;7);OFFSET(GS2;GS2;GU25))
-        if($this->liquor_liability_restaurant == 3) {
-            return is_array(\Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit]) ? \Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit][6] : 0;
+        if($this->liquor_liability_restaurant == 7) {
+            return is_array(\Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit - 1]) ? \Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit - 1][6] : 0;
         } else {
-            return is_array(\Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit]) ? \Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit][(int)$this->liquor_liability_receipts] : 0;
+            return is_array(\Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit - 1]) ? \Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit - 1][(int)$this->liquor_liability_restaurant] : 0;
         }
     }
 
@@ -795,7 +798,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     public function getApartmentsApplies()
     {
         $rate = $this->getApartmentsRate();
-        return $rate != 0 ? $rate : 0;
+        return $rate != 0 ? $this->water_damage_exclusion_apartments : 0;
     }
     public function getApartmentsRate()
     {
@@ -814,7 +817,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     public function getOfficesInApartmentApplies()
     {
         $rate = $this->getOfficesInApartmentRate();
-        return $rate != 0 ? $rate : 0;
+        return $rate != 0 ? $this->water_damage_exclusion_offices_in_ah : 0;
     }
     public function getOfficesInApartmentRate()
     {
@@ -832,7 +835,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     public function getOfficesInOtherApplies()
     {
         $rate = $this->getOfficesInOtherRate();
-        return $rate != 0 ? $rate : 0;
+        return $rate != 0 ? $this->water_damage_exclusion_offices_in_ob : 0;
     }
     public function getOfficesInOtherRate()
     {
@@ -850,7 +853,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     public function getStoreInApartmentApplies()
     {
         $rate = $this->getStoreInApartmentRate();
-        return $rate != 0 ? $rate : 0;
+        return $rate != 0 ? $this->water_damage_exclusion_store_in_ah : 0;
     }
     public function getStoreInApartmentRate()
     {
@@ -868,7 +871,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     public function getStoreInOtherApplies()
     {
         $rate = $this->getStoreInOtherRate();
-        return $rate != 0 ? $rate : 0;
+        return $rate != 0 ? $this->water_damage_exclusion_store_in_ob : 0;
     }
     public function getStoreInOtherRate()
     {
