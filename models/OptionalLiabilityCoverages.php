@@ -217,7 +217,6 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $summ+=$this->getCreditPremium();
         $summ+=$this->getAdditionalInsuredContractors();
         $summ+=$this->getAdditionalInsuredOwners();
-        //
 //        $summ+=$'Rate Tables'.BZ18 todo (empty title)
         $summ+=$this->getBatteryExclusionPremium();
         $summ+=$this->getBeautyNBarberPremium();
@@ -225,7 +224,6 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 //        $summ+=$'Rate Tables'.BX40 // todo (empty title)
         $summ+=$this->getContractualLiabilityLimitationPremium();
         $summ+=$this->getProjectOnlyCompPremium();//Cov. Applicable to Desig. Prem. or Project Only
-
         $summ+=$this->getAutomobileCoveragePremium();//Employers' Non-ownership Automobile Coverage
         $summ+=$this->getAcquiredEntitiesPremium();//Exclusion of Newly Acquired Entities
         $summ+=$this->getExclusionCanineRelatedInjuriesDamagesPremium();//Exclusion of Canine Related Injuries or Damages
@@ -298,8 +296,8 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     public function getAdditionalInsuredsRateTotal()
     {
         $rate = \Yii::$app->params['quote']['additional_insureds']['rate'] *
-            $this->additional_insured_number *
-            $this->getPolicySummaryAfterAdditionalInsured()['premium']['initial_premium'];
+            $this->additional_insured_number /**
+            $this->getPolicySummaryAfterAdditionalInsured()['premium']['initial_premium']*/;
         return $rate;
     }
 
@@ -404,23 +402,23 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         if (!$en2) return 0;
 
         $liability_rates_array = \Yii::$app->params['quote']['optional_liability_rates'];
-        $eu40 = 0;
+
         $eu37 = 325; //charge
         $l2 = $quote->policy_type == 1 ? 1 : 2;
 
 
         if ($quote->occupancy->mer_serc < 3 && $quote->operated_by_insured == 1) {
+            if ($quote->occupancy->rate_group < 5)
+                $ep2 = 2;
+            else
+                $ep2 = 3;
+        } else
             $ep2 = 1;
-
-        } else if ($quote->occupancy->rate_group < 5) {
-            $ep2 = 2;
-        } else {
-            $ep2 = 3;
-        }
-
 
         if ($en2 == 5) {//$2 000 000
             $eu40 = $eu37;
+        }else{
+            $eu40 = 0;
         }
 
         switch ($quote->country) {
@@ -439,8 +437,9 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             $eu2 = $this->liability_form;
         }
         $rate_policy_offset = $eu2 + $rate_country_offset; //+1
+        var_dump($liability_rates_array[\Yii::$app->excel->concat([$ep2, $l2, $en2])][$rate_policy_offset-1]);die;
         if (isset($liability_rates_array[\Yii::$app->excel->concat([$ep2, $l2, $en2])]))
-            return $eu40 + $liability_rates_array[\Yii::$app->excel->concat([$ep2, $l2, $en2])][$rate_policy_offset];
+            return $eu40 + $liability_rates_array[\Yii::$app->excel->concat([$ep2, $l2, $en2])][$rate_policy_offset-1];
         else
             return null;
 
