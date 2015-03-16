@@ -114,7 +114,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             'factor'=>1
         ];
         $opt_liab = [
-            'initial_premium'=>$this->getTotalLiabilityCoverages(),
+            'initial_premium'=>$this->getTotalLiabilityCoverages() + $this->getLiabilityFormPremium() + $this->getMedicalPaymentsPremium(),
             'factor'=>1
         ];
         $summ = ($building['initial_premium']*$building['factor'])+
@@ -122,11 +122,6 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             ($opt_prop['initial_premium']*$opt_prop['factor'])+
             ($opt_liab['initial_premium']*$opt_liab['factor']);
 
-/*        var_dump('building: ',$this->getCompositePremiumBuldingRate());
-        var_dump('business_property: ',$this->getCompositePremiumBusinessPropRate());
-        var_dump('optional_property: ',$this->getTotalPropertyCoverages());
-        var_dump('optional_liability: ',$this->getTotalLiabilityCoverages());
-        die;*/
         return [
             'building'=>$building,
             'business_property'=>$bp,
@@ -216,29 +211,51 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
      * @return float|int
      */
     function getTotalLiabilityCoverages(){
+/*
+        echo '<pre>';
+        var_dump(
+            $this->getCreditPremium(),
+            $this->getAdditionalInsuredOwners(),
+            $this->getAdditionalInsuredContractors(),
+            $this->getBatteryExclusionPremium(),
+            $this->getBeautyNBarberPremium(),
+            $this->getDesignatedPremisesPremium(),
+            $this->getContractualLiabilityLimitationPremium(),
+            $this->getProjectOnlyPremium(),
+            $this->getAutomobileCoveragePremium(),
+            $this->getAcquiredEntitiesPremium(),
+            $this->getExclusionCanineRelatedInjuriesDamagesPremium(),
+            $this->getExtendedPollutionExclusionPremium(),
+            $this->getFireLegalPremium(),
+            $this->getAutomobileCoverageAPremium(),
+            $this->getLiquorLiabilityReceiptsPremium(),
+            $this->getPersonalInjuryPremium(),
+            $this->getPoolLiabilityPremium(),
+            $this->getCompletedOperationsPremium(),
+            $this->getWaterDamageExclusionPremium()
+        );
+        // 89+99−10+862−10−5+58−5−1+68+65+441+400−15−243
+*/
+        $summ = $this->getCreditPremium()
+            + $this->getAdditionalInsuredOwners()
+            + $this->getAdditionalInsuredContractors()
+            + $this->getBatteryExclusionPremium()
+            + $this->getBeautyNBarberPremium()
+            + $this->getDesignatedPremisesPremium()
+            + $this->getContractualLiabilityLimitationPremium()
+            + $this->getProjectOnlyPremium()
+            + $this->getAutomobileCoveragePremium()
+            + $this->getAcquiredEntitiesPremium()
+            + $this->getExclusionCanineRelatedInjuriesDamagesPremium()
+            + $this->getExtendedPollutionExclusionPremium()
+            + $this->getFireLegalPremium()
+            + $this->getAutomobileCoverageAPremium()
+            + $this->getLiquorLiabilityReceiptsPremium()
+            + $this->getPersonalInjuryPremium()
+            + $this->getPoolLiabilityPremium()
+            + $this->getCompletedOperationsPremium()
+            + $this->getWaterDamageExclusionPremium();
 
-        $summ = 0;
-        $summ+=$this->getCreditPremium();
-        $summ+=$this->getAdditionalInsuredContractors();
-        $summ+=$this->getAdditionalInsuredOwners();
-//        $summ+=$'Rate Tables'.BZ18 todo (empty title)
-        $summ+=$this->getBatteryExclusionPremium();
-        $summ+=$this->getBeautyNBarberPremium();
-        $summ+=$this->getDesignatedPremisesPremium();
-//        $summ+=$'Rate Tables'.BX40 // todo (empty title)
-        $summ+=$this->getContractualLiabilityLimitationPremium();
-        $summ+=$this->getProjectOnlyCompPremium();//Cov. Applicable to Desig. Prem. or Project Only
-        $summ+=$this->getAutomobileCoveragePremium();//Employers' Non-ownership Automobile Coverage
-        $summ+=$this->getAcquiredEntitiesPremium();//Exclusion of Newly Acquired Entities
-        $summ+=$this->getExclusionCanineRelatedInjuriesDamagesPremium();//Exclusion of Canine Related Injuries or Damages
-        $summ+=$this->getExtendedPollutionExclusionPremium();//Extended Pollution Exclusion
-        $summ+=$this->getFireLegalPremium();//Fire Legal
-        $summ+=$this->getAutomobileCoverageAPremium();//Hired and Non-owned Automobile Coverage
-        $summ+=$this->getLiquorLiabilityReceiptsPremium();//Liquor Liability
-        $summ+=$this->getPersonalInjuryPremium();
-        $summ+=$this->getPoolLiabilityPremium();
-        $summ+=$this->getCompletedOperationsPremium();//Products/Completed Operations
-        $summ+=$this->getWaterDamageExclusionPremium();//Water Damage Exclusion - New York  City
         return $summ;
     }
 
@@ -303,7 +320,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             $this->additional_insured_number *
             $this->getPolicySummaryAfterAdditionalInsured()['premium']['initial_premium'];
 
-        return $rate;
+        return round($rate, 0);
     }
 
     /**
@@ -353,7 +370,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
                 return $this->quote->getBldgComposite();
             }
         }
-        return null;
+        return 0;
     }
     /**
      * @return AF9  = IF(AF25>0;IF(AF11<>AF20;IF(AF24>0;0;AF11);AF25);0)
@@ -371,7 +388,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
                 }
             }
         }
-        return null;
+        return 0;
     }
 
     /**
@@ -380,8 +397,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     public function getAdditionalInsuredPremium(){
         $min = $this->getAdditionalInsuredsMinimumTotal();
         $rate =$this->getAdditionalInsuredsRateTotal();
-
-        return $min>$rate?$min:$rate;
+        return $min>$rate ? $min : $rate;
     }
     public function getAdditionalInsuredOwners(){
         if($this->add_insured_owners_lessees) //IF(HZ3;HZ6;0)
@@ -578,9 +594,9 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     protected function getBldgSTD()
     {
         if($this->quote->policy_type == 1) {
-            return is_array(\Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()] ? \Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()][$this->quote->getRateTableKey()] : false);
+            return is_array(\Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()]) ? \Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()][$this->quote->getRateTableKey()] : false;
         } else {
-            return is_array(\Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()] ? \Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()][$this->quote->getRateTableKey()-3] : false);
+            return is_array(\Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()]) ? \Yii::$app->params['quote']['rate_table'][$this->getFireLegalCombinationCode()][$this->quote->getRateTableKey()-3] : false;
         }
     }
     protected function getCreditCombinationCode(){
@@ -630,12 +646,12 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getAutomobileCoverageAPremium()
     {
-        return $this->getAutomobileCoverageAPrem() * $this->getAutomobileCoverageAAgg();
+        return round($this->getAutomobileCoverageAPrem() * $this->getAutomobileCoverageAAgg(), 0);
     }
 
     public function getAutomobileCoverageAPrem()
     {
-        return !empty($this->automobile_coverage_a) ? \Yii::$app->params['quote']['automobile_coverage_a'][$this->automobile_coverage_a] : 0;
+        return !empty($this->automobile_coverage_a) ? \Yii::$app->params['quote']['automobile_coverage_a_premiums'][$this->automobile_coverage_a] : 0;
     }
 
     public function getAutomobileCoverageAAgg()
@@ -695,11 +711,11 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     {
         // =IF(GW15=1;OFFSET(GS2;GS2;5);IF(GW15=2;OFFSET(GS2;GS2;6);0))
         if($this->liquor_liability_restaurant == 1) {
-            return is_array(\Yii::$app->params['quote']['receipt_amount'][$this->liquor_liability_limit]) ? \Yii::$app->params['quote']['receipt_amount'][$this->liquor_liability_limit][4] : 0;
-        } else if($this->liquor_liability_restaurant == 2) {
-            return is_array(\Yii::$app->params['quote']['receipt_amount'][$this->liquor_liability_limit]) ? \Yii::$app->params['quote']['receipt_amount'][$this->liquor_liability_limit][5] : 0;
+            return is_array(\Yii::$app->params['quote']['receipt_amount'][$this->liquor_liability_limit-1]) ? \Yii::$app->params['quote']['receipt_amount'][$this->liquor_liability_limit-1][4] : 0;
+        } else if($this->liquor_liability_restaurant == 3) {
+            return is_array(\Yii::$app->params['quote']['receipt_amount'][$this->liquor_liability_limit-1]) ? \Yii::$app->params['quote']['receipt_amount'][$this->liquor_liability_limit-1][5] : 0;
         }
-        return null;
+        return 0;
     }
 
     public function getLiquorLiabilityReceiptsRate()
@@ -790,7 +806,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     {
         // 1=ROUND(BU155*BV155;0)
         // round(applies * rate)
-        return abs(round($this->getApartmentsApplies() * $this->getApartmentsRate(), 0));
+        return round($this->getApartmentsApplies() * $this->getApartmentsRate(), 0);
     }
     public function getApartmentsApplies()
     {
@@ -809,7 +825,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getOfficesInApartmentPremium()
     {
-        return abs(round($this->getOfficesInApartmentApplies() * $this->getOfficesInApartmentRate(), 0));
+        return round($this->getOfficesInApartmentApplies() * $this->getOfficesInApartmentRate(), 0);
     }
     public function getOfficesInApartmentApplies()
     {
@@ -827,7 +843,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getOfficesInOtherPremium()
     {
-        return abs(round($this->getOfficesInOtherApplies() * $this->getOfficesInOtherRate(), 0));
+        return round($this->getOfficesInOtherApplies() * $this->getOfficesInOtherRate(), 0);
     }
     public function getOfficesInOtherApplies()
     {
@@ -845,7 +861,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getStoreInApartmentPremium()
     {
-        return abs(round($this->getStoreInApartmentApplies() * $this->getStoreInApartmentRate(), 0));
+        return round($this->getStoreInApartmentApplies() * $this->getStoreInApartmentRate(), 0);
     }
     public function getStoreInApartmentApplies()
     {
@@ -863,7 +879,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getStoreInOtherPremium()
     {
-        return abs(round($this->getStoreInOtherApplies() * $this->getStoreInOtherRate(), 0));
+        return round($this->getStoreInOtherApplies() * $this->getStoreInOtherRate(), 0);
     }
     public function getStoreInOtherApplies()
     {

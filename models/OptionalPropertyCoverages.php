@@ -672,7 +672,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         return \Yii::$app->quote->getValueByAttribute($this,'damages_transmission_lines');
     }
     public function getDirectDamagesAmount(){
-        return !empty($this->direct_damages)?$this->direct_damages:0;
+        return !empty($this->direct_damages) ? $this->direct_damages : 0;
     }
     public function getDirectDamagesRate(){
         $limit = $this->getDirectDamagesAmount();
