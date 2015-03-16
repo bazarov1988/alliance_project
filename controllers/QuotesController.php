@@ -234,6 +234,7 @@ class QuotesController extends Controller
         }
         $pdf = $path.DIRECTORY_SEPARATOR.md5($model->id).'.pdf';
         $xls = $path.DIRECTORY_SEPARATOR.md5($model->id).'.xls';
+        $model->getTotalResults(); // !!!
         $content = $this->renderPartial('generate_results_pdf',['model'=>$model]);
         $this->generatePdf($content,$pdf,$model->name);
         $content = $this->renderPartial('generate_results_xls',['model'=>$model]);

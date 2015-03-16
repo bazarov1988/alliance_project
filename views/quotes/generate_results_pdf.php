@@ -1,9 +1,3 @@
-<?php if ($flash = Yii::$app->session->getFlash('Quote-saved')): ?>
-    <div class="alert alert-success">
-        <p><?= $flash ?></p>
-    </div>
-<?php endif; ?>
-
 <h1><?= $model->name ?></h1>
 <div class="quotes-update">
     <table class="table table-bordered">
@@ -47,8 +41,8 @@
             <td><?= Yii::$app->quote->getValueByAttribute($model, 'construction') ?></td>
             <td><?= Yii::$app->quote->getValueByAttribute($model, 'protection') ?></td>
             <td><?= Yii::$app->quote->getValueByAttribute($model, 'prior_since') ?></td>
-            <td><?= Yii::$app->quote->getValueByAttribute($model, 'does_lead_exclusion_apply') ?></td>
-            <td>No</td>
+            <td><?= Yii::$app->quote->getValueByAttribute($model, 'zone') ?></td>
+            <td><?= Yii::$app->quote->getValueByAttribute($model, 'does_lead_exclusion_apply','yes_no') ?></td>
         </tr>
         <tr>
             <td colspan="6"></td>
@@ -64,10 +58,10 @@
         <tr>
             <td><?= $model->countryModel ? $model->countryModel->name : null ?></td>
             <td><?= Yii::$app->quote->getValueByAttribute($model, 'occupied_type') ?></td>
-            <td><?= Yii::$app->quote->getValueByAttribute($model, 'apt_in_bldg') ?></td>
-            <td><?= Yii::$app->quote->getValueByAttribute($model, 'operated_by_insured') ?></td>
-            <td><?= Yii::$app->quote->getValueByAttribute($model, 'mercantile_occupany_in_bldg') ?></td>
-            <td><?= Yii::$app->quote->getValueByAttribute($model, 'sole_occupancy') ?></td>
+            <td><?= Yii::$app->quote->getValueByAttribute($model, 'apt_in_bldg','no_yes') ?></td>
+            <td><?= Yii::$app->quote->getValueByAttribute($model, 'operated_by_insured','yes_no') ?></td>
+            <td><?= Yii::$app->quote->getValueByAttribute($model, 'mercantile_occupany_in_bldg','yes_no') ?></td>
+            <td><?= Yii::$app->quote->getValueByAttribute($model, 'sole_occupancy','yes_no') ?></td>
         </tr>
         <tr>
             <td colspan="6"></td>
