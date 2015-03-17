@@ -1,306 +1,190 @@
 <table>
-<tr>
-    <td>Named Ins:</td>
-    <td><?=$model->name;?></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>Address:</td>
-    <td><?=$model->address;?></td>
-    <td></td>
-    <td>Zip Code:</td>
-    <td><?=$model->zip_code;?></td>
-    <td></td>
-</tr>
-<tr>
-    <td>Date:</td>
-    <td><?=$model->date_quoted?></td>
-    <td>Agent:</td>
-    <td><?=$model->agent;?></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>Policy Type</td>
-    <td>Construction :</td>
-    <td>Protection :</td>
-    <td>Prior/Since</td>
-    <td>Zone</td>
-    <td>Lead Excl.</td>
-</tr>
-<tr>
-    <td><?=Yii::$app->quote->getValueByAttribute($model,'policy_type')?></td>
-    <td><?=Yii::$app->quote->getValueByAttribute($model,'construction')?></td>
-    <td><?=Yii::$app->quote->getValueByAttribute($model,'protection')?></td>
-    <td><?=Yii::$app->quote->getValueByAttribute($model,'prior_since')?></td>
-    <td><?=Yii::$app->quote->getValueByAttribute($model,'does_lead_exclusion_apply')?></td>
-    <td>No</td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>County</td>
-    <td>Owner/Tenant</td>
-    <td>Apt in Building</td>
-    <td>Oper. by Ins.</td>
-    <td>Merc. in Bldg.</td>
-    <td>Sole Occup.</td>
-</tr>
-<tr>
-    <td><?=$model->countryModel?$model->countryModel->name:null?></td>
-    <td><?=Yii::$app->quote->getValueByAttribute($model,'occupied_type')?></td>
-    <td><?=Yii::$app->quote->getValueByAttribute($model,'apt_in_bldg')?></td>
-    <td><?=Yii::$app->quote->getValueByAttribute($model,'operated_by_insured')?></td>
-    <td><?=Yii::$app->quote->getValueByAttribute($model,'mercantile_occupany_in_bldg')?></td>
-    <td><?=Yii::$app->quote->getValueByAttribute($model,'sole_occupancy')?></td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>Occupancy</td>
-    <td><?=$model->occupancy?$model->occupancy->name:null?></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td></td>
-    <td>Settlement</td>
-    <td>Amount of Ins.</td>
-    <td>Deductible</td>
-    <td>Premium</td>
-    <td>Min.</td>
-</tr>
-<tr>
-    <td>Building</td>
-    <td><?=Yii::$app->quote->getValueByAttribute($model,'building_rc_acv')?></td>
-    <td><?=$model->building_amount_of_ins?'$'.$model->building_amount_of_ins:null;?></td>
-    <td><?=Yii::$app->quote->getValueByAttribute($model,'deductible_bldg')?></td>
-    <td>$0.00</td>
-    <td>---</td>
-</tr>
-<tr>
-    <td>Bus. Prop.</td>
-    <td><?=Yii::$app->quote->getValueByAttribute($model,'business_property_rc_acv')?></td>
-    <td><?=$model->bus_amount_of_ins?'$'.$model->bus_amount_of_ins:null;?></td>
-    <td><?=Yii::$app->quote->getValueByAttribute($model,'deductible_bp')?></td>
-    <td>$0.00</td>
-    <td>---</td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td>BI and PD Limit</td>
-    <td>Aggregate Limit</td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td>$1,000,000</td>
-    <td>$2,000,000</td>
-    <td>$255.00</td>
-    <td></td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>Medical Payments</td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><?=$model->medPayment?$model->medPayment->name:''?></td>
-    <td>$<?=$model->medPayment?($model->policy_type==1?$model->medPayment->standart:$model->medPayment->premium):null?></td>
-    <td></td>
-</tr>
-<tr>
-    <td>Optional Coverages</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>Special</td>
-</tr>
-<tr>
-    <td>Form #</td>
-    <td>Form Title</td>
-    <td></td>
-    <td>Limit</td>
-    <td>Premium</td>
-    <td>Ded</td>
-</tr>
-<tr>
-    <td></td>
-    <td>Optional Property Coverages</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>SF-4A</td>
-    <td>Cause of Loss - Business Property</td>
-    <td></td>
-    <td>$25,000 </td>
-    <td>$16.00</td>
-    <td></td>
-</tr>
-<tr>
-    <td>SF-345</td>
-    <td>Equipment Breakdown</td>
-    <td></td>
-    <td></td>
-    <td>$25.00</td>
-    <td></td>
-</tr>
-<tr>
-    <td></td>
-    <td>Optional Liability Coverages</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>LS-19</td>
-    <td>Additional Insured </td>
-    <td></td>
-    <td></td>
-    <td>$16.00</td>
-    <td></td>
-</tr>
-<tr>
-    <td>LS-44</td>
-    <td>Beauty or Barber Shop Liability</td>
-    <td></td>
-    <td>$1,000,000 / $2,000,000</td>
-    <td>$48.00</td>
-    <td></td>
-</tr>
-<tr>
-    <td>LS-373</td>
-    <td>Exclusion of Canine Related Injuries or Damages</td>
-    <td></td>
-    <td></td>
-    <td>-$1.00</td>
-    <td></td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>Forms and Endorsements</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>SF-20, SF-311, SF-4A (B.P.), LS-5, LS-373, SF-10S</td>
-    <td>This is a reference to the forms listed above (A23-A29)</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>, SF-345, LS-19, LS-44</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>* Refer to Form SF-311</td>
-    <td></td>
-    <td></td>
-    <td>Premium</td>
-    <td>$672.00</td>
-    <td>total of premiums</td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>IRPM</td>
-    <td>$0.00</td>
-    <td>IRPM Credits from help area like 1-10%</td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>Total Premium</td>
-    <td>$672.00</td>
-    <td>Total of Premium - IRPM Amount</td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>Fire Fee</td>
-    <td>$1.89</td>
-    <td>Auto based on territory</td>
-</tr>
+    <tr>
+        <th class="bg-gray">
+            Community BOP Quote <?= $model->name; ?> <?= $model->date_quoted ?>
+        </th>
+    </tr>
+    <tr>
+        <th class="bg-gray">Named Ins:</th>
+        <td><?= $model->name; ?></td>
+    </tr>
+    <tr>
+        <th class="bg-gray">Address:</th>
+        <td><?= $model->address; ?></td>
+        <td></td>
+        <th class="bg-gray">Zip Code:</th>
+        <td colspan="2"><?= $model->zip_code; ?></td>
+    </tr>
+    <tr>
+        <th class="bg-gray">Date:</th>
+        <td><?= $model->date_quoted ?></td>
+        <th class="bg-gray">Agent:</th>
+        <td ><?= $model->agent; ?></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <th class="bg-gray">Policy Type</th>
+        <th class="bg-gray">Construction</th>
+        <th class="bg-gray">Protection</th>
+        <th class="bg-gray">Prior/Since</th>
+        <th class="bg-gray">Zone</th>
+        <th class="bg-gray">Lead Excl.</th>
+    </tr>
+    <tr>
+        <td><?= Yii::$app->quote->getValueByAttribute($model, 'policy_type') ?></td>
+        <td><?= Yii::$app->quote->getValueByAttribute($model, 'construction') ?></td>
+        <td><?= Yii::$app->quote->getValueByAttribute($model, 'protection') ?></td>
+        <td><?= Yii::$app->quote->getValueByAttribute($model, 'prior_since') ?></td>
+        <td><?= Yii::$app->quote->getValueByAttribute($model, 'zone') ?></td>
+        <td><?= Yii::$app->quote->getValueByAttribute($model, 'does_lead_exclusion_apply','yes_no') ?></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr class="bg-gray">
+        <th class="bg-gray">County</th>
+        <th class="bg-gray">Owner/Tenant</th>
+        <th class="bg-gray">Apt in Building</th>
+        <th class="bg-gray">Oper. by Ins.</th>
+        <th class="bg-gray">Merc. in Bldg.</th>
+        <th class="bg-gray">Sole Occup.</th>
+    </tr>
+    <tr>
+        <td><?= $model->countryModel ? $model->countryModel->name : null ?></td>
+        <td><?= Yii::$app->quote->getValueByAttribute($model, 'occupied_type') ?></td>
+        <td><?= Yii::$app->quote->getValueByAttribute($model, 'apt_in_bldg','no_yes') ?></td>
+        <td><?= Yii::$app->quote->getValueByAttribute($model, 'operated_by_insured','yes_no') ?></td>
+        <td><?= Yii::$app->quote->getValueByAttribute($model, 'mercantile_occupany_in_bldg','yes_no') ?></td>
+        <td><?= Yii::$app->quote->getValueByAttribute($model, 'sole_occupancy','yes_no') ?></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <th class="bg-gray">Occupancy</th>
+        <td><?= $model->occupancy ? $model->occupancy->name : null ?></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <th class="bg-gray">Settlement</th>
+        <th class="bg-gray">Amount of Ins.</th>
+        <th class="bg-gray">Deductible</th>
+        <th class="bg-gray">Premium</th>
+        <th class="bg-gray">Min.</th>
+    </tr>
+    <tr>
+        <th class="bg-gray">Building</th>
+        <td><?= Yii::$app->quote->getValueByAttribute($model, 'building_rc_acv') ?></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->building_amount_of_ins) ?></td>
+        <td><?= Yii::$app->quote->getValueByAttribute($model, 'deductible_bldg') ?></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->getBldgComposite()) ?></td>
+        <td>---</td>
+    </tr>
+    <tr>
+        <th class="bg-gray">Bus. Prop.</th>
+        <td><?= Yii::$app->quote->getValueByAttribute($model, 'business_property_rc_acv') ?></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->bus_amount_of_ins); ?></td>
+        <td><?= Yii::$app->quote->getValueByAttribute($model, 'deductible_bp') ?></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->getBPComposite()) ?></td>
+        <td>---</td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+        <th class="bg-gray">BI and PD Limit</th>
+        <th class="bg-gray">Aggregate Limit</th>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td><?=Yii::$app->quote->getValueByAttribute($model,'prop_damage');?></td>
+        <td><?=Yii::$app->quote->getValueByAttribute($model,'agregate');?></td>
+        <td><?=Yii::$app->formatter->asCurrency( $model->liabilityCoverages->getLiabilityFormPremium()) ?></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <th class="bg-gray">Medical Payments</th>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><?= $model->medPayment ? $model->medPayment->name : '' ?></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getMedicalPaymentsPremium()) ?></td>
+    </tr>
+    <tr>
+        <th class="bg-gray">Optional Coverages</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <th class="bg-gray">Special</th>
+    </tr>
+    <tr>
+        <th class="bg-gray">Form #</th>
+        <th class="bg-gray">Form Title</th>
+        <th></th>
+        <th class="bg-gray">Limit</th>
+        <th class="bg-gray">Premium</th>
+        <th class="bg-gray">Ded</th>
+    </tr>
+    <tr>
+        <td></td>
+        <th>Optional Property Coverages</th>
+    </tr>
+    <?= $this->render('quote/_optional_property_coverages_xls', ['model' => $model]) ?>
+    <tr>
+        <td></td>
+        <th>Optional Liability Coverages</th>
+    </tr>
+    <?= $this->render('quote/_optional_liability_coverages_xls', ['model' => $model]) ?>
+
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <th class="bg-gray">Forms and Endorsements</th>
+    </tr>
+    <tr>
+        <td>SF-20, SF-311, SF-4A (B.P.), LS-5, LS-373, SF-10S This is a reference to the forms listed above (A23-A29)</td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <th class="bg-gray">Premium</th>
+        <td><?= Yii::$app->formatter->asCurrency($model->getPremium());?></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <th class="bg-gray">IRPM</th>
+        <td><?= Yii::$app->formatter->asCurrency($model->getIRPM());?></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <th class="bg-gray">Total Premium</th>
+        <td><?= Yii::$app->formatter->asCurrency($model->getPremiumTotal());?></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <th class="bg-gray">Fire Fee</th>
+        <td><?= Yii::$app->formatter->asCurrency($model->getFireFree());?></td>
+    </tr>
 </table>

@@ -335,6 +335,7 @@ class QuotesController extends Controller
     }
 
     public function generateExcel($html,$file){
+        libxml_use_internal_errors(true); // fix problem with "&" - http://stackoverflow.com/questions/14648442/domdocumentloadhtml-warning-htmlparseentityref-no-name-in-entity
         $htmlPhpExcel = new \Ticketpark\HtmlPhpExcel\HtmlPhpExcel($html);
         $htmlPhpExcel->process()->save($file);
     }
