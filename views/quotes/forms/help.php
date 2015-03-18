@@ -64,14 +64,14 @@
                         All of state except Richmond, Queens, New York, Bronx and Kings Counties and Upstate Cities.
                         <br />
                         Sub Zone<br />
-                            1.1	Clinton, Essex, Franklin, Hamilton, Herkimer, Jefferson, Lewis, Oswego, St. Lawrence and Washington County.<br />
+                            1.1	Clinton, Essex, Franklin, Hamilton, Herkimer, Jefferson, Lewis, Oswego, St. Lawrence and Washington Country.<br />
                             1.2	Allegany, Cattaraugus, Chautauqua, Chemung, Genesee, Livingston, Monroe, Niagara, Ontario,
-                            Orleans, Schuyler, Seneca, Stueben, Wayne, Wyoming and Yates County.<br />
+                            Orleans, Schuyler, Seneca, Stueben, Wayne, Wyoming and Yates Country.<br />
                             1.3	Albany, Broome, Cayuga, Chenango, Cortland, Delaware, Fulton, Madison, Montgomery, Otsego,
-                            Rensselaer, Saratoga, Schoharie, Tioga, Tompkins and Warren County.<br />
-                            1.4	Columbia, Dutchess, Greene, Putnam, Rockland, Sullivan, and Ulster County.<br />
-                            1.5	Nassau, Orange, Suffolk, Westchester County<br />
-                            1.6	Erie, Oneida, Onondaga and Schenectady County
+                            Rensselaer, Saratoga, Schoharie, Tioga, Tompkins and Warren Country.<br />
+                            1.4	Columbia, Dutchess, Greene, Putnam, Rockland, Sullivan, and Ulster Country.<br />
+                            1.5	Nassau, Orange, Suffolk, Westchester Country<br />
+                            1.6	Erie, Oneida, Onondaga and Schenectady Country
                     </td>
                 </tr>
                 <tr>
@@ -83,7 +83,7 @@
                 </tr>
                 <tr>
                     <td class="bg-gray"><strong>Zone 3 - New York City</strong></td>
-                    <td>Bronx, Kings, New York, Queens, and Richmond County.</td>
+                    <td>Bronx, Kings, New York, Queens, and Richmond Country.</td>
                 </tr>
             </table>
 

@@ -1,5 +1,5 @@
 <?php
-$deductible = [null=>'Select...',1=>'$100',2=>'$250',3=>'$500',4=>'$1,000',5=>'$2,5000',6=>'$5,000',7=>'$10,000',8=>'None'];
+$deductible = [null=>'Select...',1=>'$100',2=>'$250',3=>'$500',4=>'$1,000',5=>'$2,500',6=>'$5,000',7=>'$10,000',8=>'None'];
 return [
     'debit_credit'=>[1=>'Credit',2=>'Debit'],
     'construction' => [1=>'Frame',2=>'Masonry',3=>'Fire Resistive'],

@@ -48,7 +48,7 @@
             <td colspan="6"></td>
         </tr>
         <tr class="bg-gray">
-            <td><strong>County</strong></td>
+            <td><strong>Country</strong></td>
             <td><strong>Owner/Tenant</strong></td>
             <td><strong>Apt in Building</strong></td>
             <td><strong>Oper. by Ins.</strong></td>

@@ -44,7 +44,7 @@
         <td></td>
     </tr>
     <tr class="bg-gray">
-        <th class="bg-gray">County</th>
+        <th class="bg-gray">Country</th>
         <th class="bg-gray">Owner/Tenant</th>
         <th class="bg-gray">Apt in Building</th>
         <th class="bg-gray">Oper. by Ins.</th>
