@@ -700,7 +700,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getLiquorLiabilityReceiptsPrePremium()
     {
-        if($this->liquor_liability_restaurant == 3) {
+        if($this->liquor_liability_restaurant == 7) {
             return $this->getLiquorLiabilityReceiptsRate();
         } else {
             return round(($this->liquor_liability_receipts / 100 * $this->getLiquorLiabilityReceiptsRate()), 0);
@@ -721,10 +721,10 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     public function getLiquorLiabilityReceiptsRate()
     {
         // $'List Sheet'.GU23 =IF(GW15=3;OFFSET(GS2;GS2;7);OFFSET(GS2;GS2;GU25))
-        if($this->liquor_liability_restaurant == 3) {
-            return is_array(\Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit]) ? \Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit][6] : 0;
+        if($this->liquor_liability_restaurant == 7) {
+            return is_array(\Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit - 1]) ? \Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit - 1][6] : 0;
         } else {
-            return is_array(\Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit]) ? \Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit][(int)$this->liquor_liability_receipts] : 0;
+            return is_array(\Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit - 1]) ? \Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit - 1][(int)$this->liquor_liability_restaurant] : 0; // receipt
         }
     }
 
