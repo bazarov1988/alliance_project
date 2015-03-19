@@ -149,7 +149,7 @@
         </tr>
         <tr>
             <td></td>
-            <td colspan="2"><strong>Optional Property Coverages</strong></td>
+            <td colspan="2">Optional Property Coverages</td>
             <td></td>
             <td></td>
             <td></td>
@@ -157,7 +157,7 @@
         <?= $this->render('quote/_optional_property_coverages', ['model' => $model]) ?>
         <tr>
             <td></td>
-            <td colspan="2"><strong>Optional Liability Coverages</strong></td>
+            <td colspan="2">Optional Liability Coverages</td>
             <td></td>
             <td></td>
             <td></td>

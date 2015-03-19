@@ -138,12 +138,12 @@
     </tr>
     <tr>
         <td></td>
-        <th>Optional Property Coverages</th>
+        <td>Optional Property Coverages</td>
     </tr>
     <?= $this->render('quote/_optional_property_coverages_xls', ['model' => $model]) ?>
     <tr>
         <td></td>
-        <th>Optional Liability Coverages</th>
+        <td>Optional Liability Coverages</td>
     </tr>
     <?= $this->render('quote/_optional_liability_coverages_xls', ['model' => $model]) ?>
 
