@@ -720,6 +720,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getLiquorLiabilityReceiptsRate()
     {
+        if(empty($this->liquor_liability_limit )) return 0;
         // $'List Sheet'.GU23 =IF(GW15=3;OFFSET(GS2;GS2;7);OFFSET(GS2;GS2;GU25))
         if($this->liquor_liability_restaurant == 7) {
             return is_array(\Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit - 1]) ? \Yii::$app->params['quote']['receipt_amount'][(int)$this->liquor_liability_limit - 1][6] : 0;
