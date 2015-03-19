@@ -7,7 +7,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language'  => 'en-US',
-    'currencyCode'=>'USD',
+
     'modules'=>[
         'user' => [
             'class' => 'amnah\yii2\user\Module',
@@ -15,6 +15,9 @@ $config = [
         ],
     ],
     'components' => [
+        'formatter' => [
+            'currencyCode' => 'USD',
+        ],
         'excel'=>[
             'class'=>'app\components\ExcelComponent'
         ],
