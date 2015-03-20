@@ -229,7 +229,7 @@ if ($employee > 0) {
 ?>
 
 <?php
-$equipmentBreakdown = $model->propertyCoverages->getEquipmentBreakdownPremiumSum();
+$equipmentBreakdown = $model->propertyCoverages->getEquipmentBreakdownPremium();
 if ($equipmentBreakdown > 0) {
     ?>
     <tr>
