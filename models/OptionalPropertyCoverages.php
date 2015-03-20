@@ -1130,7 +1130,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 
     public function getRefrigeratedFoodPremium()
     {
-        return round(($this->refrigerated_food / 1000) * $this->getRefrigeratedPropertyRate() * $this->getRefrigeratedPropertyDed(), 0);
+        return round(($this->refrigerated_food / 1000) * $this->getRefrigeratedFoodRate() * $this->getRefrigeratedFoodDed(), 0);
     }
 
     public function getRefrigeratedFoodRate()
