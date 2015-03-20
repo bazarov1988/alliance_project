@@ -131,7 +131,7 @@
             <td></td>
         </tr>
         <tr>
-            <td colspan="5" class="text-center"><strong>Optional Coverages</strong></td>
+            <td colspan="5" class="text-center">Optional Coverages</td>
             <td class="bg-gray"><strong>Special</strong></td>
         </tr>
         <tr class="bg-gray">

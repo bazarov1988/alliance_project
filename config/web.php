@@ -15,9 +15,6 @@ $config = [
         ],
     ],
     'components' => [
-        'formatter' => [
-            'currencyCode' => 'USD',
-        ],
         'excel'=>[
             'class'=>'app\components\ExcelComponent'
         ],
