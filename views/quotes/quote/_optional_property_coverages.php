@@ -388,7 +388,7 @@ if ($ordinanceAndLawPremium > 0) {
     <tr>
         <td>SF-47</td>
         <td colspan="2">Ordinance and Law</td>
-        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->demolition_amount) ?></td>
+        <td></td>
         <td><?= Yii::$app->formatter->asCurrency($ordinanceAndLawPremium) ?></td>
         <td></td>
     </tr>
