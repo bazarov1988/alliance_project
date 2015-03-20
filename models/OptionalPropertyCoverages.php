@@ -421,7 +421,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     public function getEquipmentBreakdownPremiumSumElement($i,$bk25){
         switch($i){
             case '50.000 and Less':
-                if($bk25>0&&$bk25<5001){
+                if($bk25>0&&$bk25<50001){
                     return \Yii::$app->params['quote']['equipment_breakdown'][$i];
                 }
                 break;
