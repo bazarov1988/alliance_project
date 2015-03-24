@@ -72,7 +72,7 @@ class Quotes extends BaseQuotes{
         $row = (string)$this->getEnteredBuilding();
         if(!empty(\Yii::$app->params['quote']['rate_table'][$row])){
             $col = $this->getRateTableKey();
-            if(!empty(\Yii::$app->params['quote']['rate_table'][$row][$col])){
+            if(!empty(\Yii::$app->params['quote']['rate_table'][$row])&&!empty(\Yii::$app->params['quote']['rate_table'][$row][$col])){
                 return \Yii::$app->params['quote']['rate_table'][$row][$col];
             } else {
                 return 0;
