@@ -163,6 +163,7 @@ class Quotes extends BaseQuotes{
     }
 
     public function getDeductibleFactorBuilding(){
+        //=IF(AND($'List Sheet'.$P$2<>"",$'List Sheet'.$P$2<>0,$'List Sheet'.$P$2<>8),VLOOKUP($'List Sheet'.$P$2,$'List Sheet'.$AL$3:$AN$9,3,FALSE()),0)
         if(!empty($this->deductible_bldg)&&$this->deductible_bldg!=8){
             return \Yii::$app->excel->vlookup($this->deductible_bldg,\Yii::$app->params['quote']['deductible_factors'],1,0);
         } else {
@@ -171,6 +172,7 @@ class Quotes extends BaseQuotes{
     }
 
     public function getBuildingCredits(){
+        //=IF(AA2=1,AA3,IF(AA2<1,AA2,1))
         $aa2 = $this->getSoleOccup_MercantileFactor();
         if($aa2==1){
             return $this->getService_MercantileOccupFactor();
@@ -215,6 +217,7 @@ class Quotes extends BaseQuotes{
     }
 
     public function getAggregateFactor(){
+        //=IF($'List Sheet'.EN2<>"",VLOOKUP($'List Sheet'.EN2,$'List Sheet'.BA3:BH8,AE1,FALSE()),0)
         if(!empty($this->prop_damage)){
             return  \Yii::$app->excel->vlookup($this->prop_damage,\Yii::$app->params['quote']['aggregate_factors'],$this->agregate-1,false);
         } else {
@@ -278,6 +281,7 @@ class Quotes extends BaseQuotes{
     }
 
     public function getDeductibleFactorBP(){
+        //=IF(AND($'List Sheet'.$P$16<>"",$'List Sheet'.$P$16<>0,$'List Sheet'.$P$16<>8),VLOOKUP($'List Sheet'.$P$16,$'List Sheet'.$AL$3:$AN$9,3,FALSE()),0)
         if(!empty($this->deductible_bp)&&$this->deductible_bp!=8){
             return \Yii::$app->excel->vlookup($this->deductible_bp,\Yii::$app->params['quote']['deductible_factors'],1,0);
         } else {
@@ -291,8 +295,8 @@ class Quotes extends BaseQuotes{
 
     public function getBuilding_BP_Together(){
     //=IF($'Entry Sheet'.C21>0,IF($'Entry Sheet'.C22>0,IF($'List Sheet'.G2<3,IF($'List Sheet'.C2=3,$'List Sheet'.AS7,$'List Sheet'.AS6),1),1),1)
-        if(!empty($this->building_amount_of_ins)){
-            if(!empty($this->bus_amount_of_ins)){
+        if($this->building_amount_of_ins>0){
+            if($this->bus_amount_of_ins>0){
                 if($this->occupancy&&$this->occupancy->mer_serc<3){
                     if($this->zone == 3){
                         return \Yii::$app->params['quote']['b_bp_together']['zone_3'];
