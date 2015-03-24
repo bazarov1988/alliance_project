@@ -147,7 +147,7 @@ class Quotes extends BaseQuotes{
     }
 
     public function getLeadFactor(){
-        if($this->apt_in_bldg==2&&$this->sole_occupancy==1){
+        if($this->apt_in_bldg==2&&$this->does_lead_exclusion_apply==1){
             if($this->occupied==97){
                 return \Yii::$app->params['quote']['factor_credit']['restaurant'];
             } else {
