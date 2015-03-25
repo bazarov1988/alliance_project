@@ -8,7 +8,7 @@
 <?php if ($model->liabilityCoverages->add_insured_owners_lessees): ?>
     <tr>
         <td><?= $model->liabilityCoverages->getFormNumber('add_insured_owners_lessees') ?></td>
-        <td colspan="2"><?php echo $model->liabilityCoverages->getAttributeLabel('add_insured_owners_lessees');//Additional Insured ?> </td>
+        <td colspan="2"><?php echo $model->liabilityCoverages->getAttributeLabel('add_insured_owners_lessees'); ?> </td>
         <td></td>
         <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getAdditionalInsuredOwners()) ?></td>
         <td></td>
@@ -17,7 +17,7 @@
 <?php if ($model->liabilityCoverages->add_insured_owners_contactors): ?>
     <tr>
         <td><?= $model->liabilityCoverages->getFormNumber('add_insured_owners_contactors') ?></td>
-        <td colspan="2"><?php echo $model->liabilityCoverages->getAttributeLabel('add_insured_owners_contactors');//Additional Insured ?> </td>
+        <td colspan="2"><?php echo $model->liabilityCoverages->getAttributeLabel('add_insured_owners_contactors');?> </td>
         <td></td>
         <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getAdditionalInsuredContractors()) ?></td>
         <td></td>
@@ -25,7 +25,7 @@
 <?php endif; ?>
 <?php if ($model->liabilityCoverages->additional_insured): ?>
     <tr>
-        <td><?= $model->liabilityCoverages->getFormNumber('additional_insured') ?></td>
+        <td><?= Yii::$app->quote->getValueByAttribute($model->liabilityCoverages, 'additional_insured') ?></td>
         <td colspan="2"><?php echo $model->liabilityCoverages->getAttributeLabel('additional_insured'); ?> </td>
         <td></td>
         <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getAdditionalInsuredPremium()) ?></td>
