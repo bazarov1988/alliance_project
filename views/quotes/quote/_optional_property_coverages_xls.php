@@ -246,7 +246,7 @@ if ($employee > 0) {
 
 <?php
 $equipmentBreakdown = $model->propertyCoverages->getEquipmentBreakdownPremiumSum();
-if ($equipmentBreakdown > 0) {
+if ($model->propertyCoverages->equipment_breakdown) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('equipment_breakdown') ?></td>
@@ -441,7 +441,7 @@ if ($buildingGlassPremium > 0) {
 
 <?php
 $refrigeratedFoodPremium = $model->propertyCoverages->getRefrigeratedFoodPremium();
-if ($refrigeratedFoodPremium > 0) {
+if ($model->propertyCoverages->refrigerated_food) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('refrigerated_food') ?></td>
