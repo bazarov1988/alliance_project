@@ -418,7 +418,7 @@ if ($model->propertyCoverages->refrigerated_food) {
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('refrigerated_food') ?></td>
         <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('refrigerated_food') ?></td>
-        <td>><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->refrigerated_food) ?></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->refrigerated_food) ?></td>
         <td><?= Yii::$app->formatter->asCurrency($refrigeratedFoodPremium) ?></td>
         <td><?php echo Yii::$app->quote->getValueByAttribute($model->propertyCoverages,'food_deductible')?></td>
     </tr>
