@@ -784,7 +784,7 @@ return [
     ],
     'b_bp_credits'=>[
         'sole'=>0.9,
-        'merc'=>'1.1'
+        'merc'=>1.1
     ],
     'special_conditions'=>[
          'external_fire_alarm_system' => 3,

@@ -121,7 +121,10 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             ($bp['initial_premium']*$bp['factor'])+
             ($opt_prop['initial_premium']*$opt_prop['factor'])+
             ($opt_liab['initial_premium']*$opt_liab['factor']);
-
+//var_dump($building);
+//var_dump($opt_prop);
+//var_dump($opt_liab);
+//        die;
         return [
             'building'=>$building,
             'business_property'=>$bp,
@@ -139,6 +142,39 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $summ = 0;
         /* @var $propCovrgs \app\models\OptionalPropertyCoverages */
         $propCovrgs = $this->quote->propertyCoverages;
+        /*var_dump('getAccountsReceivablePremium=>',$propCovrgs->getAccountsReceivablePremium());
+        var_dump('getAdditionalExpensePremium=>',$propCovrgs->getAdditionalExpensePremium());
+        var_dump('getBuildingInflationProtectionPremium=>',$propCovrgs->getBuildingInflationProtectionPremium());
+        var_dump('getBusinessownersBurglaryRobberyPremium=>',$propCovrgs->getBusinessownersBurglaryRobberyPremium());
+        var_dump('getCauseOfLossBuildingPremium=>',$propCovrgs->getCauseOfLossBuildingPremium());
+        var_dump('getCauseOfLossBPPremium=>',$propCovrgs->getCauseOfLossBPPremium());
+        var_dump('getComputerCoveragePremium=>',$propCovrgs->getComputerCoveragePremium());
+        var_dump('getCookingProtectionPremium=>',$propCovrgs->getCookingProtectionPremium());
+        var_dump('getCustomersGoodsPremium=>',$propCovrgs->getCustomersGoodsPremium());
+        var_dump('getDemolitionDebrisPremium=>',$propCovrgs->getDemolitionDebrisPremium());
+        var_dump('getEarthquakeCoveragePremium=>',$propCovrgs->getEarthquakeCoveragePremium());
+        var_dump('getEmployeePremium=>',$propCovrgs->getEmployeePremium());
+        var_dump('getEquipmentBreakdownPremium=>',$propCovrgs->getEquipmentBreakdownPremium());
+        var_dump('getExteriorSignsPremium=>',$propCovrgs->getExteriorSignsPremium());
+        var_dump('getLoss_off_IncomeMonthPremium=>',$propCovrgs->getLoss_off_IncomeMonthPremium());
+        var_dump('getLoss_off_IncomePremium=>',$propCovrgs->getLoss_off_IncomePremium());
+        var_dump('getLoss_off_IncomeATotal=>',$propCovrgs->getLoss_off_IncomeATotal());
+        var_dump('getLossPayablePremium=>',$propCovrgs->getLossPayablePremium());
+        var_dump('getMoneySecuritiesPremium=>',$propCovrgs->getMoneySecuritiesPremium());
+        var_dump('getDirectDamagesPremium=>',$propCovrgs->getDirectDamagesPremium());
+        var_dump('getTimeElementPremium=>',$propCovrgs->getTimeElementPremium());
+        var_dump('getOrdinanceAndLawPremium=>',$propCovrgs->getOrdinanceAndLawPremium());
+        var_dump('getBuildingGlassPremium=>',$propCovrgs->getBuildingGlassPremium());
+        var_dump('getRefrigeratedFoodPremium=>',$propCovrgs->getRefrigeratedFoodPremium());
+        var_dump('getRefrigeratedPropertyPremium=>',$propCovrgs->getRefrigeratedPropertyPremium());
+        var_dump('getSeasonVariationPremium=>',$propCovrgs->getSeasonVariationPremium());
+        var_dump('getSprinklerLeakagePremium=>',$propCovrgs->getSprinklerLeakagePremium());
+        var_dump('getTenantImprovementsPremium=>',$propCovrgs->getTenantImprovementsPremium());
+        var_dump('getTenantImprovementsAPremium=>',$propCovrgs->getTenantImprovementsAPremium());
+        var_dump('getOrdinanceAndLawPremium=>',$propCovrgs->getOrdinanceAndLawPremium());
+        var_dump('getValuablePapersPremium=>',$propCovrgs->getValuablePapersPremium());
+        var_dump('getInsuredPremisesPremium=>',$propCovrgs->getInsuredPremisesPremium());
+        var_dump('getInsuredPremisesAPremium=>',$propCovrgs->getInsuredPremisesAPremium());*/
 
         $summ += $propCovrgs->getAccountsReceivablePremium();
         $summ += $propCovrgs->getAdditionalExpensePremium();
@@ -191,6 +227,8 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $summ += $propCovrgs->getValuablePapersPremium();
         $summ += $propCovrgs->getInsuredPremisesPremium();
         $summ += $propCovrgs->getInsuredPremisesAPremium();
+
+//        var_dump($summ);die;
         return $summ;
 
     }
@@ -204,7 +242,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         if($this->battery_exclusion){
             return round(\Yii::$app->params['quote']['assault_and_batt'] * -1,0);
         }
-        return null;
+        return 0;
     }
 
     /**
