@@ -341,7 +341,7 @@ class Quotes extends BaseQuotes{
     }
 
     public function getFireFree(){
-        return round($this->total_results['fire_free'],0);
+        return round($this->total_results['fire_free'],2);
     }
 
     public function getPremiumTotal(){

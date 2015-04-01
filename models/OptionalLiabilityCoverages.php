@@ -113,6 +113,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             'initial_premium'=>$this->getTotalPropertyCoverages(),
             'factor'=>1
         ];
+        //var_dump($this->getTotalLiabilityCoverages() + $this->getLiabilityFormPremium() + $this->getMedicalPaymentsPremium()); die();
         $opt_liab = [
             'initial_premium'=>$this->getTotalLiabilityCoverages() + $this->getLiabilityFormPremium() + $this->getMedicalPaymentsPremium(),
             'factor'=>1
@@ -252,12 +253,13 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
      * @return float|int
      */
     function getTotalLiabilityCoverages(){
-/*
+        /*
         echo '<pre>';
         var_dump(
             $this->getCreditPremium(),
             $this->getAdditionalInsuredOwners(),
             $this->getAdditionalInsuredContractors(),
+
             $this->getBatteryExclusionPremium(),
             $this->getBeautyNBarberPremium(),
             $this->getDesignatedPremisesPremium(),
@@ -276,7 +278,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             $this->getWaterDamageExclusionPremium()
         );
         // 89+99−10+862−10−5+58−5−1+68+65+441+400−15−243
-*/
+        */
         $summ = $this->getCreditPremium()
             + $this->getAdditionalInsuredOwners()
             + $this->getAdditionalInsuredContractors()
@@ -307,13 +309,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     {
         $PSbefore = $this->getPolicySummaryBeforeAdditionalInsured();
 
-        /*
-        var_dump($PSbefore['building']['initial_premium'] ,
-            $PSbefore['business_property']['initial_premium'] ,
-            $PSbefore['optional_property']['initial_premium'] ,
-            $PSbefore['optional_liability']['initial_premium']);
-        die();
-        */
+
         $sumPremium =
             $PSbefore['building']['initial_premium'] +
             $PSbefore['business_property']['initial_premium'] +
@@ -435,9 +431,28 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
                 }else{
                     return $this->getApplicablePremium();
                 }
+            } else {
+                return $this->quote->getBPComposite();
             }
         }
         return 0;
+        /*
+        //=IF(AF25>0;IF(AF11<>AF20;IF(AF24>0;0;AF11);AF25);0)
+        if(AF25>0) {
+            //IF(AF11<>AF20;IF(AF24>0;0;AF11);AF25)
+            if(AF11<>AF20) {
+                if(AF24>0) {
+                    return 0;
+                } else {
+                    return AF11;
+                }
+            } else {
+                return AF25;
+            }
+        } else {
+            return 0;
+        }
+        */
     }
 
     /**
