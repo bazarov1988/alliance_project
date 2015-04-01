@@ -917,7 +917,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 
     public function getTenantImprovementsXZ4()
     {
-        return round(($this->getTenantImprovementsXZ5() / 100) * $this->tenant_Improvements_a, 4);
+        return round(($this->getTenantImprovementsXZ5() / 100) * $this->tenant_Improvements_one, 4);
     }
 
     public function getTenantImprovementsXZ5()
@@ -927,7 +927,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 
     public function getTenantImprovementsXZ6()
     {
-        return round($this->getTenantImprovementsTableARate() * $this->getTenantImprovementsAZone(), 0);
+        return round($this->getTenantImprovementsTableARate() * $this->getTenantImprovementsAZone(), 4);
     }
 
     // -----------------------------------------------------------------------------------------------------------------

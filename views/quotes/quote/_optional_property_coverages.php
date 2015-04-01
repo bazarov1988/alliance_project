@@ -403,7 +403,7 @@ if ($buildingGlassPremium > 0) {
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('building_glass') ?></td>
         <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('building_glass') ?></td>
-        <td></td>
+        <td><?= $model->propertyCoverages->building_glass ?></td>
         <td><?= Yii::$app->formatter->asCurrency($buildingGlassPremium) ?></td>
         <td></td>
     </tr>
@@ -493,7 +493,7 @@ if ($tenantImprovementsPremium > 0) {
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('tenant_Improvements_one') ?></td>
         <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('tenant_Improvements_one') ?></td>
-        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->tenant_Improvements_one) ?></td>
         <td><?= Yii::$app->formatter->asCurrency($tenantImprovementsPremium) ?></td>
         <td></td>
     </tr>

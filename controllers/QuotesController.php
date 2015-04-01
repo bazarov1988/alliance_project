@@ -309,7 +309,7 @@ class QuotesController extends Controller
             if(Yii::$app->user->identity->role->can_admin||$model->user_id==Yii::$app->user->id){
                 return $model;
             }
-            throw new \yii\web\HttpException(404);
+            throw new \yii\web\ForbiddenHttpException(404);
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
