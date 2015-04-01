@@ -95,7 +95,7 @@ if ($causeOfLossBuilding != 0) {
         <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('cause_of_loss_building') ?></td>
         <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->getCauseOfLossBuildingLimit());?></td>
         <td><?= Yii::$app->formatter->asCurrency($causeOfLossBuilding) ?></td>
-        <td><?php echo Yii::$app->quote->getValueByAttribute($model,'deductible_bldg')?></td>
+        <td></td>
     </tr>
 <?php
 }
@@ -110,7 +110,7 @@ if ($causeOfLossBP != 0) {
         <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('cause_of_loss_business_property') ?></td>
         <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->getCauseOfLossBPLimit());?></td>
         <td><?= Yii::$app->formatter->asCurrency($causeOfLossBP) ?></td>
-        <td><?php echo Yii::$app->quote->getValueByAttribute($model,'deductible_bp')?></td>
+        <td></td>
     </tr>
 <?php
 }
