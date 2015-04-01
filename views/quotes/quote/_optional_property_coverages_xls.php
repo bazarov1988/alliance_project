@@ -102,7 +102,7 @@ if ($causeOfLossBuilding != 0) {
         <td></td>
         <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->getCauseOfLossBuildingLimit());?></td>
         <td><?= Yii::$app->formatter->asCurrency($causeOfLossBuilding) ?></td>
-        <td><?= Yii::$app->quote->getValueByAttribute($model,'deductible_bldg')?></td>
+        <td></td>
     </tr>
 <?php
 }
@@ -118,7 +118,7 @@ if ($causeOfLossBP != 0) {
         <td></td>
         <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->getCauseOfLossBPLimit());?></td>
         <td><?= Yii::$app->formatter->asCurrency($causeOfLossBP) ?></td>
-        <td><?= Yii::$app->quote->getValueByAttribute($model,'deductible_bp')?></td>
+        <td></td>
     </tr>
 <?php
 }
@@ -447,9 +447,9 @@ if ($model->propertyCoverages->refrigerated_food) {
         <td><?= $model->propertyCoverages->getFormNumber('refrigerated_food') ?></td>
         <td><?= $model->propertyCoverages->getAttributeLabel('refrigerated_food') ?></td>
         <td></td>
-        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->refrigerated_food) ?></td>
         <td><?= Yii::$app->formatter->asCurrency($refrigeratedFoodPremium) ?></td>
-        <td></td>
+        <td><?php echo Yii::$app->quote->getValueByAttribute($model->propertyCoverages,'food_deductible')?></td>
     </tr>
 <?php
 }
