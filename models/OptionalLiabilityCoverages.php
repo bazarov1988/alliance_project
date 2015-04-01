@@ -142,7 +142,9 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $summ = 0;
         /* @var $propCovrgs \app\models\OptionalPropertyCoverages */
         $propCovrgs = $this->quote->propertyCoverages;
-        /*var_dump('getAccountsReceivablePremium=>',$propCovrgs->getAccountsReceivablePremium());
+        /*
+        echo '<pre>';
+        var_dump('getAccountsReceivablePremium=>',$propCovrgs->getAccountsReceivablePremium());
         var_dump('getAdditionalExpensePremium=>',$propCovrgs->getAdditionalExpensePremium());
         var_dump('getBuildingInflationProtectionPremium=>',$propCovrgs->getBuildingInflationProtectionPremium());
         var_dump('getBusinessownersBurglaryRobberyPremium=>',$propCovrgs->getBusinessownersBurglaryRobberyPremium());
@@ -174,7 +176,8 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         var_dump('getOrdinanceAndLawPremium=>',$propCovrgs->getOrdinanceAndLawPremium());
         var_dump('getValuablePapersPremium=>',$propCovrgs->getValuablePapersPremium());
         var_dump('getInsuredPremisesPremium=>',$propCovrgs->getInsuredPremisesPremium());
-        var_dump('getInsuredPremisesAPremium=>',$propCovrgs->getInsuredPremisesAPremium());*/
+        var_dump('getInsuredPremisesAPremium=>',$propCovrgs->getInsuredPremisesAPremium());
+        */
 
         $summ += $propCovrgs->getAccountsReceivablePremium();
         $summ += $propCovrgs->getAdditionalExpensePremium();
@@ -228,7 +231,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $summ += $propCovrgs->getInsuredPremisesPremium();
         $summ += $propCovrgs->getInsuredPremisesAPremium();
 
-//        var_dump($summ);die;
+        //var_dump($summ); die();
         return $summ;
 
     }
@@ -303,6 +306,14 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     public function getPolicySummaryAfterAdditionalInsured()
     {
         $PSbefore = $this->getPolicySummaryBeforeAdditionalInsured();
+
+        /*
+        var_dump($PSbefore['building']['initial_premium'] ,
+            $PSbefore['business_property']['initial_premium'] ,
+            $PSbefore['optional_property']['initial_premium'] ,
+            $PSbefore['optional_liability']['initial_premium']);
+        die();
+        */
         $sumPremium =
             $PSbefore['building']['initial_premium'] +
             $PSbefore['business_property']['initial_premium'] +
