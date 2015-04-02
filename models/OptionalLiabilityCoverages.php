@@ -174,7 +174,6 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         var_dump('getSprinklerLeakagePremium=>',$propCovrgs->getSprinklerLeakagePremium());
         var_dump('getTenantImprovementsPremium=>',$propCovrgs->getTenantImprovementsPremium());
         var_dump('getTenantImprovementsAPremium=>',$propCovrgs->getTenantImprovementsAPremium());
-        var_dump('getOrdinanceAndLawPremium=>',$propCovrgs->getOrdinanceAndLawPremium());
         var_dump('getValuablePapersPremium=>',$propCovrgs->getValuablePapersPremium());
         var_dump('getInsuredPremisesPremium=>',$propCovrgs->getInsuredPremisesPremium());
         var_dump('getInsuredPremisesAPremium=>',$propCovrgs->getInsuredPremisesAPremium());
@@ -361,10 +360,10 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getAdditionalInsuredsRateTotal()
     {
+
         $rate = \Yii::$app->params['quote']['additional_insureds']['rate'] *
             $this->additional_insured_number *
             $this->getPolicySummaryAfterAdditionalInsured()['premium']['initial_premium'];
-
         return round($rate, 0);
     }
 

@@ -104,7 +104,7 @@ class BaseQuotes extends \yii\db\ActiveRecord
             'agent' => Yii::t('app', 'Agent'),
             'construction' => Yii::t('app', 'Construction'),
             'protection' => Yii::t('app', 'Protection'),
-            'country' => Yii::t('app', 'Country'),
+            'country' => Yii::t('app', 'County'),
             'zone' => Yii::t('app', 'Zone'),
             'prior_since' => Yii::t('app', 'Prior/Since'),
             'occupied' => Yii::t('app', 'Occupancy'),

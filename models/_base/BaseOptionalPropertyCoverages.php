@@ -99,7 +99,7 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
             [['building_inflation_protection'], 'validateBuildingInflation'],
             [['cause_of_loss_building'], 'validateLossBuilding'],
             [['cause_of_loss_business_property'], 'validateLossBP'],
-            [['loss_of_income_sf'], 'validateLossIncome'],
+            //[['loss_of_income_sf'], 'validateLossIncome'],
             [['add_mos'], 'validateSeasonalVariationMos'],
             [['number_of_additional'], 'validateSeasonalVariationPersent'],
             [['sprinkler_leakage'], 'validateSprinklerLeakage'],

@@ -588,10 +588,10 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
      * add 10%
      */
     public function getNumberOf10Building(){
-        return !empty($this->building_increment)?$this->building_increment:0;
+        return !empty($this->building_increment) ? $this->building_increment : 0;
     }
     public function getNumberOf10BP(){
-        return !empty($this->bus_prop_increment)?$this->bus_prop_increment:0;
+        return !empty($this->bus_prop_increment) ? $this->bus_prop_increment : 0;
     }
     public function getNumberFactor(){
         return \Yii::$app->params['quote']['loss_off_income_a_number_factor'];
