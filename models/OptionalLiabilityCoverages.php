@@ -308,7 +308,13 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     {
         $PSbefore = $this->getPolicySummaryBeforeAdditionalInsured();
 
-
+        /*
+        // 8583!= 8848
+        var_dump($PSbefore['building']['initial_premium'] ,
+            $PSbefore['business_property']['initial_premium'] ,
+            $PSbefore['optional_property']['initial_premium'] ,
+            $PSbefore['optional_liability']['initial_premium']); die();
+        */
         $sumPremium =
             $PSbefore['building']['initial_premium'] +
             $PSbefore['business_property']['initial_premium'] +
@@ -360,7 +366,6 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getAdditionalInsuredsRateTotal()
     {
-
         $rate = \Yii::$app->params['quote']['additional_insureds']['rate'] *
             $this->additional_insured_number *
             $this->getPolicySummaryAfterAdditionalInsured()['premium']['initial_premium'];

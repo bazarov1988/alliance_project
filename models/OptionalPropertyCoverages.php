@@ -205,8 +205,8 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     public function getComputerCoverageDeductible(){
     //=IF(AND(CI4<>"",CI4<>8,CI4<>0),VLOOKUP($'List Sheet'.$CI$4,$'List Sheet'.$AL$3:$AN$9,3,FALSE()),0)
         if(!empty($this->deductible)){
-            if(!empty(\Yii::$app->params['quote']['deductible_factors'][$this->deductible-1])){
-                return \Yii::$app->params['quote']['deductible_factors'][$this->deductible-1][1];
+            if(!empty(\Yii::$app->params['quote']['deductible_factors'][$this->deductible])){
+                return \Yii::$app->params['quote']['deductible_factors'][$this->deductible][1];
             } else {
                 return 0;
             }
@@ -713,7 +713,8 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
         return !empty($this->time_element)?$this->time_element:0;
     }
     public function getTimeElementRate(){
-        $limit = $this->getDirectDamagesAmount();
+        $limit = $this->getTimeElementAmount();
+
         if($limit>3){
             if($this->time_transmission_lines==1){
                 return \Yii::$app->params['quote']['time_element_rate']['excluding'];
