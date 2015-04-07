@@ -126,6 +126,7 @@ class QuotesController extends Controller
      */
     public function actionCreate()
     {
+        date_default_timezone_set('Etc/GMT-4');
         $model      = new Quotes();
         $liability  = new OptionalLiabilityCoverages();
         $conditions = new SpecialConditions();
@@ -162,6 +163,7 @@ class QuotesController extends Controller
      */
     public function actionUpdate($id)
     {
+        date_default_timezone_set('Etc/GMT-4');
         $model = $this->findModel($id);
         if($model->status == Quotes::FINISHED && !Yii::$app->user->identity->role->can_admin){
             throw new \yii\web\HttpException(404);
