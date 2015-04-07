@@ -32,7 +32,7 @@ return [
     'bus_prop_increment'=>[null=>'Select...',1,2,3,4,5],
     'number_of_additional'=>[null=>'Select...',1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
     'insured_premises_ten'=>[null=>'Select...',1,2,3,4,5,6,7,8,9,10],
-    'insured_premises_a_ten'=>[null=>'Select...',1,2,3,4,5,6,7,8,9,10],
+    'insured_premises_a_ten'=>[0=>'Select...',1,2,3,4,5,6,7,8,9,10],
 
     'liquor_liability_restaurant'=>[null=>'Select...',1=>'Restaurants',3=>'Mercantile',7=>'Bed & Breakfast'],
     'liquor_liability_limit'=>[null=>'Select...',1=>'$100,000 / $100,000',2=>'$300,000 / $300,000',3=>'$500,000 / $500,000',4=>'$1,000,000 / $1,000,000'],
