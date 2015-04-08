@@ -143,6 +143,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $summ = 0;
         /* @var $propCovrgs \app\models\OptionalPropertyCoverages */
         $propCovrgs = $this->quote->propertyCoverages;
+
         /*
         echo '<pre>';
         var_dump('getAccountsReceivablePremium=>',$propCovrgs->getAccountsReceivablePremium());
@@ -172,13 +173,14 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         var_dump('getRefrigeratedPropertyPremium=>',$propCovrgs->getRefrigeratedPropertyPremium());
         var_dump('getSeasonVariationPremium=>',$propCovrgs->getSeasonVariationPremium());
         var_dump('getSprinklerLeakagePremium=>',$propCovrgs->getSprinklerLeakagePremium());
+        var_dump('getStorekeepersBurglaryRobberyTotalPremium=>',$propCovrgs->getStorekeepersBurglaryRobberyTotalPremium());
         var_dump('getTenantImprovementsPremium=>',$propCovrgs->getTenantImprovementsPremium());
         var_dump('getTenantImprovementsAPremium=>',$propCovrgs->getTenantImprovementsAPremium());
         var_dump('getValuablePapersPremium=>',$propCovrgs->getValuablePapersPremium());
         var_dump('getInsuredPremisesPremium=>',$propCovrgs->getInsuredPremisesPremium());
         var_dump('getInsuredPremisesAPremium=>',$propCovrgs->getInsuredPremisesAPremium());
+        exit;
         */
-
         $summ += $propCovrgs->getAccountsReceivablePremium();
         $summ += $propCovrgs->getAdditionalExpensePremium();
 //        $summ += $propCovrgs->getAlcoholicBeveragesTaxExclusion();
@@ -225,6 +227,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $summ += $propCovrgs->getRefrigeratedPropertyPremium();
         $summ += $propCovrgs->getSeasonVariationPremium();
         $summ += $propCovrgs->getSprinklerLeakagePremium();
+        $summ += $propCovrgs->getStorekeepersBurglaryRobberyTotalPremium();
         $summ += $propCovrgs->getTenantImprovementsPremium();
         $summ += $propCovrgs->getTenantImprovementsAPremium();
         $summ += $propCovrgs->getValuablePapersPremium();
