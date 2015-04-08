@@ -138,8 +138,8 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             'contractual_liability_limitation' => Yii::t('app', 'Contractual Liability Limitation'),
             'project_only' => Yii::t('app', 'Cov. Applicable to Desig. Prem. or Project Only'),
             'automobile_coverage' => Yii::t('app', "Employers' Non-ownership Automobile Coverage"),
-            'automobile_coverage_agregate_a' => Yii::t('app', 'Agregate'),
-            'automobile_coverage_agregate' => Yii::t('app', 'Agregate'),
+            'automobile_coverage_agregate_a' => Yii::t('app', 'Aggregate'),
+            'automobile_coverage_agregate' => Yii::t('app', 'Aggregate'),
 
             'liquor_liability_receipts' => Yii::t('app', 'Receipts'),
             'liquor_liability_restaurant' => Yii::t('app', 'Restaurant/Mercaitile/ Bed&Breakfast'),
