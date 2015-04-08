@@ -443,7 +443,7 @@ if ($refrigeratedPropertyPremium > 0) {
 
 <?php
 $seasonVariationPremium = $model->propertyCoverages->getSeasonVariationPremium();
-if ($seasonVariationPremium > 0) {
+if (!empty($model->propertyCoverages->season_variation)) {
     ?>
     <tr>
         <td><?= $model->propertyCoverages->getFormNumber('season_variation') ?></td>
