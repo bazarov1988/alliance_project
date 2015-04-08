@@ -366,7 +366,7 @@ if ($moneySecurities > 0) {
         <td></td>
         <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->money_securities) ?></td>
         <td><?= Yii::$app->formatter->asCurrency($moneySecurities) ?></td>
-        <td><?= Yii::$app->quote->getValueByAttribute($model,'deductible_bp')?></td>
+        <td></td>
     </tr>
 <?php
 }
@@ -511,9 +511,9 @@ if ($storekeepersBurglaryRobberyPremium > 0) {
         <td><?= $model->propertyCoverages->getFormNumber('storekeepers_burglary_robbery') ?></td>
         <td><?= $model->propertyCoverages->getAttributeLabel('storekeepers_burglary_robbery') ?></td>
         <td></td>
-        <td></td>
+        <td><?= Yii::$app->quote->getValueByAttribute($model->propertyCoverages,'storekeepers_burglary_robbery') ?></td>
         <td><?= Yii::$app->formatter->asCurrency($storekeepersBurglaryRobberyPremium) ?></td>
-        <td></td>
+        <td><?= Yii::$app->quote->getValueByAttribute($model->propertyCoverages,'storekeepers_burglary_robbery_deductible')?></td>
     </tr>
 <?php
 }
@@ -559,7 +559,7 @@ if ($valuablePapersPremium > 0) {
         <td><?= $model->propertyCoverages->getFormNumber('valuable_papers') ?></td>
         <td><?= $model->propertyCoverages->getAttributeLabel('valuable_papers') ?></td>
         <td></td>
-        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->propertyCoverages->valuable_papers) ?></td>
         <td><?= Yii::$app->formatter->asCurrency($valuablePapersPremium) ?></td>
         <td></td>
     </tr>
