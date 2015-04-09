@@ -270,25 +270,11 @@ use yii\widgets\ActiveForm;
             <td>*</td>
             <td>
                 <?= $form->field($model, 'season_variation')->checkbox() ?>
-            </td>
-            <td>none</td>
-            <td>90 days</td>
-        </tr>
-        <tr>
-            <td>*</td>
-            <td>
                 <?= $form->field($model, 'add_mos') ?>
-            </td>
-            <td>none</td>
-            <td>none</td>
-        </tr>
-        <tr>
-            <td>*</td>
-            <td>
                 <?= $form->field($model, 'number_of_additional')->dropDownList(Yii::$app->params['quote']['number_of_additional']) ?>
             </td>
             <td>none</td>
-            <td>25%</td>
+            <td>90 days</td>
         </tr>
         <tr>
             <td>*</td>
