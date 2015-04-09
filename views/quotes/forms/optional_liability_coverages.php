@@ -22,14 +22,14 @@ use yii\widgets\ActiveForm;
         </thead>
         <tbody>
         <tr>
-            <td> </td>
+            <td> LS-6 </td>
             <td><?= $form->field($model, 'liability_form')->dropDownList(Yii::$app->params['quote']['liability_form']) ?></td>
             <td>LS-1</td>
             <td>LS-5</td>
         </tr>
 
         <tr>
-            <td> </td>
+            <td> LS-22 </td>
             <td>
                 <?= $form->field($model, 'additional_insured')->dropDownList(Yii::$app->params['quote']['additional_insured']) ?>
                 <?= $form->field($model, 'additional_insured_number') ?>
