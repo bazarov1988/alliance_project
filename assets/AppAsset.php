@@ -29,4 +29,7 @@ class AppAsset extends AssetBundle
         'app\assets\AllianceAsset',
         'app\assets\BootboxAsset'
     ];
+    public $jsOptions = array(
+        'position' => \yii\web\View::POS_HEAD
+    );
 }

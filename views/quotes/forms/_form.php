@@ -13,7 +13,6 @@ use yii\helpers\ArrayHelper;
 ?>
 <br />
 <div class="quotes-form">
-
     <table class="table table-striped table-bordered">
         <tr><td><?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?></td></tr>
         <tr><td><?= $form->field($model, 'address')->textInput(['maxlength' => 255]) ?></td></tr>
@@ -43,6 +42,29 @@ use yii\helpers\ArrayHelper;
         <tr><td><?= $form->field($model, 'agregate')->dropDownList(Yii::$app->params['quote']['agregate']) ?></td></tr>
         <tr><td><?= $form->field($model, 'med_payment')->dropDownList(ArrayHelper::map(MedicalPayments::find()->all(), 'id', 'name'),['prompt'=>'Select'])?></td></tr>
     </table>
-
-
 </div>
+<script>
+    $(document).ready(function(){
+        var checkOccupancySkinCare = function(){
+            if($('#quotes-occupied').val()==15||$('#quotes-occupied').val()==16){
+                $('#optionalliabilitycoverages-certain_skin_care_service').prop('checked',true).prop('disabled',true);
+            } else {
+                $('#optionalliabilitycoverages-certain_skin_care_service').prop('disabled',true);
+            }
+        }
+        var checkOccupancyHoddAndDuct = function(){
+            var obj = $('#quotes-occupied').val();
+            if(obj==9||obj==11||obj==31||obj==42||obj==78||obj==97){
+                $('#specialconditions-hood_and_duct').prop('checked',true).prop('disabled',true);
+            } else {
+                $('#specialconditions-hood_and_duct').prop('disabled',false);
+            }
+        }
+        checkOccupancySkinCare();
+        checkOccupancyHoddAndDuct();
+        $('#quotes-occupied').change(function(){
+            checkOccupancySkinCare();
+            checkOccupancyHoddAndDuct();
+        });
+    });
+</script>
