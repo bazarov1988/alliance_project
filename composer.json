@@ -21,7 +21,8 @@
         "yiisoft/yii2-gii": "*",
         "amnah/yii2-user": "dev-master",
         "kartik-v/yii2-mpdf": "*",
-        "ticketpark/htmlphpexcel": "0.3.1"
+        "ticketpark/htmlphpexcel": "0.3.1",
+        "bower-asset/bootbox": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
