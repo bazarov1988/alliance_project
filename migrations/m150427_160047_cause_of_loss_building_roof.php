@@ -7,12 +7,12 @@ class m150427_160047_cause_of_loss_building_roof extends Migration
 {
     public function up()
     {
-
+        return $this->execute("ALTER TABLE  `optional_property_coverages` ADD  `cause_of_loss_building_roof` BOOLEAN NOT NULL DEFAULT FALSE AFTER  `cause_of_loss_building`;");
     }
 
     public function down()
     {
-        return $this->execute("ALTER TABLE  `optional_property_coverages` ADD  `cause_of_loss_building_roof` BOOLEAN NOT NULL DEFAULT FALSE AFTER  `cause_of_loss_building`;");
+        return false;
     }
     
     /*
