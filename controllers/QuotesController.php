@@ -132,9 +132,10 @@ class QuotesController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $model->date_create = date('Y-m-d H:i:s');
             $model->date_quoted = date('Y-m-d H:i:s');
+            $model->user_id = Yii::$app->user->id;
             if($model->save()){
                 Yii::$app->session->setFlash("Quote-saved", Yii::t("app", "Begin quoiting."));
-                return $this->redirect(['irpm', 'id' => $model->id]);
+                return $this->redirect(['update', 'id' => $model->id]);
             } else {
                 var_dump($model->errors);exit;
                 return $this->render('settings_form', [
