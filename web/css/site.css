@@ -169,3 +169,7 @@ a.desc:after {
     border-color: #ddd #ddd #ddd transparent;
     *border-left-color: #ffffff;
 }
+
+.modal.in .modal-dialog {
+    z-index: 1050;
+}

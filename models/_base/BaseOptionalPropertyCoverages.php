@@ -16,6 +16,7 @@ use Yii;
  * @property integer $businessowners_agreed_amount
  * @property string $businessowners_burglary_robbery
  * @property integer $cause_of_loss_building
+ * @property boolean $cause_of_loss_building_roof
  * @property integer $cause_of_loss_business_property
  * @property string $computer_coverage
  * @property integer $deductible
@@ -122,7 +123,7 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
             [['businessowners_burglary_robbery'], 'validateBusinessownersBurglaryRobbery'],
             [['tenant_Improvements_one'], 'validateTenantImprovementsOne'],
             [['tenant_Improvements_a'], 'validateTenantImprovementsA'],
-
+            ['cause_of_loss_building_roof', 'boolean']
         ];
     }
 

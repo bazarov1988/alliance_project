@@ -59,7 +59,10 @@ use yii\widgets\ActiveForm;
         </tr>
         <tr>
             <td></td>
-            <td><?= $form->field($model, 'cause_of_loss_building')->dropDownList(Yii::$app->params['quote']['cause_of_loss_building']) ?></td>
+            <td>
+                <?= Html::activeHiddenInput($model, 'cause_of_loss_building_roof') ?>
+                <?= $form->field($model, 'cause_of_loss_building')->dropDownList(Yii::$app->params['quote']['cause_of_loss_building']) ?>
+            </td>
             <td>SF-1</td>
             <td>SF-3</td>
         </tr>
