@@ -87,7 +87,8 @@ class BaseQuotes extends \yii\db\ActiveRecord
             [['irpm_type','irpm_percent'],'required','on'=>'irpm'],
             [['irpm_type'],'integer','max'=>2,'on'=>'irpm'],
             [['irpm_percent'],'integer','max'=>15,'on'=>'irpm'],
-            [['settings'],'string'],
+            [['any_loses', 'prior_underwriting','half_mile_location','quote_mile_location'],'required'],
+            [['prior_underwriting_details'],'string'],
         ];
     }
 
@@ -135,8 +136,15 @@ class BaseQuotes extends \yii\db\ActiveRecord
             'irpm_type'            => Yii::t('app', 'IRPM Type'),
             'any_loses'            => Yii::t('app','Are there any losses?'),
             'prior_underwriting'   => Yii::t('app','Any prior underwriting cancellations or non renewals?'),
+            'prior_underwriting_details'   => Yii::t('app','Details'),
             'half_mile_location'   => Yii::t('app','If there will be building coverage, is the location a ½ or mile to shore or water?'),
-            'quote_mile_location'  => Yii::t('app','For tenants only, is the location a ¼ mile or more to the shore or water?'),
+            'quote_mile_location'  => Yii::t('app','(For tenants only) Is the location a ¼ mile or more to the shore or water?'),
+        ];
+    }
+    public function scenarios()
+    {
+        return [
+            'settings' => ['any_loses', 'prior_underwriting','prior_underwriting_details','half_mile_location','quote_mile_location']
         ];
     }
     /**

@@ -128,29 +128,22 @@ class QuotesController extends Controller
     {
         date_default_timezone_set('Etc/GMT-4');
         $model      = new Quotes();
-        $liability  = new OptionalLiabilityCoverages();
-        $conditions = new SpecialConditions();
-        $property   = new OptionalPropertyCoverages();
-        $model->user_id = Yii::$app->user->id;
-        $this->performAjaxValidation([$model,$liability,$property,$conditions]);
-        if ($model->load(Yii::$app->request->post()) && $liability->load(Yii::$app->request->post())&&$conditions->load(Yii::$app->request->post())&&$property->load(Yii::$app->request->post())&&$model->validate()&&$liability->validate()&&$conditions->validate()&&$property->validate()) {
+        $model->setScenario('settings');
+        if ($model->load(Yii::$app->request->post())) {
             $model->date_create = date('Y-m-d H:i:s');
             $model->date_quoted = date('Y-m-d H:i:s');
-            $model->save();
-            $liability->quote_id = $model->id;
-            $liability->save();
-            $conditions->quote_id = $model->id;
-            $conditions->save();
-            $property->quote_id = $model->id;
-            $property->save();
-            Yii::$app->session->setFlash("Quote-saved", Yii::t("app", "Quote was saved."));
-            return $this->redirect(['irpm', 'id' => $model->id]);
+            if($model->save()){
+                Yii::$app->session->setFlash("Quote-saved", Yii::t("app", "Begin quoiting."));
+                return $this->redirect(['irpm', 'id' => $model->id]);
+            } else {
+                var_dump($model->errors);exit;
+                return $this->render('settings_form', [
+                    'model' => $model
+                ]);
+            }
         } else {
-            return $this->render('create', [
-                'model' => $model,
-                'liability' => $liability,
-                'conditions' => $conditions,
-                'property' => $property,
+            return $this->render('settings_form', [
+                'model' => $model
             ]);
         }
     }

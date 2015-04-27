@@ -14,11 +14,6 @@ class Quotes extends BaseQuotes{
     private  $bp_composite;
     private  $total_results;
 
-
-    public $any_loses;
-    public $prior_underwriting;
-    public $half_mile_location;
-    public $quote_mile_location;
     /**
      * @return \yii\db\ActiveQuery
      * relations
