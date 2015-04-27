@@ -45,11 +45,13 @@ use app\models\Occupancy;
  * @property string $each_person_accident
  * @property string $irpm_type
  * @property string $irpm_percent
+ * @property string $settings
  */
 class BaseQuotes extends \yii\db\ActiveRecord
 {
     const FINISHED = 1;
     const UNFINISHED = 0;
+    const BLOCKED = 2;
     /**
      * @inheritdoc
      */
@@ -85,6 +87,7 @@ class BaseQuotes extends \yii\db\ActiveRecord
             [['irpm_type','irpm_percent'],'required','on'=>'irpm'],
             [['irpm_type'],'integer','max'=>2,'on'=>'irpm'],
             [['irpm_percent'],'integer','max'=>15,'on'=>'irpm'],
+            [['settings'],'string'],
         ];
     }
 
@@ -126,10 +129,14 @@ class BaseQuotes extends \yii\db\ActiveRecord
             'prop_damage' => Yii::t('app', 'Body Inj. & Prop. Damage'),
             'agregate' => Yii::t('app', 'Aggregate'),
             'med_payment' => Yii::t('app', 'Med Payment'),
-            'each_occurrence' => Yii::t('app', 'Each Occurrence'),
+            'each_occurrence'      => Yii::t('app', 'Each Occurrence'),
             'each_person_accident' => Yii::t('app', 'Each Person/Accident'),
             'irpm_percent'         => Yii::t('app', 'IRPM Percents'),
             'irpm_type'            => Yii::t('app', 'IRPM Type'),
+            'any_loses'            => Yii::t('app','Are there any losses?'),
+            'prior_underwriting'   => Yii::t('app','Any prior underwriting cancellations or non renewals?'),
+            'half_mile_location'   => Yii::t('app','If there will be building coverage, is the location a ½ or mile to shore or water?'),
+            'quote_mile_location'  => Yii::t('app','For tenants only, is the location a ¼ mile or more to the shore or water?'),
         ];
     }
     /**

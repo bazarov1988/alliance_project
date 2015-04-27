@@ -14,6 +14,11 @@ class Quotes extends BaseQuotes{
     private  $bp_composite;
     private  $total_results;
 
+
+    public $any_loses;
+    public $prior_underwriting;
+    public $half_mile_location;
+    public $quote_mile_location;
     /**
      * @return \yii\db\ActiveQuery
      * relations
@@ -103,8 +108,6 @@ class Quotes extends BaseQuotes{
         $a6 = $g2>5?($g2==8?$k2:9):$k2;
         $a5 = $g2==1?($this->occupancy?$this->occupancy->bldg_rg:0):9;
         return \Yii::$app->excel->concat([$o2,$c2,$a2,$m2,$a7,$g2,$a6,$a5]);
-
-
 
     }
 

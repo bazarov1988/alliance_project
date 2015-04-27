@@ -33,6 +33,8 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
             <li><a href="#s3" data-toggle="tab">Optional Property Coverages</a></li>
             <li><a href="#s4" data-toggle="tab">Optional Liability Coverages</a></li>
             <li><a href="#s5" data-toggle="tab">Help</a></li>
+            <li><a href="#s6" data-toggle="tab">Business Owners Program UW Guidelines</a></li>
+            <li><a href="#s7" data-toggle="tab">Food Service UW Guidelines</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="s1">
@@ -62,6 +64,12 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
             <div class="tab-pane" id="s5">
                 <?= $this->render('forms/help')?>
             </div>
+            <div class="tab-pane" id="s6">
+                <?= $this->render('forms/business_owners_program')?>
+            </div>
+            <div class="tab-pane" id="s7">
+                <?= $this->render('forms/food_service')?>
+            </div>
         </div>
     </div>
     <div class="tabs-below">
@@ -71,6 +79,9 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
             <li><a href="#s3" data-toggle="tab">Optional Property Coverages</a></li>
             <li><a href="#s4" data-toggle="tab">Optional Liability Coverages</a></li>
             <li><a href="#s5" data-toggle="tab">Help</a></li>
+            <li><a href="#s6" data-toggle="tab">Business Owners Program UW Guidelines</a></li>
+            <li><a href="#s7" data-toggle="tab">Food Service UW Guidelines</a></li>
+
         </ul>
     </div>
     <div style="margin-top: 15px;width: 30%">
