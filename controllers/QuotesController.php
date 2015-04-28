@@ -30,7 +30,7 @@ class QuotesController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['myquotes','myunfinishedquotes','view','create','delete','update','generate','irpm'],
+                        'actions' => ['myquotes','myunfinishedquotes','view','create','delete','update','generate','irpm', 'cancel'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -366,7 +366,7 @@ class QuotesController extends Controller
     }
 
     public function actionCancel() {
-        Yii::$app->session->setFlash('warning', 'You can\'t continue this quote. Please contact to administrator.');
+        Yii::$app->session->setFlash('Quote-error', 'You can\'t continue this quote. Please contact to administrator.');
         return $this->redirect(['unfinished']);
     }
 }

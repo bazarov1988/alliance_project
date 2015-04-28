@@ -17,6 +17,17 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <?php if ($flash = Yii::$app->session->getFlash('Quote-saved')): ?>
+        <div class="alert alert-success">
+            <p><?= $flash ?></p>
+        </div>
+    <?php endif;?>
+    <?php if ($flash = Yii::$app->session->getFlash('Quote-error')): ?>
+        <div class="alert alert-danger">
+            <p><?= $flash ?></p>
+        </div>
+    <?php endif;?>
+
     <?php $form = ActiveForm::begin([
         'enableAjaxValidation' => true,
         'enableClientValidation' => false,
