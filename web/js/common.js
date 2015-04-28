@@ -38,7 +38,8 @@ $(function() {
         if( $.inArray(occupancy, [9, 11, 31, 42, 78, 97]) != -1 ) {
             bootbox.confirm('Do they have a wet UL300 Fire Suppression system over all cooking equipment included deep fat fryers?', function(result) {
                 if(!result) {
-                    // TODO: save and cancel quote
+                    // cancel quote
+                    window.location.href = '/quotes/cancel'
                 }
             });
         }

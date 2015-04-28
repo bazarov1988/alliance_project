@@ -363,4 +363,9 @@ class QuotesController extends Controller
         }
 
     }
+
+    public function actionCancel() {
+        Yii::$app->session->setFlash('warning', 'You can\'t continue this quote. Please contact to administrator.');
+        return $this->redirect(['unfinished']);
+    }
 }
