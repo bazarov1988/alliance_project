@@ -25,6 +25,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <p><?= $flash ?></p>
         </div>
     <?php endif;?>
+    <?php if ($flash = Yii::$app->session->getFlash('Quote-error')): ?>
+        <div class="alert alert-danger">
+            <p><?= $flash ?></p>
+        </div>
+    <?php endif;?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
