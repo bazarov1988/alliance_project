@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="question_sections">
         <?= $form->field($model, 'any_loses')->dropDownList(Yii::$app->params['quote']['yes_no']) ?>
         <div class="any_loss_block" style="display: none">
-            some email credentials
+            Assured SKCG
         </div>
         <br />
         <?= $form->field($model, 'prior_underwriting')->dropDownList(Yii::$app->params['quote']['yes_no']) ?>
@@ -42,11 +42,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 <script>
-    $('#quotes-any_loses').change(function(){
-        if($(this).val()==1){
+    var showEmail(){
+        if($('#quotes-any_loses').val()==1){
             $('.any_loss_block').show();
         } else {
             $('.any_loss_block').hide();
         }
+    }
+    $(document).ready(function(){
+        $('#quotes-any_loses').change(function(){
+            showEmail();
+        });
+        showEmail();
     });
 </script>

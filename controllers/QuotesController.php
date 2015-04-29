@@ -137,7 +137,6 @@ class QuotesController extends Controller
                 Yii::$app->session->setFlash("Quote-saved", Yii::t("app", "Begin quoiting."));
                 return $this->redirect(['update', 'id' => $model->id]);
             } else {
-                var_dump($model->errors);exit;
                 return $this->render('settings_form', [
                     'model' => $model
                 ]);
