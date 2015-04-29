@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <br />
         <?= $form->field($model, 'prior_underwriting')->dropDownList(Yii::$app->params['quote']['yes_no']) ?>
-        <?= $form->field($model, 'prior_underwriting_details')->textInput() ?><br />
+        <?= $form->field($model, 'prior_underwriting_details')->textArea() ?><br />
         <?= $form->field($model, 'half_mile_location')->dropDownList(Yii::$app->params['quote']['yes_no']) ?>
         <?= $form->field($model, 'quote_mile_location')->dropDownList(Yii::$app->params['quote']['yes_no']) ?>
     </div>
