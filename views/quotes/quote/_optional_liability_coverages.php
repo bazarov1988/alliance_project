@@ -1,3 +1,13 @@
+<?php if ($model->does_lead_exclusion_apply): ?>
+    <tr>
+        <td>LS-59</td>
+        <td colspan="2">Lead Execution - <?= $model->occupied == 97 ? 'Restaurant' : 'Other' /* Occupancy == Restaurant */?></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+<?php endif; ?>
+
     <tr>
         <td></td>
         <td colspan="2">Credit to Remove Liability Coverage</td>

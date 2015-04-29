@@ -32,10 +32,11 @@ $(function() {
     });
 
     // occupancy: choosing the cooking classes
+    var occupancyCookingClasses = [9, 11, 31, 42, 78, 97];
     $('#quotes-occupied').on('change', function() {
         var occupancy = $(this).val() * 1;
 
-        if( $.inArray(occupancy, [9, 11, 31, 42, 78, 97]) != -1 ) {
+        if( $.inArray(occupancy, occupancyCookingClasses) != -1 ) {
             bootbox.dialog({
                 message: 'Do they have a wet UL300 Fire Suppression system over all cooking equipment included deep fat fryers?',
                 buttons: {
@@ -53,6 +54,26 @@ $(function() {
                     }
                 }
             });
+
+            lockLeadExecution();
+        } else {
+            unlockLeadExecution();
         }
     });
+
+    // lock/unlock Lead Exclusion according to Occupancy (cooking classes)
+    if( $.inArray($('#quotes-occupied').val()*1, occupancyCookingClasses) != -1) {
+        lockLeadExecution();
+    } else {
+        unlockLeadExecution();
+    }
+
+    function lockLeadExecution() {
+        $('#quotes-does_lead_exclusion_apply').val(1);
+        $('#quotes-does_lead_exclusion_apply option:not(:selected)').attr('disabled', true);
+    }
+
+    function unlockLeadExecution() {
+        $('#quotes-does_lead_exclusion_apply option').attr('disabled', false);
+    }
 });
