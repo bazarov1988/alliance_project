@@ -69,7 +69,7 @@ class QuotesController extends Controller
     public function actionUnfinished()
     {
         $searchModel = new QuotesSearch();
-        $searchModel->status = $searchModel::UNFINISHED;
+        $searchModel->status = [$searchModel::UNFINISHED,$searchModel::NEW_QUOTE];
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('unfinished_admin', [
@@ -97,7 +97,7 @@ class QuotesController extends Controller
     public function actionMyunfinishedquotes()
     {
         $searchModel = new QuotesSearch();
-        $searchModel->status = $searchModel::UNFINISHED;
+        $searchModel->status = [$searchModel::UNFINISHED,$searchModel::NEW_QUOTE];
         $dataProvider = $searchModel->search_by_user(Yii::$app->request->queryParams,Yii::$app->user->id);
 
         return $this->render('unfinished', [
@@ -134,7 +134,15 @@ class QuotesController extends Controller
             $model->date_create = date('Y-m-d H:i:s');
             $model->date_quoted = date('Y-m-d H:i:s');
             $model->user_id = Yii::$app->user->id;
+            $model->status = Quotes::NEW_QUOTE;
             if($model->save()){
+                $sc = new SpecialConditions();
+                $lc = new OptionalLiabilityCoverages();
+                $pc = new OptionalPropertyCoverages();
+                $sc->quote_id = $model->id;
+                $lc->quote_id = $model->id;
+                $pc->quote_id = $model->id;
+                $sc->save(false);$lc->save(false);$pc->save(false);
                 Yii::$app->session->setFlash("Quote-saved", Yii::t("app", "Begin quoiting."));
                 return $this->redirect(['update', 'id' => $model->id]);
             } else {
@@ -159,6 +167,7 @@ class QuotesController extends Controller
     {
         date_default_timezone_set('Etc/GMT-4');
         $model = $this->findModel($id);
+        $model->setScenario('default');
         if($model->status == Quotes::FINISHED && !Yii::$app->user->identity->role->can_admin){
             throw new \yii\web\HttpException(404);
         }

@@ -82,7 +82,12 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'each_occurrence',
             // 'each_person_accident',
 
-            ['class' => 'yii\grid\ActionColumn','header'=>'Actions'],
+            ['class' => 'yii\grid\ActionColumn','header'=>'Actions','buttons'=>[
+                'view'=>function($url,$model){
+                    return $model->status != \app\models\Quotes::NEW_QUOTE ? Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [ 'title' => Yii::t('app', 'View')]) : '';
+                }
+                ]
+            ],
         ],
     ]); ?>
 

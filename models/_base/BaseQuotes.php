@@ -52,6 +52,7 @@ class BaseQuotes extends \yii\db\ActiveRecord
     const FINISHED = 1;
     const UNFINISHED = 0;
     const BLOCKED = 2;
+    const NEW_QUOTE = 3;
     /**
      * @inheritdoc
      */
@@ -144,9 +145,9 @@ class BaseQuotes extends \yii\db\ActiveRecord
     }
     public function scenarios()
     {
-        return [
-            'settings' => ['any_loses', 'prior_underwriting','prior_underwriting_details','half_mile_location','quote_mile_location']
-        ];
+        $scenarios = parent::scenarios();
+        $scenarios['settings']=['any_loses', 'prior_underwriting','prior_underwriting_details','half_mile_location','quote_mile_location'];
+        return $scenarios;
     }
     /**
      * @return string
