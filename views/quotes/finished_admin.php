@@ -47,6 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'name',
             'address',
+            'prior_underwriting_details',
             'date_quoted',
             // 'zip_code',
             // 'agent',

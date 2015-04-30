@@ -129,6 +129,7 @@ class QuotesController extends Controller
         date_default_timezone_set('Etc/GMT-4');
         $model      = new Quotes();
         $model->setScenario('settings');
+        $this->performAjaxValidation([$model]);
         if ($model->load(Yii::$app->request->post())) {
             $model->date_create = date('Y-m-d H:i:s');
             $model->date_quoted = date('Y-m-d H:i:s');

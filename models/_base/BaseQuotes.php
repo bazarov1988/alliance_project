@@ -89,7 +89,7 @@ class BaseQuotes extends \yii\db\ActiveRecord
             [['irpm_percent'],'integer','max'=>15,'on'=>'irpm'],
             [['any_loses', 'prior_underwriting','half_mile_location','quote_mile_location'],'required'],
             [['prior_underwriting_details'],'string'],
-            [['half_mile_location','quote_mile_location'],'checkMileLocation'],
+            [['half_mile_location','quote_mile_location','any_loses'],'checkMileLocation'],
         ];
     }
 
@@ -310,13 +310,22 @@ class BaseQuotes extends \yii\db\ActiveRecord
 
 
     public function checkMileLocation($attr,$params){
-        if($this->quote_mile_location==1){
-            $this->addError('quote_mile_location','Does not meet carrier’s guidelines');
-        }
-        if($this->half_mile_location==1){
-            $this->addError('half_mile_location','Does not meet carrier’s guidelines');
+        switch($attr){
+            case 'quote_mile_location':
+                if($this->quote_mile_location==1){
+                    $this->addError('quote_mile_location','Does not meet carrier’s guidelines');
+                }
+                break;
+            case 'half_mile_location':
+                if($this->half_mile_location==1){
+                    $this->addError('half_mile_location','Does not meet carrier’s guidelines');
+                }
+                break;
+            case 'any_loses':
+                if($this->any_loses==1){
+                    $this->addError('any_loses','Please provide loss runs to Assured SKCG');
+                }
+                break;
         }
     }
-
-
 }

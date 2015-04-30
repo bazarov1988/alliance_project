@@ -17,15 +17,29 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php $form = ActiveForm::begin([
-        'enableAjaxValidation' => false,
-        'enableClientValidation' => true,
+        'enableAjaxValidation' => true,
+        'enableClientValidation' => false,
         'validateOnBlur'=>false,
-        'validateOnChange'=>false
+        'validateOnChange'=>true
     ]); ?>
     <div class="question_sections">
         <?= $form->field($model, 'any_loses')->dropDownList(Yii::$app->params['quote']['yes_no']) ?>
         <div class="any_loss_block" style="display: none">
-            Assured SKCG
+            Wesley Swienc<br />
+
+            Allianceplus Insurance<br />
+
+            A Division of Assured SKCG, Inc.<br />
+
+            900 Merchants Concourse<br />
+
+            Suite 400<br />
+
+            Westbury, NY 11590<br />
+
+            516-693-5182  /  Fax: 516-693-5183<br />
+
+            <a href="mailto:Wesley@allianceplus.com">Wesley@allianceplus.com</a>
         </div>
         <br />
         <?= $form->field($model, 'prior_underwriting')->dropDownList(Yii::$app->params['quote']['yes_no']) ?>
@@ -42,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 <script>
-    var showEmail(){
+    var showEmail =function(){
         if($('#quotes-any_loses').val()==1){
             $('.any_loss_block').show();
         } else {
