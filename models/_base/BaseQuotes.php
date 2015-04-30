@@ -87,7 +87,7 @@ class BaseQuotes extends \yii\db\ActiveRecord
             [['irpm_type','irpm_percent'],'required','on'=>'irpm'],
             [['irpm_type'],'integer','max'=>2,'on'=>'irpm'],
             [['irpm_percent'],'integer','max'=>15,'on'=>'irpm'],
-            [['any_loses', 'prior_underwriting','half_mile_location','quote_mile_location'],'required'],
+            [['any_loses', 'prior_underwriting','half_mile_location','quote_mile_location'],'required','message'=>'Answer this question please.'],
             [['prior_underwriting_details'],'string'],
             [['half_mile_location','quote_mile_location','any_loses'],'checkMileLocation'],
         ];
