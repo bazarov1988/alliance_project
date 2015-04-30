@@ -46,6 +46,7 @@ class QuotesSearch extends Quotes
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => ['defaultOrder'=>['date_quoted'=>SORT_DESC]]
         ]);
 
         $this->load($params);
@@ -103,6 +104,7 @@ class QuotesSearch extends Quotes
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => ['defaultOrder'=>['date_quoted'=>SORT_DESC]]
         ]);
 
         $this->load($params);
