@@ -21,6 +21,7 @@ class AllianceAsset extends AssetBundle {
     public $js = [
         'bower_components/bootstrap/dist/js/bootstrap.min.js',
         'dist/js/sb-admin-2.js',
+        'dist/js/bootbox.js',
         'bower_components/metisMenu/dist/metisMenu.js',
     ];
 } 

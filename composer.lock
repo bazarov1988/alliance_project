@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9fbefda479f7df33ce80ae10c73812f3",
+    "hash": "1fe4c5d2c932f845c1eec70f4c3cf8a3",
     "packages": [
         {
             "name": "amnah/yii2-user",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/amnah/yii2-user.git",
-                "reference": "596937ec03d10a569aebc95ed189dd25aa027f78"
+                "reference": "133c2e93d13ca3a5ba8e3005e460d1076e49d228"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amnah/yii2-user/zipball/596937ec03d10a569aebc95ed189dd25aa027f78",
-                "reference": "596937ec03d10a569aebc95ed189dd25aa027f78",
+                "url": "https://api.github.com/repos/amnah/yii2-user/zipball/133c2e93d13ca3a5ba8e3005e460d1076e49d228",
+                "reference": "133c2e93d13ca3a5ba8e3005e460d1076e49d228",
                 "shasum": ""
             },
             "require": {
@@ -48,20 +48,51 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2015-02-21 16:44:17"
+            "time": "2015-04-17 05:12:28"
         },
         {
-            "name": "bower-asset/bootstrap",
-            "version": "v3.3.2",
+            "name": "bower-asset/bootbox",
+            "version": "v4.4.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "bcf7dd38b5ab180256e2e4fb5da0369551b3f082"
+                "url": "https://github.com/makeusabrew/bootbox.git",
+                "reference": "cb756203e250ed0ff2539359ff0ad1c3ffb8e8d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/bcf7dd38b5ab180256e2e4fb5da0369551b3f082",
-                "reference": "bcf7dd38b5ab180256e2e4fb5da0369551b3f082",
+                "url": "https://api.github.com/repos/makeusabrew/bootbox/zipball/cb756203e250ed0ff2539359ff0ad1c3ffb8e8d3",
+                "reference": "cb756203e250ed0ff2539359ff0ad1c3ffb8e8d3",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/bootstrap": ">=3.0.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "./bootbox.js",
+                "bower-asset-ignore": [
+                    "CHANGELOG.md",
+                    "CONTRIBUTING",
+                    "Gruntfile.js",
+                    "header.txt",
+                    "karma*.js",
+                    "build",
+                    "tests"
+                ]
+            }
+        },
+        {
+            "name": "bower-asset/bootstrap",
+            "version": "v3.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twbs/bootstrap.git",
+                "reference": "a10eb60bc0b07b747fa0c4ebd8821eb7307bd07f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/a10eb60bc0b07b747fa0c4ebd8821eb7307bd07f",
+                "reference": "a10eb60bc0b07b747fa0c4ebd8821eb7307bd07f",
                 "shasum": ""
             },
             "require": {
@@ -76,7 +107,8 @@
                     "dist/fonts/glyphicons-halflings-regular.eot",
                     "dist/fonts/glyphicons-halflings-regular.svg",
                     "dist/fonts/glyphicons-halflings-regular.ttf",
-                    "dist/fonts/glyphicons-halflings-regular.woff"
+                    "dist/fonts/glyphicons-halflings-regular.woff",
+                    "dist/fonts/glyphicons-halflings-regular.woff2"
                 ],
                 "bower-asset-ignore": [
                     "/.*",
@@ -103,16 +135,16 @@
         },
         {
             "name": "bower-asset/jquery",
-            "version": "2.1.3",
+            "version": "2.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jquery/jquery.git",
-                "reference": "8f2a9d9272d6ed7f32d3a484740ab342c02541e0"
+                "reference": "7751e69b615c6eca6f783a81e292a55725af6b85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jquery/jquery/zipball/8f2a9d9272d6ed7f32d3a484740ab342c02541e0",
-                "reference": "8f2a9d9272d6ed7f32d3a484740ab342c02541e0",
+                "url": "https://api.github.com/repos/jquery/jquery/zipball/7751e69b615c6eca6f783a81e292a55725af6b85",
+                "reference": "7751e69b615c6eca6f783a81e292a55725af6b85",
                 "shasum": ""
             },
             "require-dev": {
@@ -127,6 +159,7 @@
                 "bower-asset-ignore": [
                     "**/.*",
                     "build",
+                    "dist/cdn",
                     "speed",
                     "test",
                     "*.md",
@@ -146,16 +179,16 @@
         },
         {
             "name": "bower-asset/jquery.inputmask",
-            "version": "3.1.61",
+            "version": "3.1.63",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RobinHerbots/jquery.inputmask.git",
-                "reference": "f2c086411d2557fc485c47afb3cecfa6c1de9ee2"
+                "reference": "c40c7287eadc31e341ebbf0c02352eb55b9cbc48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/f2c086411d2557fc485c47afb3cecfa6c1de9ee2",
-                "reference": "f2c086411d2557fc485c47afb3cecfa6c1de9ee2",
+                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/c40c7287eadc31e341ebbf0c02352eb55b9cbc48",
+                "reference": "c40c7287eadc31e341ebbf0c02352eb55b9cbc48",
                 "shasum": ""
             },
             "require": {
@@ -253,16 +286,16 @@
         },
         {
             "name": "bower-asset/yii2-pjax",
-            "version": "v2.0.2",
+            "version": "v2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/jquery-pjax.git",
-                "reference": "fb92be865c0fd6583714475cb7d629020749d73f"
+                "reference": "3f20897307cca046fca5323b318475ae9dac0ca0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/jquery-pjax/zipball/fb92be865c0fd6583714475cb7d629020749d73f",
-                "reference": "fb92be865c0fd6583714475cb7d629020749d73f",
+                "url": "https://api.github.com/repos/yiisoft/jquery-pjax/zipball/3f20897307cca046fca5323b318475ae9dac0ca0",
+                "reference": "3f20897307cca046fca5323b318475ae9dac0ca0",
                 "shasum": ""
             },
             "require": {
@@ -279,7 +312,10 @@
                     "script/",
                     "test/"
                 ]
-            }
+            },
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "cebe/markdown",
@@ -343,16 +379,16 @@
         },
         {
             "name": "doctrine/annotations",
-            "version": "v1.2.3",
+            "version": "v1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "eeda578cbe24a170331a1cfdf78be723412df7a4"
+                "reference": "b5202eb9e83f8db52e0e58867e0a46e63be8332e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/eeda578cbe24a170331a1cfdf78be723412df7a4",
-                "reference": "eeda578cbe24a170331a1cfdf78be723412df7a4",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/b5202eb9e83f8db52e0e58867e0a46e63be8332e",
+                "reference": "b5202eb9e83f8db52e0e58867e0a46e63be8332e",
                 "shasum": ""
             },
             "require": {
@@ -407,20 +443,20 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2014-12-20 20:49:38"
+            "time": "2014-12-23 22:40:37"
         },
         {
             "name": "doctrine/cache",
-            "version": "v1.4.0",
+            "version": "v1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "2346085d2b027b233ae1d5de59b07440b9f288c8"
+                "reference": "c9eadeb743ac6199f7eec423cb9426bc518b7b03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/2346085d2b027b233ae1d5de59b07440b9f288c8",
-                "reference": "2346085d2b027b233ae1d5de59b07440b9f288c8",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/c9eadeb743ac6199f7eec423cb9426bc518b7b03",
+                "reference": "c9eadeb743ac6199f7eec423cb9426bc518b7b03",
                 "shasum": ""
             },
             "require": {
@@ -431,13 +467,13 @@
             },
             "require-dev": {
                 "phpunit/phpunit": ">=3.7",
-                "predis/predis": "~0.8",
+                "predis/predis": "~1.0",
                 "satooshi/php-coveralls": "~0.6"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4.x-dev"
+                    "dev-master": "1.5.x-dev"
                 }
             },
             "autoload": {
@@ -477,24 +513,27 @@
                 "cache",
                 "caching"
             ],
-            "time": "2015-01-15 20:38:55"
+            "time": "2015-04-15 00:11:59"
         },
         {
             "name": "doctrine/collections",
-            "version": "v1.2",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/collections.git",
-                "reference": "b99c5c46c87126201899afe88ec490a25eedd6a2"
+                "reference": "6c1e4eef75f310ea1b3e30945e9f06e652128b8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/collections/zipball/b99c5c46c87126201899afe88ec490a25eedd6a2",
-                "reference": "b99c5c46c87126201899afe88ec490a25eedd6a2",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/6c1e4eef75f310ea1b3e30945e9f06e652128b8a",
+                "reference": "6c1e4eef75f310ea1b3e30945e9f06e652128b8a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
             },
             "type": "library",
             "extra": {
@@ -513,17 +552,6 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
-                    "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/",
-                    "role": "Creator"
-                },
-                {
-                    "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com",
-                    "homepage": "http://www.instaclick.com"
-                },
-                {
                     "name": "Roman Borschel",
                     "email": "roman@code-factory.org"
                 },
@@ -532,10 +560,16 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
                     "name": "Johannes Schmitt",
-                    "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
-                    "role": "Developer of wrapped JMSSerializerBundle"
+                    "email": "schmittjoh@gmail.com"
                 }
             ],
             "description": "Collections Abstraction library",
@@ -545,7 +579,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2014-02-03 23:07:43"
+            "time": "2015-04-14 22:21:58"
         },
         {
             "name": "doctrine/common",
@@ -793,16 +827,16 @@
         },
         {
             "name": "kartik-v/mpdf",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/mpdf.git",
-                "reference": "a9d6960e47b4c8d28ba72c229c13a6444d8e2658"
+                "reference": "6ab0ae3a82673e514f168c8e6da02289e6d95f2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/mpdf/zipball/a9d6960e47b4c8d28ba72c229c13a6444d8e2658",
-                "reference": "a9d6960e47b4c8d28ba72c229c13a6444d8e2658",
+                "url": "https://api.github.com/repos/kartik-v/mpdf/zipball/6ab0ae3a82673e514f168c8e6da02289e6d95f2c",
+                "reference": "6ab0ae3a82673e514f168c8e6da02289e6d95f2c",
                 "shasum": ""
             },
             "require": {
@@ -832,7 +866,7 @@
                 "php",
                 "utf-8"
             ],
-            "time": "2015-02-18 16:00:43"
+            "time": "2015-05-05 07:34:49"
         },
         {
             "name": "kartik-v/yii2-mpdf",
@@ -974,16 +1008,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.3.1",
+            "version": "v5.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "c5f963e7f9d6f6438fda4f22d5cc2db296ec621a"
+                "reference": "31454f258f10329ae7c48763eb898a75c39e0a9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/c5f963e7f9d6f6438fda4f22d5cc2db296ec621a",
-                "reference": "c5f963e7f9d6f6438fda4f22d5cc2db296ec621a",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/31454f258f10329ae7c48763eb898a75c39e0a9f",
+                "reference": "31454f258f10329ae7c48763eb898a75c39e0a9f",
                 "shasum": ""
             },
             "require": {
@@ -995,7 +1029,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.3-dev"
+                    "dev-master": "5.4-dev"
                 }
             },
             "autoload": {
@@ -1022,7 +1056,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2014-12-05 14:17:14"
+            "time": "2015-03-14 06:06:39"
         },
         {
             "name": "ticketpark/htmlphpexcel",
