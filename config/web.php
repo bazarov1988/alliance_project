@@ -46,7 +46,7 @@ $config = [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.gmail.com',
                 'username' => 'alliancetestmail@gmail.com',
-                'password' => 'qwerty123qwerty321',
+                'password' => 'ZKCpn876LksTR1',
                 'port' => '587',
                 'encryption' => 'tls',
             ],
