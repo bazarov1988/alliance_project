@@ -762,7 +762,12 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     // -----------------------------------------------------------------------------------------------------------------
 
-    public function getLiquorLiabilityReceiptsPremium()
+	public function clergyPersonProfessionalLegalLiabilityCoverage() {
+
+	}
+
+
+	public function getLiquorLiabilityReceiptsPremium()
     {
         $prePremium = $this->getLiquorLiabilityReceiptsPrePremium();
         $minimum = $this->getLiquorLiabilityReceiptsPreMinimum();

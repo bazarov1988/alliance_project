@@ -70,7 +70,11 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     public function getAccountsReceivablePremium(){
         $deductibleBP = $this->getAccountsReceivableDeductible();
         if(!empty($deductibleBP)){
-            return round(($this->accounts_receivable/1000)*$deductibleBP*\Yii::$app->params['quote']['option_coverage_rates']['accounts'],0);
+	        $add = 0;
+	        if($this->quote->policy_type == 2){
+		        $add=1000;
+	        }
+            return round(($this->accounts_receivable/1000)*$deductibleBP*\Yii::$app->params['quote']['option_coverage_rates']['accounts'],0)+$add;
         } else {
             return 0;
         }

@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 06, 2015 at 07:27 PM
--- Server version: 5.5.41-0ubuntu0.14.04.1
+-- Generation Time: Jun 22, 2015 at 03:58 PM
+-- Server version: 5.5.43-MariaDB-1ubuntu0.14.04.2
 -- PHP Version: 5.5.9-1ubuntu4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -89,8 +89,14 @@ CREATE TABLE IF NOT EXISTS `bop_rater_entry` (
   `each_person_accident` varchar(255) NOT NULL,
   `irpm_type` tinyint(4) DEFAULT NULL,
   `irpm_percent` int(11) DEFAULT NULL,
+  `any_loses` smallint(6) DEFAULT NULL,
+  `prior_underwriting` smallint(6) DEFAULT NULL,
+  `prior_underwriting_details` text,
+  `half_mile_location` smallint(6) DEFAULT NULL,
+  `quote_mile_location` smallint(6) DEFAULT NULL,
+  `settings` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='bop_rater' AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='bop_rater' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -254,7 +260,10 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 ('m000000_000000_base', 1421925040),
 ('m140524_153638_init_user', 1421925044),
 ('m140524_153642_init_user_auth', 1421925045),
-('m150305_150027_bldg_rg_field_for_occupancy', 1425567824);
+('m150305_150027_bldg_rg_field_for_occupancy', 1425567824),
+('m150311_143312_irpm_fields', 1426084635),
+('m150422_175538_settings_for_quotes', 1429804303),
+('m150427_160047_cause_of_loss_building_roof', 1430157394);
 
 -- --------------------------------------------------------
 
@@ -479,6 +488,7 @@ CREATE TABLE IF NOT EXISTS `optional_property_coverages` (
   `businessowners_agreed_amount` tinyint(1) DEFAULT NULL,
   `businessowners_burglary_robbery` varchar(255) NOT NULL,
   `cause_of_loss_building` int(11) DEFAULT NULL,
+  `cause_of_loss_building_roof` tinyint(1) NOT NULL DEFAULT '0',
   `cause_of_loss_business_property` int(11) DEFAULT NULL,
   `computer_coverage` varchar(255) NOT NULL,
   `deductible` int(11) DEFAULT NULL,
@@ -643,7 +653,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `role_id`, `status`, `email`, `new_email`, `username`, `password`, `auth_key`, `api_key`, `login_ip`, `login_time`, `create_ip`, `create_time`, `update_time`, `ban_time`, `ban_reason`) VALUES
-(1, 1, 1, 'admin_test@mail.com', NULL, 'admin', '$2y$13$M9DEPZeaKiMWSjUU59OsZOPGc9GVXHyVMmCoOR3zyaOmPLNm18mAO', 'xy3ANikyUbCqak6oKXdDFHLejW9M6aeo', 'eF9aTPt-CmWVq44dtoCPWC8AKrDp1aTZ', '127.0.0.1', '2015-03-06 14:51:02', '127.0.0.1', '2015-02-05 14:09:47', '2015-02-11 13:10:40', NULL, NULL),
+(1, 1, 2, 'admin_test@gmail.com', '', 'admin', '$2y$13$M9DEPZeaKiMWSjUU59OsZOPGc9GVXHyVMmCoOR3zyaOmPLNm18mAO', 'xy3ANikyUbCqak6oKXdDFHLejW9M6aeo', 'eF9aTPt-CmWVq44dtoCPWC8AKrDp1aTZ', '127.0.0.1', '2015-05-25 08:19:59', '127.0.0.1', '2015-02-05 14:09:47', '2015-03-11 14:04:42', NULL, NULL),
 (2, 2, 1, 'test_user@mail.com', NULL, 'neo2', '$2y$13$sLTcPgTU11N26iGGCeaqUeACCgFsQQ4Mj.IkrhSOP2zjwKloA7yAW', NULL, NULL, NULL, NULL, NULL, '2015-02-11 13:10:02', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -682,14 +692,15 @@ CREATE TABLE IF NOT EXISTS `user_key` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_key_key` (`key`),
   KEY `user_key_user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `user_key`
 --
 
 INSERT INTO `user_key` (`id`, `user_id`, `type`, `key`, `create_time`, `consume_time`, `expire_time`) VALUES
-(1, 1, 1, 'B2loEpj7zst1ix-EbdMKoBlAnv6C7r7W', '2015-02-05 14:11:38', '2015-02-05 14:13:00', NULL);
+(1, 1, 1, 'B2loEpj7zst1ix-EbdMKoBlAnv6C7r7W', '2015-02-05 14:11:38', '2015-02-05 14:13:00', NULL),
+(2, 1, 2, 'FfpxI0KTLv2SbRHouS6p1iaILZSIQUcn', '2015-03-11 14:04:40', NULL, NULL);
 
 --
 -- Constraints for dumped tables
