@@ -221,6 +221,11 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     public function getComputerCoveragePremium(){
         return round(($this->getComputerCoverageLimit()/1000)*$this->getComputerCoverageRate()*$this->getComputerCoverageDeductible(),0);
     }
+
+
+	public function getScheduledComputerCoveragePremium(){
+
+	}
     /**
      * ----------------------------------------computer coverage-------------------------------------
      */
@@ -325,6 +330,19 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
      * ----------------------------------------demolition debris-----------------------------------------------
      */
 
+
+	/**
+	 * ----------------------------------------demolition Coverage---------------------------------------------
+	 */
+
+
+	public function getDemolitionCoverage(){
+		return round(($this->agreement_one/100)*$this->getDDBldgRate()*$this->getDDAggr_1_rate()*$this->getDDDeductible(),0);
+	}
+
+	/**
+	 * ----------------------------------------demolition Coverage---------------------------------------------
+	 */
 
     /*
      * ---------------------------------------Earthquake Coverage----------------------------------------------

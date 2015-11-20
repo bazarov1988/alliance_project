@@ -12,6 +12,7 @@ use app\models\_base\BaseOptionalLiabilityCoverages;
 
 class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 {
+	public $amount_of_receipts;
 
     public function getBarberShopFullTimePrice()
     {
@@ -122,10 +123,6 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             ($bp['initial_premium']*$bp['factor'])+
             ($opt_prop['initial_premium']*$opt_prop['factor'])+
             ($opt_liab['initial_premium']*$opt_liab['factor']);
-//var_dump($building);
-//var_dump($opt_prop);
-//var_dump($opt_liab);
-//        die;
         return [
             'building'=>$building,
             'business_property'=>$bp,
@@ -234,7 +231,6 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $summ += $propCovrgs->getInsuredPremisesPremium();
         $summ += $propCovrgs->getInsuredPremisesAPremium();
 
-        //var_dump($summ); die();
         return $summ;
 
     }
@@ -349,7 +345,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             $PSbefore['optional_liability']['initial_premium'];
         $finalPremium = $sumPremium + $this->getAdditionalInsuredPremium();
         $irpm = ($finalPremium>\Yii::$app->params['quote']['max_sum_for_irpm'])?round($finalPremium * (($this->quote->irpm_percent / 100) * $irpmIndex), 0):0;
-        $fireFree = ($PSbefore['building']['initial_premium'] + $PSbefore['business_property']['initial_premium']) * (1 + (($this->quote->irpm_percent / 100) * $irpmIndex)) * 0.5 * 0.0125;
+        $fireFree = ($PSbefore['building']['initial_premium'] + $PSbefore['business_property']['initial_premium']) * (1 + $irpm) * 0.5 * 0.0125;
         return [
             'premium' => $finalPremium,
             'irpm' => $irpm,
@@ -1044,4 +1040,27 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     {
         return $this->designated_premises ? round(\Yii::$app->params['quote']['designated_premises_credit'] * -1, 0) : 0;
     }
+
+	/**
+	 * @return float
+	 * druglist liability
+	 */
+	public function getDruggistLiability(){
+		$params = $this->getDrugglistLiabilityReceiptsRate();
+		$premium = round(($this->amount_of_receipts / 100 * $params[2]), 0);
+		if($premium>$params[3]){
+			return $premium;
+		} else {
+			return $params[3];
+		}
+	}
+
+	public function getDrugglistLiabilityReceiptsRate(){
+		$params = \Yii::$app->params['quote']['designated_premises_credit'];
+		foreach($params as $param){
+			if($this->amount_of_receipts>=$param[0]&&$this->amount_of_receipts<=$param[0]){
+				return $param;
+			}
+		}
+	}
 }
