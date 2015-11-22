@@ -18,6 +18,7 @@ class AllianceAsset extends AssetBundle {
         'dist/css/main.css',
         'bower_components/font-awesome/css/font-awesome.min.css'
     ];
+
     public $js = [
         'bower_components/bootstrap/dist/js/bootstrap.min.js',
         'dist/js/sb-admin-2.js',
