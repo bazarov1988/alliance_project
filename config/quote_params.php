@@ -863,6 +863,4 @@ return [
 		'excluding' => 0.1
 	],
 	'max_sum_for_irpm' => 3499
-
-
 ];

@@ -2,6 +2,8 @@
 
 namespace app\models\_base;
 
+use app\models\Quotes;
+use app\models\QuotesLocations;
 use Yii;
 use app\models\Occupancy;
 
@@ -53,6 +55,8 @@ class BaseQuotes extends \yii\db\ActiveRecord
     const UNFINISHED = 0;
     const BLOCKED = 2;
     const NEW_QUOTE = 3;
+
+	public $locations = array();
     /**
      * @inheritdoc
      */
@@ -67,7 +71,8 @@ class BaseQuotes extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['construction', 'protection', 'country', 'zone', 'prior_since', 'occupied','prop_damage', 'agregate'],'required','message'=>'{attribute} must be chosen.'],
+            [['construction', 'protection', 'country', 'zone', 'prior_since','prop_damage', 'agregate'],'required','message'=>'{attribute} must be chosen.'],
+            [['locations'],'checkMultipleLocations'],
             [['does_lead_exclusion_apply','apt_in_bldg', 'sole_occupancy', 'consumed_on_premises'],'required','message'=>'{attribute} must be answered.'],
             [['mercantile_occupany_in_bldg', 'med_payment', 'occupied_type','policy_type'],'required','message'=>'{attribute} must be indicated.'],
             [['user_id'], 'required'],
@@ -329,4 +334,22 @@ class BaseQuotes extends \yii\db\ActiveRecord
                 break;
         }
     }
+
+	public function checkMultipleLocations($attr,$params){
+		if(empty($this->$attr)){
+			$this->addError('occupied','Please select one or more locations');
+		}
+	}
+
+	public function afterSave($insert, $changedAttributes){
+		parent::afterSave($insert, $changedAttributes);
+		QuotesLocations::deleteAll('quote_id=:id',[':id'=>$this->id]);
+		foreach($this->locations as $location) {
+			$model = new QuotesLocations();
+			$model->quote_id = $this->id;
+			$model->occupancy_id = $location;
+			$model->save();
+		}
+
+	}
 }

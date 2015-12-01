@@ -1245,4 +1245,17 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 
     // -----------------------------------------------------------------------------------------------------------------
 
+
+	public function extenderEndorsements(){
+		$number = 1;
+		$hotelMotel = $number*75;
+		$extender = 121*$number;
+		$bopExtender = 0*$number;
+		$businessExnteder = $number*182;
+
+	}
+
+	public function getAdditionalInsuredVendors() {
+
+	}
 } 

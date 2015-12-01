@@ -13,6 +13,7 @@ class Quotes extends BaseQuotes{
     private  $bldg_composite;
     private  $bp_composite;
     private  $total_results;
+	public   $occupancy;
 
     /**
      * @return \yii\db\ActiveQuery
@@ -38,18 +39,24 @@ class Quotes extends BaseQuotes{
         return $this->hasOne(MedicalPayments::className(),['id'=>'med_payment']);
     }
 
-    public function getOccupancy(){
-        return $this->hasOne(Occupancy::className(),['id'=>'occupied']);
-    }
-
     public function getUser(){
         return $this->hasOne(User::className(),['id'=>'user_id']);
     }
 
-    public function getBldgComposite(){
+	public function getSelectedLocations(){
+		return $this->hasMany(Occupancy::className(), ['id' => 'occupancy_id'])->viaTable(QuotesLocations::tableName(), ['quote_id' => 'id']);
+	}
+
+	public function afterFind()
+	{
+		parent::afterFind();
+		$this->occupancy = count($this->selectedLocations)>0?$this->selectedLocations[0]:null;
+	}
+
+	public function getBldgComposite(){
         if(!$this->bldg_composite){
             $this->bldg_composite = round(round(round(round(round(round(round($this->getTableRateBuilding() * $this->getBuildingZoneFactor(), 4) * $this->getLeadFactor(), 4) * $this->getBuildingAmountOfIns(), 4) * $this->getDeductibleFactorBuilding(), 4) * $this->getBuildingCredits(), 4) * $this->getSpecialConditionsBuilding(), 4) * $this->getAggregateFactor(), 0);
-//old formala
+	//old formala
             /*$old = round(
                 round(
                     round(

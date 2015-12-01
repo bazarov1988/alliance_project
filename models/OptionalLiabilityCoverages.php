@@ -376,7 +376,6 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
      */
     public function getApplicablePremium()
     {
-
         if ($this->getProjectOnlyCompPremium() < $this->getApplicableMaximum()) {//IF(AF20<AF16;AF16;AF20)
 //            return 'AF16';
             return $this->getApplicableMaximum();

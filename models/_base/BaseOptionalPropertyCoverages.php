@@ -20,6 +20,7 @@ use Yii;
  * @property integer $cause_of_loss_business_property
  * @property string $computer_coverage
  * @property integer $deductible
+ * @property integer $clergypersons
  * @property integer $cooking_protection_equip
  * @property string $customers_goods
  * @property string $agreement_one

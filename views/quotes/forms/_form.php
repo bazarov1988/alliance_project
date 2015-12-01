@@ -13,6 +13,10 @@ use yii\helpers\ArrayHelper;
 ?>
 <br />
 <div class="quotes-form">
+	<?php
+	$occupancy =  Html::dropDownList('Quotes[locations][]',null,ArrayHelper::map(Occupancy::find()->all(), 'id', 'name'),['prompt'=>'Select','class'=>'form-control']).'<br />';
+	?>
+	<div style="display: none" class="occupancy_input"><?=$occupancy?></div>
     <table class="table table-striped table-bordered">
         <tr><td><?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?></td></tr>
         <tr><td><?= $form->field($model, 'address')->textInput(['maxlength' => 255]) ?></td></tr>
@@ -23,7 +27,30 @@ use yii\helpers\ArrayHelper;
         <tr><td><?= $form->field($model, 'country')->textInput()->dropDownList(ArrayHelper::map(Countries::find()->all(), 'id', 'name'),['prompt'=>'Select']) ?></td></tr>
         <tr><td><?= $form->field($model, 'zone')->dropDownList(Yii::$app->params['quote']['zone']) ?></td></tr>
         <tr><td><?= $form->field($model, 'prior_since')->dropDownList(Yii::$app->params['quote']['prior_since']) ?></td></tr>
-        <tr><td><?= $form->field($model, 'occupied')->dropDownList(ArrayHelper::map(Occupancy::find()->all(), 'id', 'name'),['prompt'=>'Select']) ?></td></tr>
+        <tr>
+	        <td>
+		        <div class="form-group field-quotes-locations required">
+			        <strong>Occupancy</strong><br />
+			        <div class="occupancy_block">
+				    <?php
+				    if(!empty($model->selectedLocations)){
+					    foreach($model->selectedLocations as $location){
+						    echo Html::dropDownList('Quotes[locations][]',$location->id,ArrayHelper::map(Occupancy::find()->all(), 'id', 'name'),['prompt'=>'Select','class'=>'form-control']).'<br />';
+					    }
+				    ?>
+				    <?php
+				    } else {
+					    echo $occupancy;
+				    }
+				    ?>
+				    </div>
+			        <div class="help-block"></div>
+		        </div>
+		        <a class="btn btn-small btn-success addOccupancy">
+			        Add location
+		        </a>
+            </td>
+        </tr>
         <tr><td><?= $form->field($model, 'occupied_type')->radioList(Yii::$app->params['quote']['occupied_type']) ?></td></tr>
         <tr><td><?= $form->field($model, 'policy_type')->radioList(Yii::$app->params['quote']['policy_type']) ?></td></tr>
         <tr><td><?= $form->field($model, 'deductible_bldg')->dropDownList(Yii::$app->params['quote']['deductible']) ?></td></tr>
@@ -66,5 +93,10 @@ use yii\helpers\ArrayHelper;
             checkOccupancySkinCare();
             checkOccupancyHoddAndDuct();
         });
+	    $('.addOccupancy').click(function(e){
+		    e.preventDefault();
+		    var text = $('.occupancy_input').html();
+		    $('.occupancy_block').append(text);
+	    });
     });
 </script>
