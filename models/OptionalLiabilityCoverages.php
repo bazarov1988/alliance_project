@@ -757,17 +757,13 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     // -----------------------------------------------------------------------------------------------------------------
 
-	public function clergyPersonProfessionalLegalLiabilityCoverage() {
-
-	}
-
-
 	public function getLiquorLiabilityReceiptsPremium()
     {
         $prePremium = $this->getLiquorLiabilityReceiptsPrePremium();
         $minimum = $this->getLiquorLiabilityReceiptsPreMinimum();
         return  $prePremium > $minimum ? $prePremium : $minimum;
     }
+
 
     public function getLiquorLiabilityReceiptsPrePremium()
     {
@@ -1043,6 +1039,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 	/**
 	 * @return float
 	 * druglist liability
+	 * LS 47
 	 */
 	public function getDruggistLiability(){
 		$params = $this->getDrugglistLiabilityReceiptsRate();
@@ -1055,11 +1052,38 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 	}
 
 	public function getDrugglistLiabilityReceiptsRate(){
-		$params = \Yii::$app->params['quote']['designated_premises_credit'];
+		$params = \Yii::$app->params['quote']['limits_of_liability'];
 		foreach($params as $param){
 			if($this->amount_of_receipts>=$param[0]&&$this->amount_of_receipts<=$param[0]){
 				return $param;
 			}
 		}
 	}
+
+	/**
+	 * LS24A
+	 */
+
+
+	public function getLS46Coverage(){
+		$params = \Yii::$app->params['quote']['ls46_coverage'];
+	}
+
+	/**
+	 * @return int
+	 * get additional insured lass 22A
+	 */
+	public function getAdditionalInsuredLs22A() {
+		if($this->additional_insured_number){
+			return $this->additional_insured_number* \Yii::$app->params['quote']['additional_insured_ls22a_flat'];
+		} else {
+			return 0;
+		}
+	}
+
+	public function getAsbestosExclusionLs187() {
+
+	}
+
+
 }

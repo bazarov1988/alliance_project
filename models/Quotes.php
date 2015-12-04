@@ -363,4 +363,7 @@ class Quotes extends BaseQuotes{
 		return $this->getBldgComposite()*0.16;
 	}
 
+	public function clergyPersonProfessionalLegalLiabilityCoverage() {
+
+	}
 }

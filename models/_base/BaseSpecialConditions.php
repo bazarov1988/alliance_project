@@ -40,6 +40,7 @@ class BaseSpecialConditions extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+	        [['sprinklered'],'required'],
             [['quote_id', 'external_fire_alarm_system', 'approved_watchman_service', 'central_station_reporting', 'smoke_detectors', 'burglary_alarm_only', 'fire_resistive', 'sprinklered', 'fire_resistive_sprinklered', 'hood_and_duct', 'above', 'all_above', 'metal_building', 'storage_buildings', 'conforming_code_specifications'], 'integer']
         ];
     }

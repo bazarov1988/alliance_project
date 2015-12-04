@@ -1245,17 +1245,37 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 
     // -----------------------------------------------------------------------------------------------------------------
 
+	public function getBusinessExtender(){
+		return 182*count($this->quote->selectedLocations);
+	}
 
 	public function extenderEndorsements(){
-		$number = 1;
-		$hotelMotel = $number*75;
-		$extender = 121*$number;
-		$bopExtender = 0*$number;
-		$businessExnteder = $number*182;
+		return 121*count($this->quote->selectedLocations);
 
+	}
+
+	public function getBopExtenderEndorsement(){
+		$number = count($this->quote->selectedLocations);
+		return (50+90+125)*$number;
+	}
+
+	public  function getHotelMotelExtender(){
+		$number = count($this->quote->selectedLocations);
+		return 75*$number;
+	}
+
+	public function getIncreasedCostOfConstruction(){
+		return ($this->increased_cost/100)*0.8*$this->quote->getBldgComposite();
+	}
+
+	public function getCilicaExclusion(){
+		$number = count($this->quote->selectedLocations);
+		return $number*(-1);
 	}
 
 	public function getAdditionalInsuredVendors() {
 
 	}
+
+
 } 

@@ -10,6 +10,8 @@ use Yii;
  * @property string $id
  * @property integer $quote_id
  * @property integer $occupancy_id
+ * @property integer $clergypersons
+ * @property integer $clergypersons_liability
  */
 class QuotesLocations extends \yii\db\ActiveRecord
 {
@@ -27,8 +29,19 @@ class QuotesLocations extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['quote_id', 'occupancy_id'], 'required'],
-            [['quote_id', 'occupancy_id'], 'integer']
+	            [[
+		            'quote_id',
+		            'occupancy_id'
+	            ], 'required'
+	            ],
+	            [
+	            [
+	            'quote_id',
+	            'occupancy_id',
+	            'clergypersons',
+	            'clergypersons_liability'
+	            ],
+	            'integer']
         ];
     }
 
@@ -38,9 +51,11 @@ class QuotesLocations extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'quote_id' => 'Quote ID',
-            'occupancy_id' => 'Occupancy ID',
+            'id'                     => 'ID',
+            'quote_id'               => 'Quote ID',
+            'occupancy_id'           => 'Occupancy ID',
+	        'clergypersons_liability'=>'Clergy Persons Liability',
+	        'clergypersons'          =>'Clergy Persons'
         ];
     }
 }
