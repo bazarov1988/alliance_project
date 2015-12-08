@@ -1260,8 +1260,11 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 	}
 
 	public  function getHotelMotelExtender(){
-		$number = count($this->quote->selectedLocations);
-		return 75*$number;
+		$counter = 0;
+		foreach($this->quote->selectedLocations as $location){
+			if($location->id == 3) $counter++;
+		}
+		return 75*$counter;
 	}
 
 	public function getIncreasedCostOfConstruction(){

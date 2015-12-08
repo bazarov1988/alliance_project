@@ -14,7 +14,8 @@ use yii\helpers\ArrayHelper;
 <br />
 <div class="quotes-form">
 	<?php
-	$occupancy =  Html::dropDownList('Quotes[locations][]',null,ArrayHelper::map(Occupancy::find()->all(), 'id', 'name'),['prompt'=>'Select','class'=>'form-control']).'<br />';
+	$occupancy =  Html::dropDownList('Quotes[locations][]',null,ArrayHelper::map(Occupancy::find()->all(), 'id', 'name'),['prompt'=>'Select','class'=>'form-control locationsDropDownList']).'<br />';
+	$persons = '<div  class="textInputValue">Clergy Persons<br /><input type="text" value="" name="clergypersons[]"><br /><br /></div>';
 	?>
 	<div style="display: none" class="occupancy_input"><?=$occupancy?></div>
     <table class="table table-striped table-bordered">
@@ -35,7 +36,11 @@ use yii\helpers\ArrayHelper;
 				    <?php
 				    if(!empty($model->selectedLocations)){
 					    foreach($model->selectedLocations as $location){
-						    echo Html::dropDownList('Quotes[locations][]',$location->id,ArrayHelper::map(Occupancy::find()->all(), 'id', 'name'),['prompt'=>'Select','class'=>'form-control']).'<br />';
+						    echo '<div class="locationsDropDownListBlock">'.Html::dropDownList('Quotes[locations][]',$location->id,ArrayHelper::map(Occupancy::find()->all(), 'id', 'name'),['prompt'=>'Select','class'=>'form-control locationsDropDownList']);
+					        if($location->id==2){
+						        echo $persons;
+					        }
+						    echo '</div><br />';
 					    }
 				    ?>
 				    <?php
@@ -101,5 +106,15 @@ use yii\helpers\ArrayHelper;
 		    var text = $('.occupancy_input').html();
 		    $('.occupancy_block').append(text);
 	    });
+	    $('body').on('change','.locationsDropDownList',function(){
+		    $(this).parents('div.locationsDropDownListBlock').find('.textInputValue').each(function(index,el){
+			    el.remove()
+		    });
+		    if($(this).val()==2){
+			    $(this).parents('div.locationsDropDownListBlock').append(
+				    '<?=$persons?>'
+			    );
+		    }
+	    })
     });
 </script>
