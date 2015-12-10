@@ -1280,5 +1280,25 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 
 	}
 
+	/**
+	 * sf349
+	 */
+	public function optionalTimeDeductible(){
+		return 1;
+	}
+
+	public function getRestaurantHoodAndDuctProtectionSf32(){
+		$locations = [
+			'Bagel shop with cooking','Bakeries with cooking and selling on premise',
+			'Bar','Candy, Nut and Confectionery store with cooking on premise',
+			'Deli with Fryers and Grills','Pizza Shop with cooking','Mini Mart with cooking',
+			'Restaurants'
+		];
+		if(in_array($this->quote->occupancy->name,$locations)){
+			return true;
+		}
+		return false;
+	}
+
 
 } 

@@ -1082,7 +1082,27 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 	}
 
 	public function getAsbestosExclusionLs187() {
+		return -1;
+	}
 
+	public function getSilicaExclusionLs118() {
+		return -1;
+	}
+
+	public function getExteriorInsulationExclusionLs120() {
+		return -1;
+	}
+
+	public function getBusinessPremisesExclusion(){
+		return -10;
+	}
+
+	public function getOtherThanDesignedPremisesLs70(){
+		return -10;
+	}
+
+	public function getLeadExclusionLs59(){
+		return -10;
 	}
 
 

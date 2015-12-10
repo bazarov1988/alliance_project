@@ -353,8 +353,6 @@ class Quotes extends BaseQuotes{
         return round($this->total_results['total_premium'],0);
     }
 
-
-
 	/**
 	 * new formulas
 	 */
