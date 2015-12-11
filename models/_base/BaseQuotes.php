@@ -75,7 +75,7 @@ class BaseQuotes extends \yii\db\ActiveRecord
 	{
 		return [
 			[['asbestos_exclusion', 'construction', 'protection', 'country', 'zone', 'prior_since', 'prop_damage', 'agregate'], 'required', 'message' => '{attribute} must be chosen.'],
-			[['locationsSelected'], 'checkMultipleLocations'],
+			[['locations'], 'checkMultipleLocations'],
 			[['does_lead_exclusion_apply', 'apt_in_bldg', 'sole_occupancy', 'consumed_on_premises'], 'required', 'message' => '{attribute} must be answered.'],
 			[['mercantile_occupany_in_bldg', 'med_payment', 'occupied_type', 'policy_type'], 'required', 'message' => '{attribute} must be indicated.'],
 			[['user_id'], 'required'],
@@ -364,9 +364,19 @@ class BaseQuotes extends \yii\db\ActiveRecord
 
 	public function checkMultipleLocations($attr, $params)
 	{
-		$this->addError($attr, 'Please select one or more locations');
+		$clergypersons = $_POST['clergypersons'];
 		if (empty($this->locations)) {
-			$this->addError($attr, 'Please select one or more locations');
+			$this->addError('locationsSelected', 'Please select one or more locations');
+		} else {
+			foreach($this->locations as $location){
+				if($location==2){
+					if(empty($clergypersons)){
+						$this->addError('locationsSelected', 'Choose Clergy Person number for Churches');
+					} else {
+						$persons = array_shift($clergypersons);
+					}
+				}
+			}
 		}
 	}
 
@@ -387,6 +397,9 @@ class BaseQuotes extends \yii\db\ActiveRecord
 			$model = new QuotesLocations();
 			$model->quote_id = $this->id;
 			$model->occupancy_id = $location;
+			if($location==2){
+				$model->clergypersons = array_shift($_POST['clergypersons']);
+			}
 			$model->save();
 		}
 	}

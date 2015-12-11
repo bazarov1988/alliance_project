@@ -47,6 +47,10 @@ class Quotes extends BaseQuotes{
 		return $this->hasMany(Occupancy::className(), ['id' => 'occupancy_id'])->viaTable(QuotesLocations::tableName(), ['quote_id' => 'id']);
 	}
 
+	public function getLocationsQuotes(){
+		return $this->hasMany(QuotesLocations::className(), ['quote_id' => 'id']);
+	}
+
 	public function afterFind()
 	{
 		parent::afterFind();

@@ -58,4 +58,8 @@ class QuotesLocations extends \yii\db\ActiveRecord
 	        'clergypersons'          =>'Clergy Persons'
         ];
     }
+
+	public function getLocation(){
+		return $this->hasOne(Occupancy::className(),['id'=>'occupancy_id']);
+	}
 }

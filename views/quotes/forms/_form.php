@@ -14,7 +14,7 @@ use yii\helpers\ArrayHelper;
 <br />
 <div class="quotes-form">
 	<?php
-	$occupancy =  Html::dropDownList('Quotes[locations][]',null,ArrayHelper::map(Occupancy::find()->all(), 'id', 'name'),['prompt'=>'Select','class'=>'form-control locationsDropDownList']).'<br />';
+	$occupancy =  '<div class="locationsDropDownListBlock">'.Html::dropDownList('Quotes[locations][]',null,ArrayHelper::map(Occupancy::find()->all(), 'id', 'name'),['prompt'=>'Select','class'=>'form-control locationsDropDownList']).'<br /></div>';
 	$persons = '<div  class="textInputValue">Clergy Persons<br /><input type="text" value="" name="clergypersons[]"><br /><br /></div>';
 	?>
 	<div style="display: none" class="occupancy_input"><?=$occupancy?></div>
@@ -34,11 +34,12 @@ use yii\helpers\ArrayHelper;
 			        <strong>Occupancy</strong><br />
 			        <div class="occupancy_block">
 				    <?php
-				    if(!empty($model->selectedLocations)){
-					    foreach($model->selectedLocations as $location){
+				    if(!empty($model->locationsQuotes)){
+					    foreach($model->locationsQuotes as $locationQuote){
+						    $location = $locationQuote->location;
 						    echo '<div class="locationsDropDownListBlock">'.Html::dropDownList('Quotes[locations][]',$location->id,ArrayHelper::map(Occupancy::find()->all(), 'id', 'name'),['prompt'=>'Select','class'=>'form-control locationsDropDownList']);
 					        if($location->id==2){
-						        echo $persons;
+						        echo '<div  class="textInputValue">Clergy Persons<br /><input type="text" value="'.$locationQuote->clergypersons.'" name="clergypersons[]"><br /><br /></div>';
 					        }
 						    echo '</div><br />';
 					    }
@@ -53,9 +54,9 @@ use yii\helpers\ArrayHelper;
 				        <?=$form->field($model,'locationsSelected')->hiddenInput()?>
 			        </div>
 		        </div>
-		        <a class="btn btn-small btn-success addOccupancy">
-			        Add location
-		        </a>
+<!--		        <a class="btn btn-small btn-success addOccupancy">-->
+<!--			        Add location-->
+<!--		        </a>-->
             </td>
         </tr>
         <tr><td><?= $form->field($model, 'occupied_type')->radioList(Yii::$app->params['quote']['occupied_type']) ?></td></tr>
@@ -107,7 +108,7 @@ use yii\helpers\ArrayHelper;
 		    $('.occupancy_block').append(text);
 	    });
 	    $('body').on('change','.locationsDropDownList',function(){
-		    $(this).parents('div.locationsDropDownListBlock').find('.textInputValue').each(function(index,el){
+		   $(this).parents('div.locationsDropDownListBlock').find('.textInputValue').each(function(index,el){
 			    el.remove()
 		    });
 		    if($(this).val()==2){
