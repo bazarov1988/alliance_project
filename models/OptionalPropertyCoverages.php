@@ -1250,7 +1250,21 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 	}
 
 	public function getBopExtenderEndorsement(){
-		return 121*count($this->quote->selectedLocations);
+		$locations = [
+			'Bagel Shop - with cooking',
+			'Bakeries - with cooking and selling',
+			'Bar',
+			'Candy, Nut and Confectionery Store-Cooking',
+			'Deli with Fryers and Grills',
+			'Pizza Shop - with cooking',
+			'Mini Mart',
+			'Restaurant '
+		];
+		$counter = 0;
+		foreach($this->quote->selectedLocations as $location){
+			if(in_array($location->name,$locations)) $counter++;
+		}
+		return 121*$counter;
 
 	}
 

@@ -33,17 +33,17 @@ class m151130_131938_multiple_locations extends Migration
 		);
 
 		$removeOccupancies = [
-			'Nut Candy and Confectionary with cooking',
-			'Nut Candy and Confectionary with no cooking',
-			'Paint and Wallpaper Store',
-			"Tailor Shops (Men's and Womens's)",
-			'Television and Radio Store with less than 25% receipts from Service and Repair',
-			'Tabacco Store',
-			'Toy Hobby and Game',
-			'Appliance Store',
+			'Nut, Candy and Confectionery Store with Cooking',
+			'Nut, Candy and Confectionery Store with No Cooking',
+			'Paint, Glass and Wallpaper Store',
+			"Tailor Shop (men's and women's)",
+			'TV/Radio Store - less than 25% receipts from repair & svc.',
+			'Tobacco Store',
+			'Toy, Hobby and Game',
+			'Appliance repair',
 			'Lawn and Garden Supply Store',
 			'Automatic Car Wash',
-			'Dry Cleaning Plants (Except Rug Cleaning)',
+			'Dry Cleaning Plants (except rug cleaning)',
 			'Guitar Rental Shop',
 			'Valet Service'
 
