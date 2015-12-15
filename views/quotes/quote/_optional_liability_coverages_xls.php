@@ -25,16 +25,16 @@
         <td></td>
     </tr>
 <?php endif; ?>
-<?php if ($model->liabilityCoverages->add_insured_owners_contactors): ?>
-    <tr>
-        <td><?= $model->liabilityCoverages->getFormNumber('add_insured_owners_contactors') ?></td>
-        <td><?php echo $model->liabilityCoverages->getAttributeLabel('add_insured_owners_contactors');//Additional Insured ?> </td>
-        <td></td>
-        <td></td>
-        <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getAdditionalInsuredContractors()) ?></td>
-        <td></td>
-    </tr>
-<?php endif; ?>
+<?php //if ($model->liabilityCoverages->add_insured_owners_contactors): ?>
+<!--    <tr>-->
+<!--        <td>--><?//= $model->liabilityCoverages->getFormNumber('add_insured_owners_contactors') ?><!--</td>-->
+<!--        <td>--><?php //echo $model->liabilityCoverages->getAttributeLabel('add_insured_owners_contactors');//Additional Insured ?><!-- </td>-->
+<!--        <td></td>-->
+<!--        <td></td>-->
+<!--        <td>--><?//= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getAdditionalInsuredContractors()) ?><!--</td>-->
+<!--        <td></td>-->
+<!--    </tr>-->
+<?php //endif; ?>
 <?php if ($model->liabilityCoverages->additional_insured): ?>
     <tr>
         <td><?= $model->liabilityCoverages->getFormNumber('additional_insured') ?></td>
@@ -88,32 +88,32 @@
     </tr>
 <?php endif; ?>
 
-<?php if ($model->liabilityCoverages->project_only): ?>
-    <tr>
-        <td><?= $model->liabilityCoverages->getFormNumber('project_only') ?></td>
-        <td><?= $model->liabilityCoverages->getAttributeLabel('project_only') ?></td>
-        <td></td>
-        <td></td>
-        <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getProjectOnlyPremium()) ?></td>
-        <td></td>
-    </tr>
-<?php endif; ?>
+<?php //if ($model->liabilityCoverages->project_only): ?>
+<!--    <tr>-->
+<!--        <td>--><?//= $model->liabilityCoverages->getFormNumber('project_only') ?><!--</td>-->
+<!--        <td>--><?//= $model->liabilityCoverages->getAttributeLabel('project_only') ?><!--</td>-->
+<!--        <td></td>-->
+<!--        <td></td>-->
+<!--        <td>--><?//= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getProjectOnlyPremium()) ?><!--</td>-->
+<!--        <td></td>-->
+<!--    </tr>-->
+<?php //endif; ?>
 
 <?php
-$automobileCoveragePremium = $model->liabilityCoverages->getAutomobileCoveragePremium();
-if ($automobileCoveragePremium > 0) {
-    ?>
-    <tr>
-        <td><?= $model->liabilityCoverages->getFormNumber('automobile_coverage') ?></td>
-        <td><?= $model->liabilityCoverages->getAttributeLabel('automobile_coverage') ?></td>
-        <td></td>
-        <td></td>
-        <td><?= Yii::$app->formatter->asCurrency($automobileCoveragePremium) ?></td>
-        <td></td>
-    </tr>
+//$automobileCoveragePremium = $model->liabilityCoverages->getAutomobileCoveragePremium();
+//if ($automobileCoveragePremium > 0) {
+//    ?>
+<!--    <tr>-->
+<!--        <td>--><?//= $model->liabilityCoverages->getFormNumber('automobile_coverage') ?><!--</td>-->
+<!--        <td>--><?//= $model->liabilityCoverages->getAttributeLabel('automobile_coverage') ?><!--</td>-->
+<!--        <td></td>-->
+<!--        <td></td>-->
+<!--        <td>--><?//= Yii::$app->formatter->asCurrency($automobileCoveragePremium) ?><!--</td>-->
+<!--        <td></td>-->
+<!--    </tr>-->
 <?php
-}
-?>
+//}
+//?>
 
 <?php if ($model->liabilityCoverages->acquired_entities): ?>
     <tr>
@@ -170,16 +170,16 @@ if ($automobileCoveragePremium > 0) {
     </tr>
 <?php endif; ?>
 
-<?php if ($model->liabilityCoverages->certain_skin_care_service_a): ?>
-    <tr>
-        <td><?= $model->liabilityCoverages->getFormNumber('certain_skin_care_service_a') ?></td>
-        <td><?= $model->liabilityCoverages->getAttributeLabel('certain_skin_care_service_a') ?></td>
-        <td></td>
-        <td></td>
-        <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getCertainSkinCareServiceAPremium()) ?></td>
-        <td></td>
-    </tr>
-<?php endif; ?>
+<?php //if ($model->liabilityCoverages->certain_skin_care_service_a): ?>
+<!--    <tr>-->
+<!--        <td>--><?//= $model->liabilityCoverages->getFormNumber('certain_skin_care_service_a') ?><!--</td>-->
+<!--        <td>--><?//= $model->liabilityCoverages->getAttributeLabel('certain_skin_care_service_a') ?><!--</td>-->
+<!--        <td></td>-->
+<!--        <td></td>-->
+<!--        <td>--><?//= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getCertainSkinCareServiceAPremium()) ?><!--</td>-->
+<!--        <td></td>-->
+<!--    </tr>-->
+<?php //endif; ?>
 
 <?php if ($model->liabilityCoverages->discrimination_clarification): ?>
     <tr>
@@ -214,16 +214,16 @@ if ($automobileCoveragePremium > 0) {
     </tr>
 <?php endif; ?>
 
-<?php if ($model->liabilityCoverages->known_loss_damage): ?>
-    <tr>
-        <td><?= $model->liabilityCoverages->getFormNumber('known_loss_damage') ?></td>
-        <td><?= $model->liabilityCoverages->getAttributeLabel('known_loss_damage') ?></td>
-        <td></td>
-        <td></td>
-        <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getKnownLossDamagePremium()) ?></td>
-        <td></td>
-    </tr>
-<?php endif; ?>
+<?php //if ($model->liabilityCoverages->known_loss_damage): ?>
+<!--    <tr>-->
+<!--        <td>--><?//= $model->liabilityCoverages->getFormNumber('known_loss_damage') ?><!--</td>-->
+<!--        <td>--><?//= $model->liabilityCoverages->getAttributeLabel('known_loss_damage') ?><!--</td>-->
+<!--        <td></td>-->
+<!--        <td></td>-->
+<!--        <td>--><?//= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getKnownLossDamagePremium()) ?><!--</td>-->
+<!--        <td></td>-->
+<!--    </tr>-->
+<?php //endif; ?>
 
 <?php if ($model->liabilityCoverages->dry_cleaning_damage): ?>
     <tr>
@@ -269,27 +269,17 @@ if ($automobileCoveragePremium > 0) {
     </tr>
 <?php endif; ?>
 
-<?php if ($model->liabilityCoverages->ice_control_operations): ?>
-    <tr>
-        <td><?= $model->liabilityCoverages->getFormNumber('ice_control_operations') ?></td>
-        <td><?= $model->liabilityCoverages->getAttributeLabel('ice_control_operations') ?></td>
-        <td></td>
-        <td></td>
-        <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getIceControlOperationsPremium()) ?></td>
-        <td></td>
-    </tr>
-<?php endif; ?>
+<?php //if ($model->liabilityCoverages->ice_control_operations): ?>
+<!--    <tr>-->
+<!--        <td>--><?//= $model->liabilityCoverages->getFormNumber('ice_control_operations') ?><!--</td>-->
+<!--        <td>--><?//= $model->liabilityCoverages->getAttributeLabel('ice_control_operations') ?><!--</td>-->
+<!--        <td></td>-->
+<!--        <td></td>-->
+<!--        <td>--><?//= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getIceControlOperationsPremium()) ?><!--</td>-->
+<!--        <td></td>-->
+<!--    </tr>-->
+<?php //endif; ?>
 
-<?php if ($model->liabilityCoverages->ice_control_operations): ?>
-    <tr>
-        <td><?= $model->liabilityCoverages->getFormNumber('ice_control_operations') ?></td>
-        <td><?= $model->liabilityCoverages->getAttributeLabel('ice_control_operations') ?></td>
-        <td></td>
-        <td></td>
-        <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getIceControlOperationsPremium()) ?></td>
-        <td></td>
-    </tr>
-<?php endif; ?>
 <!-- BU104 -->
 <tr>
     <td><?= $model->liabilityCoverages->getFormNumber('exclusion_canine_related_injuries_damages') ?></td>
@@ -429,4 +419,104 @@ if ($completedOperationsPremium != 0) {
         <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getWaterDamageExclusionPremium()) ?></td>
         <td></td>
     </tr>
+<?php endif; ?>
+
+
+
+
+<?php
+$druggistLiability = $model->liabilityCoverages->getDruggistLiability();
+if ($druggistLiability): ?>
+	<tr>
+		<td>LS-47</td>
+		<td>DRUGGIST LIABILITY</td>
+		<td></td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($druggistLiability) ?></td>
+		<td></td>
+	</tr>
+<?php endif; ?>
+
+<?php
+$silicaEclusion = $model->liabilityCoverages->getSilicaExclusionLs118();
+if ($silicaEclusion): ?>
+	<tr>
+		<td>LS-118</td>
+		<td>SILICIA EXCLUSION</td>
+		<td></td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($silicaEclusion) ?></td>
+		<td></td>
+	</tr>
+<?php endif; ?>
+
+<?php
+$extInsExclusion = $model->liabilityCoverages->getExteriorInsulationExclusionLs120();
+if ($extInsExclusion): ?>
+	<tr>
+		<td>LS-120</td>
+		<td>EXTERIOR INSULATION EXCLUSION</td>
+		<td></td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($extInsExclusion) ?></td>
+		<td></td>
+	</tr>
+<?php endif; ?>
+
+
+
+<?php
+$asbestosExclusion = $model->liabilityCoverages->getAsbestosExclusionLs187();
+if ($asbestosExclusion): ?>
+	<tr>
+		<td>LS-187</td>
+		<td>ASBESTOS EXCLUSION</td>
+		<td></td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($asbestosExclusion) ?></td>
+		<td></td>
+	</tr>
+<?php endif; ?>
+
+<?php
+$securedCreditors = $model->liabilityCoverages->getAdditionalInsuredLs22A();
+if ($securedCreditors): ?>
+	<tr>
+		<td>LS-22A</td>
+		<td>ADDITIONAL INSURED (Secured Creditors)</td>
+		<td></td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($securedCreditors) ?></td>
+		<td></td>
+	</tr>
+<?php endif; ?>
+
+<?php
+$ls25 = $model->liabilityCoverages->getLs25();
+if ($ls25): ?>
+	<tr>
+		<td>LS-25</td>
+		<td>
+			ADDITIONAL INSURED (State or Political Sub-divisions-Permits Relating to Premises)
+		</td>
+		<td></td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($ls25) ?></td>
+		<td></td>
+	</tr>
+<?php endif; ?>
+
+<?php
+$ls44a = $model->liabilityCoverages->getLs44A();
+if ($ls44a): ?>
+	<tr>
+		<td>LS-44A</td>
+		<td>
+			BEAUTY OR BARBER SHOP LIABILITY
+		</td>
+		<td></td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($ls44a) ?></td>
+		<td></td>
+	</tr>
 <?php endif; ?>

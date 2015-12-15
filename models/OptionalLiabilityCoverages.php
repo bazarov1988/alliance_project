@@ -231,6 +231,14 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         $summ += $propCovrgs->getInsuredPremisesPremium();
         $summ += $propCovrgs->getInsuredPremisesAPremium();
 
+	    $summ += $propCovrgs->getBusinessExtender();
+	    $summ += $propCovrgs->getBopExtenderEndorsement();
+	    $summ += $propCovrgs->getBopExtenderEndorsements();
+	    $summ += $propCovrgs->getHotelMotelExtender();
+	    $summ += $propCovrgs->getIncreasedCostOfConstruction();
+	    $summ += $propCovrgs->optionalTimeDeductible();
+	    $summ += $propCovrgs->getDemolitionCoverage();
+
         return $summ;
 
     }
@@ -279,13 +287,13 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
         */
         $summ = $this->getCreditPremium()
             + $this->getAdditionalInsuredOwners()
-            + $this->getAdditionalInsuredContractors()
+            //+ $this->getAdditionalInsuredContractors()
             + $this->getBatteryExclusionPremium()
             + $this->getBeautyNBarberPremium()
             + $this->getDesignatedPremisesPremium()
             + $this->getContractualLiabilityLimitationPremium()
-            + $this->getProjectOnlyPremium()
-            + $this->getAutomobileCoveragePremium()
+            //+ $this->getProjectOnlyPremium()
+            //+ $this->getAutomobileCoveragePremium()
             + $this->getAcquiredEntitiesPremium()
             + $this->getExclusionCanineRelatedInjuriesDamagesPremium()
             + $this->getExtendedPollutionExclusionPremium()
@@ -295,7 +303,13 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
             + $this->getPersonalInjuryPremium()
             + $this->getPoolLiabilityPremium()
             + $this->getCompletedOperationsPremium()
-            + $this->getWaterDamageExclusionPremium();
+            + $this->getWaterDamageExclusionPremium()
+	        + $this->getLS46Coverage()
+	        + $this->getDruggistLiability()
+	        + $this->getSilicaExclusionLs118()
+	        + $this->getExteriorInsulationExclusionLs120()
+	        + $this->getAsbestosExclusionLs187()
+	        + $this->getAdditionalInsuredLs22A();
 
         return $summ;
     }
@@ -571,9 +585,8 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getCertainSkinCareServiceAPremium()
     {
-        //return $this->certain_skin_care_service_a ? round(\Yii::$app->params['quote']['exclusionary_endorsement']['certain_skin_ls_76a'], 0) : 0;
-	    return 0;
-    }
+        return $this->certain_skin_care_service_a ? round(\Yii::$app->params['quote']['exclusionary_endorsement']['certain_skin_ls_76a'], 0) : 0;
+	}
 
     public function getDiscriminationClarificationPremium()
     {
@@ -1067,6 +1080,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
 
 	public function getLS46Coverage(){
+		return 0;
 		$params = \Yii::$app->params['quote']['ls46_coverage'];
 		return $params;
 	}
@@ -1121,6 +1135,10 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 	 */
 	public function getLs44A() {
 		return 1;
+	}
+
+	public function getAthleticParticipantsExclusion() {
+
 	}
 
 }

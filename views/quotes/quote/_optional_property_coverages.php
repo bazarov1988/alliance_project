@@ -29,18 +29,18 @@ if ($additionalExpense > 0) {
 ?>
 
 <?php
-if (!empty($model->propertyCoverages->alcoholic_beverages_tax_exclusion)) {
-    ?>
-    <tr>
-        <td><?= $model->propertyCoverages->getFormNumber('alcoholic_beverages_tax_exclusion') ?></td>
-        <td colspan="2"><?= $model->propertyCoverages->getAttributeLabel('alcoholic_beverages_tax_exclusion') ?></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
+//if (!empty($model->propertyCoverages->alcoholic_beverages_tax_exclusion)) {
+//    ?>
+<!--    <tr>-->
+<!--        <td>--><?//= $model->propertyCoverages->getFormNumber('alcoholic_beverages_tax_exclusion') ?><!--</td>-->
+<!--        <td colspan="2">--><?//= $model->propertyCoverages->getAttributeLabel('alcoholic_beverages_tax_exclusion') ?><!--</td>-->
+<!--        <td></td>-->
+<!--        <td></td>-->
+<!--        <td></td>-->
+<!--    </tr>-->
 <?php
-}
-?>
+//}
+//?>
 
 <?php
 if (!empty($model->propertyCoverages->businessowners_agreed_amount)) {
@@ -560,3 +560,121 @@ if ($insuredPremisesAPremium > 0 || $model->propertyCoverages->insured_premises_
 <?php
 }
 ?>
+
+
+
+<?php
+$bopExtenderEndorsement = $model->propertyCoverages->getBusinessExtender();
+if ($bopExtenderEndorsement) {
+	?>
+	<tr>
+		<td>SF-500</td>
+		<td colspan="2">BOP EXTENDER ENDORSEMENT</td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($bopExtenderEndorsement) ?></td>
+		<td></td>
+	</tr>
+<?php
+}
+?>
+
+<?php
+$bopExtenderEndorsement = $model->propertyCoverages->getBopExtenderEndorsement();
+if ($bopExtenderEndorsement) {
+	?>
+	<tr>
+		<td>SF-519</td>
+		<td colspan="2">
+			BOP EXTENDER-TO BE USED ON RESTAURANTS AND SIMILAR TYPE RISKS
+		</td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($bopExtenderEndorsement) ?></td>
+		<td></td>
+	</tr>
+<?php
+}
+?>
+
+<?php
+$bopExtenderEndorsements = $model->propertyCoverages->getBopExtenderEndorsements();
+if ($bopExtenderEndorsements) {
+	?>
+	<tr>
+		<td>SF-513, 514, 515</td>
+		<td colspan="2">BOP EXTENDER ENDORSEMENTS</td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($bopExtenderEndorsements) ?></td>
+		<td></td>
+	</tr>
+<?php
+}
+?>
+
+
+
+<?php
+$hotelModelExtender = $model->propertyCoverages->getHotelMotelExtender();
+if ($hotelModelExtender) {
+	?>
+	<tr>
+		<td>SF-520</td>
+		<td colspan="2">HOTEL/MOTEL EXTENDER</td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($hotelModelExtender) ?></td>
+		<td></td>
+	</tr>
+<?php
+}
+?>
+
+<?php
+$increasedCostOfConstruction = $model->propertyCoverages->getIncreasedCostOfConstruction();
+if ($increasedCostOfConstruction) {
+	?>
+	<tr>
+		<td>SF-103</td>
+		<td colspan="2">
+			INCREASED COST OF CONSTRUCTION. COVERAGE FOR ENFORCEMENT OF BUILDING CODES
+		</td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($increasedCostOfConstruction) ?></td>
+		<td></td>
+	</tr>
+<?php
+}
+?>
+
+<?php
+$optionalTimeDeductible = $model->propertyCoverages->optionalTimeDeductible();
+if ($optionalTimeDeductible) {
+	?>
+	<tr>
+		<td>SF-349</td>
+		<td colspan="2">
+			OPTIONAL TIME DEDUCTIBLE (CONSEQUENTIAL LOSS)
+		</td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($optionalTimeDeductible) ?></td>
+		<td></td>
+	</tr>
+<?php
+}
+?>
+
+<?php
+$demolitionCoverage = $model->propertyCoverages->getDemolitionCoverage();
+if ($demolitionCoverage) {
+	?>
+	<tr>
+		<td>SF-102</td>
+		<td colspan="2">
+			DEMOLITION COVERAGE-COVERAGE A-BUILDING-Scheduled amount of coverage
+		</td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($demolitionCoverage) ?></td>
+		<td></td>
+	</tr>
+<?php
+}
+?>
+

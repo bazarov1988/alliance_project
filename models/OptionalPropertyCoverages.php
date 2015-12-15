@@ -1249,12 +1249,12 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 		return 182*count($this->quote->selectedLocations);
 	}
 
-	public function extenderEndorsements(){
+	public function getBopExtenderEndorsement(){
 		return 121*count($this->quote->selectedLocations);
 
 	}
 
-	public function getBopExtenderEndorsement(){
+	public function getBopExtenderEndorsements(){
 		$number = count($this->quote->selectedLocations);
 		return (50+90+125)*$number;
 	}
