@@ -571,7 +571,8 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
     public function getCertainSkinCareServiceAPremium()
     {
-        return $this->certain_skin_care_service_a ? round(\Yii::$app->params['quote']['exclusionary_endorsement']['certain_skin_ls_76a'], 0) : 0;
+        //return $this->certain_skin_care_service_a ? round(\Yii::$app->params['quote']['exclusionary_endorsement']['certain_skin_ls_76a'], 0) : 0;
+	    return 0;
     }
 
     public function getDiscriminationClarificationPremium()
@@ -1067,6 +1068,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
 	public function getLS46Coverage(){
 		$params = \Yii::$app->params['quote']['ls46_coverage'];
+		return $params;
 	}
 
 	/**
@@ -1105,5 +1107,20 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 		return -10;
 	}
 
+	/**
+	 * @return int
+	 * ls25 form
+	 */
+	public function getLs25() {
+		return 1;
+	}
+
+	/**
+	 * @return int
+	 * ls44a form
+	 */
+	public function getLs44A() {
+		return 1;
+	}
 
 }

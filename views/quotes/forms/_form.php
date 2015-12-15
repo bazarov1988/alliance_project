@@ -54,9 +54,9 @@ use yii\helpers\ArrayHelper;
 				        <?=$form->field($model,'locationsSelected')->hiddenInput()?>
 			        </div>
 		        </div>
-<!--		        <a class="btn btn-small btn-success addOccupancy">-->
-<!--			        Add location-->
-<!--		        </a>-->
+		        <a class="btn btn-small btn-success addOccupancy">
+			        Add location
+		        </a>
             </td>
         </tr>
         <tr><td><?= $form->field($model, 'occupied_type')->radioList(Yii::$app->params['quote']['occupied_type']) ?></td></tr>
