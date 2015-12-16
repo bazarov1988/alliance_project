@@ -13,11 +13,6 @@ use yii\helpers\ArrayHelper;
 ?>
 <br />
 <div class="quotes-form">
-	<?php
-	$occupancy =  '<div class="locationsDropDownListBlock">'.Html::dropDownList('Quotes[locations][]',null,ArrayHelper::map(Occupancy::find()->all(), 'id', 'name'),['prompt'=>'Select','class'=>'form-control locationsDropDownList']).'<br /></div>';
-	$persons = '<div  class="textInputValue">Clergy Persons<br /><input type="text" value="" name="clergypersons[]"><br /><br /></div>';
-	?>
-	<div style="display: none" class="occupancy_input"><?=$occupancy?></div>
     <table class="table table-striped table-bordered">
         <tr><td><?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?></td></tr>
         <tr><td><?= $form->field($model, 'address')->textInput(['maxlength' => 255]) ?></td></tr>
@@ -39,8 +34,11 @@ use yii\helpers\ArrayHelper;
 						    $location = $locationQuote->location;
 						    echo '<div class="locationsDropDownListBlock">'.Html::dropDownList('Quotes[locations][]',$location->id,ArrayHelper::map(Occupancy::find()->all(), 'id', 'name'),['prompt'=>'Select','class'=>'form-control locationsDropDownList']);
 					        if($location->id==2){
-						        echo '<div  class="textInputValue">Clergy Persons<br /><input type="text" value="'.$locationQuote->clergypersons.'" name="clergypersons[]"><br /><br /></div>';
-					        }
+						        echo '<div  class="textInputValue">Clergy Persons<br /><input type="text" value="'.$locationQuote->clergypersons.'" name="clergypersons[]"><br />
+						        '.'Clergyperson Profesional Legal Liability Coverage<br />'.Html::dropDownList('clergypersons_liability[]',$locationQuote->clergypersons_liability,Yii::$app->params['quote']['clergypersons'],['prompt'=>'Select','class'=>'form-control']).'
+						        </div>';
+
+					         }
 						    echo '</div><br />';
 					    }
 				    ?>
@@ -112,9 +110,8 @@ use yii\helpers\ArrayHelper;
 			    el.remove()
 		    });
 		    if($(this).val()==2){
-			    $(this).parents('div.locationsDropDownListBlock').append(
-				    '<?=$persons?>'
-			    );
+			    var text = $('.clergypersons_input').html();
+			    $(this).parents('div.locationsDropDownListBlock').append(text);
 		    }
 	    })
     });

@@ -364,7 +364,11 @@ class BaseQuotes extends \yii\db\ActiveRecord
 
 	public function checkMultipleLocations($attr, $params)
 	{
+		if(empty($this->$attr)){
+			return $this->addError($attr,'Locations can not be blank');
+		}
 		$clergypersons = $_POST['clergypersons'];
+		$clergypersons_liability = $_POST['clergypersons_liability'];
 		if (empty($this->locations)) {
 			$this->addError('locationsSelected', 'Please select one or more locations');
 		} else {
@@ -372,8 +376,11 @@ class BaseQuotes extends \yii\db\ActiveRecord
 				if($location==2){
 					if(empty($clergypersons)){
 						$this->addError('locationsSelected', 'Choose Clergy Person number for Churches');
+					} elseif (empty($clergypersons_liability)){
+						$this->addError('locationsSelected', 'Choose Clergy Person Liability for Churches');
 					} else {
 						$persons = array_shift($clergypersons);
+						$persons_liablity = array_shift($clergypersons_liability);
 					}
 				}
 			}
@@ -399,6 +406,7 @@ class BaseQuotes extends \yii\db\ActiveRecord
 			$model->occupancy_id = $location;
 			if($location==2){
 				$model->clergypersons = array_shift($_POST['clergypersons']);
+				$model->clergypersons_liability = array_shift($_POST['clergypersons_liability']);
 			}
 			$model->save();
 		}

@@ -173,3 +173,7 @@ a.desc:after {
 .modal.in .modal-dialog {
     z-index: 1050;
 }
+.locationsDropDownListBlock{
+    border: 1px solid #ddd;
+    padding: 5px;
+}

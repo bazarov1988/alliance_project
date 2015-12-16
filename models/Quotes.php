@@ -365,7 +365,18 @@ class Quotes extends BaseQuotes{
 		return $this->getBldgComposite()*0.16;
 	}
 
+	/**
+	 * @return int
+	 *
+	 */
 	public function clergyPersonProfessionalLegalLiabilityCoverage() {
-
+		$locations = $this->selectedLocations;
+		$summ = 0;
+		foreach($locations as $location) {
+			if(!empty($location->clergypersons)&&!empty($location->clergypersons_liability)&&$location->occupancy_id==2) {
+				$summ+=$location->clergypersons*$location->clergypersons_liability;
+			}
+		}
+		return $summ;
 	}
 }
