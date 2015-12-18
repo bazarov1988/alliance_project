@@ -322,13 +322,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
     {
         $PSbefore = $this->getPolicySummaryBeforeAdditionalInsured();
 
-        /*
-        // 8583!= 8848
-        var_dump($PSbefore['building']['initial_premium'] ,
-            $PSbefore['business_property']['initial_premium'] ,
-            $PSbefore['optional_property']['initial_premium'] ,
-            $PSbefore['optional_liability']['initial_premium']); die();
-        */
+
         $sumPremium =
             $PSbefore['building']['initial_premium'] +
             $PSbefore['business_property']['initial_premium'] +
