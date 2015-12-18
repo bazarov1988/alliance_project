@@ -309,7 +309,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 	        + $this->getSilicaExclusionLs118()
 	        + $this->getExteriorInsulationExclusionLs120()
 	        + $this->getAsbestosExclusionLs187()
-	        //+ $this->quote->clergyPersonProfessionalLegalLiabilityCoverage()
+	        + $this->quote->clergyPersonProfessionalLegalLiabilityCoverage()
 	        + $this->getAdditionalInsuredLs22A();
 
         return $summ;
@@ -1081,9 +1081,19 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 
 
 	public function getLS46Coverage(){
-		return 0;
-		$params = \Yii::$app->params['quote']['ls46_coverage'];
-		return $params;
+		if($this->ls_46_value>0&&$this->ls_46_liability>0) {
+			$params = \Yii::$app->params['quote']['ls46_coverage'];
+			$rate = $params['rates'][$this->ls_46_liability-1];
+			if($this->ls_46_value<=100){
+				$result = $this->ls_46_value*$rate[0];
+			} else {
+				$diff = $this->ls_46_value-100;
+				$result = 100*$rate[0]+$diff*$rate[1];
+			}
+			return ($result<$rate[2])?$rate[2]:$result;
+		} else {
+			return 0;
+		}
 	}
 
 	/**

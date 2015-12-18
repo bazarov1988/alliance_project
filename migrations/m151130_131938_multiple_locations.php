@@ -65,6 +65,11 @@ class m151130_131938_multiple_locations extends Migration
 			$model->save();
 		}
 
+		$this->execute("
+			ALTER TABLE `optional_liability_coverages` ADD `ls_46_liability` INT NOT NULL DEFAULT '0',
+						ADD `ls_46_value` INT NOT NULL DEFAULT '0';
+		");
+
 	}
 
 	public function down()

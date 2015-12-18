@@ -30,6 +30,8 @@ use Yii;
  * @property string $liquor_liability_receipts
  * @property integer $liquor_liability_restaurant
  * @property integer $liquor_liability_limit
+ * @property integer $ls_46_liability
+ * @property integer $ls_46_value
  * @property integer $acquired_entities
  * @property integer $exclusionary_endorsements
  * @property integer $all_hazards
@@ -82,7 +84,7 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             [[ 'quote_id', 'emploees_full_time', 'emploees_part_time', 'emploees_barbers_time', 'emploees_manicurists','additional_insured',
                 'additional_insured_number','automobile_coverage', 'automobile_coverage_agregate_a', 'fire_legal_settlement',
                 'automobile_coverage_a', 'automobile_coverage_agregate','barber_shop_liability', 'liquor_liability_restaurant',
-                'liquor_liability_limit', 'liability_form'
+                'liquor_liability_limit', 'liability_form','ls_46_value'
             ],
                 'integer'],
             [['add_insured_owners_lessees','add_insured_owners_contactors', 'battery_exclusion', 'designated_premises', 'contractual_liability_limitation', 'project_only',
@@ -92,6 +94,7 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
                 ,'extended_pollution_exclusion'
             ],
                 'integer','max'=>1,'min'=>0],
+	        [['ls_46_liability'],'integer','max'=>5,'min'=>0],
             [['liquor_liability_receipts', 'water_damage_exclusion_apartments', 'water_damage_exclusion_offices_in_ah', 'water_damage_exclusion_offices_in_ob','fire_legal'], 'number'],
             [['liability_form'],'validateLiabilityForm'],
             [['designated_premises'],'validateDesignatedPremises'],
@@ -175,6 +178,8 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             'water_damage_exclusion_store_in_ah' => Yii::t('app', 'Store in apartment house'),
             'water_damage_exclusion_store_in_ob' => Yii::t('app', 'Store in other building'),
             'exclusion_canine_related_injuries_damages' => Yii::t('app', 'Exclusion of Canine Related Injuries or Damages'),
+            'ls_46_liability' => Yii::t('app', "Morticians' or Cemetery Coverage"),
+            'ls_46_value' => Yii::t('app', '# of bodies'),
 
         ];
     }
@@ -215,7 +220,9 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             'liquor_liability_receipts'             => 'LS-34',
             'personal_injury'                       => '*',
             'water_damage_exclusion'                => 'LS-75',
-            'battery_exclusion'                     => 'LS-73'
+            'battery_exclusion'                     => 'LS-73',
+            'ls_46_liability'                       => 'LS-46',
+
         ];
     }
     public function getQuote()
