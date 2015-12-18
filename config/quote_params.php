@@ -14,6 +14,7 @@ return [
 	'no_yes' => [null => 'Select...', 1 => 'No', 2 => 'Yes'],
 	'prop_damage' => [null => 'Select...', 1 => '$100,000', 2 => '$300,000', 3 => '$500,000', 4 => '$1,000,000', 5 => '$2,000,000', 6 => 'None'],
 	'agregate' => [null => 'Select...', 1 => '$300,000', 2 => '$500,000', 3 => '$1,000,000', 4 => '$2,000,000', 5 => '$3,000,000', 6 => '$4,000,000', 7 => 'None'],
+	'agregate_automobile_coverage' => [null => 'Select...', 1 => '$300,000', 2 => '$500,000', 7 => 'None'],
 	'deductible' => $deductible,
 	'damages_deductible' => $deductible,
 	'time_deductible' => $deductible,

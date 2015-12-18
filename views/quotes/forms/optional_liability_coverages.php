@@ -270,7 +270,7 @@ use yii\widgets\ActiveForm;
             <td>LS-50A</td>
             <td>
                 <?= $form->field($model, 'automobile_coverage_a')->dropDownList(Yii::$app->params['quote']['automobile_coverage_a']) ?>
-                <?= $form->field($model, 'automobile_coverage_agregate_a')->dropDownList(Yii::$app->params['quote']['agregate']) ?>
+                <?= $form->field($model, 'automobile_coverage_agregate_a')->dropDownList(Yii::$app->params['quote']['agregate_automobile_coverage']) ?>
             </td>
             <td>none</td>
             <td>none</td>
