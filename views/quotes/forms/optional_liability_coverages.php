@@ -21,6 +21,13 @@ use yii\widgets\ActiveForm;
         </tr>
         </thead>
         <tbody>
+
+        <tr>
+	        <td> LS-DCE</td>
+	        <td><?= $form->field($model, 'ls_dce') ?></td>
+	        <td>None</td>
+	        <td>None</td>
+        </tr>
         <tr>
             <td> LS-6 </td>
             <td><?= $form->field($model, 'liability_form')->dropDownList(Yii::$app->params['quote']['liability_form']) ?></td>

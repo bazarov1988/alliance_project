@@ -58,6 +58,7 @@ use Yii;
  * @property string $water_damage_exclusion_apartments
  * @property string $water_damage_exclusion_offices_in_ah
  * @property string $water_damage_exclusion_offices_in_ob
+ * @property string $ls_dce
  * @property integer $water_damage_exclusion_store_in_ah
  * @property integer $water_damage_exclusion_store_in_ob
  * @property integer $extended_pollution_exclusion
@@ -84,7 +85,7 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             [[ 'quote_id', 'emploees_full_time', 'emploees_part_time', 'emploees_barbers_time', 'emploees_manicurists','additional_insured',
                 'additional_insured_number','automobile_coverage', 'automobile_coverage_agregate_a', 'fire_legal_settlement',
                 'automobile_coverage_a', 'automobile_coverage_agregate','barber_shop_liability', 'liquor_liability_restaurant',
-                'liquor_liability_limit', 'liability_form','ls_46_value'
+                'liquor_liability_limit', 'liability_form','ls_46_value','ls_dce'
             ],
                 'integer'],
             [['add_insured_owners_lessees','add_insured_owners_contactors', 'battery_exclusion', 'designated_premises', 'contractual_liability_limitation', 'project_only',
@@ -114,7 +115,8 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             [['barber_shop_liability'],'validateBarberLiabilityForm'],
             [['fire_legal'],'validateFireLegal'],
             [['liquor_liability_limit'],'validateLiquorLiabilityLimit'],
-            [['exclusionary_endorsements'],'safe']
+            [['exclusionary_endorsements'],'safe'],
+            [['ls_dce'],'required'],
         ];
     }
 
@@ -180,6 +182,7 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             'exclusion_canine_related_injuries_damages' => Yii::t('app', 'Exclusion of Canine Related Injuries or Damages'),
             'ls_46_liability' => Yii::t('app', "Morticians' or Cemetery Coverage"),
             'ls_46_value' => Yii::t('app', '# of bodies'),
+	        'ls_dce'=>Yii::t('app','Day Care Exclusion')
 
         ];
     }
@@ -222,6 +225,7 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             'water_damage_exclusion'                => 'LS-75',
             'battery_exclusion'                     => 'LS-73',
             'ls_46_liability'                       => 'LS-46',
+	        'ls_dce'=>'LS-DCE'
 
         ];
     }
