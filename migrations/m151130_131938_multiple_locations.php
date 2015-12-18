@@ -7,14 +7,28 @@ class m151130_131938_multiple_locations extends Migration
 {
 	public function up()
 	{
+//		$this->execute("
+//			CREATE TABLE IF NOT EXISTS `quotes_locations` (
+//			  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+//			  `quote_id` int(11) NOT NULL,
+//			  `occupancy_id` int(11) NOT NULL,
+//			  PRIMARY KEY (`id`)
+//			) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+//		");
+
 		$this->execute("
-			CREATE TABLE IF NOT EXISTS `quotes_locations` (
-			  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-			  `quote_id` int(11) NOT NULL,
-			  `occupancy_id` int(11) NOT NULL,
-			  PRIMARY KEY (`id`)
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+	    ALTER TABLE `quotes_locations` ADD `clergypersons` INT( 11 ) NOT NULL DEFAULT '0' AFTER `occupancy_id` ,
+		ADD `clergypersons_liability` INT( 1 ) NOT NULL DEFAULT '0' AFTER `clergypersons` ;
+	    ");
+		$this->execute(
+			"ALTER TABLE `bop_rater_entry` ADD `asbestos_exclusion` INT( 11 ) NOT NULL DEFAULT '0' AFTER `settings`;"
+		);
+
+		$this->execute("
+			ALTER TABLE `optional_liability_coverages` ADD `ls_46_liability` INT NOT NULL DEFAULT '0',
+						ADD `ls_46_value` INT NOT NULL DEFAULT '0';
 		");
+
 		$models = \app\models\Quotes::find()->where('occupied is NULL')->all();
 		if (!empty($models)) {
 			foreach ($models as $model) {
@@ -24,14 +38,6 @@ class m151130_131938_multiple_locations extends Migration
 				$location->save();
 			}
 		}
-		$this->execute("
-	    ALTER TABLE `quotes_locations` ADD `clergypersons` INT( 11 ) NOT NULL DEFAULT '0' AFTER `occupancy_id` ,
-		ADD `clergypersons_liability` INT( 1 ) NOT NULL DEFAULT '0' AFTER `clergypersons` ;
-	    ");
-		$this->execute(
-			"ALTER TABLE `bop_rater_entry` ADD `asbestos_exclusion` INT( 11 ) NOT NULL DEFAULT '0' AFTER `settings`;"
-		);
-
 		$removeOccupancies = [
 			'Nut, Candy and Confectionery Store with Cooking',
 			'Nut, Candy and Confectionery Store with No Cooking',
@@ -64,11 +70,6 @@ class m151130_131938_multiple_locations extends Migration
 			$model->bldg_rg = 1;
 			$model->save();
 		}
-
-		$this->execute("
-			ALTER TABLE `optional_liability_coverages` ADD `ls_46_liability` INT NOT NULL DEFAULT '0',
-						ADD `ls_46_value` INT NOT NULL DEFAULT '0';
-		");
 
 	}
 
