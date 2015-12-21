@@ -366,6 +366,12 @@ class BaseQuotes extends \yii\db\ActiveRecord
 	{
 		if(empty($this->$attr)){
 			return $this->addError($attr,'Locations can not be blank');
+		} else {
+			foreach($this->$attr as $a) {
+				if(empty($a)){
+					return $this->addError($attr,'No Location can be blank');
+				}
+			}
 		}
 		if(!empty($_POST['clergypersons'])&&$_POST['clergypersons_liability']){
 			$clergypersons = $_POST['clergypersons'];
