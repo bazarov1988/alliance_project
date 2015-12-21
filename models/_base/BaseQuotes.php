@@ -399,17 +399,18 @@ class BaseQuotes extends \yii\db\ActiveRecord
 	public function afterSave($insert, $changedAttributes)
 	{
 		parent::afterSave($insert, $changedAttributes);
-		QuotesLocations::deleteAll('quote_id=:id', [':id' => $this->id]);
-		foreach ($this->locations as $location) {
-			$model = new QuotesLocations();
-			$model->quote_id = $this->id;
-			$model->occupancy_id = $location;
-			if($location==2){
-				$model->clergypersons = array_shift($_POST['clergypersons']);
-				$model->clergypersons_liability = array_shift($_POST['clergypersons_liability']);
+		if(!empty($this->locations)){
+			QuotesLocations::deleteAll('quote_id=:id', [':id' => $this->id]);
+			foreach ($this->locations as $location) {
+				$model = new QuotesLocations();
+				$model->quote_id = $this->id;
+				$model->occupancy_id = $location;
+				if($location==2){
+					$model->clergypersons = array_shift($_POST['clergypersons']);
+					$model->clergypersons_liability = array_shift($_POST['clergypersons_liability']);
+				}
+				$model->save();
 			}
-			$model->save();
 		}
 	}
-
 }
