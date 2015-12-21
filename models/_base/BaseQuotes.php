@@ -367,8 +367,13 @@ class BaseQuotes extends \yii\db\ActiveRecord
 		if(empty($this->$attr)){
 			return $this->addError($attr,'Locations can not be blank');
 		}
-		$clergypersons = $_POST['clergypersons'];
-		$clergypersons_liability = $_POST['clergypersons_liability'];
+		if(!empty($_POST['clergypersons'])&&$_POST['clergypersons_liability']){
+			$clergypersons = $_POST['clergypersons'];
+			$clergypersons_liability = $_POST['clergypersons_liability'];
+		} else {
+			$clergypersons = [];
+			$clergypersons_liability = [];
+		}
 		if (empty($this->locations)) {
 			$this->addError('locationsSelected', 'Please select one or more locations');
 		} else {
