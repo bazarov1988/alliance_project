@@ -74,7 +74,7 @@ use yii\helpers\ArrayHelper;
         <tr><td><?= $form->field($model, 'prop_damage')->dropDownList(Yii::$app->params['quote']['prop_damage']) ?></td></tr>
         <tr><td><?= $form->field($model, 'agregate')->dropDownList(Yii::$app->params['quote']['agregate']) ?></td></tr>
         <tr><td><?= $form->field($model, 'med_payment')->dropDownList(ArrayHelper::map(MedicalPayments::find()->all(), 'id', 'name'),['prompt'=>'Select'])?></td></tr>
-        <tr><td><?= $form->field($model, 'asbestos_exclusion')->textInput(['maxlength' => 255])?></td></tr>
+
     </table>
 </div>
 <script>

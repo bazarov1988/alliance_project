@@ -421,9 +421,18 @@ if ($completedOperationsPremium != 0) {
     </tr>
 <?php endif; ?>
 
-
-
-
+<?php
+$ls46 = $model->liabilityCoverages->getLS46Coverage();
+if ($ls46): ?>
+	<tr>
+		<td>LS-46</td>
+		<td><?= $model->liabilityCoverages->getAttributeLabel('ls_46_liability') ?></td>
+		<td></td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($ls46) ?></td>
+		<td></td>
+	</tr>
+<?php endif; ?>
 <?php
 $druggistLiability = $model->liabilityCoverages->getDruggistLiability();
 if ($druggistLiability): ?>

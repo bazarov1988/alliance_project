@@ -391,9 +391,6 @@ if ($completedOperationsPremium != 0) {
 <?php endif; ?>
 
 
-
-
-
 <?php
 $ls46 = $model->liabilityCoverages->getLS46Coverage();
 if ($ls46): ?>
