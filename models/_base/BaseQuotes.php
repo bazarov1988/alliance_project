@@ -49,6 +49,8 @@ use app\models\Occupancy;
  * @property string $irpm_percent
  * @property string $settings
  * @property string $asbestos_exclusion
+ * @property string $special_events
+ * @property string $special_events_liability
  */
 class BaseQuotes extends \yii\db\ActiveRecord
 {
@@ -80,7 +82,12 @@ class BaseQuotes extends \yii\db\ActiveRecord
 			[['mercantile_occupany_in_bldg', 'med_payment', 'occupied_type', 'policy_type'], 'required', 'message' => '{attribute} must be indicated.'],
 			[['user_id'], 'required'],
 			[['date_create', 'date_quoted'], 'safe'],
-			[['building_amount_of_ins', 'bus_amount_of_ins', 'user_id', 'construction', 'protection', 'country', 'zone', 'prior_since', 'occupied_type', 'policy_type', 'deductible_bldg', 'deductible_bp', 'building_rc_acv', 'business_property_rc_acv', 'mercantile_occupany_in_bldg', 'status', 'does_lead_exclusion_apply', 'operated_by_insured', 'apt_in_bldg', 'sole_occupancy', 'consumed_on_premises', 'prop_damage', 'agregate', 'med_payment', 'asbestos_exclusion'], 'integer'],
+			[['building_amount_of_ins', 'bus_amount_of_ins', 'user_id', 'construction',
+				'protection', 'country', 'zone', 'prior_since', 'occupied_type', 'policy_type',
+				'deductible_bldg', 'deductible_bp', 'building_rc_acv', 'business_property_rc_acv',
+				'mercantile_occupany_in_bldg', 'status', 'does_lead_exclusion_apply',
+				'operated_by_insured', 'apt_in_bldg', 'sole_occupancy', 'consumed_on_premises',
+				'prop_damage', 'agregate', 'med_payment', 'asbestos_exclusion'], 'integer'],
 			[['name', 'address', 'zip_code', 'agent', 'each_occurrence', 'each_person_accident'], 'string', 'max' => 255],
 			[['country'], 'validateCountry'],
 			[['zone'], 'validateZone'],
@@ -98,7 +105,10 @@ class BaseQuotes extends \yii\db\ActiveRecord
 			[['irpm_percent'], 'integer', 'max' => 15, 'on' => 'irpm'],
 			[['any_loses', 'prior_underwriting', 'half_mile_location', 'quote_mile_location'], 'required', 'message' => 'Answer this question please.'],
 			[['prior_underwriting_details'], 'string'],
-			[['half_mile_location', 'quote_mile_location', 'any_loses'], 'checkMileLocation']
+			[['half_mile_location', 'quote_mile_location', 'any_loses'], 'checkMileLocation'],
+			[['special_events'],'integer','min'=>0,'max'=>3],
+			[['special_events_liability'],'integer','min'=>0,'max'=>5],
+			[['special_events','special_events_liability'],'checkSpecialEvents']
 		];
 	}
 
@@ -150,6 +160,8 @@ class BaseQuotes extends \yii\db\ActiveRecord
 			'half_mile_location' => Yii::t('app', 'If there will be building coverage, is the location a ½ or mile to shore or water?'),
 			'quote_mile_location' => Yii::t('app', '(For tenants only) Is the location a ¼ mile or more to the shore or water?'),
 			'asbestos_exclusion' => Yii::t('app', 'ASBESTOS EXCLUSION – (LS-187)'),
+			'special_events' => Yii::t('app', 'Special Events'),
+			'special_events_liability' => Yii::t('app', 'Special Events Liability'),
 		];
 	}
 
@@ -404,6 +416,15 @@ class BaseQuotes extends \yii\db\ActiveRecord
 			if (empty($this->$attr)) {
 				$this->addError($attr, 'Must be more than 0');
 			}
+		}
+	}
+
+	public function checkSpecialEvents($attr,$params){
+		if($this->special_events&&!$this->special_events_liability){
+			$this->addError('special_events_liability','Special Events Liability can not be blank.');
+		}
+		if($this->special_events_liability&&!$this->special_events){
+			$this->addError('special_events','Special Events can not be blank.');
 		}
 	}
 

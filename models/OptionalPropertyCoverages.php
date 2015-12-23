@@ -1246,31 +1246,39 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
     // -----------------------------------------------------------------------------------------------------------------
 
 	public function getBusinessExtender(){
-		return 182*count($this->quote->selectedLocations);
+		if(!empty($this->sf_500)){
+			return 182*count($this->quote->selectedLocations);
+		}
+		return 0;
 	}
 
 	public function getBopExtenderEndorsement(){
-		$locations = [
-			'Bagel Shop - with cooking',
-			'Bakeries - with cooking and selling',
-			'Bar',
-			'Candy, Nut and Confectionery Store-Cooking',
-			'Deli with Fryers and Grills',
-			'Pizza Shop - with cooking',
-			'Mini Mart',
-			'Restaurant '
-		];
-		$counter = 0;
-		foreach($this->quote->selectedLocations as $location){
-			if(in_array($location->name,$locations)) $counter++;
+		if(!empty($this->sf_519)){
+			$locations = [
+				'Bagel Shop - with cooking',
+				'Bakeries - with cooking and selling',
+				'Bar',
+				'Candy, Nut and Confectionery Store-Cooking',
+				'Deli with Fryers and Grills',
+				'Pizza Shop - with cooking',
+				'Mini Mart',
+				'Restaurant '
+			];
+			$counter = 0;
+			foreach($this->quote->selectedLocations as $location){
+				if(in_array($location->name,$locations)) $counter++;
+			}
+			return 121*$counter;
 		}
-		return 121*$counter;
-
+			return 0;
 	}
 
 	public function getBopExtenderEndorsements(){
-		$number = count($this->quote->selectedLocations);
-		return (50+90+125)*$number;
+		if(!empty($this->sf_513_514_515)){
+			$number = count($this->quote->selectedLocations);
+			return (50+90+125)*$number;
+		}
+		return 0;
 	}
 
 	public  function getHotelMotelExtender(){

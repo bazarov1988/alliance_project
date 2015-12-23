@@ -309,8 +309,10 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 	        + $this->getSilicaExclusionLs118()
 	        + $this->getExteriorInsulationExclusionLs120()
 	        + $this->getAsbestosExclusionLs187()
-	        + $this->quote->clergyPersonProfessionalLegalLiabilityCoverage()
-	        + $this->getAdditionalInsuredLs22A();
+	        + $this->getCertainSkinCareServiceAPremium()
+	        + $this->getAdditionalInsuredLs22A()
+	        + $this->quote->getSpecialEvents()
+	        + $this->quote->clergyPersonProfessionalLegalLiabilityCoverage();
 
         return $summ;
     }

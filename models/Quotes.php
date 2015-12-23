@@ -379,4 +379,24 @@ class Quotes extends BaseQuotes{
 		}
 		return $summ;
 	}
+
+	/**
+	 * special events
+	 */
+	public function getSpecialEvents(){
+		if($this->special_events&&$this->special_events_liability){
+			$params = \Yii::$app->params['quote']['special_events']['values'];
+			$currentParams = $params[$this->special_events][$this->special_events_liability];
+			switch($this->zone){
+				case 1:
+					return $currentParams[1];
+				case 2:
+					return $currentParams[0];
+				case 3:
+					return $currentParams[2];
+			}
+		} else {
+			return 0;
+		}
+	}
 }

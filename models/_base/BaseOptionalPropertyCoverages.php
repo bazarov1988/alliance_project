@@ -71,6 +71,9 @@ use Yii;
  * @property integer $insured_premises_ten
  * @property integer $insured_premises_a
  * @property integer $insured_premises_a_ten
+ * @property integer $sf_500
+ * @property integer $sf_519
+ * @property integer $sf_513_514_515
  */
 class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
 {
@@ -92,8 +95,16 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
             [['accounts_receivable', 'additional_expense', 'employee_dishonesty', 'exterior_signs', 'money_securities', 'valuable_papers', 'increased_cost', 'demolition_amount', 'building_limit', 'bus_prop_limit',], 'number'],
             [['building_increment', 'bus_prop_increment'], 'integer', 'max' => 5],
             [['deductible', 'damages_deductible', 'time_deductible', 'food_deductible', 'refrigerated_property_deductible', 'storekeepers_burglary_robbery_deductible'], 'integer', 'max' => 8],
-            [['alcoholic_beverages_tax_exclusion', 'businessowners_agreed_amount', 'cooking_protection_equip', 'equipment_breakdown',
-                'loss_of_income_sf', 'loss_of_income', 'loss_payable', 'season_variation', 'sprinkler_leakage', 'insured_premises_a', 'curved', 'plates'],
+            [
+	            [
+	            'alcoholic_beverages_tax_exclusion',
+	            'businessowners_agreed_amount',
+	            'cooking_protection_equip', 'equipment_breakdown',
+                'loss_of_income_sf', 'loss_of_income',
+	            'loss_payable', 'season_variation',
+	            'sprinkler_leakage', 'insured_premises_a',
+	            'curved', 'plates', 'sf_500', 'sf_519', 'sf_513_514_515'
+            ],
                 'integer', 'max' => 1, 'min' => 0],
             [['masonry_veneer'], 'integer', 'max' => 2, 'min' => 1],
             [['accounts_receivable', 'additional_expense', 'businessowners_burglary_robbery', 'computer_coverage', 'customers_goods', 'agreement_one', 'agreement_two', 'agreement_three', 'money_securities', 'direct_damages', 'time_element', 'building_glass', 'refrigerated_food', 'refrigerated_property', 'add_mos', 'burglary_of_money', 'theft_of_money', 'tenant_Improvements_one', 'tenant_Improvements_a', 'valuable_papers', 'ornamental_work'], 'number'],
@@ -196,6 +207,9 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
             'insured_premises_ten' => Yii::t('app', "add'l 10% increments"),
             'insured_premises_a' => Yii::t('app', 'While Away From Insured Premises'),
             'insured_premises_a_ten' => Yii::t('app', "add'l 10% increments"),
+	        'sf_500'         => Yii::t('app', "BOP EXTENDER ENDORSEMENT"),
+	        'sf_519'         => Yii::t('app', "BOP EXTENDER-TO BE USED ON RESTAURANTS AND SIMILAR TYPE RISKS"),
+	        'sf_513_514_515' => Yii::t('app', "BOP EXTENDER ENDORSEMENTS")
         ];
     }
 
@@ -242,6 +256,9 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
             'exterior_signs' => '*',
             'loss_off_income_month' => '*',
             'money_securities' => '*',
+	        'sf_500'=>'SF-500',
+	        'sf_519'=>'SF-519',
+	        'sf_513_514_515'=>'SF-513, 514, 515'
         ];
     }
 

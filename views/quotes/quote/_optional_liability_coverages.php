@@ -1,3 +1,15 @@
+<?php
+$specialEvents = $model->getSpecialEvents();
+if ($specialEvents): ?>
+	<tr>
+		<td> </td>
+		<td colspan="2">Special Events </td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($specialEvents) ?></td>
+		<td></td>
+	</tr>
+<?php endif; ?>
+
 <?php if ($model->does_lead_exclusion_apply): ?>
     <tr>
         <td>LS-59</td>
@@ -147,25 +159,25 @@
     </tr>
 <?php endif; ?>
 
-<?php if ($model->liabilityCoverages->certain_skin_care_service): ?>
-    <tr>
-        <td><?= $model->liabilityCoverages->getFormNumber('certain_skin_care_service') ?></td>
-        <td colspan="2"><?= $model->liabilityCoverages->getAttributeLabel('certain_skin_care_service') ?></td>
-        <td></td>
-        <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getCertainSkinCareServicePremium()) ?></td>
-        <td></td>
-    </tr>
-<?php endif; ?>
-
-<?php //if ($model->liabilityCoverages->certain_skin_care_service_a): ?>
+<?php //if ($model->liabilityCoverages->certain_skin_care_service): ?>
 <!--    <tr>-->
-<!--        <td>--><?//= $model->liabilityCoverages->getFormNumber('certain_skin_care_service_a') ?><!--</td>-->
-<!--        <td colspan="2">--><?//= $model->liabilityCoverages->getAttributeLabel('certain_skin_care_service_a') ?><!--</td>-->
+<!--        <td>--><?//= $model->liabilityCoverages->getFormNumber('certain_skin_care_service') ?><!--</td>-->
+<!--        <td colspan="2">--><?//= $model->liabilityCoverages->getAttributeLabel('certain_skin_care_service') ?><!--</td>-->
 <!--        <td></td>-->
-<!--        <td>--><?//= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getCertainSkinCareServiceAPremium()) ?><!--</td>-->
+<!--        <td>--><?//= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getCertainSkinCareServicePremium()) ?><!--</td>-->
 <!--        <td></td>-->
 <!--    </tr>-->
 <?php //endif; ?>
+
+<?php if ($model->liabilityCoverages->certain_skin_care_service_a): ?>
+    <tr>
+        <td><?= $model->liabilityCoverages->getFormNumber('certain_skin_care_service_a') ?></td>
+        <td colspan="2"><?= $model->liabilityCoverages->getAttributeLabel('certain_skin_care_service_a') ?></td>
+        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($model->liabilityCoverages->getCertainSkinCareServiceAPremium()) ?></td>
+        <td></td>
+    </tr>
+<?php endif; ?>
 
 <?php if ($model->liabilityCoverages->discrimination_clarification): ?>
     <tr>
