@@ -355,6 +355,14 @@ use yii\widgets\ActiveForm;
 	        <td>none</td>
 	        <td>none</td>
         </tr>
+        <tr>
+	        <td>LS-47</td>
+	        <td>
+		        <?= $form->field($model, 'amount_of_receipts') ?>
+	        </td>
+	        <td>none</td>
+	        <td>none</td>
+        </tr>
         </tbody>
     </table>
 </div><!-- quotes-optional_liability_coverages -->

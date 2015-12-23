@@ -85,7 +85,7 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             [[ 'quote_id', 'emploees_full_time', 'emploees_part_time', 'emploees_barbers_time', 'emploees_manicurists','additional_insured',
                 'additional_insured_number','automobile_coverage', 'automobile_coverage_agregate_a', 'fire_legal_settlement',
                 'automobile_coverage_a', 'automobile_coverage_agregate','barber_shop_liability', 'liquor_liability_restaurant',
-                'liquor_liability_limit', 'liability_form','ls_46_value','ls_dce'
+                'liquor_liability_limit', 'liability_form','ls_46_value','ls_dce','amount_of_receipts'
             ],
                 'integer'],
             [['add_insured_owners_lessees','add_insured_owners_contactors', 'battery_exclusion', 'designated_premises', 'contractual_liability_limitation', 'project_only',
@@ -182,7 +182,8 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             'exclusion_canine_related_injuries_damages' => Yii::t('app', 'Exclusion of Canine Related Injuries or Damages'),
             'ls_46_liability' => Yii::t('app', "Morticians' or Cemetery Coverage"),
             'ls_46_value' => Yii::t('app', '# of bodies'),
-	        'ls_dce'=>Yii::t('app','Day Care Exclusion')
+	        'ls_dce'=>Yii::t('app','Day Care Exclusion'),
+	        'amount_of_receipts'=>Yii::t('app','Amount of receipts')
 
         ];
     }
@@ -225,8 +226,8 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             'water_damage_exclusion'                => 'LS-75',
             'battery_exclusion'                     => 'LS-73',
             'ls_46_liability'                       => 'LS-46',
-	        'ls_dce'=>'LS-DCE'
-
+	        'ls_dce'                                => 'LS-DCE',
+	        'amount_of_receipts'                    => 'LS-47'
         ];
     }
     public function getQuote()

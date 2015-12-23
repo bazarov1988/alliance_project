@@ -12,8 +12,6 @@ use app\models\_base\BaseOptionalLiabilityCoverages;
 
 class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 {
-	public $amount_of_receipts;
-
     public function getBarberShopFullTimePrice()
     {
         $beauty_n_barber = \Yii::$app->params['quote']['beauty_n_barber'];
