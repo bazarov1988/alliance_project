@@ -3,20 +3,20 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m151223_152515_amount_of_receipts extends Migration
+class m151224_155214_group_quotes extends Migration
 {
     public function up()
     {
 	    $this->execute("
-			ALTER TABLE `optional_liability_coverages` ADD `amount_of_receipts` INT (11) NULL;
+			ALTER TABLE `bop_rater_entry` ADD `multiple_locations_index` CHAR(255) NULL;
 		");
     }
 
     public function down()
     {
-        echo "m151223_152515_amount_of_receipts cannot be reverted.\n";
+        echo "m151224_155214_group_quotes cannot be reverted.\n";
 
-        return true;
+        return false;
     }
     
     /*

@@ -25,36 +25,27 @@ use yii\helpers\ArrayHelper;
         <tr><td><?= $form->field($model, 'prior_since')->dropDownList(Yii::$app->params['quote']['prior_since']) ?></td></tr>
         <tr>
 	        <td>
-		        <div class="form-group field-quotes-locations required">
-			        <strong>Occupancy</strong><br />
-			        <div class="occupancy_block">
+			        <div class="occupancy_block locationsDropDownListBlock">
 				    <?php
-				    if(!empty($model->locationsQuotes)){
-					    foreach($model->locationsQuotes as $locationQuote){
+				    $clergypersons = null;
+				    $clergypersons_liability = null;
+				    if(!empty($model->locationsQuotes)) {
+					    foreach ($model->locationsQuotes as $locationQuote) {
 						    $location = $locationQuote->location;
-						    echo '<div class="locationsDropDownListBlock">'.Html::dropDownList('Quotes[locations][]',$location->id,ArrayHelper::map(Occupancy::find()->all(), 'id', 'name'),['prompt'=>'Select','class'=>'form-control locationsDropDownList']);
-					        if($location->id==2){
-						        echo '<div  class="textInputValue">Clergy Persons<br /><input type="text" value="'.$locationQuote->clergypersons.'" name="clergypersons[]"><br />
-						        '.'Clergyperson Profesional Legal Liability Coverage<br />'.Html::dropDownList('clergypersons_liability[]',$locationQuote->clergypersons_liability,Yii::$app->params['quote']['clergypersons'],['prompt'=>'Select','class'=>'form-control']).'
-						        </div>';
-
-					         }
-						    echo '</div><br />';
+						    $model->location = $location->id;
+						    $clergypersons =$locationQuote->clergypersons;
+						    $clergypersons_liability =$locationQuote->clergypersons_liability;
 					    }
-				    ?>
-				    <?php
-				    } else {
-					    echo $occupancy;
 				    }
+				    echo $form->field($model, 'location')->dropDownList(ArrayHelper::map(Occupancy::find()->all(), 'id', 'name'),['prompt'=>'Select','class'=>'form-control locationsDropDownList']);
+				    if($model->location==2){
+					        echo '<div  class="textInputValue">Clergy Persons<br /><input type="text" value="'.$clergypersons.'" name="clergypersons"><br />
+						        Clergyperson Profesional Legal Liability Coverage<br />'.Html::dropDownList('clergypersons_liability',$clergypersons_liability,Yii::$app->params['quote']['clergypersons'],['prompt'=>'Select','class'=>'form-control']).'
+						        </div>';
+				    }
+				    echo '<br />';
 				    ?>
-				    </div>
-			        <div>
-				        <?=$form->field($model,'locationsSelected')->hiddenInput()?>
-			        </div>
 		        </div>
-		        <a class="btn btn-small btn-success addOccupancy">
-			        Add location
-		        </a>
             </td>
         </tr>
         <tr><td><?= $form->field($model, 'occupied_type')->radioList(Yii::$app->params['quote']['occupied_type']) ?></td></tr>
@@ -104,11 +95,6 @@ use yii\helpers\ArrayHelper;
             checkOccupancySkinCare();
             checkOccupancyHoddAndDuct();
         });
-	    $('.addOccupancy').click(function(e){
-		    e.preventDefault();
-		    var text = $('.occupancy_input').html();
-		    $('.occupancy_block').append(text);
-	    });
 	    $('body').on('change','.locationsDropDownList',function(){
 		   $(this).parents('div.locationsDropDownListBlock').find('.textInputValue').each(function(index,el){
 			    el.remove()

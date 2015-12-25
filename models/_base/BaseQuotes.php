@@ -51,6 +51,7 @@ use app\models\Occupancy;
  * @property string $asbestos_exclusion
  * @property string $special_events
  * @property string $special_events_liability
+ * @property string $multiple_locations_index
  */
 class BaseQuotes extends \yii\db\ActiveRecord
 {
@@ -59,7 +60,7 @@ class BaseQuotes extends \yii\db\ActiveRecord
 	const BLOCKED = 2;
 	const NEW_QUOTE = 3;
 
-	public $locations;
+	public $location;
 	public $locationsSelected;
 
 	/**
@@ -76,11 +77,11 @@ class BaseQuotes extends \yii\db\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['asbestos_exclusion', 'construction', 'protection', 'country', 'zone', 'prior_since', 'prop_damage', 'agregate'], 'required', 'message' => '{attribute} must be chosen.'],
-			[['locations'], 'checkMultipleLocations'],
+			[['construction', 'protection', 'country', 'zone', 'prior_since', 'prop_damage', 'agregate'], 'required', 'message' => '{attribute} must be chosen.'],
+			[['location'], 'checkChurchLocation'],
 			[['does_lead_exclusion_apply', 'apt_in_bldg', 'sole_occupancy', 'consumed_on_premises'], 'required', 'message' => '{attribute} must be answered.'],
 			[['mercantile_occupany_in_bldg', 'med_payment', 'occupied_type', 'policy_type'], 'required', 'message' => '{attribute} must be indicated.'],
-			[['user_id'], 'required'],
+			[['user_id', 'multiple_locations_index'], 'required'],
 			[['date_create', 'date_quoted'], 'safe'],
 			[['building_amount_of_ins', 'bus_amount_of_ins', 'user_id', 'construction',
 				'protection', 'country', 'zone', 'prior_since', 'occupied_type', 'policy_type',
@@ -106,9 +107,9 @@ class BaseQuotes extends \yii\db\ActiveRecord
 			[['any_loses', 'prior_underwriting', 'half_mile_location', 'quote_mile_location'], 'required', 'message' => 'Answer this question please.'],
 			[['prior_underwriting_details'], 'string'],
 			[['half_mile_location', 'quote_mile_location', 'any_loses'], 'checkMileLocation'],
-			[['special_events'],'integer','min'=>0,'max'=>3],
-			[['special_events_liability'],'integer','min'=>0,'max'=>5],
-			[['special_events','special_events_liability'],'checkSpecialEvents']
+			[['special_events'], 'integer', 'min' => 0, 'max' => 3],
+			[['special_events_liability'], 'integer', 'min' => 0, 'max' => 5],
+			[['special_events', 'special_events_liability'], 'checkSpecialEvents']
 		];
 	}
 
@@ -374,75 +375,56 @@ class BaseQuotes extends \yii\db\ActiveRecord
 		}
 	}
 
-	public function checkMultipleLocations($attr, $params)
+	public function checkChurchLocation($attr, $params)
 	{
-		if(empty($this->$attr)){
-			return $this->addError($attr,'Locations can not be blank');
-		} else {
-			foreach($this->$attr as $a) {
-				if(empty($a)){
-					return $this->addError($attr,'No Location can be blank');
-				}
-			}
-		}
-		if(!empty($_POST['clergypersons'])&&$_POST['clergypersons_liability']){
+		if (!empty($_POST['clergypersons']) && $_POST['clergypersons_liability']) {
 			$clergypersons = $_POST['clergypersons'];
 			$clergypersons_liability = $_POST['clergypersons_liability'];
 		} else {
-			$clergypersons = [];
-			$clergypersons_liability = [];
+			$clergypersons = null;
+			$clergypersons_liability = null;
 		}
-		if (empty($this->locations)) {
-			$this->addError('locationsSelected', 'Please select one or more locations');
-		} else {
-			foreach($this->locations as $location){
-				if($location==2){
-					if(empty($clergypersons)){
-						$this->addError('locationsSelected', 'Choose Clergy Person number for Churches');
-					} elseif (empty($clergypersons_liability)){
-						$this->addError('locationsSelected', 'Choose Clergy Person Liability for Churches');
-					} else {
-						$persons = array_shift($clergypersons);
-						$persons_liablity = array_shift($clergypersons_liability);
-					}
-				}
+		if ($this->location == 2) {
+			if (empty($clergypersons)) {
+				$this->addError('location', 'Choose Clergy Person number for Churches');
+			} elseif (empty($clergypersons_liability)) {
+				$this->addError('location', 'Choose Clergy Person Liability for Churches');
 			}
 		}
+
 	}
 
-	public function checkClergyPersons($attr, $params)
+	public function checkSpecialEvents($attr, $params)
 	{
-		if ($this->occupied == 2) {
-			if (empty($this->$attr)) {
-				$this->addError($attr, 'Must be more than 0');
-			}
+		if ($this->special_events && !$this->special_events_liability) {
+			$this->addError('special_events_liability', 'Special Events Liability can not be blank.');
 		}
-	}
-
-	public function checkSpecialEvents($attr,$params){
-		if($this->special_events&&!$this->special_events_liability){
-			$this->addError('special_events_liability','Special Events Liability can not be blank.');
-		}
-		if($this->special_events_liability&&!$this->special_events){
-			$this->addError('special_events','Special Events can not be blank.');
+		if ($this->special_events_liability && !$this->special_events) {
+			$this->addError('special_events', 'Special Events can not be blank.');
 		}
 	}
 
 	public function afterSave($insert, $changedAttributes)
 	{
 		parent::afterSave($insert, $changedAttributes);
-		if(!empty($this->locations)){
+		if (!empty($this->location)) {
 			QuotesLocations::deleteAll('quote_id=:id', [':id' => $this->id]);
-			foreach ($this->locations as $location) {
-				$model = new QuotesLocations();
-				$model->quote_id = $this->id;
-				$model->occupancy_id = $location;
-				if($location==2){
-					$model->clergypersons = array_shift($_POST['clergypersons']);
-					$model->clergypersons_liability = array_shift($_POST['clergypersons_liability']);
-				}
-				$model->save();
+			$model = new QuotesLocations();
+			$model->quote_id = $this->id;
+			$model->occupancy_id = $this->location;
+			if ($this->location == 2) {
+				$model->clergypersons = $_POST['clergypersons'];
+				$model->clergypersons_liability = $_POST['clergypersons_liability'];
 			}
+			$model->save();
 		}
+	}
+
+	public function afterFind()
+	{
+		if (!$this->multiple_locations_index) {
+			$this->multiple_locations_index = md5(microtime(true));
+		}
+		parent::afterFind();
 	}
 }

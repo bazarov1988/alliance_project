@@ -14,14 +14,12 @@ $this->title = Yii::t('app', 'Update {modelClass}: ', [
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Quotes'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
-$occupancy =  '<div class="locationsDropDownListBlock">'.Html::dropDownList('Quotes[locations][]',null,ArrayHelper::map(Occupancy::find()->all(), 'id', 'name'),['prompt'=>'Select','class'=>'form-control locationsDropDownList']).'<br /></div>';
-$persons = '<div class="textInputValue">Clergy Persons<br /><input type="text" value="" name="clergypersons[]"><br />Clergyperson Profesional Legal Liability Coverage<br />'.Html::dropDownList('clergypersons_liability[]',null,Yii::$app->params['quote']['clergypersons'],['prompt'=>'Select','class'=>'form-control']).'<br /></div>';
+$persons = '<div class="textInputValue">Clergy Persons<br /><input type="text" value="" name="clergypersons"><br />Clergyperson Profesional Legal Liability Coverage<br />'.Html::dropDownList('clergypersons_liability',null,Yii::$app->params['quote']['clergypersons'],['prompt'=>'Select','class'=>'form-control']).'<br /></div>';
 ?>
 <div class="quotes-update">
-	<div style="display: none" class="occupancy_input"><?=$occupancy?></div>
 	<div style="display: none" class="clergypersons_input"><?=$persons?></div>
     <h1><?= Html::encode($this->title) ?></h1>
-
+	<button class="btn btn-success addNewLocation" style="margin-bottom: 15px">Add new Location</button><br />
     <?php if ($flash = Yii::$app->session->getFlash('Quote-saved')): ?>
         <div class="alert alert-success">
             <p><?= $flash ?></p>
@@ -35,9 +33,10 @@ $persons = '<div class="textInputValue">Clergy Persons<br /><input type="text" v
 
     <?php $form = ActiveForm::begin([
         'enableAjaxValidation' => true,
-        'enableClientValidation' => false,
+        'enableClientValidation' => true,
         'validateOnBlur'=>false,
-        'validateOnChange'=>false
+        'validateOnChange'=>false,
+	    'id'=>'multipleQuoteForm'
     ]); ?>
 
     <?= $form->errorSummary($model); ?>
@@ -57,7 +56,6 @@ $persons = '<div class="textInputValue">Clergy Persons<br /><input type="text" v
                 <?= $this->render('forms/_form', [
                     'model' => $model,
                     'form'=>$form,
-	                'occupancy'=>$occupancy,
 	                'persons'=>$persons
                 ]) ?>
             </div>
@@ -109,6 +107,21 @@ $persons = '<div class="textInputValue">Clergy Persons<br /><input type="text" v
         </div>
     </div>
     <?php ActiveForm::end(); ?>
-
-
 </div>
+<script>
+	var needToAddLocation = false;
+	$("#multipleQuoteForm").on("afterValidate", function (event, messages) {
+		if($(this).find('.has-error').length) {
+			needToAddLocation = false;
+			$('.addLocationField').remove();
+		}
+		if(needToAddLocation){
+			$("#multipleQuoteForm").append('<input type="text"> name="add_location" value="<?=$model->id?>" class="addLocationField"');
+		}
+	});
+	$('.addNewLocation').click(function(){
+		$('.addLocationField').remove();
+		needToAddLocation = true;
+		$("#multipleQuoteForm").submit();
+	});
+</script>
