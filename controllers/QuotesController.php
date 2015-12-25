@@ -206,6 +206,33 @@ class QuotesController extends Controller
         }
     }
 
+	private function generateNewQuote($obj){
+		$model = new Quotes();
+		$model->setScenario('settings');
+		$model->any_loses = $obj->any_loses;
+		$model->prior_underwriting = $obj->prior_underwriting;
+		$model->prior_underwriting_details = $obj->prior_underwriting_details;
+		$model->half_mile_location = $obj->half_mile_location;
+		$model->quote_mile_location = $obj->quote_mile_location;
+		$model->date_create = date('Y-m-d H:i:s');
+		$model->date_quoted = date('Y-m-d H:i:s');
+		$model->user_id = Yii::$app->user->id;
+		$model->status = Quotes::NEW_QUOTE;
+		$model->multiple_locations_index = $obj->multiple_locations_index;
+		if($model->save()) {
+			$sc = new SpecialConditions();
+			$lc = new OptionalLiabilityCoverages();
+			$pc = new OptionalPropertyCoverages();
+			$sc->quote_id = $model->id;
+			$lc->quote_id = $model->id;
+			$pc->quote_id = $model->id;
+			$sc->save(false);
+			$lc->save(false);
+			$pc->save(false);
+			return $this->redirect(['update', 'id' => $model->id]);
+		}
+	}
+
     public function actionIrpm($id){
         $model = $this->findModel($id);
         if($model->needIRPM()){

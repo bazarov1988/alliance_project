@@ -7,9 +7,7 @@ class m151218_170453_ls_dce extends Migration
 {
     public function up()
     {
-	    $this->execute("
-			ALTER TABLE `optional_liability_coverages` ADD `ls_dce` CHAR(255) NULL;
-		");
+	    $this->execute("ALTER TABLE `optional_liability_coverages` ADD `ls_dce` CHAR(255) NULL;");
     }
 
     public function down()
