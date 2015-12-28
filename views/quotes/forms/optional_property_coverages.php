@@ -369,6 +369,14 @@ use yii\widgets\ActiveForm;
 	        <td>none</td>
 	        <td>none<td>
         </tr>
+        <tr>
+	        <td>SF-349</td>
+	        <td>
+		        <?= $form->field($model, 'sf_349_value')->checkbox() ?>
+	        </td>
+	        <td>none</td>
+	        <td>none<td>
+        </tr>
         </tbody>
     </table>
 </div><!-- quotes-optional_property_coverages -->

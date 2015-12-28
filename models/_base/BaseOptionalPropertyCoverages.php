@@ -74,6 +74,7 @@ use Yii;
  * @property integer $sf_500
  * @property integer $sf_519
  * @property integer $sf_513_514_515
+ * @property integer $sf_349_value
  */
 class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
 {
@@ -103,7 +104,8 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
                 'loss_of_income_sf', 'loss_of_income',
 	            'loss_payable', 'season_variation',
 	            'sprinkler_leakage', 'insured_premises_a',
-	            'curved', 'plates', 'sf_500', 'sf_519', 'sf_513_514_515'
+	            'curved', 'plates', 'sf_500', 'sf_519', 'sf_513_514_515',
+		            'sf_349_value'
             ],
                 'integer', 'max' => 1, 'min' => 0],
             [['masonry_veneer'], 'integer', 'max' => 2, 'min' => 1],
@@ -209,7 +211,8 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
             'insured_premises_a_ten' => Yii::t('app', "add'l 10% increments"),
 	        'sf_500'         => Yii::t('app', "BOP EXTENDER ENDORSEMENT"),
 	        'sf_519'         => Yii::t('app', "BOP EXTENDER-TO BE USED ON RESTAURANTS AND SIMILAR TYPE RISKS"),
-	        'sf_513_514_515' => Yii::t('app', "BOP EXTENDER ENDORSEMENTS")
+	        'sf_513_514_515' => Yii::t('app', "BOP EXTENDER ENDORSEMENTS"),
+	        'sf_349_value'      => Yii::t('app', "OPTIONAL TIME DEDUCTIBLE (CONSEQUENTIAL LOSS)"),
         ];
     }
 
@@ -258,7 +261,8 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
             'money_securities' => '*',
 	        'sf_500'=>'SF-500',
 	        'sf_519'=>'SF-519',
-	        'sf_513_514_515'=>'SF-513, 514, 515'
+	        'sf_513_514_515'=>'SF-513, 514, 515',
+	        'sf_359_value'=>'SF-349'
         ];
     }
 

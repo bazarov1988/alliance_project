@@ -1306,7 +1306,11 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 	 * sf349
 	 */
 	public function optionalTimeDeductible(){
-		return 1;
+		if($this->sf_349_value){
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 
 	public function getRestaurantHoodAndDuctProtectionSf32(){
