@@ -1,4 +1,10 @@
-<h1><?= $model->name ?></h1>
+<?php
+$total = 0;
+?>
+<?php foreach($models as $model):
+	$model->getTotalResults();
+?>
+<h1 style="clear: both"><?= $model->name ?></h1>
 <div class="quotes-update">
     <table class="table table-bordered">
         <thead>
@@ -161,4 +167,12 @@
         </tbody>
     </table>
     <?= $this->render('quote/_total', ['model' => $model]) ?>
-</div>
+	<?php $total+=$model->getPremiumTotal();?>
+</div><br /><br />
+<?php endforeach;?>
+<table style="clear: both;width: 100%;font-weight: bold;font-size: 18px;margin-top: 20px;text-align: right">
+	<tr>
+		<td></td>
+		<td>Total: <?= Yii::$app->formatter->asCurrency($total);?></td>
+	</tr>
+</table>

@@ -1,4 +1,10 @@
-<table>
+<?php
+$total = 0;
+?>
+<?php foreach($models as $model):
+	$model->getTotalResults();
+?>
+<table  style="clear: both">
     <tr>
         <th class="bg-gray">
             Community BOP Quote <?= $model->name; ?> <?= $model->date_quoted ?>
@@ -187,4 +193,12 @@
         <th class="bg-gray">Fire Fee</th>
         <td><?= Yii::$app->formatter->asCurrency($model->getFireFree());?></td>
     </tr>
+</table>
+<?php $total+=$model->getPremiumTotal();?>
+<?php endforeach;?>
+<table style="clear: both;width: 100%;font-weight: bold;font-size: 18px;margin-top: 20px;text-align: right">
+	<tr>
+		<td></td>
+		<td>Total: <?= Yii::$app->formatter->asCurrency($total);?></td>
+	</tr>
 </table>

@@ -399,4 +399,29 @@ class Quotes extends BaseQuotes{
 			return 0;
 		}
 	}
+
+	public function getNameLink(){
+		$part_1 = null;
+		if($this->name){
+			$part_1 = $this->name;
+		} else {
+			$part_1 = 'New Quote';
+		}
+		$part_2 = null;
+		switch($this->status){
+			case self::FINISHED:
+				$part_2 = 'Finished';
+				break;
+			case self::NEW_QUOTE:
+				$part_2 = 'New';
+				break;
+			case self::BLOCKED:
+				$part_2 = 'Blocked';
+				break;
+			case self::UNFINISHED:
+				$part_2 = 'Unfinished';
+				break;
+		}
+		return $part_1.': '.$part_2;
+	}
 }

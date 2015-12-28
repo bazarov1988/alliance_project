@@ -113,9 +113,11 @@ class QuotesController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+	    $models = Quotes::findAll(['multiple_locations_index'=>$model->multiple_locations_index,'status'=>[Quotes::FINISHED,Quotes::UNFINISHED]]);
         $model->getTotalResults();
         return $this->render('generate_results', [
             'model' => $model,
+	        'models'=> $models
         ]);
     }
 
@@ -167,6 +169,7 @@ class QuotesController extends Controller
     {
         date_default_timezone_set('Etc/GMT-4');
         $model = $this->findModel($id);
+	    $models = Quotes::findAll(['multiple_locations_index'=>$model->multiple_locations_index]);
         $model->setScenario('default');
         if($model->status == Quotes::FINISHED && !Yii::$app->user->identity->role->can_admin){
             throw new \yii\web\HttpException(404);
@@ -195,6 +198,9 @@ class QuotesController extends Controller
             $property->save();
 
             Yii::$app->session->setFlash("Quote-saved", Yii::t("app", "Quote was saved."));
+	        if($this->needGenerateNewQuote()) {
+		        return $this->redirect(['irpm', 'id' => $model->id,'add_location'=>1]);
+	        }
             return $this->redirect(['irpm', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -202,10 +208,17 @@ class QuotesController extends Controller
                 'liability'  => $liability,
                 'conditions' => $conditions,
                 'property'   => $property,
+	            'models'     => $models
             ]);
         }
     }
 
+	private function  needGenerateNewQuote(){
+		if(!empty($_REQUEST['add_location'])){
+			return true;
+		}
+		return false;
+	}
 	private function generateNewQuote($obj){
 		$model = new Quotes();
 		$model->setScenario('settings');
@@ -229,7 +242,9 @@ class QuotesController extends Controller
 			$sc->save(false);
 			$lc->save(false);
 			$pc->save(false);
-			return $this->redirect(['update', 'id' => $model->id]);
+			return $model;
+		} else {
+			return false;
 		}
 	}
 
@@ -244,6 +259,11 @@ class QuotesController extends Controller
                         $this->generate($this->findModel($model->id));
                     }
                     Yii::$app->session->setFlash("Quote-saved", Yii::t("app", "IRPM for Quote was saved."));
+	                if($this->needGenerateNewQuote()){
+		                $newModel = $this->generateNewQuote($model);
+		                if($newModel)
+		                return $this->redirect(['update', 'id' => $newModel->id]);
+	                }
                     return $this->redirect(['view', 'id' => $model->id]);
                 }
             } else {
@@ -253,6 +273,11 @@ class QuotesController extends Controller
             if($model->status == Quotes::FINISHED){
                 $this->generate($this->findModel($model->id));
             }
+	        if($this->needGenerateNewQuote()){
+		        $newModel = $this->generateNewQuote($model);
+		        if($newModel)
+			        return $this->redirect(['update', 'id' => $newModel->id]);
+	        }
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -264,18 +289,24 @@ class QuotesController extends Controller
         if(!is_dir($path)){
             mkdir($path,0777,true);
         }
-        $pdf = $path.DIRECTORY_SEPARATOR.md5($model->id).'.pdf';
-        $xls = $path.DIRECTORY_SEPARATOR.md5($model->id).'.xls';
-        $model->getTotalResults(); // !!!
-        $content = $this->renderPartial('generate_results_pdf',['model'=>$model]);
+	    $index = $model->multiple_locations_index;
+	    $models = Quotes::findAll(['multiple_locations_index'=>$index,'status'=>Quotes::FINISHED]);
+        $pdf = $path.DIRECTORY_SEPARATOR.$model->multiple_locations_index.'.pdf';
+        $xls = $path.DIRECTORY_SEPARATOR.$model->multiple_locations_index.'.xls';
+        $content = $this->renderPartial('generate_results_pdf',['models'=>$models]);
         $this->generatePdf($content,$pdf,$model->name);
-        $content = $this->renderPartial('generate_results_xls',['model'=>$model]);
+        $content = $this->renderPartial('generate_results_xls',['models'=>$models]);
         $this->generateExcel($content,$xls);
         $this->sendMail($model);
+	    $url = '/storage/'.date('Y-m',strtotime($model->date_create));
+	    \Yii::$app->db->createCommand("UPDATE `bop_rater_entry` SET file_path='$url' WHERE status=:status")
+		    ->bindValue(':status', Quotes::FINISHED)
+		    ->execute();
     }
 
     public function sendMail($model){
 
+	    $index = $model->multiple_locations_index;
        // $user = $model->user->name;
         $name = $model->name;
         $date = date('Y-m-d');
@@ -297,8 +328,8 @@ class QuotesController extends Controller
             ->setTo($emails)
             ->setSubject($subject);
 
-        $message->attach(Yii::getAlias('@app/web/storage/'.date('Y-m',strtotime($model->date_create))).DIRECTORY_SEPARATOR.md5($model->id).'.pdf');
-        $message->attach(Yii::getAlias('@app/web/storage/'.date('Y-m',strtotime($model->date_create))).DIRECTORY_SEPARATOR.md5($model->id).'.xls');
+        $message->attach(Yii::getAlias('@app/web/storage/'.date('Y-m',strtotime($model->date_create))).DIRECTORY_SEPARATOR.$index.'.pdf');
+        $message->attach(Yii::getAlias('@app/web/storage/'.date('Y-m',strtotime($model->date_create))).DIRECTORY_SEPARATOR.$index.'.xls');
         // check for messageConfig before sending (for backwards-compatible purposes)
         if (empty($mailer->messageConfig["from"])) {
             $message->setFrom(Yii::$app->params["adminEmail"]);
@@ -395,10 +426,8 @@ class QuotesController extends Controller
             } else {
                 echo '[]';
             }
-
             \Yii::$app->end();
         }
-
     }
 
     public function actionCancel() {

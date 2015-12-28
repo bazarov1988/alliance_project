@@ -1,3 +1,11 @@
 .quotes-form select,.quotes-form input[type=text]{
     width: 60%;
 }
+
+.quotesCollectionBlock {
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+.quotesCollectionBlock strong, .quotesCollectionBlock span {
+    margin-right: 15px;
+}

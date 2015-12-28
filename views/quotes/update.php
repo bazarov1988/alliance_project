@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\Occupancy;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Quotes */
@@ -30,6 +31,16 @@ $persons = '<div class="textInputValue">Clergy Persons<br /><input type="text" v
             <p><?= $flash ?></p>
         </div>
     <?php endif;?>
+
+	<div class="quotesCollectionBlock">
+	<?php foreach($models as $quoteModel):?>
+		<?php if($quoteModel->id==Yii::$app->request->get('id')):?>
+			<strong><a href="<?=Url::toRoute(['quotes/update','id'=>$quoteModel->id])?>"><?=$quoteModel->getNameLink()?></a></strong>
+		<?php else: ?>
+			<span><a href="<?=Url::toRoute(['quotes/update','id'=>$quoteModel->id])?>"><?=$quoteModel->getNameLink()?></a></span>
+		<?php endif; ?>
+	<?php endforeach;?>
+	</div>
 
     <?php $form = ActiveForm::begin([
         'enableAjaxValidation' => true,
@@ -116,7 +127,7 @@ $persons = '<div class="textInputValue">Clergy Persons<br /><input type="text" v
 			$('.addLocationField').remove();
 		}
 		if(needToAddLocation){
-			$("#multipleQuoteForm").append('<input type="text"> name="add_location" value="<?=$model->id?>" class="addLocationField"');
+			$("#multipleQuoteForm").append('<input type="text" name="add_location" value="<?=$model->id?>" class="addLocationField">');
 		}
 	});
 	$('.addNewLocation').click(function(){

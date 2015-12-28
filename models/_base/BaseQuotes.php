@@ -52,6 +52,7 @@ use app\models\Occupancy;
  * @property string $special_events
  * @property string $special_events_liability
  * @property string $multiple_locations_index
+ * @property string $file_path
  */
 class BaseQuotes extends \yii\db\ActiveRecord
 {
@@ -82,7 +83,7 @@ class BaseQuotes extends \yii\db\ActiveRecord
 			[['does_lead_exclusion_apply', 'apt_in_bldg', 'sole_occupancy', 'consumed_on_premises'], 'required', 'message' => '{attribute} must be answered.'],
 			[['mercantile_occupany_in_bldg', 'med_payment', 'occupied_type', 'policy_type'], 'required', 'message' => '{attribute} must be indicated.'],
 			[['user_id', 'multiple_locations_index'], 'required'],
-			[['date_create', 'date_quoted'], 'safe'],
+			[['date_create', 'date_quoted', 'file_path'], 'safe'],
 			[['building_amount_of_ins', 'bus_amount_of_ins', 'user_id', 'construction',
 				'protection', 'country', 'zone', 'prior_since', 'occupied_type', 'policy_type',
 				'deductible_bldg', 'deductible_bp', 'building_rc_acv', 'business_property_rc_acv',
@@ -179,12 +180,12 @@ class BaseQuotes extends \yii\db\ActiveRecord
 	 */
 	public function getPdfUrl()
 	{
-		return '/storage/' . date('Y-m', strtotime($this->date_create)) . '/' . md5($this->id) . '.pdf';
+		return $this->file_path.'/'.$this->multiple_locations_index. '.pdf';
 	}
 
 	public function getCsvUrl()
 	{
-		return '/storage/' . date('Y-m', strtotime($this->date_create)) . '/' . md5($this->id) . '.xls';
+		return $this->file_path.'/'.$this->multiple_locations_index. '.xls';
 	}
 
 	/**
