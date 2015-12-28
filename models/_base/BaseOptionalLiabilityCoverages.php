@@ -62,6 +62,8 @@ use Yii;
  * @property integer $water_damage_exclusion_store_in_ah
  * @property integer $water_damage_exclusion_store_in_ob
  * @property integer $extended_pollution_exclusion
+ * @property integer $ls_25_value
+ * @property integer $ls_44a_value
  */
 class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
 {
@@ -92,7 +94,7 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
                 'acquired_entities', 'all_hazards', 'a_d_p_b', 'athletic_participants', 'certain_skin_care_service', 'certain_skin_care_service_a', 'discrimination_clarification',
                 'employment_practices', 'fairs', 'known_loss_damage', 'dry_cleaning_damage', 'liquor_liability', 'operations', 'saddle_animals', 'ice_control_operations',
                 'personal_injury', 'pool_liability', 'completed_operations', 'water_damage_exclusion','water_damage_exclusion_store_in_ah', 'water_damage_exclusion_store_in_ob'
-                ,'extended_pollution_exclusion'
+                ,'extended_pollution_exclusion','ls_25_value','ls_44a_value'
             ],
                 'integer','max'=>1,'min'=>0],
 	        [['ls_46_liability'],'integer','max'=>5,'min'=>0],
@@ -183,7 +185,9 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             'ls_46_liability' => Yii::t('app', "Morticians' or Cemetery Coverage"),
             'ls_46_value' => Yii::t('app', '# of bodies'),
 	        'ls_dce'=>Yii::t('app','Day Care Exclusion'),
-	        'amount_of_receipts'=>Yii::t('app','Amount of receipts')
+	        'amount_of_receipts'=>Yii::t('app','Amount of receipts'),
+	        'ls_25_value'=>Yii::t('app','ADDITIONAL INSURED (State or Political Sub-divisions-Permits Relating to Premises)'),
+	        'ls_44a_value'=>Yii::t('app','BEAUTY OR BARBER SHOP LIABILITY')
 
         ];
     }

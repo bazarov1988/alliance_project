@@ -363,6 +363,22 @@ use yii\widgets\ActiveForm;
 	        <td>none</td>
 	        <td>none</td>
         </tr>
+        <tr>
+	        <td>LS-25</td>
+	        <td>
+		        <?= $form->field($model, 'ls_25_value')->checkbox() ?>
+	        </td>
+	        <td>none</td>
+	        <td>none<td>
+        </tr>
+        <tr>
+	        <td>LS-44A</td>
+	        <td>
+		        <?= $form->field($model, 'ls_44a_value')->checkbox() ?>
+	        </td>
+	        <td>none</td>
+	        <td>none<td>
+        </tr>
         </tbody>
     </table>
 </div><!-- quotes-optional_liability_coverages -->

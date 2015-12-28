@@ -1131,7 +1131,10 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 	 * ls25 form
 	 */
 	public function getLs25() {
-		return 1;
+		if($this->ls_25_value){
+			return 1;
+		}
+		return 0;
 	}
 
 	/**
@@ -1139,7 +1142,10 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 	 * ls44a form
 	 */
 	public function getLs44A() {
-		return 1;
+		if($this->ls_44a_value){
+			return 1;
+		}
+		return 0;
 	}
 
 	public function getAthleticParticipantsExclusion() {
