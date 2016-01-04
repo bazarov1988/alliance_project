@@ -31,8 +31,8 @@ class Occupancy extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'mer_serc', 'rate_group', 'crime_group'], 'required'],
-            [['mer_serc', 'rate_group', 'crime_group'], 'integer'],
+            [['name', 'mer_serc', 'rate_group', 'crime_group', 'bldg_rg'], 'required'],
+            [['mer_serc', 'rate_group', 'crime_group', 'bldg_rg'], 'integer'],
             [['name'], 'string', 'max' => 255]
         ];
     }
