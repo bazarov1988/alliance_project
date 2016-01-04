@@ -5,7 +5,7 @@
                 <a href="<?php echo \yii\helpers\Url::toRoute('/user/admin')?>"><i class="fa fa-users fa-fw"></i> <?php echo Yii::t('app','Users');?></a>
             </li>
 	        <li>
-		        <a href="<?php echo \yii\helpers\Url::toRoute('/locations/admin')?>"><i class="fa fa-globe fa-fw"></i> <?php echo Yii::t('app','Locations');?></a>
+		        <a href="<?php echo \yii\helpers\Url::toRoute('/locations/admin')?>"><i class="fa fa-globe fa-fw"></i> <?php echo Yii::t('app','Occupancies');?></a>
 	        </li>
             <li class="active">
                 <a href="#"><i class="fa fa-edit fa-fw"></i> <?php echo Yii::t('app','Quotes');?><span class="fa arrow"></span></a>
