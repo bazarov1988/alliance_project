@@ -61,8 +61,6 @@ $persons = '<div class="textInputValue">Clergy Persons<br /><input type="text" v
             <li><a href="#s5" data-toggle="tab">Help</a></li>
             <li><a href="#s6" data-toggle="tab">Business Owners Program UW Guidelines</a></li>
             <li><a href="#s7" data-toggle="tab">Food Service UW Guidelines</a></li>
-	        <li><a href="#s8" data-toggle="tab">Business Owners Program UW Guidelines</a></li>
-	        <li><a href="#s9" data-toggle="tab">Food Service UW Guidelines</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="s1">
@@ -99,12 +97,6 @@ $persons = '<div class="textInputValue">Clergy Persons<br /><input type="text" v
             <div class="tab-pane" id="s7">
                 <?= $this->render('forms/food_service')?>
             </div>
-	        <div class="tab-pane" id="s8">
-		        <h3>Under construction!</h3>
-	        </div>
-	        <div class="tab-pane" id="s9">
-		        <h3>Under construction!</h3>
-	        </div>
         </div>
     </div>
     <div class="tabs-below">
@@ -116,8 +108,6 @@ $persons = '<div class="textInputValue">Clergy Persons<br /><input type="text" v
             <li><a href="#s5" data-toggle="tab">Help</a></li>
             <li><a href="#s6" data-toggle="tab">Business Owners Program UW Guidelines</a></li>
             <li><a href="#s7" data-toggle="tab">Food Service UW Guidelines</a></li>
-	        <li><a href="#s8" data-toggle="tab">Business Owners Program UW Guidelines</a></li>
-	        <li><a href="#s9" data-toggle="tab">Food Service UW Guidelines</a></li>
         </ul>
     </div>
     <div style="margin-top: 15px;width: 30%">
