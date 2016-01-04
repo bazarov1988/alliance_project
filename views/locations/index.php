@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'mer_serc',
             'rate_group',
             'crime_group',
-            // 'bldg_rg',
+            'bldg_rg',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
