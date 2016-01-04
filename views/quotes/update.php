@@ -116,7 +116,8 @@ $persons = '<div class="textInputValue">Clergy Persons<br /><input type="text" v
             <li><a href="#s5" data-toggle="tab">Help</a></li>
             <li><a href="#s6" data-toggle="tab">Business Owners Program UW Guidelines</a></li>
             <li><a href="#s7" data-toggle="tab">Food Service UW Guidelines</a></li>
-
+	        <li><a href="#s8" data-toggle="tab">Business Owners Program UW Guidelines</a></li>
+	        <li><a href="#s9" data-toggle="tab">Food Service UW Guidelines</a></li>
         </ul>
     </div>
     <div style="margin-top: 15px;width: 30%">
