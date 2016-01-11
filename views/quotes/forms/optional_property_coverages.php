@@ -362,9 +362,25 @@ use yii\widgets\ActiveForm;
 	        <td>none<td>
         </tr>
         <tr>
-	        <td>SF-513, 514, 515</td>
+	        <td>SF-513</td>
 	        <td>
-		        <?= $form->field($model, 'sf_513_514_515')->checkbox() ?>
+		        <?= $form->field($model, 'sf_513_value')->checkbox() ?>
+	        </td>
+	        <td>none</td>
+	        <td>none<td>
+        </tr>
+        <tr>
+	        <td>SF-514</td>
+	        <td>
+		        <?= $form->field($model, 'sf_514_value')->checkbox() ?>
+	        </td>
+	        <td>none</td>
+	        <td>none<td>
+        </tr>
+        <tr>
+	        <td>SF-515</td>
+	        <td>
+		        <?= $form->field($model, 'sf_515_value')->checkbox() ?>
 	        </td>
 	        <td>none</td>
 	        <td>none<td>

@@ -1274,9 +1274,24 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 	}
 
 	public function getBopExtenderEndorsements(){
-		if(!empty($this->sf_513_514_515)){
-			$number = count($this->quote->selectedLocations);
-			return (50+90+125)*$number;
+		$number = count($this->quote->selectedLocations);
+		return ($this->getSf513()+$this->getSf514()+$this->getSf515())*$number;
+	}
+	public function getSf513(){
+		if($this->sf_513_value){
+			return 50;
+		}
+		return 0;
+	}
+	public function getSf514(){
+		if($this->sf_513_value){
+			return 90;
+		}
+		return 0;
+	}
+	public function getSf515(){
+		if($this->sf_513_value){
+			return 125;
 		}
 		return 0;
 	}

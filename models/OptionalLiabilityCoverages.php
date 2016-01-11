@@ -1061,6 +1061,11 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 	}
 
 	public function getDrugglistLiabilityReceiptsRate(){
+		if(!$this->qoute->occupancy||!in_array($this->qoute->occupancy->name,
+				[
+				'Drug Store with Cooking on premises',
+				'Drug Store with No Cooking on premises'
+				])) return 0;
 		$params = \Yii::$app->params['quote']['limits_of_liability'];
 		foreach($params as $param){
 			if($this->amount_of_receipts>=$param[0]&&$this->amount_of_receipts<=$param[0]){
