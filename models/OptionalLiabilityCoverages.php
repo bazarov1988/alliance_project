@@ -1100,7 +1100,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 	 * get additional insured lass 22A
 	 */
 	public function getAdditionalInsuredLs22A() {
-		if($this->additional_insured_number){
+		if($this->ls_22a_value&&$this->additional_insured_number){
 			return $this->additional_insured_number* \Yii::$app->params['quote']['additional_insured_ls22a_flat'];
 		} else {
 			return 0;

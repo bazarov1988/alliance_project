@@ -1297,6 +1297,9 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 	}
 
 	public  function getHotelMotelExtender(){
+		if(!$this->sf_520_value){
+			return 0;
+		}
 		$counter = 0;
 		foreach($this->quote->selectedLocations as $location){
 			if($location->id == 3) $counter++;

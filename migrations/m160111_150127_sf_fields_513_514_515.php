@@ -11,6 +11,8 @@ class m160111_150127_sf_fields_513_514_515 extends Migration
 			ALTER TABLE `optional_property_coverages` ADD `sf_513_value` INT (1) NULL;
 			ALTER TABLE `optional_property_coverages` ADD `sf_514_value` INT (1) NULL;
 			ALTER TABLE `optional_property_coverages` ADD `sf_515_value` INT (1) NULL;
+			ALTER TABLE `optional_property_coverages` ADD `sf_520_value` INT (1) NULL;
+			ALTER TABLE `optional_liability_coverages` ADD `ls_22a_value` INT (1) NULL;
 		");
     }
 

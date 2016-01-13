@@ -44,6 +44,16 @@ use yii\widgets\ActiveForm;
             <td>none</td>
             <td>none</td>
         </tr>
+
+        <tr>
+	        <td> LS-22A </td>
+	        <td>
+		        <?= $form->field($model, 'additional_insured')->dropDownList(Yii::$app->params['quote']['additional_insured']) ?>
+	        </td>
+	        <td>none</td>
+	        <td>none</td>
+        </tr>
+
         <tr>
             <td>LS-24</td>
             <td>
