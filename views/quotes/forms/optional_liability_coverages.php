@@ -366,14 +366,6 @@ use yii\widgets\ActiveForm;
 	        <td>none</td>
         </tr>
         <tr>
-	        <td>LS-47</td>
-	        <td>
-		        <?= $form->field($model, 'amount_of_receipts') ?>
-	        </td>
-	        <td>none</td>
-	        <td>none</td>
-        </tr>
-        <tr>
 	        <td>LS-25</td>
 	        <td>
 		        <?= $form->field($model, 'ls_25_value')->checkbox() ?>

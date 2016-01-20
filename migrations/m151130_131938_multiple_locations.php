@@ -51,14 +51,15 @@ class m151130_131938_multiple_locations extends Migration
 			'Automatic Car Wash',
 			'Dry Cleaning Plants (except rug cleaning)',
 			'Guitar Rental Shop',
-			'Valet Service'
+			'Valet Service',
+			'Power Laundries (not auto)'
 
 		];
 		$condition = 'name IN ("'.implode('" , "',$removeOccupancies).'")';
 		\app\models\Occupancy::deleteAll($condition);
 
 		$addOccupancies = [
-			['Antique Store',3],['Mini Mart',2],['Deli with Fryers and Grills',4]
+			['Antique Store',3],['Mini Mart with Cooking',2],['Mini Mart with No Cooking',2],['Deli with Fryers and Grills',4]
 		];
 
 		foreach($addOccupancies as $occupancy){

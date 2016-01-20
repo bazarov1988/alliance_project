@@ -123,6 +123,7 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
         ];
     }
 
+
     /**
      * @inheritdoc
      */

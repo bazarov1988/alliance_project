@@ -1302,7 +1302,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 		}
 		$counter = 0;
 		foreach($this->quote->selectedLocations as $location){
-			if($location->id == 3) $counter++;
+			if($location->name == 'Hotel / Motel') $counter++;
 		}
 		return 75*$counter;
 	}

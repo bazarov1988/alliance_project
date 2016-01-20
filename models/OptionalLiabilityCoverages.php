@@ -1052,7 +1052,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 	 */
 	public function getDruggistLiability(){
 		$params = $this->getDrugglistLiabilityReceiptsRate();
-		$premium = round(($this->amount_of_receipts / 100 * $params[2]), 0);
+		$premium = round(($this->liquor_liability_receipts / 1000 * $params[2]), 0);
 		if($premium>$params[3]){
 			return $premium;
 		} else {
@@ -1061,24 +1061,18 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 	}
 
 	public function getDrugglistLiabilityReceiptsRate(){
-		if(!$this->qoute->occupancy||!in_array($this->qoute->occupancy->name,
+		if(!$this->quote||!$this->quote->occupancy||!in_array($this->quote->occupancy->name,
 				[
 				'Drug Store with Cooking on premises',
 				'Drug Store with No Cooking on premises'
-				])) return 0;
-		$params = \Yii::$app->params['quote']['limits_of_liability'];
-		foreach($params as $param){
-			if($this->amount_of_receipts>=$param[0]&&$this->amount_of_receipts<=$param[0]){
-				return $param;
-			}
-		}
+				])||!$this->liquor_liability_limit) return 0;
+
+		return \Yii::$app->params['quote']['limits_of_liability'][$this->liquor_liability_limit-1];
 	}
 
 	/**
 	 * LS24A
 	 */
-
-
 	public function getLS46Coverage(){
 		if($this->ls_46_value>0&&$this->ls_46_liability>0) {
 			$params = \Yii::$app->params['quote']['ls46_coverage'];

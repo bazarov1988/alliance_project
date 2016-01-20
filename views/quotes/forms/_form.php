@@ -37,7 +37,7 @@ use yii\helpers\ArrayHelper;
 						    $clergypersons_liability =$locationQuote->clergypersons_liability;
 					    }
 				    }
-				    echo $form->field($model, 'location')->dropDownList(ArrayHelper::map(Occupancy::find()->all(), 'id', 'name'),['prompt'=>'Select','class'=>'form-control locationsDropDownList']);
+				    echo $form->field($model, 'location')->dropDownList(ArrayHelper::map(Occupancy::find()->orderBy('name')->all(), 'id', 'name'),['prompt'=>'Select','class'=>'form-control locationsDropDownList']);
 				    if($model->location==2){
 					        echo '<div  class="textInputValue">Clergy Persons<br /><input type="text" value="'.$clergypersons.'" name="clergypersons"><br />
 						        Clergyperson Profesional Legal Liability Coverage<br />'.Html::dropDownList('clergypersons_liability',$clergypersons_liability,Yii::$app->params['quote']['clergypersons'],['prompt'=>'Select','class'=>'form-control']).'
