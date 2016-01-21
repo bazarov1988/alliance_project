@@ -32,12 +32,12 @@ use yii\widgets\ActiveForm;
             <td>$1000</td>
             <td>$1000</td>
         </tr>
-        <tr>
-            <td>SF-105</td>
-            <td><?= $form->field($model, 'alcoholic_beverages_tax_exclusion')->checkbox() ?></td>
-            <td>none</td>
-            <td>none</td>
-        </tr>
+<!--        <tr>-->
+<!--            <td>SF-105</td>-->
+<!--            <td>--><?//= $form->field($model, 'alcoholic_beverages_tax_exclusion')->checkbox() ?><!--</td>-->
+<!--            <td>none</td>-->
+<!--            <td>none</td>-->
+<!--        </tr>-->
         <tr></tr>
         <tr>
             <td>*</td>
@@ -234,7 +234,7 @@ use yii\widgets\ActiveForm;
             <td>
                 <span>Ordinance and Law</span>
                 <?= $form->field($model, 'demolition_amount') ?>
-                <?= $form->field($model, 'increased_cost') ?>
+                <?= $form->field($model, 'increased_cost')->checkbox() ?>
             </td>
             <td>none</td>
             <td>none</td>
@@ -394,7 +394,7 @@ use yii\widgets\ActiveForm;
 	        <td>none<td>
         </tr>
         <tr>
-	        <td>SF-520</td>
+	        <td>SF-102</td>
 	        <td>
 		        <?= $form->field($model, 'sf_102_value')->checkbox() ?>
 	        </td>
@@ -416,6 +416,22 @@ use yii\widgets\ActiveForm;
 	        </td>
 	        <td>none</td>
 	        <td>none<td>
+        </tr>
+        <tr>
+	        <td>SF-103</td>
+	        <td>
+		        <?= $form->field($model, 'sf_103_value')->checkbox() ?>
+	        </td>
+	        <td>none</td>
+	        <td>none</td>
+        </tr>
+        <tr>
+	        <td>SF-10b</td>
+	        <td>
+		        <?= $form->field($model, 'sf_10b_value')->checkbox() ?>
+	        </td>
+	        <td>none</td>
+	        <td>none</td>
         </tr>
         </tbody>
     </table>

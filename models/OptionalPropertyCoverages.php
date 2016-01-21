@@ -285,7 +285,8 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
      */
     public function getDDAggr_1_rate(){
         if(!empty($this->agreement_one)){
-            return \Yii::$app->params['quote']['demolition_debris']['aggr1']+1;
+	        $add = \Yii::$app->params['quote']['demolition_debris']['aggr1'];
+	        return $add+1;
         } else {
             return 0;
         }
@@ -1308,29 +1309,28 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 	}
 
 	public function getIncreasedCostOfConstruction(){
-		return ($this->increased_cost/100)*0.8*$this->quote->getBldgComposite();
-	}
-
-	public function getCilicaExclusion(){
-		$number = count($this->quote->selectedLocations);
-		return $number*(-1);
-	}
-
-	public function getAdditionalInsuredVendors() {
+		if($this->sf_103_value){
+			return ($this->increased_cost/100)*0.8*$this->quote->getBldgComposite();
+		} else {
+			return 0;
+		}
 
 	}
-
 	/**
 	 * sf349
 	 */
 	public function optionalTimeDeductible(){
 		if($this->sf_349_value){
-			return 1;
+			return -1*((int)$this->refrigerated_food+(int)$this->refrigerated_property+(int)$this->time_element)*0.02;
 		} else {
 			return 0;
 		}
 	}
-
+	/**
+	 * @return int
+	 * todo
+	 * complete formula
+	 */
 	public function getRestaurantHoodAndDuctProtectionSf32(){
 		$locations = [
 			'Bagel shop with cooking','Bakeries with cooking and selling on premise',
@@ -1342,6 +1342,30 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * @return int
+	 * todo
+	 * complete formula
+	 */
+	public function getDemolitionCoverageA(){
+		if($this->sf_102_value){
+			return 0;
+		}
+		return 0;
+	}
+
+	/**
+	 * @return int
+	 * todo
+	 * complete formula
+	 */
+	public function getSf10b(){
+		if($this->sf_10b_value){
+			return 0;
+		}
+		return 0;
 	}
 
 

@@ -59,7 +59,7 @@ class BaseSpecialConditions extends \yii\db\ActiveRecord
             'smoke_detectors' => Yii::t('app', 'Smoke Detectors'),
             'burglary_alarm_only' => Yii::t('app', 'Burglary Alarm Only'),
             'fire_resistive' => Yii::t('app', 'Fire Resistive'),
-            'sprinklered' => Yii::t('app', 'Sprinklered (Attach SF-53)'),
+            'sprinklered' => Yii::t('app', 'Protective Safeguards Endorsement'),
             'fire_resistive_sprinklered' => Yii::t('app', 'Fire Resistive Sprinklered'),
             'hood_and_duct' => Yii::t('app', 'Hood & Duct System conforming to standards'),
             'above' => Yii::t('app', 'Above, including approved fire suppression system'),

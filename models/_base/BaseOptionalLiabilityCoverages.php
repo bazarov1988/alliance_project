@@ -119,7 +119,7 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             [['fire_legal'],'validateFireLegal'],
             [['liquor_liability_limit'],'validateLiquorLiabilityLimit'],
             [['exclusionary_endorsements'],'safe'],
-            [['ls_dce'],'required'],
+            [['athletic_participants'],'required'],
         ];
     }
 
@@ -190,7 +190,7 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
 	        'amount_of_receipts'=>Yii::t('app','Amount of receipts'),
 	        'ls_25_value'=>Yii::t('app','ADDITIONAL INSURED (State or Political Sub-divisions-Permits Relating to Premises)'),
 	        'ls_44a_value'=>Yii::t('app','BEAUTY OR BARBER SHOP LIABILITY'),
-	        'ls_22a_value'=>Yii::t('app','BEAUTY OR BARBER SHOP LIABILITY'),
+	        'ls_22a_value'=>Yii::t('app','Additional Insured'),
         ];
     }
 
@@ -233,7 +233,8 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             'battery_exclusion'                     => 'LS-73',
             'ls_46_liability'                       => 'LS-46',
 	        'ls_dce'                                => 'LS-DCE',
-	        'amount_of_receipts'                    => 'LS-47'
+	        'amount_of_receipts'                    => 'LS-47',
+	        'ls_22a_value'                          => 'LS-22A'
         ];
     }
     public function getQuote()

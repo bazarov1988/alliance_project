@@ -59,7 +59,7 @@ class m151130_131938_multiple_locations extends Migration
 		\app\models\Occupancy::deleteAll($condition);
 
 		$addOccupancies = [
-			['Antique Store',3],['Mini Mart with Cooking',2],['Mini Mart with No Cooking',2],['Deli with Fryers and Grills',4]
+			['Antique Store',3],['Mini Mart with Cooking',4],['Mini Mart with No Cooking',4],['Deli with Fryers and Grills',4]
 		];
 
 		foreach($addOccupancies as $occupancy){

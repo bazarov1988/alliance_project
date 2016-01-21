@@ -504,3 +504,60 @@ if ($ls44a): ?>
 		<td></td>
 	</tr>
 <?php endif; ?>
+
+<?php
+$ls42 = $model->liabilityCoverages->getLs42();
+if ($ls42): ?>
+	<tr>
+		<td>LS-42</td>
+		<td colspan="2">
+			PRODUCTS/COMPLETED OPERATIONS
+		</td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($ls42) ?></td>
+		<td></td>
+	</tr>
+<?php endif; ?>
+
+<?php
+$ls42a = $model->liabilityCoverages->getLs42A();
+if ($ls42a): ?>
+	<tr>
+		<td>LS-42A</td>
+		<td colspan="2">
+			PRODUCTS/COMPLETED OPERATIONS
+		</td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($ls42a) ?></td>
+		<td></td>
+	</tr>
+<?php endif; ?>
+
+<?php
+$getIceControlOperationsPremium = $model->liabilityCoverages->getIceControlOperationsPremium();
+if ($ls42a): ?>
+	<tr>
+		<td>LS-79</td>
+		<td colspan="2">
+			Exclusion of Snow/Ice Control Operations
+		</td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($getIceControlOperationsPremium) ?></td>
+		<td></td>
+	</tr>
+<?php endif; ?>
+
+<?php
+$getLsDCE = $model->liabilityCoverages->getLsDCE();
+if ($ls42a): ?>
+	<tr>
+		<td>LS-DCE</td>
+		<td colspan="2">
+			Day Care Exclusion
+		</td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($getLsDCE) ?></td>
+		<td></td>
+	</tr>
+<?php endif; ?>
+

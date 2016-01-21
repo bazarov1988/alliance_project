@@ -236,6 +236,8 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 	    $summ += $propCovrgs->getIncreasedCostOfConstruction();
 	    $summ += $propCovrgs->optionalTimeDeductible();
 	    $summ += $propCovrgs->getDemolitionCoverage();
+	    $summ += $propCovrgs->getRestaurantHoodAndDuctProtectionSf32();
+	    $summ += $propCovrgs->getDemolitionCoverageA();
 
         return $summ;
 
@@ -310,7 +312,12 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 	        + $this->getCertainSkinCareServiceAPremium()
 	        + $this->getAdditionalInsuredLs22A()
 	        + $this->quote->getSpecialEvents()
-	        + $this->quote->clergyPersonProfessionalLegalLiabilityCoverage();
+	        + $this->quote->clergyPersonProfessionalLegalLiabilityCoverage()
+	        + $this->getLs42A()
+	        + $this->getLs42()
+	        + $this->getLs44A()
+	        + $this->getLs25()
+	        + $this->getLsDCE();
 
         return $summ;
     }
@@ -1147,8 +1154,48 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 		return 0;
 	}
 
-	public function getAthleticParticipantsExclusion() {
-
+	public function getLs42(){
+		if($this->qoute) {
+			if($this->quote->policy_type==1){
+				$occupancy = $this->qoute->occupancy;
+				if($occupancy->rate_group==5){
+					return 30;
+				} elseif(in_array($occupancy->rate_group,[1,2,3,4])){
+					return 15;
+				} else {
+					return 0;
+				}
+			} else {
+				return 0;
+			}
+		} else {
+			return 0;
+		}
 	}
+
+	public function getLs42A(){
+		if($this->qoute) {
+			if($this->quote->policy_type==1){
+				$occupancy = $this->qoute->occupancy;
+				if($occupancy->rate_group==5){
+					return 30;
+				} elseif(in_array($occupancy->rate_group,[1,2,3,4])){
+					return 15;
+				} else {
+					return 0;
+				}
+			} else {
+				return 0;
+			}
+		} else {
+			return 0;
+		}
+	}
+
+	public function getLsDCE(){
+		return 1;
+	}
+
+
 
 }

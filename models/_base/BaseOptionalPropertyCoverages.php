@@ -82,6 +82,8 @@ use Yii;
  * @property integer $sf_520_value
  * @property integer $sf_102_value
  * @property integer $sf_32_value
+ * @property integer $sf_103_value
+ * @property integer $sf_10b_value
  */
 class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
 {
@@ -114,7 +116,8 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
 					'curved', 'plates', 'sf_500', 'sf_519',
 					'sf_513_514_515', 'sf_349_value', 'sf_513_value',
 					'sf_514_value', 'sf_515_value', 'sf_515_value',
-					'sf_520_value', 'sf_102_value', 'sf_32_value'
+					'sf_520_value', 'sf_102_value', 'sf_32_value',
+					'sf_103_value', 'sf_10b_value'
 				],
 				'integer', 'max' => 1, 'min' => 0
 			],
@@ -240,6 +243,8 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
 			'sf_520_value' => Yii::t('app', "Hotel/Model Extender"),
 			'sf_102_value' => Yii::t('app', "Demolition Coverage - Coverage A"),
 			'sf_32_value' => Yii::t('app', "Restaurant Hood and Duct Protection"),
+			'sf_103_value'=> Yii::t('app', "Increased Cost of Construction"),
+			'sf_10b_value'=> Yii::t('app', "Supplemental Declarations"),
 		];
 	}
 
@@ -291,7 +296,9 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
 			'sf_359_value' => 'SF-349',
 			'sf_520_value' => 'SF-520',
 			'sf_102_value' => 'SF-102',
-			'sf_32_value' => 'SF-32',
+			'sf_32_value'  => 'SF-32',
+			'sf_103_value' => 'SF-103',
+			'sf_10b_value' => 'SF-10b'
 		];
 	}
 
@@ -411,6 +418,7 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
 				$this->addError($attribute, 'Sprinkler Leakage must apply for Additional Increments to be chosen.');
 			}
 		}
+
 	}
 
 	public function validateWhileAway($attr, $params)

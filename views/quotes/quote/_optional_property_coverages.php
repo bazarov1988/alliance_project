@@ -662,7 +662,7 @@ if ($optionalTimeDeductible) {
 ?>
 
 <?php
-$demolitionCoverage = $model->propertyCoverages->getDemolitionCoverage();
+$demolitionCoverage = $model->propertyCoverages->getDemolitionCoverageA();
 if ($demolitionCoverage) {
 	?>
 	<tr>
@@ -677,4 +677,41 @@ if ($demolitionCoverage) {
 <?php
 }
 ?>
+
+
+
+<?php
+$getRestaurantHoodAndDuctProtectionSf32 = $model->propertyCoverages->getRestaurantHoodAndDuctProtectionSf32();
+if ($getRestaurantHoodAndDuctProtectionSf32) {
+	?>
+	<tr>
+		<td>SF-32</td>
+		<td colspan="2">
+			Restaurant Hood and Duct Protection
+		</td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($getRestaurantHoodAndDuctProtectionSf32) ?></td>
+		<td></td>
+	</tr>
+<?php
+}
+?>
+
+<?php
+$getSf10b = $model->propertyCoverages->getSf10b();
+if ($getSf10b) {
+	?>
+	<tr>
+		<td>SF-10b</td>
+		<td colspan="2">
+			Supplemental Declarations
+		</td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($getSf10b) ?></td>
+		<td></td>
+	</tr>
+<?php
+}
+?>
+
 
