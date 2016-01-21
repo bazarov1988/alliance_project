@@ -1148,7 +1148,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 	 * ls44a form
 	 */
 	public function getLs44A() {
-		if($this->ls_44a_value){
+		if($this->quote && $this->quote->occupancy && in_array(trim($this->quote->occupancy->name),['Barber and Beauty Supplies','Barber Shop','Beauty Shop']) && $this->ls_44a_value){
 			return 1;
 		}
 		return 0;

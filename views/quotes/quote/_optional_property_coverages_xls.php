@@ -758,3 +758,21 @@ if ($getSf10b) {
 }
 ?>
 
+<?php
+$canineExclusion = $model->propertyCoverages->getExclusionCanineRelatedInjuriesDamagesPremium();
+if ($canineExclusion) {
+	?>
+	<tr>
+		<td>LS-373</td>
+		<td>
+			Canine Exclusion
+		</td>
+		<td></td>
+		<td></td>
+		<td><?= Yii::$app->formatter->asCurrency($canineExclusion) ?></td>
+		<td></td>
+	</tr>
+<?php
+}
+?>
+

@@ -2,7 +2,7 @@
 
 namespace app\models\_base;
 use app\models\Quotes;
-
+use app\models\Occupancy;
 use Yii;
 
 /**
@@ -68,8 +68,7 @@ use Yii;
  */
 class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
 {
-    // BT104
-    var $exclusion_canine_related_injuries_damages = 1;
+
 
     /**
      * @inheritdoc
@@ -119,7 +118,8 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             [['fire_legal'],'validateFireLegal'],
             [['liquor_liability_limit'],'validateLiquorLiabilityLimit'],
             [['exclusionary_endorsements'],'safe'],
-            [['athletic_participants'],'required'],
+            [['athletic_participants','battery_exclusion'],'required'],
+            [['certain_skin_care_service_a','certain_skin_care_service'],'validateCertainSkinCareService'],
         ];
     }
 
@@ -237,6 +237,8 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
 	        'ls_22a_value'                          => 'LS-22A'
         ];
     }
+
+
     public function getQuote()
     {
         return $this->hasOne(Quotes::className(),['id' => 'quote_id']);
@@ -254,9 +256,18 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
         }
     }
 
-
-
-
+	public function validateCertainSkinCareService($attr,$params){
+		if(!empty($_POST['Quotes']['location'])){
+			$location = Occupancy::findOne($_POST['Quotes']['location']);
+			if($location){
+				if(in_array($location->name,['Barber and Beauty Supplies','Barber Shop','Beauty Shop'])){
+					if(!$this->$attr){
+						$this->addError($attr,'Skin Care Exclusion can not be blank.');
+					}
+				}
+			}
+		}
+	}
     /**
      * @param $attr
      * @param $params
@@ -275,6 +286,9 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
         if($this->$attr&&$this->liability_form==1){
             $this->addError('Form LS-70 - Business Premises Exclusion Other than Designed Premises is not available on LS-1.');
         }
+	    if(!$this->$attr&&in_array($this->liability_form,[2,3])){
+		    $this->addError('Business Premises Exclusion - Other Than Designated Premises should be chosen for LS-4 and LS-6');
+	    }
     }
 
     public function validateLiabilityLimitation($attr,$params){
