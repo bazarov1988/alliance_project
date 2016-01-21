@@ -20,7 +20,7 @@ $persons = '<div class="textInputValue">Clergy Persons<br /><input type="text" v
 <div class="quotes-update">
 	<div style="display: none" class="clergypersons_input"><?=$persons?></div>
     <h1><?= Html::encode($this->title) ?></h1>
-<!--	<button class="btn btn-success addNewLocation" style="margin-bottom: 15px">Add new Location</button><br />-->
+	<button class="btn btn-success addNewLocation" style="margin-bottom: 15px">Add new Location</button><br />
     <?php if ($flash = Yii::$app->session->getFlash('Quote-saved')): ?>
         <div class="alert alert-success">
             <p><?= $flash ?></p>

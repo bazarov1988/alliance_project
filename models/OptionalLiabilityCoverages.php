@@ -1081,6 +1081,9 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 	 * LS24A
 	 */
 	public function getLS46Coverage(){
+		if(!$this->quote||$this->quote->occupancy||$this->quote->occupancy->id!=51){
+			return 0;
+		}
 		if($this->ls_46_value>0&&$this->ls_46_liability>0) {
 			$params = \Yii::$app->params['quote']['ls46_coverage'];
 			$rate = $params['rates'][$this->ls_46_liability-1];

@@ -75,25 +75,36 @@ use yii\helpers\ArrayHelper;
 <script>
     $(document).ready(function(){
         var checkOccupancySkinCare = function(){
-            if($('#quotes-occupied').val()==15||$('#quotes-occupied').val()==16){
+            if($('#quotes-location').val()==15||$('#quotes-location').val()==16){
                 $('#optionalliabilitycoverages-certain_skin_care_service').prop('checked',true).prop('disabled',true);
             } else {
                 $('#optionalliabilitycoverages-certain_skin_care_service').prop('disabled',true);
             }
         }
         var checkOccupancyHoddAndDuct = function(){
-            var obj = $('#quotes-occupied').val();
+            var obj = $('#quotes-location').val();
             if(obj==9||obj==11||obj==31||obj==42||obj==78||obj==97){
                 $('#specialconditions-hood_and_duct').prop('checked',true).prop('disabled',true);
             } else {
                 $('#specialconditions-hood_and_duct').prop('disabled',false);
             }
         }
+
+	    var checkLs46 = function(){
+		    var obj = $('#quotes-location').val();
+		    if(obj==51){
+			    $('.ls46-field').show();
+		    } else {
+			    $('.ls46-field').hide();
+		    }
+	    };
         checkOccupancySkinCare();
         checkOccupancyHoddAndDuct();
-        $('#quotes-occupied').change(function(){
+	    checkLs46();
+        $('#quotes-location').change(function(){
             checkOccupancySkinCare();
             checkOccupancyHoddAndDuct();
+	        checkLs46();
         });
 	    $('body').on('change','.locationsDropDownList',function(){
 		   $(this).parents('div.locationsDropDownListBlock').find('.textInputValue').each(function(index,el){

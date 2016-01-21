@@ -355,7 +355,7 @@ use yii\widgets\ActiveForm;
             <td>none</td>
         </tr>
 
-        <tr>
+        <tr class="ls46-field" style="display: none">
 	        <td>LS-46</td>
 	        <td>
 		        <?= $form->field($model, 'ls_46_liability')->dropDownList(Yii::$app->params['quote']['ls46_coverage']['liability']) ?>
