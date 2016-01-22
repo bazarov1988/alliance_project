@@ -389,6 +389,7 @@ if ($completedOperationsPremium != 0) {
         <td></td>
     </tr>
 <?php
+
 }
 ?>
 
