@@ -1160,7 +1160,7 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 	public function getLs42(){
 		if($this->quote) {
 			if($this->quote->policy_type==1){
-				$occupancy = $this->qoute->occupancy;
+				$occupancy = $this->quote->occupancy;
 				if($occupancy->rate_group==5){
 					return 30;
 				} elseif(in_array($occupancy->rate_group,[1,2,3,4])){
