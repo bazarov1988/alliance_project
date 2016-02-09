@@ -134,15 +134,6 @@ use yii\widgets\ActiveForm;
         </tr>
 
         <tr>
-            <td>LS-76</td>
-            <td>
-                <?= $form->field($model, 'certain_skin_care_service')->checkbox() ?>
-            </td>
-            <td>none</td>
-            <td>none</td>
-        </tr>
-
-        <tr>
             <td>LS-76A</td>
             <td>
                 <?= $form->field($model, 'certain_skin_care_service_a')->checkbox() ?>

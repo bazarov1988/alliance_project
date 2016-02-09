@@ -119,7 +119,7 @@ class BaseOptionalLiabilityCoverages extends \yii\db\ActiveRecord
             [['liquor_liability_limit'],'validateLiquorLiabilityLimit'],
             [['exclusionary_endorsements'],'safe'],
             [['athletic_participants','battery_exclusion'],'required'],
-            [['certain_skin_care_service_a','certain_skin_care_service'],'validateCertainSkinCareService'],
+            [['certain_skin_care_service_a'],'validateCertainSkinCareService'],
         ];
     }
 
