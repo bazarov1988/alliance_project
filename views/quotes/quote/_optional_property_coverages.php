@@ -595,6 +595,51 @@ if ($bopExtenderEndorsement) {
 }
 ?>
 
+
+<?php
+$getSf513 = $model->propertyCoverages->getSf513();
+if ($getSf513) {
+    ?>
+    <tr>
+        <td>SF-513</td>
+        <td colspan="2">BOP EXTENDER ENDORSEMENT #1</td>
+        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($getSf513) ?></td>
+        <td></td>
+    </tr>
+    <?php
+}
+?>
+<?php
+$getSf514 = $model->propertyCoverages->getSf514();
+if ($getSf514) {
+    ?>
+    <tr>
+        <td>SF-514</td>
+        <td colspan="2">BOP EXTENDER ENDORSEMENT #2</td>
+        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($getSf514) ?></td>
+        <td></td>
+    </tr>
+    <?php
+}
+?>
+<?php
+$getSf515 = $model->propertyCoverages->getSf515();
+if ($getSf515) {
+    ?>
+    <tr>
+        <td>SF-515</td>
+        <td colspan="2">BOP EXTENDER ENDORSEMENT #3</td>
+        <td></td>
+        <td><?= Yii::$app->formatter->asCurrency($getSf515) ?></td>
+        <td></td>
+    </tr>
+    <?php
+}
+?>
+
+
 <?php
 $bopExtenderEndorsements = $model->propertyCoverages->getBopExtenderEndorsements();
 if ($bopExtenderEndorsements) {

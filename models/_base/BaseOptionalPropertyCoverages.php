@@ -102,7 +102,8 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
 	{
 		return [
 			[['quote_id', 'building_inflation_protection', 'cause_of_loss_building', 'cause_of_loss_business_property', 'cost_provision', 'loss_off_income_month', 'building_increment', 'bus_prop_increment', 'damages_transmission_lines', 'time_transmission_lines', 'number_of_additional', 'add_increment', 'storekeepers_burglary_robbery', 'insured_premises', 'insured_premises_ten', 'insured_premises_a_ten', 'loss_off_income_month'], 'integer'],
-			[['accounts_receivable', 'additional_expense', 'employee_dishonesty', 'exterior_signs', 'money_securities', 'valuable_papers', 'increased_cost', 'demolition_amount', 'building_limit', 'bus_prop_limit',], 'number'],
+			[['accounts_receivable', 'additional_expense', 'employee_dishonesty', 'exterior_signs', 'money_securities', 'valuable_papers', 'increased_cost', 'demolition_amount', 'building_limit', 'bus_prop_limit'], 'number'],
+			[['sf_102_value'], 'integer'],
 			[['building_increment', 'bus_prop_increment'], 'integer', 'max' => 5],
 			[['deductible', 'damages_deductible', 'time_deductible', 'food_deductible', 'refrigerated_property_deductible', 'storekeepers_burglary_robbery_deductible'], 'integer', 'max' => 8],
 			[
@@ -116,7 +117,7 @@ class BaseOptionalPropertyCoverages extends \yii\db\ActiveRecord
 					'curved', 'plates', 'sf_500', 'sf_519',
 					'sf_513_514_515', 'sf_349_value', 'sf_513_value',
 					'sf_514_value', 'sf_515_value', 'sf_515_value',
-					'sf_520_value', 'sf_102_value', 'sf_32_value',
+					'sf_520_value', 'sf_32_value',
 					'sf_103_value', 'sf_10b_value'
 				],
 				'integer', 'max' => 1, 'min' => 0

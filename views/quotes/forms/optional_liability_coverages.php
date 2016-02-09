@@ -22,12 +22,7 @@ use yii\widgets\ActiveForm;
         </thead>
         <tbody>
 
-<!--        <tr>-->
-<!--	        <td> LS-DCE</td>-->
-<!--	        <td>--><?//= $form->field($model, 'ls_dce') ?><!--</td>-->
-<!--	        <td>None</td>-->
-<!--	        <td>None</td>-->
-<!--        </tr>-->
+
         <tr>
             <td> LS-6 </td>
             <td><?= $form->field($model, 'liability_form')->dropDownList(Yii::$app->params['quote']['liability_form']) ?></td>
@@ -62,14 +57,7 @@ use yii\widgets\ActiveForm;
             <td>none</td>
             <td>none</td>
         </tr>
-<!--        <tr>-->
-<!--            <td>LS-24A</td>-->
-<!--            <td>-->
-<!--                --><?//= $form->field($model, 'add_insured_owners_contactors')->checkbox() ?>
-<!--            </td>-->
-<!--            <td>none</td>-->
-<!--            <td>none</td>-->
-<!--        </tr>-->
+
         <tr>
             <td>LS-73</td>
             <td>
@@ -109,26 +97,6 @@ use yii\widgets\ActiveForm;
             <td>none</td>
             <td>none</td>
         </tr>
-
-<!--        <tr>-->
-<!--            <td>LS-70A</td>-->
-<!--            <td>-->
-<!--                --><?//= $form->field($model, 'project_only')->checkbox() ?>
-<!--            </td>-->
-<!--            <td>none</td>-->
-<!--            <td>none</td>-->
-<!--        </tr>-->
-
-<!--        <tr>-->
-<!--            <td>LS-46</td>-->
-<!--            <td>-->
-<!--                --><?//= $form->field($model, 'automobile_coverage')->dropDownList(Yii::$app->params['quote']['automobile_coverage']) ?>
-<!--                --><?//= $form->field($model, 'automobile_coverage_agregate')->dropDownList(Yii::$app->params['quote']['agregate']) ?>
-<!--            </td>-->
-<!--            <td>none</td>-->
-<!--            <td>none</td>-->
-<!--        </tr>-->
-
         <tr>
             <td>LS-91</td>
             <td>
@@ -210,14 +178,6 @@ use yii\widgets\ActiveForm;
             <td>none</td>
         </tr>
 
-<!--        <tr>-->
-<!--            <td>LS-85</td>-->
-<!--            <td>-->
-<!--                --><?//= $form->field($model, 'known_loss_damage')->checkbox() ?>
-<!--            </td>-->
-<!--            <td>none</td>-->
-<!--            <td>none</td>-->
-<!--        </tr>-->
 
         <tr>
             <td>LS-15</td>

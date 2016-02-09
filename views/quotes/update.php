@@ -31,17 +31,7 @@ $persons = '<div class="textInputValue">Clergy Persons<br /><input type="text" v
             <p><?= $flash ?></p>
         </div>
     <?php endif;?>
-<!--	<br />-->
-<!--	<div class="quotesCollectionBlock">-->
-<!--	--><?php //foreach($models as $quoteModel):?>
-<!--		--><?php //if($quoteModel->id==Yii::$app->request->get('id')):?>
-<!--			<strong><a href="--><?//=Url::toRoute(['quotes/update','id'=>$quoteModel->id])?><!--">--><?//=$quoteModel->getNameLink()?><!--</a></strong>-->
-<!--		--><?php //else: ?>
-<!--			<span><a href="--><?//=Url::toRoute(['quotes/update','id'=>$quoteModel->id])?><!--">--><?//=$quoteModel->getNameLink()?><!--</a></span>-->
-<!--		--><?php //endif; ?>
-<!--	--><?php //endforeach;?>
-<!--	</div>-->
-<!--	<br />-->
+
     <?php $form = ActiveForm::begin([
         'enableAjaxValidation' => true,
         'enableClientValidation' => true,

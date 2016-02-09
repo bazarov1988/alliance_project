@@ -1285,13 +1285,13 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 		return 0;
 	}
 	public function getSf514(){
-		if($this->sf_513_value){
+		if($this->sf_514_value){
 			return 90;
 		}
 		return 0;
 	}
 	public function getSf515(){
-		if($this->sf_513_value){
+		if($this->sf_515_value){
 			return 125;
 		}
 		return 0;
@@ -1301,11 +1301,11 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 		if(!$this->sf_520_value){
 			return 0;
 		}
-		$counter = 0;
-		foreach($this->quote->selectedLocations as $location){
-			if($location->name == 'Hotel / Motel') $counter++;
-		}
-		return 75*$counter;
+	    if($this->quote->occupancy->name=='Hotel / Motel') {
+            return 75;
+        } else {
+            return 0;
+        }
 	}
 
 	public function getIncreasedCostOfConstruction(){
@@ -1314,7 +1314,6 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 		} else {
 			return 0;
 		}
-
 	}
 	/**
 	 * sf349
@@ -1351,7 +1350,7 @@ class OptionalPropertyCoverages extends BaseOptionalPropertyCoverages {
 	 */
 	public function getDemolitionCoverageA(){
 		if($this->sf_102_value){
-			return 0;
+			return $this->sf_102_value*0.12*$this->quote->getBldgComposite();
 		}
 		return 0;
 	}
