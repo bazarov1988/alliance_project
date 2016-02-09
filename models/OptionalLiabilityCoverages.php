@@ -1202,5 +1202,12 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 	}
 
 
+    public function getAutoAttaches(){
+        if($this->liability_form==2||$this->liability_form==3){
+            return -20;
+        }
+    }
+
+
 
 }

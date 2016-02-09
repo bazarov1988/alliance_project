@@ -23,12 +23,6 @@ use yii\widgets\ActiveForm;
         <tbody>
 
 
-        <tr>
-            <td> LS-6 </td>
-            <td><?= $form->field($model, 'liability_form')->dropDownList(Yii::$app->params['quote']['liability_form']) ?></td>
-            <td>LS-1</td>
-            <td>LS-5</td>
-        </tr>
 
         <tr>
             <td> LS-22 </td>
@@ -59,14 +53,6 @@ use yii\widgets\ActiveForm;
         </tr>
 
         <tr>
-            <td>LS-73</td>
-            <td>
-                <?= $form->field($model, 'battery_exclusion')->checkbox() ?>
-            </td>
-            <td>none</td>
-            <td>none</td>
-        </tr>
-        <tr>
             <td>LS-44</td>
             <td>
                 <?= $form->field($model, 'barber_shop_liability')->dropDownList(Yii::$app->params['quote']['barber_shop_liability']) ?>
@@ -80,14 +66,6 @@ use yii\widgets\ActiveForm;
             <td>none</td>
         </tr>
 
-        <tr>
-            <td>LS-70</td>
-            <td>
-                <?= $form->field($model, 'designated_premises')->checkbox() ?>
-            </td>
-            <td>none</td>
-            <td>none</td>
-        </tr>
 
         <tr>
             <td>LS-92</td>

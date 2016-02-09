@@ -562,3 +562,27 @@ if ($ls42a): ?>
 	</tr>
 <?php endif; ?>
 
+
+<?php
+$lf = $model->liabilityCoverages->liability_form;
+if (in_array($lf,[2,3])): ?>
+    <tr>
+        <td>LS-70</td>
+        <td colspan="2">
+            Business Premises Exclusion
+        </td>
+        <td></td>
+        <td><?='-'.Yii::$app->formatter->asCurrency(10) ?></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>LS-73</td>
+        <td colspan="2">
+            Assault and Battery Exclusion
+        </td>
+        <td></td>
+        <td><?='-'.Yii::$app->formatter->asCurrency(10) ?></td>
+        <td></td>
+    </tr>
+<?php endif; ?>
+
