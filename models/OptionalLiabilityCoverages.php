@@ -317,7 +317,8 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 	        + $this->getLs42()
 	        + $this->getLs44A()
 	        + $this->getLs25()
-	        + $this->getLsDCE();
+	        + $this->getLsDCE()
+            + $this->getAutoAttaches();
 
         return $summ;
     }
@@ -1134,7 +1135,11 @@ class OptionalLiabilityCoverages extends BaseOptionalLiabilityCoverages
 	}
 
 	public function getLeadExclusionLs59(){
-		return -10;
+        if($this->ls_59_value) {
+            return -10;
+        } else {
+            return 0;
+        }
 	}
 
 	/**

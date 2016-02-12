@@ -10,7 +10,7 @@ if ($specialEvents): ?>
 	</tr>
 <?php endif; ?>
 
-<?php if ($model->does_lead_exclusion_apply): ?>
+<?php if ($model->getLeadExclusionLs59()): ?>
     <tr>
         <td>LS-59</td>
         <td colspan="2">Lead Execution - <?= $model->occupied == 97 ? 'Restaurant' : 'Other' /* Occupancy == Restaurant */?></td>
